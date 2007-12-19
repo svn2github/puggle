@@ -11,14 +11,15 @@ various operating systems, including Windows and Linux.
 
 2. HOW TO RUN
 ===============
+Puggle is composed of two parts: the Indexer and the Searcher. The Indexer
+is responsible for building and updating the index. The Searcher uses this
+index to evaluate the queries supplied by the user and present the results.
 
 Windows
 -------
-Run 'puggle.bat' script that is located bin/ directory.
-
-Linux
--------
-Run 'puggle.sh' script that is located in bin/ directory
+To run the Indexer double-click the 'puggle-indexer.bat' script that is
+located in bin/ directory. The Searcher can be executed by running the
+'puggle.bat' script in the same directory.
 
 
 3. HOW TO BUILD FROM SOURCES
