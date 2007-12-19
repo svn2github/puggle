@@ -1,0 +1,28 @@
+
+1. INTRODUCTION
+===============
+Puggle is a desktop search engine written exclusively in Java. It provides
+full text search over files, folders, music, photos, web pages and more
+that are stored locally on the computer.
+
+It is build in top of the famous Apache Lucene library and can run in
+various operating systems, including Windows and Linux.
+
+
+2. HOW TO RUN
+===============
+
+Windows
+-------
+Run 'puggle.bat' script that is located bin/ directory.
+
+Linux
+-------
+Run 'puggle.sh' script that is located in bin/ directory
+
+
+3. HOW TO BUILD FROM SOURCES
+============================
+The best way to compile the source code is to use Netbeans. Simply import
+the 'Puggle' directory to a new project.
+
