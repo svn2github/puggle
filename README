@@ -1,6 +1,8 @@
+Puggle Desktop Search Engine, version 0.1
+------------------------------------------
 
 1. INTRODUCTION
-===============
+============================
 Puggle is a desktop search engine written exclusively in Java. It provides
 full text search over files, folders, music, photos, web pages and more
 that are stored locally on the computer.
@@ -10,9 +12,9 @@ various operating systems, including Windows and Linux.
 
 
 2. HOW TO RUN
-===============
+============================
 Puggle is composed of two parts: the Indexer and the Searcher. The Indexer
-is responsible for building and updating the index. The Searcher uses this
+is responsible for building and updating the index. The Searcher uses the
 index to evaluate the queries supplied by the user and present the results.
 
 Windows
@@ -26,4 +28,9 @@ located in bin/ directory. The Searcher can be executed by running the
 ============================
 The best way to compile the source code is to use Netbeans. Simply import
 the 'Puggle' directory to a new project.
+
+
+4. FEEDBACK
+============================
+Feel free to send any comments, bugs or feature requests at gvasil@csd.uoc.gr.
 
