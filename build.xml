@@ -1,69 +1,222 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- You may freely edit this file. See commented blocks below for -->
-<!-- some examples of how to customize the build. -->
-<!-- (If you delete it and reopen the project it will be recreated.) -->
-<project name="Puggle" default="default" basedir=".">
-    <description>Builds, tests, and runs the project Puggle.</description>
-    <import file="nbproject/build-impl.xml"/>
-    <!--
-
-    There exist several targets which are by default empty and which can be 
-    used for execution of your tasks. These targets are usually executed 
-    before and after some main targets. They are: 
-
-      -pre-init:                 called before initialization of project properties
-      -post-init:                called after initialization of project properties
-      -pre-compile:              called before javac compilation
-      -post-compile:             called after javac compilation
-      -pre-compile-single:       called before javac compilation of single file
-      -post-compile-single:      called after javac compilation of single file
-      -pre-compile-test:         called before javac compilation of JUnit tests
-      -post-compile-test:        called after javac compilation of JUnit tests
-      -pre-compile-test-single:  called before javac compilation of single JUnit test
-      -post-compile-test-single: called after javac compilation of single JUunit test
-      -pre-jar:                  called before JAR building
-      -post-jar:                 called after JAR building
-      -post-clean:               called after cleaning build products
-
-    (Targets beginning with '-' are not intended to be called on their own.)
-
-    Example of inserting an obfuscator after compilation could look like this:
-
-        <target name="-post-compile">
-            <obfuscate>
-                <fileset dir="${build.classes.dir}"/>
-            </obfuscate>
-        </target>
-
-    For list of available properties check the imported 
-    nbproject/build-impl.xml file. 
 
 
-    Another way to customize the build is by overriding existing main targets.
-    The targets of interest are: 
 
-      -init-macrodef-javac:     defines macro for javac compilation
-      -init-macrodef-junit:     defines macro for junit execution
-      -init-macrodef-debug:     defines macro for class debugging
-      -init-macrodef-java:      defines macro for class execution
-      -do-jar-with-manifest:    JAR building (if you are using a manifest)
-      -do-jar-without-manifest: JAR building (if you are not using a manifest)
-      run:                      execution of project 
-      -javadoc-build:           Javadoc generation
-      test-report:              JUnit report generation
 
-    An example of overriding the target for project execution could look like this:
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- ViewVC - http://viewvc.org/
+by Greg Stein - mailto:gstein@lyra.org -->
+<head>
+<title>SourceForge.net Repository - [puggle] Log of /build.xml</title>
+<meta name="generator" content="ViewVC 1.0.3" />
+<link rel="stylesheet" href="/viewvc/*docroot*/styles.css" type="text/css" />
+</head>
+<body>
+<table style="padding:0.1em;">
+<tr>
+<td>
+<strong>
 
-        <target name="run" depends="Puggle-impl.jar">
-            <exec dir="bin" executable="launcher.exe">
-                <arg file="${dist.jar}"/>
-            </exec>
-        </target>
+<a href="/viewvc/puggle/?pathrev=4">
 
-    Notice that the overridden target depends on the jar target and not only on 
-    the compile target as the regular run target does. Again, for a list of available 
-    properties which you can use, check the target you are overriding in the
-    nbproject/build-impl.xml file. 
+[puggle]</a>
+/
 
-    -->
-</project>
+
+
+build.xml
+
+
+</strong>
+
+</td>
+</tr>
+</table>
+
+
+<div style="float: right; padding: 5px;"><a href="http://sourceforge.net"><img src="/viewvc/*docroot*/images/sflogo-210pxtrans.png" alt="(logo)" border=0 width=210 height=62></a></div>
+<h1>Log of /build.xml</h1>
+
+<p style="margin:0;">
+
+<a href="/viewvc/puggle/?pathrev=4"><img src="/viewvc/*docroot*/images/back_small.png" width="16" height="16" alt="Parent Directory" /> Parent Directory</a>
+
+
+
+
+</p>
+
+<hr />
+<table class="auto">
+
+
+
+<tr>
+<td>Links to HEAD:</td>
+<td>
+(<a href="/viewvc/puggle/build.xml?view=markup">view</a>)
+(<a href="/viewvc/*checkout*/puggle/build.xml">download</a>)
+(<a href="/viewvc/*checkout*/puggle/build.xml?content-type=text%2Fplain">as text</a>)
+(<a href="/viewvc/puggle/build.xml?view=annotate">annotate</a>)
+</td>
+</tr>
+
+
+
+<tr>
+<td>Sticky Revision:</td>
+<td><form method="get" action="/viewvc/puggle" style="display: inline">
+<input type="hidden" name="orig_pathtype" value="FILE" /><input type="hidden" name="orig_pathrev" value="4" /><input type="hidden" name="orig_view" value="log" /><input type="hidden" name="orig_path" value="build.xml" /><input type="hidden" name="view" value="redirect_pathrev" />
+
+<input type="text" name="pathrev" value="4" size="6"/>
+
+<input type="submit" value="Set" />
+</form>
+
+<form method="get" action="/viewvc/puggle/build.xml" style="display: inline">
+<input type="hidden" name="view" value="log" />
+
+<input type="submit" value="Clear">
+
+</form>
+
+</td>
+</tr>
+</table>
+ 
+
+
+
+
+
+
+
+
+<div>
+<hr />
+
+<a name="rev1"></a>
+
+
+Revision <a href="/viewvc/puggle?view=rev&amp;revision=1"><strong>1</strong></a> -
+
+(<a href="/viewvc/puggle/build.xml?revision=1&amp;view=markup&amp;pathrev=4">view</a>)
+
+(<a href="/viewvc/*checkout*/puggle/build.xml?revision=1&amp;pathrev=4">download</a>)
+(<a href="/viewvc/*checkout*/puggle/build.xml?revision=1&amp;content-type=text%2Fplain&amp;pathrev=4">as text</a>)
+(<a href="/viewvc/puggle/build.xml?annotate=1&amp;pathrev=4">annotate</a>)
+
+
+
+- <a href="/viewvc/puggle/build.xml?view=log&amp;r1=1&amp;pathrev=4">[select for diffs]</a>
+
+
+
+
+<br />
+
+Added
+
+<em>Wed Dec 19 12:53:09 2007 UTC</em> (28 hours, 14 minutes ago) by <em>gvasil</em>
+
+
+
+
+
+
+
+<br />File length: 3355 byte(s)
+
+
+
+
+
+
+
+
+
+
+<pre class="vc_log">First import!
+</pre>
+</div>
+
+ 
+
+
+
+ <hr />
+<p><a name="diff"></a>
+This form allows you to request diffs between any two revisions of this file.
+For each of the two "sides" of the diff,
+
+enter a numeric revision.
+
+</p>
+<form method="get" action="/viewvc/puggle/build.xml" name="diff_select">
+<table cellpadding="2" cellspacing="0" class="auto">
+<tr>
+<td>&nbsp;</td>
+<td>
+<input type="hidden" name="view" value="diff" /><input type="hidden" name="pathrev" value="4" />
+Diffs between
+
+<input type="text" size="12" name="r1"
+value="1" />
+
+and
+
+<input type="text" size="12" name="r2" value="1" />
+
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>
+Type of Diff should be a
+<select name="diff_format" onchange="submit()">
+<option value="h" selected="selected">Colored Diff</option>
+<option value="l" >Long Colored Diff</option>
+<option value="u" >Unidiff</option>
+<option value="c" >Context Diff</option>
+<option value="s" >Side by Side</option>
+</select>
+<input type="submit" value=" Get Diffs " />
+</td>
+</tr>
+</table>
+</form>
+
+
+<form method="get" action="/viewvc/puggle/build.xml">
+<div>
+<hr />
+<a name="logsort"></a>
+<input type="hidden" name="view" value="log" /><input type="hidden" name="pathrev" value="4" />
+Sort log by:
+<select name="logsort" onchange="submit()">
+<option value="cvs" >Not sorted</option>
+<option value="date" selected="selected">Commit date</option>
+<option value="rev" >Revision</option>
+</select>
+<input type="submit" value=" Sort " />
+</div>
+</form>
+
+
+<hr />
+<table>
+<tr>
+<td>
+<address><a href="http://sourceforge.net/">Back to SourceForge.net</a></address><br />
+Powered by <a href="http://viewvc.tigris.org/">ViewVC 1.0.3</a>
+</td>
+<td style="text-align:right;">
+<h3><a href="/viewvc/*docroot*/help_log.html">ViewVC and Help</a></h3>
+</td>
+</tr>
+</table>
+</body>
+</html>
+
+
