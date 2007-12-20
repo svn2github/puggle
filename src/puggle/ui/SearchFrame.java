@@ -434,7 +434,7 @@ public class SearchFrame extends javax.swing.JFrame {
             System.out.println(cmd);
             
             if (cmd.equals("config")) {
-                this.scrollPane.setViewportView(new ConfigPanel());
+                this.scrollPane.setViewportView(new IndexerPanel());
             }
             return;
         }
