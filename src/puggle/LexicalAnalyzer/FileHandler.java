@@ -107,6 +107,11 @@ public class FileHandler {
                         "Document cannot be handled: "
                         + file.getAbsolutePath(), e);
             }
+            catch (Exception e) {
+                throw new FileHandlerException(
+                        "Document cannot be handled: "
+                        + file.getAbsolutePath(), e);
+            }
             catch (OutOfMemoryError bounded){
                 throw new FileHandlerException(
                         "Out of Memory while handling: "
