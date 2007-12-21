@@ -57,7 +57,7 @@ public class FileWalker {
             File[] list = f.listFiles(filter);
             if (list != null) {
                 for (int i = 0; i < list.length; i++) {
-                    if (f.exists() && f.canRead()) {
+                    if (f.exists() && f.canRead() && FileList.contains(f) == false) {
                         FileList.add(list[i]);
                     }
                 }
