@@ -52,7 +52,7 @@ public class PropertiesControl {
             properties.setProperty("image_filetypes", "");
             properties.setProperty("music_filetypes", "");
             properties.setProperty("misc_filetypes", "");
-            properties.setProperty("path", System.getProperty("user.home") + ";");
+            properties.setProperty("path", System.getProperty("user.home") + File.pathSeparator);
             properties.setProperty("last_indexed", "0");
             properties.setProperty("last_optimized", "0");
             properties.setProperty("store_text", "false");
