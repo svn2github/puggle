@@ -211,7 +211,14 @@ public class Indexer implements Runnable {
             if (!file.exists()) {
                 this.Index.deleteDocument(i);
                 if (this.Logger != null) {
-                    this.Logger.write("File '" +file +"' removed. ");
+                    String type = null;
+                    if (file.isDirectory()) {
+                        type = "Directory";
+                    } else {
+                        type = "File";
+                    }
+                    
+                    this.Logger.write(type +" '" +file +"' removed. ");
                 }
             } else {
                 long l = Long.parseLong(doc.get("last modified"));
@@ -219,7 +226,14 @@ public class Indexer implements Runnable {
                 
                 if (l != file.lastModified() || s != file.length()) {
                     if (this.Logger != null) {
-                        this.Logger.write("File '" +file +"' removed.");
+                        String type = null;
+                        if (file.isDirectory()) {
+                            type = "Directory";
+                        } else {
+                            type = "File";
+                        }
+                        
+                        this.Logger.write(type +" '" +file +"' removed. ");
                     }
                     this.Index.deleteDocument(i);
                 }
@@ -295,7 +309,14 @@ public class Indexer implements Runnable {
                     doc = new Document();
                     
                     if (this.Logger != null) {
-                        this.Logger.write("File '" +filename +"' indexed.");
+                        String type = null;
+                        if (file.isDirectory()) {
+                            type = "Directory";
+                        } else {
+                            type = "File";
+                        }
+                        
+                        this.Logger.write(type +" '" +filename +"' indexed.");
                     }
 
                 }
