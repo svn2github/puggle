@@ -44,7 +44,7 @@ public class SearchConsole {
             
             String path = doc.get("path");
             
-            System.out.println(path + " " + score);
+            System.out.println("["+(i+1) +"]" +" "  +path);
         }
     }
     
@@ -54,8 +54,10 @@ public class SearchConsole {
         
         if (args.length == 0) {
             System.out.print("Search: ");
+            System.out.flush();
             
             Scanner in = new Scanner(System.in);
+            
             str = in.nextLine();
             in.close();
         }
