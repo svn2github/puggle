@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import puggle.Resources.Resources;
 
 /**
@@ -22,6 +23,7 @@ import puggle.Resources.Resources;
 public class FileWalker {
 
     private ArrayList<File> FileList;
+    private HashSet<File> Directories;
     private FileFilter filter;
     
     /** Creates a new instance of FileWalker */
@@ -36,10 +38,12 @@ public class FileWalker {
             throw new IOException("Cannot read directory " +dir +".");
         }
 
-        FileList = new ArrayList<File>();
-        FileList.add(dir.getCanonicalFile());
+        this.FileList = new ArrayList<File>();
+        this.FileList.add(dir.getCanonicalFile());
         
-        filter = Resources.getFiletypeFilter();
+        this.Directories = new HashSet<File>();
+        
+        this.filter = Resources.getFiletypeFilter();
     }
     
     public boolean hasNext() {
@@ -54,11 +58,16 @@ public class FileWalker {
         File f = FileList.remove(FileList.size() - 1);
         
         if (f.isDirectory()) {
+            this.Directories.add(f);
             File[] list = f.listFiles(filter);
             if (list != null) {
                 for (int i = 0; i < list.length; i++) {
-                    if (f.exists() && f.canRead() && FileList.contains(f) == false) {
-                        FileList.add(list[i]);
+                    if (list[i].exists() && list[i].canRead() && this.Directories.contains(list[i]) == false) {
+                        try {
+                            FileList.add(list[i].getCanonicalFile());
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
                     }
                 }
             }
