@@ -61,13 +61,14 @@ public class FileWalker {
             this.Directories.add(f);
             File[] list = f.listFiles(filter);
             if (list != null) {
-                for (int i = 0; i < list.length; i++) {
-                    if (list[i].exists() && list[i].canRead() && this.Directories.contains(list[i]) == false) {
-                        try {
-                            FileList.add(list[i].getCanonicalFile());
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
-                        }
+                int listLength = list.length;
+                for (int i = 0; i < listLength; i++) {
+                    File tmpFile = null;
+                    try { tmpFile = list[i].getCanonicalFile(); }
+                    catch (IOException ex) { ex.printStackTrace(); }
+                    
+                    if (tmpFile.exists() && tmpFile.canRead() && this.Directories.contains(tmpFile) == false) {
+                        FileList.add(tmpFile);
                     }
                 }
             }
