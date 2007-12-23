@@ -13,7 +13,7 @@ IF "%DEBUG"=="YES" SET JAVA_BIN=java
 REM ------------------------
 REM -- Run Puggle
 REM ------------------------
-START %JAVA_BIN% -Xms2M -Xmx512M -jar "..\dist\Puggle.jar"  %*
+START %JAVA_BIN% -Xms2M -Xmx512M -cp ..\dist\Puggle.jar -jar "..\dist\Puggle.jar"  %*
 
 if "Windows_NT"=="%OS%" endlocal
 
