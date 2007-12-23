@@ -46,21 +46,16 @@ public class ModernResultsPanel extends ResultsPanel {
     // <editor-fold defaultstate="collapsed" desc=" Generated Code ">//GEN-BEGIN:initComponents
     private void initComponents() {
         mainPanel = new javax.swing.JPanel();
-        modernResultPanel1 = new puggle.ui.ModernResultPanel();
-        modernResultPanel2 = new puggle.ui.ModernResultPanel();
-        modernResultPanel3 = new puggle.ui.ModernResultPanel();
-        modernResultPanel4 = new puggle.ui.ModernResultPanel();
-        modernResultPanel5 = new puggle.ui.ModernResultPanel();
-        modernResultPanel6 = new puggle.ui.ModernResultPanel();
-        modernResultPanel7 = new puggle.ui.ModernResultPanel();
-        modernResultPanel8 = new puggle.ui.ModernResultPanel();
-        modernResultPanel9 = new puggle.ui.ModernResultPanel();
-        modernResultPanel10 = new puggle.ui.ModernResultPanel();
-        modernResultPanel11 = new puggle.ui.ModernResultPanel();
-        modernResultPanel12 = new puggle.ui.ModernResultPanel();
-        modernResultPanel13 = new puggle.ui.ModernResultPanel();
-        modernResultPanel14 = new puggle.ui.ModernResultPanel();
-        modernResultPanel15 = new puggle.ui.ModernResultPanel();
+        resultPanel1 = new puggle.ui.ModernResultPanel();
+        resultPanel2 = new puggle.ui.ModernResultPanel();
+        resultPanel3 = new puggle.ui.ModernResultPanel();
+        resultPanel4 = new puggle.ui.ModernResultPanel();
+        resultPanel5 = new puggle.ui.ModernResultPanel();
+        resultPanel6 = new puggle.ui.ModernResultPanel();
+        resultPanel7 = new puggle.ui.ModernResultPanel();
+        resultPanel8 = new puggle.ui.ModernResultPanel();
+        resultPanel9 = new puggle.ui.ModernResultPanel();
+        resultPanel10 = new puggle.ui.ModernResultPanel();
 
         mainPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
@@ -68,35 +63,25 @@ public class ModernResultsPanel extends ResultsPanel {
         mainPanel.setAlignmentX(0.0F);
         mainPanel.setAlignmentY(0.0F);
         mainPanel.setAutoscrolls(true);
-        mainPanel.add(modernResultPanel1);
+        mainPanel.add(resultPanel1);
 
-        mainPanel.add(modernResultPanel2);
+        mainPanel.add(resultPanel2);
 
-        mainPanel.add(modernResultPanel3);
+        mainPanel.add(resultPanel3);
 
-        mainPanel.add(modernResultPanel4);
+        mainPanel.add(resultPanel4);
 
-        mainPanel.add(modernResultPanel5);
+        mainPanel.add(resultPanel5);
 
-        mainPanel.add(modernResultPanel6);
+        mainPanel.add(resultPanel6);
 
-        mainPanel.add(modernResultPanel7);
+        mainPanel.add(resultPanel7);
 
-        mainPanel.add(modernResultPanel8);
+        mainPanel.add(resultPanel8);
 
-        mainPanel.add(modernResultPanel9);
+        mainPanel.add(resultPanel9);
 
-        mainPanel.add(modernResultPanel10);
-
-        mainPanel.add(modernResultPanel11);
-
-        mainPanel.add(modernResultPanel12);
-
-        mainPanel.add(modernResultPanel13);
-
-        mainPanel.add(modernResultPanel14);
-
-        mainPanel.add(modernResultPanel15);
+        mainPanel.add(resultPanel10);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -106,7 +91,7 @@ public class ModernResultsPanel extends ResultsPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(mainPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
+            .add(mainPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     
@@ -121,33 +106,128 @@ public class ModernResultsPanel extends ResultsPanel {
     }
     
     private void printCurrentHits() {
+        Document doc;
+        Icon icon;
+        sun.awt.shell.ShellFolder sf;
+        String title = null, path = null, folder = null;
+        long size;
+        int score;
+        
+        try {
+            if (this.currHits < this.totalHits) {
+                printHit(this.hits.doc(currHits),
+                        (int)Math.ceil(this.hits.score(currHits) * 10) / 2,
+                        resultPanel1);
+            } else {
+                clearResultPanel(resultPanel1);
+            }
+            
+            if (this.currHits + 1 < this.totalHits) {
+                printHit(this.hits.doc(currHits + 1),
+                        (int)Math.ceil(this.hits.score(currHits + 1) * 10) / 2,
+                        resultPanel2);
+            } else {
+                clearResultPanel(resultPanel2);
+            }
+
+            if (currHits + 2 < totalHits) {
+                printHit(this.hits.doc(currHits + 2),
+                        (int)Math.ceil(this.hits.score(currHits + 2) * 10) / 2,
+                        resultPanel3);
+            } else {
+                clearResultPanel(resultPanel3);
+            }
+            
+            if (currHits + 3 < totalHits) {
+                printHit(this.hits.doc(currHits + 3),
+                        (int)Math.ceil(this.hits.score(currHits + 3) * 10) / 2,
+                        resultPanel4);
+            } else {
+                clearResultPanel(resultPanel4);
+            }
+            
+            if (currHits + 4 < totalHits) {
+                printHit(this.hits.doc(currHits + 4),
+                        (int)Math.ceil(this.hits.score(currHits + 4) * 10) / 2,
+                        resultPanel5);
+            } else {
+                clearResultPanel(resultPanel5);
+            }
+            
+            if (currHits + 5 < totalHits) {
+                printHit(this.hits.doc(currHits + 5),
+                        (int)Math.ceil(this.hits.score(currHits + 5) * 10) / 2,
+                        resultPanel6);
+            } else {
+                clearResultPanel(resultPanel6);
+            }
+            
+            if (currHits + 6 < totalHits) {
+                printHit(this.hits.doc(currHits + 6),
+                        (int)Math.ceil(this.hits.score(currHits + 6) * 10) / 2,
+                        resultPanel7);
+            } else {
+                clearResultPanel(resultPanel7);
+            }
+                
+            if (currHits + 7 < totalHits) {
+                printHit(this.hits.doc(currHits + 7),
+                        (int)Math.ceil(this.hits.score(currHits + 7) * 10) / 2,
+                        resultPanel8);
+            } else {
+                clearResultPanel(resultPanel8);
+            }
+            
+            if (currHits + 8 < totalHits) {
+                printHit(this.hits.doc(currHits + 8),
+                        (int)Math.ceil(this.hits.score(currHits + 8) * 10) / 2,
+                        resultPanel9);
+            } else {
+                clearResultPanel(resultPanel9);
+            }
+            
+            if (currHits + 9 < totalHits) {
+                printHit(this.hits.doc(currHits + 9),
+                        (int)Math.ceil(this.hits.score(currHits + 9) * 10) / 2,
+                        resultPanel10);
+            } else {
+                clearResultPanel(resultPanel10);
+            }
+
+//            JScrollBar bar = this.scrollPane.getVerticalScrollBar();
+//            bar.setValue(bar.getMinimum());
+            
+            //pack();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
     
-    private void printHit(Document doc, int score, JLabel titleLabel, JLabel scoreLabel,
-            JLabel pathLabel, JLabel sizeLabel, JLabel iconLabel) {
+    private void printHit(Document doc, int score, ModernResultPanel resultPanel) {
         String title = doc.get("title");
         String path = doc.get("path");
         long size = Long.parseLong(doc.get("size"));
         if (title == null || title.trim().compareTo("") == 0) {
             title = path.substring(path.lastIndexOf(File.separatorChar) + 1);
         }
-        titleLabel.setText(title);
-        titleLabel.setToolTipText(path);
-        scoreLabel.setIcon(this.imageControl.getStarsIcon(score));
-        String folder = path.substring(0, path.lastIndexOf(File.separatorChar) + 1);
-        pathLabel.setText(folder);
-        pathLabel.setToolTipText(folder);
-        sizeLabel.setText(Util.adjustSize(size));
-        
+        resultPanel.setTitle(title);
+        resultPanel.getTitleLabel().setToolTipText(path);
+        resultPanel.setSize(Util.adjustSize(size));
+
         try {
             ImageIcon icon = FileHandler.getThumbnail(doc);
-            iconLabel.setText("");
-            iconLabel.setIcon(icon);
+            resultPanel.getIconLabel().setText("");
+            resultPanel.setIcon(icon);
         } catch (FileHandlerException e) {
-            iconLabel.setForeground(Color.RED);
-            iconLabel.setText("File not found");
-            iconLabel.setIcon(null);
+            resultPanel.getIconLabel().setForeground(Color.RED);
+            resultPanel.getIconLabel().setText("File not found");
+            resultPanel.getIconLabel().setIcon(null);
         }
+    }
+    
+    public void clearResultPanel(ModernResultPanel resultPanel) {
+        resultPanel.setTitle(""); resultPanel.getTitleLabel().setToolTipText("");
+        resultPanel.setIcon(null); resultPanel.setPath("");
     }
     
     private void printCurrentFragments() {
@@ -203,22 +283,26 @@ public class ModernResultsPanel extends ResultsPanel {
     private int totalHits;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel mainPanel;
-    private puggle.ui.ModernResultPanel modernResultPanel1;
-    private puggle.ui.ModernResultPanel modernResultPanel10;
-    private puggle.ui.ModernResultPanel modernResultPanel11;
-    private puggle.ui.ModernResultPanel modernResultPanel12;
-    private puggle.ui.ModernResultPanel modernResultPanel13;
-    private puggle.ui.ModernResultPanel modernResultPanel14;
-    private puggle.ui.ModernResultPanel modernResultPanel15;
-    private puggle.ui.ModernResultPanel modernResultPanel2;
-    private puggle.ui.ModernResultPanel modernResultPanel3;
-    private puggle.ui.ModernResultPanel modernResultPanel4;
-    private puggle.ui.ModernResultPanel modernResultPanel5;
-    private puggle.ui.ModernResultPanel modernResultPanel6;
-    private puggle.ui.ModernResultPanel modernResultPanel7;
-    private puggle.ui.ModernResultPanel modernResultPanel8;
-    private puggle.ui.ModernResultPanel modernResultPanel9;
+    private puggle.ui.ModernResultPanel resultPanel1;
+    private puggle.ui.ModernResultPanel resultPanel10;
+    private puggle.ui.ModernResultPanel resultPanel11;
+    private puggle.ui.ModernResultPanel resultPanel12;
+    private puggle.ui.ModernResultPanel resultPanel13;
+    private puggle.ui.ModernResultPanel resultPanel14;
+    private puggle.ui.ModernResultPanel resultPanel15;
+    private puggle.ui.ModernResultPanel resultPanel16;
+    private puggle.ui.ModernResultPanel resultPanel17;
+    private puggle.ui.ModernResultPanel resultPanel18;
+    private puggle.ui.ModernResultPanel resultPanel2;
+    private puggle.ui.ModernResultPanel resultPanel3;
+    private puggle.ui.ModernResultPanel resultPanel4;
+    private puggle.ui.ModernResultPanel resultPanel5;
+    private puggle.ui.ModernResultPanel resultPanel6;
+    private puggle.ui.ModernResultPanel resultPanel7;
+    private puggle.ui.ModernResultPanel resultPanel8;
+    private puggle.ui.ModernResultPanel resultPanel9;
     // End of variables declaration//GEN-END:variables
     
 }

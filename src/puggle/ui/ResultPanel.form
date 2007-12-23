@@ -37,8 +37,8 @@
               <Component id="iconLabel" min="-2" pref="100" max="-2" attributes="0"/>
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" alignment="0" pref="474" max="32767" attributes="0"/>
-                  <Component id="pathLabel" alignment="0" pref="474" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="0" pref="546" max="32767" attributes="0"/>
+                  <Component id="pathLabel" alignment="0" pref="546" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="titleLabel" pref="439" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
@@ -134,6 +134,9 @@
             <Property name="editable" type="boolean" value="false"/>
             <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="selectionColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="66" green="cc" red="ff" type="rgb"/>
             </Property>
           </Properties>
           <AuxValues>

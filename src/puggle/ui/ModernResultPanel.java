@@ -73,6 +73,10 @@ public class ModernResultPanel extends javax.swing.JPanel {
             }
         });
 
+        titleLabel.setMaximumSize(new java.awt.Dimension(100, 25));
+        titleLabel.setMinimumSize(new java.awt.Dimension(100, 25));
+        titleLabel.setPreferredSize(new java.awt.Dimension(100, 25));
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -85,7 +89,7 @@ public class ModernResultPanel extends javax.swing.JPanel {
             .add(layout.createSequentialGroup()
                 .add(iconLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 100, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(titleLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE))
+                .add(titleLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

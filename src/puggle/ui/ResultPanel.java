@@ -99,6 +99,7 @@ public class ResultPanel extends javax.swing.JPanel {
         jScrollPane1.setPreferredSize(new java.awt.Dimension(6, 20));
         textPane1.setEditable(false);
         textPane1.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        textPane1.setSelectionColor(new java.awt.Color(255, 204, 102));
         textPane1.setEditorKit(new HTMLEditorKit());
         jScrollPane1.setViewportView(textPane1);
 
@@ -132,8 +133,8 @@ public class ResultPanel extends javax.swing.JPanel {
                 .add(iconLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 100, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
-                    .add(pathLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
+                    .add(pathLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                         .add(titleLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
                         .add(35, 35, 35)
@@ -241,27 +242,7 @@ public class ResultPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, ex.getMessage(),
                         "Error", JOptionPane.ERROR_MESSAGE,
                         this.imageControl.getErrorIcon());
-                /*javax.swing.JTextArea t = new javax.swing.JTextArea();
-                t.setText("test");
-                javax.swing.JFrame fr = new javax.swing.JFrame();
-                fr.add(t);
-                fr.pack();
-                fr.setVisible(true);*/
         }
-        
-        /*
-        try {
-            String cmd = null;
-            if (file.isDirectory()) {
-                cmd = "explorer \"" + file.getCanonicalPath() + "\"";
-            } else {
-                cmd = "cmd /c \"" + file.getCanonicalPath() + "\"";
-            }
-            Runtime.getRuntime().exec(cmd);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-         */
     }
     
     public void setTitle(String title) {
