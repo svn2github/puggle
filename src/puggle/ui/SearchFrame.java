@@ -119,6 +119,14 @@ public class SearchFrame extends javax.swing.JFrame {
         setBackground(new java.awt.Color(241, 240, 240));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setName("frame");
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+                formWindowLostFocus(evt);
+            }
+        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -268,6 +276,18 @@ public class SearchFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowLostFocus
+        try {
+            this.startIndexing(50);
+        } catch (IOException ex) {
+            // someone else is indexing. do nothing..
+        }
+    }//GEN-LAST:event_formWindowLostFocus
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        this.stopIndexing();
+    }//GEN-LAST:event_formWindowGainedFocus
+
     private void searchFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchFieldMouseClicked
     }//GEN-LAST:event_searchFieldMouseClicked
 
@@ -275,33 +295,50 @@ public class SearchFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_searchFieldTextValueChanged
 
+    private boolean startIndexing(long delay) throws IOException {
+        long lastModified = this.propertiesControl.getLastIndexed();
+        
+        if (this.indexerThread == null &&
+                new Date().getTime() - lastModified > 600000 /* 10 mins */) {
+            
+            File[] dataDirsFile = this.propertiesControl.getDataDirectories();
+            
+            File indexDir = new File(Resources.getIndexDirPath());
+            
+            JLogger logger = new JLogger(System.out);
+            this.indexer = new Indexer(dataDirsFile, indexDir, logger, false);
+            this.indexer.setDelay(delay);  // Sleep about 1 sec for every 40 files.
+            
+            this.indexerThread = new Thread(this.indexer);
+            this.indexerThread.start();
+            
+            return true;
+        }
+        
+        return false;
+    }
+    
+    private void stopIndexing() {
+        if (this.indexerThread != null) {
+            this.indexer.close();
+            this.indexerThread = null;
+        }
+    }
+    
     private void formWindowIconified(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowIconified
         if (this.trayIconControl != null) {
             this.trayIconControl.add();
-            
-            this.trayIconControl.displayMessage("Indexing progress",
-                    "Indexing process started in background.",
-                    TrayIcon.MessageType.INFO);
         }
-        
-        long lastModified = this.propertiesControl.getLastIndexed();
-        if (this.indexerThread != null ||
-                new Date().getTime() - lastModified < 600000 /* 10 mins */) {
-            return;
-        }
-        
-        File[] dataDirsFile = null;
 
-        dataDirsFile = this.propertiesControl.getDataDirectories();
-        
-        File indexDir = new File(Resources.getIndexDirPath());
-        
         try {
-            JLogger logger = new JLogger(System.out);
-            this.indexer = new Indexer(dataDirsFile, indexDir, logger, false);
-            this.indexer.setDelay(25);  // Sleep about 1 sec for every 40 files.
+            boolean status = this.startIndexing(25);
+            if (this.trayIconControl != null && status == true) {
+                this.trayIconControl.displayMessage("Indexing progress",
+                        "Indexing process started in background.",
+                        TrayIcon.MessageType.INFO);
+            }
         } catch (IOException ex) {
-            // someone else is indexing. do nothing..
+            // someone else is indexing.
             this.trayIconControl.displayMessage("Indexing progress",
                     ex.getMessage(),
                     TrayIcon.MessageType.ERROR);
@@ -309,16 +346,17 @@ public class SearchFrame extends javax.swing.JFrame {
             return;
         }
 
-        this.indexerThread = new Thread(this.indexer);
-        this.indexerThread.start();
+//        this.indexerThread = new Thread(this.indexer);
+//        this.indexerThread.start();
     }//GEN-LAST:event_formWindowIconified
 
     private void formWindowDeiconified(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowDeiconified
-        if (this.indexerThread != null) {
-            this.indexer.close();
-            System.err.println("Indexing stopped.");
-            this.indexerThread = null;
-        }
+//        if (this.indexerThread != null) {
+//            this.indexer.close();
+//            System.err.println("Indexing stopped.");
+//            this.indexerThread = null;
+//        }
+        this.stopIndexing();
     }//GEN-LAST:event_formWindowDeiconified
 
     private void nextButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextButtonMouseClicked
