@@ -380,9 +380,10 @@ public class Indexer implements Runnable {
                 this.indexDocuments();
             }
             
-
-            this.propertiesControl.setLastIndexed(new Date().getTime());
-            this.propertiesControl.flush();
+            if (!this.Stop) {
+                this.propertiesControl.setLastIndexed(new Date().getTime());
+                this.propertiesControl.flush();
+            }
             
             long end = new Date().getTime();
 
