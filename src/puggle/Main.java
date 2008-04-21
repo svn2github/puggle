@@ -59,9 +59,9 @@ public class Main {
             Object[] options = {"Create Index...", "Open Index..."};
             
             int n = JOptionPane.showOptionDialog(null,
-                    "It appears that this is the first time you run Puggle "
-                    + "on this computer.\n"
-                    + "You can either create a new Index or load an existing one.",
+                    "Puggle wasn't able to find any valid Index Directory.\n "
+                    + "You can either create a new one or explicity load an\n"
+                    + "existing one.",
                     "Puggle Desktop Search",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE,
@@ -106,7 +106,13 @@ public class Main {
                                     "Index directory '" +directory +"' successfully loaded.",
                                     "Open Index Directory",
                                     JOptionPane.INFORMATION_MESSAGE,
-                                    ImageControl.getImageControl().getErrorIcon());
+                                    ImageControl.getImageControl().getInfoIcon());
+                            
+                            java.awt.EventQueue.invokeLater(new Runnable() {
+                                public void run() {
+                                    new SearchFrame().setVisible(true);
+                                }
+                            });
                         } else {
                             JOptionPane.showMessageDialog(null,
                                     "Directory '" +directory +"' is not a valid index.",
