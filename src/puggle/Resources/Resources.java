@@ -99,7 +99,7 @@ public class Resources {
     }
     
     public static Set getMusicFiletypesSet() {
-        HashSet set = new HashSet();
+        HashSet<String> set = new HashSet<String>();
         set.addAll(Arrays.asList(MUSIC_FILETYPES));
         return set;
     }
@@ -109,7 +109,7 @@ public class Resources {
     }
     
     public static Set getImagesFiletypesSet() {
-        HashSet set = new HashSet();
+        HashSet<String> set = new HashSet<String>();
         set.addAll(Arrays.asList(IMAGES_FILETYPES));
         return set;
     }
@@ -119,7 +119,7 @@ public class Resources {
     }
     
     public static Set getDocumentsFiletypesSet() {
-        HashSet set = new HashSet();
+        HashSet<String> set = new HashSet<String>();
         set.addAll(Arrays.asList(DOCUMENTS_FILETYPES));
         return set;
     }

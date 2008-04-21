@@ -89,7 +89,7 @@ public class PropertiesControl {
     }
     
     public synchronized Set getFiletypesSet() {
-        HashSet set = new HashSet();
+        HashSet<String> set = new HashSet<String>();
         
         set.addAll(Arrays.asList(getImageFiletypesArray()));
         set.addAll(Arrays.asList(getDocumentFiletypesArray()));
