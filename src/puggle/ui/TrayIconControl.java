@@ -1,7 +1,7 @@
 /*
  * TrayIconControl.java
  *
- * Created on 31 March 2007, 11:47 рм
+ * Created on 31 March 2007, 11:47
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.

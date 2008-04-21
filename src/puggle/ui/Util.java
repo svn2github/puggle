@@ -1,7 +1,7 @@
 /*
  * Util.java
  *
- * Created on 10 September 2006, 7:31 μμ
+ * Created on 10 September 2006, 7:31
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.

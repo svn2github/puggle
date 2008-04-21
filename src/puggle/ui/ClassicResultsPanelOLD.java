@@ -1,7 +1,7 @@
 /*
  * ClassicResultsPanelOLD.java
  *
- * Created on 16 March 2007, 8:51 ìì
+ * Created on 16 March 2007, 8:51 ï¿½ï¿½
  */
 
 package puggle.ui;
@@ -300,7 +300,6 @@ public class ClassicResultsPanelOLD extends ResultsPanel {
         );
         panel2Layout.setVerticalGroup(
             panel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.BASELINE, iconLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
             .add(panel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(panel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
@@ -311,6 +310,7 @@ public class ClassicResultsPanelOLD extends ResultsPanel {
                 .add(pathLabel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+            .add(iconLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
         );
 
         panel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -394,7 +394,6 @@ public class ClassicResultsPanelOLD extends ResultsPanel {
         );
         panel3Layout.setVerticalGroup(
             panel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.BASELINE, iconLabel3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
             .add(panel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(panel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
@@ -405,6 +404,7 @@ public class ClassicResultsPanelOLD extends ResultsPanel {
                 .add(pathLabel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jScrollPane3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+            .add(iconLabel3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
         );
 
         panel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -489,7 +489,6 @@ public class ClassicResultsPanelOLD extends ResultsPanel {
         panel4Layout.setVerticalGroup(
             panel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(panel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                .add(org.jdesktop.layout.GroupLayout.BASELINE, iconLabel4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                 .add(panel4Layout.createSequentialGroup()
                     .addContainerGap()
                     .add(panel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
@@ -499,7 +498,8 @@ public class ClassicResultsPanelOLD extends ResultsPanel {
                     .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                     .add(pathLabel4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                    .add(jScrollPane4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                    .add(jScrollPane4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(iconLabel4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
         );
 
         panel5.setBackground(new java.awt.Color(255, 255, 255));
@@ -584,7 +584,6 @@ public class ClassicResultsPanelOLD extends ResultsPanel {
         panel5Layout.setVerticalGroup(
             panel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(panel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                .add(org.jdesktop.layout.GroupLayout.BASELINE, iconLabel5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                 .add(panel5Layout.createSequentialGroup()
                     .addContainerGap()
                     .add(panel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
@@ -594,7 +593,8 @@ public class ClassicResultsPanelOLD extends ResultsPanel {
                     .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                     .add(pathLabel5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                    .add(jScrollPane5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                    .add(jScrollPane5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(iconLabel5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
         );
 
         panel6.setBackground(new java.awt.Color(255, 255, 255));
@@ -679,7 +679,6 @@ public class ClassicResultsPanelOLD extends ResultsPanel {
         panel6Layout.setVerticalGroup(
             panel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(panel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                .add(org.jdesktop.layout.GroupLayout.BASELINE, iconLabel6, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                 .add(panel6Layout.createSequentialGroup()
                     .addContainerGap()
                     .add(panel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
@@ -689,7 +688,8 @@ public class ClassicResultsPanelOLD extends ResultsPanel {
                     .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                     .add(pathLabel6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                    .add(jScrollPane6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                    .add(jScrollPane6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(iconLabel6, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
         );
 
         panel7.setBackground(new java.awt.Color(255, 255, 255));
@@ -774,7 +774,6 @@ public class ClassicResultsPanelOLD extends ResultsPanel {
         panel7Layout.setVerticalGroup(
             panel7Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(panel7Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                .add(org.jdesktop.layout.GroupLayout.BASELINE, iconLabel7, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                 .add(panel7Layout.createSequentialGroup()
                     .addContainerGap()
                     .add(panel7Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
@@ -784,7 +783,8 @@ public class ClassicResultsPanelOLD extends ResultsPanel {
                     .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                     .add(pathLabel7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                    .add(jScrollPane7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                    .add(jScrollPane7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(iconLabel7, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
         );
 
         panel8.setBackground(new java.awt.Color(255, 255, 255));
@@ -869,7 +869,6 @@ public class ClassicResultsPanelOLD extends ResultsPanel {
         panel8Layout.setVerticalGroup(
             panel8Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(panel8Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                .add(org.jdesktop.layout.GroupLayout.BASELINE, iconLabel8, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                 .add(panel8Layout.createSequentialGroup()
                     .addContainerGap()
                     .add(panel8Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
@@ -879,7 +878,8 @@ public class ClassicResultsPanelOLD extends ResultsPanel {
                     .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                     .add(pathLabel8, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                    .add(jScrollPane8, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                    .add(jScrollPane8, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(iconLabel8, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
         );
 
         panel9.setBackground(new java.awt.Color(255, 255, 255));
@@ -964,7 +964,6 @@ public class ClassicResultsPanelOLD extends ResultsPanel {
         panel9Layout.setVerticalGroup(
             panel9Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(panel9Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                .add(org.jdesktop.layout.GroupLayout.BASELINE, iconLabel9, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                 .add(panel9Layout.createSequentialGroup()
                     .addContainerGap()
                     .add(panel9Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
@@ -974,7 +973,8 @@ public class ClassicResultsPanelOLD extends ResultsPanel {
                     .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                     .add(pathLabel9, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                    .add(jScrollPane9, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                    .add(jScrollPane9, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(iconLabel9, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
         );
 
         org.jdesktop.layout.GroupLayout mainPanelLayout = new org.jdesktop.layout.GroupLayout(mainPanel);
@@ -1883,7 +1883,6 @@ public class ClassicResultsPanelOLD extends ResultsPanel {
     private javax.swing.JLabel iconLabel7;
     private javax.swing.JLabel iconLabel8;
     private javax.swing.JLabel iconLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

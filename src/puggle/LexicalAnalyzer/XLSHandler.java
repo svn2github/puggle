@@ -1,7 +1,7 @@
 /*
  * XLSHandler.java
  *
- * Created on 14 September 2006, 6:49 μμ
+ * Created on 14 September 2006, 6:49
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.
@@ -173,7 +173,7 @@ public class XLSHandler implements DocumentHandler {
     public static void main(String[] args) throws Exception {
         XLSHandler handler = new XLSHandler();
         Document doc =
-                handler.getDocument(new File("C:\\Documents and Settings\\gvasil\\Τα έγγραφά μου\\grades.xls"));
+                handler.getDocument(new File(args[1]));
         System.out.println(doc);
     }
 }

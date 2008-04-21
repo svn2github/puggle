@@ -1,7 +1,7 @@
 /*
  * CombinedAnalyzer.java
  *
- * Created on 14 September 2006, 8:55 μμ
+ * Created on 14 September 2006, 8:55
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.

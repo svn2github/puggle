@@ -1,7 +1,7 @@
 /*
  * FileWalker.java
  *
- * Created on 2 September 2006, 1:41 рм
+ * Created on 2 September 2006, 1:41
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.

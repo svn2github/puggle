@@ -1,7 +1,7 @@
 /*
  * IndexerFrame.java
  *
- * Created on 29 January 2007, 6:10 μμ
+ * Created on 29 January 2007, 6:10
  */
 
 package puggle.ui;

@@ -1,7 +1,7 @@
 /*
  * ImageHandler.java
  *
- * Created on 4 September 2006, 2:39 πμ
+ * Created on 4 September 2006, 2:39
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.
@@ -104,7 +104,7 @@ public class ImageHandler implements DocumentHandler {
     public static void main(String[] args) throws Exception {
         ImageHandler handler = new ImageHandler();
         Document doc = handler.getDocument(
-                new File("C:\\Documents and Settings\\gvasil\\Τα έγγραφά μου\\Οι εικόνες μου\\Alizee\\alizee-04.jpg"));
+                new File(args[1]));
         System.out.println(doc);
     }
 }

@@ -1,7 +1,7 @@
 /*
  * AboutPanel.java
  *
- * Created on 17 Απρίλιος 2008, 6:06 μμ
+ * Created on 17 April 2008, 6:06
  */
 
 package puggle.ui;

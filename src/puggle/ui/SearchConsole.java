@@ -1,7 +1,7 @@
 /*
  * SearchConsole.java
  *
- * Created on 25 February 2007, 2:42 μμ
+ * Created on 25 February 2007, 2:42
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.

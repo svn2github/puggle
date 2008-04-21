@@ -1,7 +1,7 @@
 /*
  * SearchFrame.java
  *
- * Created on 5 September 2006, 8:22 μμ
+ * Created on 5 September 2006, 8:22
  */
 
 package puggle.ui;

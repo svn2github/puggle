@@ -1,7 +1,7 @@
 /*
  * TextHandler.java
  *
- * Created on 2 September 2006, 9:20 μμ
+ * Created on 2 September 2006, 9:20
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.
@@ -142,7 +142,7 @@ public class TextHandler implements DocumentHandler {
   public static void main(String[] args) throws Exception {
       TextHandler handler = new TextHandler();
       Document doc = handler.getDocument(
-              new File("C:\\Documents and Settings\\gvasil\\Τα έγγραφά μου\\My eBooks\\Misc\\The Notebooks of Leonardo Da Vinci, Complete.txt"));
+              new File(args[1]));
       System.out.println(doc);
   }
 }

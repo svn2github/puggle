@@ -1,7 +1,7 @@
 /*
  * PPTHandler.java
  *
- * Created on 4 September 2006, 10:50 μμ
+ * Created on 4 September 2006, 10:50
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.
@@ -216,7 +216,7 @@ public class PPTHandler implements DocumentHandler, POIFSReaderListener {
     
     public static void main(String[] args) throws Exception {
         PPTHandler handler = new PPTHandler();
-        Document doc = handler.getDocument(new File("C:\\Documents and Settings\\gvasil\\Τα έγγραφά μου\\My eBooks\\Comic\\Αρκάς\\Ο Κόκκορας\\Αδιέξοδα.ppt"));
+        Document doc = handler.getDocument(new File(args[1]));
         System.out.println(doc);
     }
 }

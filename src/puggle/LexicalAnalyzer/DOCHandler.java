@@ -1,7 +1,7 @@
 /*
  * DocHandler.java
  *
- * Created on 3 September 2006, 7:51 μμ
+ * Created on 3 September 2006, 7:51
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.

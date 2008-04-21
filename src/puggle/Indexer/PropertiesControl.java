@@ -1,7 +1,7 @@
 /*
  * PropertiesControl.java
  *
- * Created on 31 March 2007, 2:47 μμ
+ * Created on 31 March 2007, 2:47
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.

@@ -1,7 +1,7 @@
 /*
  * PDFHandler.java
  *
- * Created on 2 September 2006, 1:16 μμ
+ * Created on 2 September 2006, 1:16
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.
@@ -229,7 +229,7 @@ public class PDFHandler implements DocumentHandler {
   public static void main(String[] args) throws Exception {
       PDFHandler handler = new PDFHandler();
       Document doc =
-              handler.getDocument(new File("C:\\Documents and Settings\\gvasil\\Τα έγγραφά μου\\My eBooks\\Computers\\Web Development\\HTML\\O'Reilly - Dynamic HTML The Definitive Reference.pdf"));
+              handler.getDocument(new File(args[1]));
       System.out.println(doc);
   }
 }

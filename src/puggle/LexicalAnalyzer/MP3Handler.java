@@ -1,7 +1,7 @@
 /*
  * MP3Handler.java
  *
- * Created on 8 September 2006, 2:35 πμ
+ * Created on 8 September 2006, 2:35
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.
@@ -135,7 +135,7 @@ public class MP3Handler implements DocumentHandler {
   public static void main(String[] args) throws Exception {
       MP3Handler handler = new MP3Handler();
       Document doc = handler.getDocument(
-              new File("D:\\My Music\\Σύννεφα με Παντελόνια.mp3"));
+              new File(args[1]));
       System.out.println(doc);
   }
 }

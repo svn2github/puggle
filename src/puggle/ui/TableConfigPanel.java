@@ -1,7 +1,7 @@
 /*
  * TableConfigPanel.java
  *
- * Created on 16 March 2007, 8:51 μμ
+ * Created on 16 March 2007, 8:51
  */
 
 package puggle.ui;

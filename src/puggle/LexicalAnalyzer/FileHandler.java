@@ -1,7 +1,7 @@
 /*
  * FileHandler.java
  *
- * Created on 2 September 2006, 1:38 μμ
+ * Created on 2 September 2006, 1:38
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.
@@ -200,7 +200,7 @@ public class FileHandler {
             System.out.println(doc);
         } else {
             FileHandler fileHandler = new FileHandler(true, true);
-            Document doc = fileHandler.getDocument(new File("C:\\Documents and Settings\\gvasil\\Επιφάνεια εργασίας\\la.pdf"));
+            Document doc = fileHandler.getDocument(new File(args[1]));
             System.out.println(doc);
         }
     }

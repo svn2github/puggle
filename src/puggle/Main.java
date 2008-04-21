@@ -1,7 +1,7 @@
 /*
  * Main.java
  *
- * Created on 2 September 2006, 1:37 рм
+ * Created on 2 September 2006, 1:37
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.

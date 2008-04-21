@@ -1,7 +1,7 @@
 /*
  * Searcher.java
  *
- * Created on 3 September 2006, 5:05 μμ
+ * Created on 3 September 2006, 5:05
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.
@@ -65,7 +65,7 @@ public class Searcher {
             indexDir = new File(args[0]);
             q = args[1];
         } else {
-            indexDir = new File("C:\\Documents and Settings\\gvasil\\Επιφάνεια εργασίας\\index");
+            indexDir = new File(args[1]);
             q = "perl programming";
         }
         

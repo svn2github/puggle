@@ -1,7 +1,7 @@
 /*
  * TinyResultsPanel.java
  *
- * Created on 22 December 2007, 2:07 рм
+ * Created on 22 December 2007, 2:07
  */
 
 package puggle.ui;

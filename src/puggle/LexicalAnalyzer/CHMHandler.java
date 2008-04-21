@@ -1,7 +1,7 @@
 /*
  * CHMHandler.java
  *
- * Created on 23 September 2006, 2:01 πμ
+ * Created on 23 September 2006, 2:01
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.
@@ -65,7 +65,7 @@ public class CHMHandler  implements DocumentHandler {
     public static void main(String[] args) throws Exception {
         CHMHandler handler = new CHMHandler();
         Document doc = handler.getDocument(
-                new File("C:\\Documents and Settings\\gvasil\\Επιφάνεια εργασίας\\TestPrj.chm"));
+                new File(args[1]));
         System.out.println(doc);
     }
 

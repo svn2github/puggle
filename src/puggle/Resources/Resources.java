@@ -1,7 +1,7 @@
 /*
  * Resources.java
  *
- * Created on 6 September 2006, 6:28 μμ
+ * Created on 6 September 2006, 6:28
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.
