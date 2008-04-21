@@ -1,7 +1,7 @@
 /*
  * FileWalker.java
  *
- * Created on 2 Σεπτέμβριος 2006, 1:41 πμ
+ * Created on 2 September 2006, 1:41 πμ
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.
@@ -14,6 +14,7 @@ import java.io.FileFilter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import puggle.Indexer.PropertiesControl;
 import puggle.Resources.Resources;
 
 /**
@@ -27,7 +28,7 @@ public class FileWalker {
     private FileFilter filter;
     
     /** Creates a new instance of FileWalker */
-    public FileWalker(File dir) throws IOException {
+    public FileWalker(File dir, FileFilter filter) throws IOException {
         if (!dir.exists()) {
             throw new IOException("Directory " +dir +" does not exist.");
         }
@@ -43,7 +44,7 @@ public class FileWalker {
         
         this.Directories = new HashSet<File>();
         
-        this.filter = Resources.getFiletypeFilter();
+        this.filter = filter;
     }
     
     public boolean hasNext() {
@@ -78,7 +79,7 @@ public class FileWalker {
     }
 
     public static void main(String[] args) throws IOException {
-        FileWalker walk = new FileWalker(new File("C:\\"));
+        FileWalker walk = new FileWalker(new File("C:\\"), null);
         
         File f = null;
         int counter = 0;

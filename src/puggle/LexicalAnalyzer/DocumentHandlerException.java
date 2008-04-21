@@ -1,7 +1,7 @@
 /*
  * DocumentHandlerException.java
  *
- * Created on 2 Σεπτέμβριος 2006, 2:01 μμ
+ * Created on 2 September 2006, 2:01 μμ
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.

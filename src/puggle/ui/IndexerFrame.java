@@ -1,7 +1,7 @@
 /*
  * IndexerFrame.java
  *
- * Created on 29 Ιανουάριος 2007, 6:10 μμ
+ * Created on 29 January 2007, 6:10 μμ
  */
 
 package puggle.ui;
@@ -13,8 +13,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Properties;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import org.apache.lucene.index.IndexModifier;
+import org.apache.lucene.index.IndexReader;
 import puggle.Indexer.Indexer;
 import puggle.Indexer.PropertiesControl;
 import puggle.Resources.Resources;
@@ -56,11 +58,13 @@ public class IndexerFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(indexerPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, indexerPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(indexerPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(layout.createSequentialGroup()
+                .add(indexerPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
+                .add(0, 0, 0))
         );
         pack();
     }// </editor-fold>//GEN-END:initComponents

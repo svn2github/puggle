@@ -1,7 +1,7 @@
 /*
  * ResultPanel.java
  *
- * Created on 27 Απρίλιος 2007, 2:13 μμ
+ * Created on 27 April 2007, 2:13 μμ
  */
 
 package puggle.ui;

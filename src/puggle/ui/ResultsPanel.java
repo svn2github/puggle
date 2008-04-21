@@ -1,7 +1,7 @@
 /*
  * ResultsPanel.java
  *
- * Created on 17 Μάρτιος 2007, 7:49 μμ
+ * Created on 17 March 2007, 7:49 μμ
  */
 
 package puggle.ui;
@@ -27,19 +27,10 @@ public class ResultsPanel extends javax.swing.JPanel {
      */
     // <editor-fold defaultstate="collapsed" desc=" Generated Code ">//GEN-BEGIN:initComponents
     private void initComponents() {
-        
-        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-                layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                .add(0, 400, Short.MAX_VALUE)
-                );
-        layout.setVerticalGroup(
-                layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                .add(0, 300, Short.MAX_VALUE)
-                );
-    }
-    // </editor-fold>//GEN-END:initComponents
+
+        setLayout(null);
+
+    }// </editor-fold>//GEN-END:initComponents
     
     public void setResults(Query query, Hits hits)
     throws UnsupportedOperationException {

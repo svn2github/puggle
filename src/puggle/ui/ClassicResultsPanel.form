@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <Properties>
+    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+    </Property>
+  </Properties>
   <AuxValues>
     <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
@@ -11,12 +16,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="mainPanel" alignment="0" max="32767" attributes="0"/>
+          <Component id="mainPanel" alignment="0" pref="682" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="mainPanel" min="-2" max="-2" attributes="0"/>
+          <Component id="mainPanel" alignment="0" pref="1022" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -30,67 +35,31 @@
         </Property>
       </Properties>
 
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="resultPanel3" alignment="0" pref="621" max="32767" attributes="0"/>
-              <Component id="resultPanel4" alignment="0" pref="621" max="32767" attributes="0"/>
-              <Component id="resultPanel5" alignment="0" pref="621" max="32767" attributes="0"/>
-              <Component id="resultPanel6" alignment="0" pref="621" max="32767" attributes="0"/>
-              <Component id="resultPanel7" alignment="0" pref="621" max="32767" attributes="0"/>
-              <Component id="resultPanel8" alignment="0" pref="621" max="32767" attributes="0"/>
-              <Component id="resultPanel9" alignment="0" pref="621" max="32767" attributes="0"/>
-              <Component id="resultPanel1" alignment="0" pref="621" max="32767" attributes="0"/>
-              <Component id="resultPanel2" alignment="0" pref="621" max="32767" attributes="0"/>
-              <Component id="resultPanel10" alignment="0" pref="621" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <Component id="resultPanel1" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                  <Component id="resultPanel2" pref="100" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                  <Component id="resultPanel3" pref="101" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                  <Component id="resultPanel4" pref="101" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                  <Component id="resultPanel5" pref="101" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                  <Component id="resultPanel6" pref="101" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                  <Component id="resultPanel7" pref="101" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" pref="1" max="-2" attributes="1"/>
-                  <Component id="resultPanel8" pref="102" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" pref="1" max="-2" attributes="1"/>
-                  <Component id="resultPanel9" pref="106" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                  <Component id="resultPanel10" pref="100" max="32767" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
+        <Property name="columns" type="int" value="0"/>
+        <Property name="rows" type="int" value="10"/>
+        <Property name="verticalGap" type="int" value="1"/>
       </Layout>
       <SubComponents>
-        <Component class="puggle.ui.ResultPanel" name="resultPanel1">
+        <Component class="puggle.ui.ClassicResultPanel" name="resultPanel1">
         </Component>
-        <Component class="puggle.ui.ResultPanel" name="resultPanel2">
+        <Component class="puggle.ui.ClassicResultPanel" name="resultPanel2">
         </Component>
-        <Component class="puggle.ui.ResultPanel" name="resultPanel3">
+        <Component class="puggle.ui.ClassicResultPanel" name="resultPanel3">
         </Component>
-        <Component class="puggle.ui.ResultPanel" name="resultPanel4">
+        <Component class="puggle.ui.ClassicResultPanel" name="resultPanel4">
         </Component>
-        <Component class="puggle.ui.ResultPanel" name="resultPanel5">
+        <Component class="puggle.ui.ClassicResultPanel" name="resultPanel5">
         </Component>
-        <Component class="puggle.ui.ResultPanel" name="resultPanel6">
+        <Component class="puggle.ui.ClassicResultPanel" name="resultPanel6">
         </Component>
-        <Component class="puggle.ui.ResultPanel" name="resultPanel7">
+        <Component class="puggle.ui.ClassicResultPanel" name="resultPanel7">
         </Component>
-        <Component class="puggle.ui.ResultPanel" name="resultPanel8">
+        <Component class="puggle.ui.ClassicResultPanel" name="resultPanel8">
         </Component>
-        <Component class="puggle.ui.ResultPanel" name="resultPanel9">
+        <Component class="puggle.ui.ClassicResultPanel" name="resultPanel9">
         </Component>
-        <Component class="puggle.ui.ResultPanel" name="resultPanel10">
+        <Component class="puggle.ui.ClassicResultPanel" name="resultPanel10">
         </Component>
       </SubComponents>
     </Container>

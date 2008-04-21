@@ -1,7 +1,7 @@
 /*
  * ConfigPanel.java
  *
- * Created on 16 Μάρτιος 2007, 8:51 μμ
+ * Created on 16 March 2007, 8:51 μμ
  */
 
 package puggle.ui;
@@ -61,9 +61,8 @@ public class ConfigPanel extends ResultsPanel {
      * Creates new form ClassicResultsPanel
      */
     public ConfigPanel() {
-        File indexDir = new File(Resources.getIndexDirPath());
-        
-        this.propertiesControl = PropertiesControl.getPropertiesControl();
+        this.propertiesControl = new PropertiesControl(
+                new File(Resources.getApplicationPropertiesCanonicalPath()));
         
         this.image_filetypes = this.propertiesControl.getImageFiletypes();
         this.document_filetypes = this.propertiesControl.getDocumentFiletypes();

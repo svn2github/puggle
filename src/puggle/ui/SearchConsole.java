@@ -1,7 +1,7 @@
 /*
  * SearchConsole.java
  *
- * Created on 25 Φεβρουάριος 2007, 2:42 μμ
+ * Created on 25 February 2007, 2:42 μμ
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.
@@ -70,7 +70,7 @@ public class SearchConsole {
         try {
             long start = new Date().getTime();
             
-            Hits hits = performSearch(new File(Resources.getIndexDirPath()), str);
+            Hits hits = performSearch(new File(Resources.getIndexCanonicalPath()), str);
             
             long end = new Date().getTime();
 

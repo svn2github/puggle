@@ -1,7 +1,7 @@
 /*
  * XLSHandler.java
  *
- * Created on 14 Σεπτέμβριος 2006, 6:49 μμ
+ * Created on 14 September 2006, 6:49 μμ
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.

@@ -1,7 +1,7 @@
 /*
- * ResultPanel.java
+ * ClassicResultPanel.java
  *
- * Created on 27 Απρίλιος 2007, 2:13 μμ
+ * Created on 27 April 2007, 2:13 μμ
  */
 
 package puggle.ui;
@@ -20,12 +20,12 @@ import javax.swing.text.html.HTMLEditorKit;
  *
  * @author  gvasil
  */
-public class ResultPanel extends javax.swing.JPanel {
+public class ClassicResultPanel extends javax.swing.JPanel {
     
     /**
-     * Creates new form ResultPanel
+     * Creates new form ClassicResultPanel
      */
-    public ResultPanel() {
+    public ClassicResultPanel() {
         this.imageControl = ImageControl.getImageControl();
         
         initComponents();
@@ -97,6 +97,7 @@ public class ResultPanel extends javax.swing.JPanel {
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         jScrollPane1.setPreferredSize(new java.awt.Dimension(6, 20));
+        textPane1.setBorder(null);
         textPane1.setEditable(false);
         textPane1.setDisabledTextColor(new java.awt.Color(255, 255, 255));
         textPane1.setSelectionColor(new java.awt.Color(255, 204, 102));

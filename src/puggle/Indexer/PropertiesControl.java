@@ -1,7 +1,7 @@
 /*
  * PropertiesControl.java
  *
- * Created on 31 Μάρτιος 2007, 2:47 μμ
+ * Created on 31 March 2007, 2:47 μμ
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.
@@ -30,8 +30,7 @@ import puggle.Resources.*;
  * @author gvasil
  */
 public class PropertiesControl {
-    private final static String PROPERTIES_FILENAME = "props";
-    
+
     private static PropertiesControl propertiesControl;
     
     private Properties properties;
@@ -39,11 +38,10 @@ public class PropertiesControl {
     private File file;
     
     /** Creates a new instance of PropertiesControl */
-    private PropertiesControl() throws OverlappingFileLockException {
+    public PropertiesControl(File file) throws OverlappingFileLockException {
         this.properties = new Properties();
 
-        this.file = new File(Resources.getApplicationDirPath() + File.separator
-                + this.PROPERTIES_FILENAME);
+        this.file = file;
         
         try {
             properties.load(new FileInputStream(file));
@@ -59,8 +57,7 @@ public class PropertiesControl {
             properties.setProperty("store_thumbnails", "false");
             
             try {
-                Resources.makeApplicationDir();
-                
+                (file.getParentFile()).mkdirs();
                 file.createNewFile();
                 properties.store(
                         new FileOutputStream(file),
@@ -77,15 +74,6 @@ public class PropertiesControl {
     protected void finalize() {
         this.flush();
     }
-    
-    public static synchronized PropertiesControl getPropertiesControl() {
-        if (propertiesControl == null) {
-            propertiesControl = new PropertiesControl();
-        }
-
-        return propertiesControl;
-    }
-    
     
     public synchronized void flush() {
         try {

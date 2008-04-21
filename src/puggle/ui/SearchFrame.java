@@ -1,7 +1,7 @@
 /*
  * SearchFrame.java
  *
- * Created on 5 Σεπτέμβριος 2006, 8:22 μμ
+ * Created on 5 September 2006, 8:22 μμ
  */
 
 package puggle.ui;
@@ -19,6 +19,8 @@ import java.awt.event.MouseListener;
 import java.io.FileInputStream;
 import java.text.DateFormat;
 import java.util.Properties;
+import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import org.jpedal.io.JAIHelper;
 import puggle.Indexer.Indexer;
@@ -56,13 +58,9 @@ public class SearchFrame extends javax.swing.JFrame {
     /**
      * Creates new form SearchFrame
      */
-    public SearchFrame(String indexDirPath) {
-        this.indexDir = new File(indexDirPath);
-        
-        this.propertiesControl = PropertiesControl.getPropertiesControl();
+    public SearchFrame() {
 
-        this.imageControl = ImageControl.getImageControl();
-        
+        /* initialize tray icon */
         try {
             this.trayIconControl = new TrayIconControl(this);
         } catch(UnsupportedOperationException ex) {
@@ -70,8 +68,11 @@ public class SearchFrame extends javax.swing.JFrame {
             System.err.println(ex.getMessage());
         }
         
+        this.init();
+
+        /*
         long lastModified = this.propertiesControl.getLastIndexed();
-/*        
+        
         if (new Date().getTime() - lastModified > 86400000) {
             int opt = JOptionPane.showConfirmDialog(this,
                     "Index appears to be older than one day. (Last update was at "
@@ -93,6 +94,17 @@ public class SearchFrame extends javax.swing.JFrame {
         }*/
 
         initComponents();
+        
+        /* idiot patch to initialize classic panel */
+        this.resultsPanel = new ClassicResultsPanel();
+        this.scrollPane.setViewportView(this.resultsPanel);
+    }
+    
+    private void init() {
+        this.indexDir = new File(Resources.getIndexCanonicalPath());
+        this.propertiesControl = new PropertiesControl(
+                new File(Resources.getApplicationPropertiesCanonicalPath()));
+        this.imageControl = ImageControl.getImageControl();
     }
     
     /** This method is called from within the constructor to
@@ -102,17 +114,28 @@ public class SearchFrame extends javax.swing.JFrame {
      */
     // <editor-fold defaultstate="collapsed" desc=" Generated Code ">//GEN-BEGIN:initComponents
     private void initComponents() {
-        topPanel = new java.awt.Panel();
-        searchField = new java.awt.TextField();
-        searchLabel = new java.awt.Label();
-        findButton = new javax.swing.JButton();
-        searchChoice = new java.awt.Choice();
+        viewButtonGroup = new javax.swing.ButtonGroup();
         bottomPanel = new java.awt.Panel();
         resultsLabel = new javax.swing.JLabel();
         nextButton = new javax.swing.JButton();
         prevButton = new javax.swing.JButton();
         scrollPane = new javax.swing.JScrollPane();
-        resultsPanel = new puggle.ui.ClassicResultsPanel();
+        resultsPanel = new puggle.ui.ResultsPanel();
+        jPanel1 = new javax.swing.JPanel();
+        searchChoice = new java.awt.Choice();
+        findButton = new javax.swing.JButton();
+        searchLabel = new javax.swing.JLabel();
+        searchField = new javax.swing.JTextField();
+        menuBar = new javax.swing.JMenuBar();
+        fileMenu = new javax.swing.JMenu();
+        openMenuItem = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JSeparator();
+        exitMenuItem = new javax.swing.JMenuItem();
+        viewMenu = new javax.swing.JMenu();
+        classicCheckBoxMenuItem = new javax.swing.JCheckBoxMenuItem();
+        tinyCheckBoxMenuItem = new javax.swing.JCheckBoxMenuItem();
+        helpMenu = new javax.swing.JMenu();
+        aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle(Resources.APP_NAME + " " + Resources.APP_VERSION);
@@ -138,74 +161,6 @@ public class SearchFrame extends javax.swing.JFrame {
                 formWindowIconified(evt);
             }
         });
-
-        topPanel.setBackground(new java.awt.Color(234, 233, 234));
-        searchField.setFont(new java.awt.Font("Dialog", 0, 13));
-        searchField.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                searchFieldMouseClicked(evt);
-            }
-        });
-        searchField.addTextListener(new java.awt.event.TextListener() {
-            public void textValueChanged(java.awt.event.TextEvent evt) {
-                searchFieldTextValueChanged(evt);
-            }
-        });
-        searchField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                searchFieldKeyTyped(evt);
-            }
-        });
-
-        searchLabel.setFont(new java.awt.Font("Dialog", 1, 12));
-        searchLabel.setText("Search Items :");
-
-        findButton.setFont(new java.awt.Font("Tahoma", 1, 12));
-        findButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon-search.png")));
-        findButton.setText("Find");
-        findButton.setToolTipText("Find");
-        findButton.setFocusable(false);
-        findButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                findButtonMouseClicked(evt);
-            }
-        });
-
-        searchChoice.setFont(new java.awt.Font("Dialog", 0, 13));
-        searchChoice.addItem("All");
-        searchChoice.addItem("Music");
-        searchChoice.addItem("Pictures");
-        searchChoice.addItem("Documents");
-
-        org.jdesktop.layout.GroupLayout topPanelLayout = new org.jdesktop.layout.GroupLayout(topPanel);
-        topPanel.setLayout(topPanelLayout);
-        topPanelLayout.setHorizontalGroup(
-            topPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, topPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .add(searchLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 85, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(searchField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(searchChoice, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 102, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(findButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 91, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        topPanelLayout.setVerticalGroup(
-            topPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(topPanelLayout.createSequentialGroup()
-                .add(20, 20, 20)
-                .add(findButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 45, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, topPanelLayout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
-                .add(topPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(searchLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(searchField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(searchChoice, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(23, 23, 23))
-        );
 
         bottomPanel.setBackground(new java.awt.Color(234, 233, 234));
         resultsLabel.setFont(new java.awt.Font("Tahoma", 1, 14));
@@ -236,7 +191,7 @@ public class SearchFrame extends javax.swing.JFrame {
             .add(bottomPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(resultsLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 335, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 170, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 119, Short.MAX_VALUE)
                 .add(prevButton)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(nextButton)
@@ -254,77 +209,278 @@ public class SearchFrame extends javax.swing.JFrame {
         );
 
         scrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        org.jdesktop.layout.GroupLayout resultsPanelLayout = new org.jdesktop.layout.GroupLayout(resultsPanel);
+        resultsPanel.setLayout(resultsPanelLayout);
+        resultsPanelLayout.setHorizontalGroup(
+            resultsPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 698, Short.MAX_VALUE)
+        );
+        resultsPanelLayout.setVerticalGroup(
+            resultsPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 439, Short.MAX_VALUE)
+        );
         scrollPane.setViewportView(resultsPanel);
+
+        jPanel1.setBackground(new java.awt.Color(234, 233, 234));
+        searchChoice.setFont(new java.awt.Font("Dialog", 0, 13));
+        searchChoice.addItem("All");
+        searchChoice.addItem("Music");
+        searchChoice.addItem("Pictures");
+        searchChoice.addItem("Documents");
+
+        findButton.setFont(new java.awt.Font("Tahoma", 1, 12));
+        findButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon-search.png")));
+        findButton.setText("Find");
+        findButton.setToolTipText("Find");
+        findButton.setFocusable(false);
+        findButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                findButtonMouseClicked(evt);
+            }
+        });
+
+        searchLabel.setFont(new java.awt.Font("Dialog", 1, 12));
+        searchLabel.setText("Search Items :");
+
+        searchField.setFont(new java.awt.Font("Dialog", 0, 13));
+        searchField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                searchFieldKeyTyped(evt);
+            }
+        });
+
+        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(searchLabel)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(searchField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(searchChoice, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 102, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(findButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 91, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel1Layout.createSequentialGroup()
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(findButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 45, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jPanel1Layout.createSequentialGroup()
+                        .add(22, 22, 22)
+                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                                .add(searchChoice, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .add(org.jdesktop.layout.GroupLayout.BASELINE, searchLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .add(searchField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        fileMenu.setText("File");
+        openMenuItem.setText("Open Index...");
+        openMenuItem.setFocusable(true);
+        openMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openMenuItemActionPerformed(evt);
+            }
+        });
+
+        fileMenu.add(openMenuItem);
+
+        fileMenu.add(jSeparator1);
+
+        exitMenuItem.setText("Exit");
+        exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitMenuItemActionPerformed(evt);
+            }
+        });
+
+        fileMenu.add(exitMenuItem);
+
+        menuBar.add(fileMenu);
+
+        viewMenu.setText("View");
+        viewButtonGroup.add(classicCheckBoxMenuItem);
+        classicCheckBoxMenuItem.setSelected(true);
+        classicCheckBoxMenuItem.setText("Classic");
+        classicCheckBoxMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                classicCheckBoxMenuItemActionPerformed(evt);
+            }
+        });
+
+        viewMenu.add(classicCheckBoxMenuItem);
+
+        viewButtonGroup.add(tinyCheckBoxMenuItem);
+        tinyCheckBoxMenuItem.setText("Tiny");
+        tinyCheckBoxMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tinyCheckBoxMenuItemActionPerformed(evt);
+            }
+        });
+
+        viewMenu.add(tinyCheckBoxMenuItem);
+
+        menuBar.add(viewMenu);
+
+        helpMenu.setText("Help");
+        aboutMenuItem.setText("About");
+        aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutMenuItemActionPerformed(evt);
+            }
+        });
+
+        helpMenu.add(aboutMenuItem);
+
+        menuBar.add(helpMenu);
+
+        setJMenuBar(menuBar);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(topPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, bottomPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .add(scrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 751, Short.MAX_VALUE)
+            .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(scrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(topPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(1, 1, 1)
-                .add(scrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+                .add(scrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
                 .add(1, 1, 1)
                 .add(bottomPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
         );
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
+        AboutPanel panel = new AboutPanel();
+        
+        JDialog dialog = new JDialog(this, "About", true);
+        
+        dialog.getContentPane().add(panel);
+        dialog.pack();
+        dialog.setLocationRelativeTo(this);
+        dialog.setResizable(false);
+        dialog.setVisible(true);
+    }//GEN-LAST:event_aboutMenuItemActionPerformed
+
+    private void tinyCheckBoxMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tinyCheckBoxMenuItemActionPerformed
+        this.resultsPanel = new TinyResultsPanel();
+        
+        if (!searchField.getText().equals("")) {
+            this.performSearch();
+        }
+        else {
+            this.scrollPane.setViewportView(this.resultsPanel);
+        }
+    }//GEN-LAST:event_tinyCheckBoxMenuItemActionPerformed
+
+    private void classicCheckBoxMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classicCheckBoxMenuItemActionPerformed
+        this.resultsPanel = new ClassicResultsPanel();
+        
+        if (!searchField.getText().equals("")) {
+            this.performSearch();
+        }
+        else {
+            this.scrollPane.setViewportView(this.resultsPanel);
+        }
+    }//GEN-LAST:event_classicCheckBoxMenuItemActionPerformed
+
+    private void searchFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchFieldKeyTyped
+        this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+
+        if (evt.getKeyChar() == '\n' && !searchField.getText().equals("")) {
+            this.performSearch();
+        }
+        
+        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_searchFieldKeyTyped
+
+    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
+        int opt = JOptionPane.showConfirmDialog(this,
+                "Are you sure you want to exit?", "Exit",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
+                this.imageControl.getQuestionIcon());
+        
+        if (opt == JOptionPane.YES_OPTION) {
+            if (this.indexerThread != null) {
+                this.dispose();                    
+                this.indexer.close();
+            }
+            
+            System.exit(0);
+        }
+    }//GEN-LAST:event_exitMenuItemActionPerformed
+
+    private void openMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMenuItemActionPerformed
+        JFileChooser fc = new JFileChooser();
+        
+        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        fc.setCurrentDirectory(new java.io.File(Resources.getApplicationDirectoryCanonicalPath()));
+        fc.setDialogTitle("Select Index Directory");
+        
+        boolean error = true;
+        while (error == true) {
+            error = false;
+            
+            int returnVal = fc.showOpenDialog(this);
+            
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                File file = fc.getSelectedFile();
+
+                boolean exists = Indexer.indexExists(file);
+                String directory = file.getPath();
+                
+                if (exists == true) {
+                    try {
+                        Resources.setIndex(file);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                    this.init();
+                    
+                    JOptionPane.showMessageDialog(this,
+                            "Index directory '" +directory +"' successfully loaded.",
+                            "Open Index Directory",
+                            JOptionPane.INFORMATION_MESSAGE,
+                            this.imageControl.getInfoIcon());
+                } else {
+                    JOptionPane.showMessageDialog(this,
+                            "Directory '" +directory +"' is not a valid index.",
+                            "Error Opening Index Directory",
+                            JOptionPane.ERROR_MESSAGE,
+                            this.imageControl.getErrorIcon());
+                    error = true;
+                }
+                
+            } // if
+            
+        } // while
+    }//GEN-LAST:event_openMenuItemActionPerformed
+
     private void formWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowLostFocus
-        try {
+        /*try {
             this.startIndexing(50);
         } catch (IOException ex) {
             // someone else is indexing. do nothing..
-        }
+        }*/
     }//GEN-LAST:event_formWindowLostFocus
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-        this.stopIndexing();
+        /*this.stopIndexing();*/
     }//GEN-LAST:event_formWindowGainedFocus
-
-    private void searchFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchFieldMouseClicked
-    }//GEN-LAST:event_searchFieldMouseClicked
-
-    private void searchFieldTextValueChanged(java.awt.event.TextEvent evt) {//GEN-FIRST:event_searchFieldTextValueChanged
-
-    }//GEN-LAST:event_searchFieldTextValueChanged
-
-    private boolean startIndexing(long delay) throws IOException {
-        long lastModified = this.propertiesControl.getLastIndexed();
-        
-        if (this.indexerThread == null &&
-                new Date().getTime() - lastModified > 600000 /* 10 mins */) {
-            
-            File[] dataDirsFile = this.propertiesControl.getDataDirectories();
-            
-            File indexDir = new File(Resources.getIndexDirPath());
-            
-            JLogger logger = new JLogger(System.out);
-            this.indexer = new Indexer(dataDirsFile, indexDir, logger, false);
-            this.indexer.setDelay(delay);  // Sleep about 1 sec for every 40 files.
-            
-            this.indexerThread = new Thread(this.indexer);
-            this.indexerThread.start();
-            
-            return true;
-        }
-        
-        return false;
-    }
-    
-    private void stopIndexing() {
-        if (this.indexerThread != null) {
-            this.indexer.close();
-            this.indexerThread = null;
-        }
-    }
-    
+   
     private void formWindowIconified(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowIconified
         if (this.trayIconControl != null) {
             this.trayIconControl.add();
@@ -333,29 +489,21 @@ public class SearchFrame extends javax.swing.JFrame {
         try {
             boolean status = this.startIndexing(25);
             if (this.trayIconControl != null && status == true) {
-                this.trayIconControl.displayMessage("Indexing progress",
+                this.trayIconControl.displayMessage("Puggle Indexer",
                         "Indexing process started in background.",
                         TrayIcon.MessageType.INFO);
             }
         } catch (IOException ex) {
             // someone else is indexing.
-            this.trayIconControl.displayMessage("Indexing progress",
-                    ex.getMessage(),
+            this.trayIconControl.displayMessage("Puggle Indexer",
+                    "Indexing failed: " +ex.getMessage(),
                     TrayIcon.MessageType.ERROR);
             System.out.println(ex.getMessage());
             return;
         }
-
-//        this.indexerThread = new Thread(this.indexer);
-//        this.indexerThread.start();
     }//GEN-LAST:event_formWindowIconified
 
     private void formWindowDeiconified(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowDeiconified
-//        if (this.indexerThread != null) {
-//            this.indexer.close();
-//            System.err.println("Indexing stopped.");
-//            this.indexerThread = null;
-//        }
         this.stopIndexing();
     }//GEN-LAST:event_formWindowDeiconified
 
@@ -409,19 +557,12 @@ public class SearchFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_prevButtonMouseClicked
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-//        int opt = JOptionPane.showConfirmDialog(this,
-//                "Are you sure you want to exit?", "Exit",
-//                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
-//                this.imageControl.getQuestionIcon());
+        if (this.indexerThread != null) {
+            this.dispose();                    
+            this.indexer.close();
+        }
         
-//        if (opt == JOptionPane.YES_OPTION) {
-            if (this.indexerThread != null) {
-                this.dispose();                    
-                this.indexer.close();
-            }
-            
-            System.exit(0);
-//        }
+        System.exit(0);
     }//GEN-LAST:event_formWindowClosing
 
     private void findButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_findButtonMouseClicked
@@ -434,16 +575,36 @@ public class SearchFrame extends javax.swing.JFrame {
         setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_findButtonMouseClicked
 
-    private void searchFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchFieldKeyTyped
-        this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
-
-        if (evt.getKeyChar() == '\n' && !searchField.getText().equals("")) {
-            this.performSearch();
+    private boolean startIndexing(long delay) throws IOException {
+        long lastModified = this.propertiesControl.getLastIndexed();
+        
+        if (this.indexerThread == null &&
+                new Date().getTime() - lastModified > 600000 /* 10 mins */) {
+            
+            File[] dataDirsFile = this.propertiesControl.getDataDirectories();
+            
+            File indexDir = new File(Resources.getIndexCanonicalPath());
+            
+            JLogger logger = new JLogger(System.out);
+            this.indexer = new Indexer(dataDirsFile, indexDir, this.propertiesControl, logger, false);
+            this.indexer.setDelay(delay);  // Sleep about 1 sec for every 40 files.
+            
+            this.indexerThread = new Thread(this.indexer);
+            this.indexerThread.start();
+            
+            return true;
         }
         
-        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-    }//GEN-LAST:event_searchFieldKeyTyped
-
+        return false;
+    }
+    
+    private void stopIndexing() {
+        if (this.indexerThread != null) {
+            this.indexer.close();
+            this.indexerThread = null;
+        }
+    }
+    
     private void updateResultsLabel() {
         int currResults = this.resultsPanel.getCurrentResultsNumber();
         int totalResults = this.resultsPanel.getTotalResultsNumber();
@@ -471,10 +632,14 @@ public class SearchFrame extends javax.swing.JFrame {
             
             System.out.println(cmd);
             
-            if (cmd.equals("config")) {
-                this.scrollPane.setViewportView(new IndexerPanel());
+/*            if (cmd.equals("config")) {
+                if (this.indexerPanel == null) {
+                    this.indexerPanel = new IndexerPanel();
+                }
+                this.scrollPane.setViewportView(this.indexerPanel);
             }
             return;
+ */
         }
         // /check if command
         
@@ -492,7 +657,7 @@ public class SearchFrame extends javax.swing.JFrame {
         long start = new Date().getTime();
         try {
             query = Searcher.createQuery("content", q);
-            this.hits = Searcher.search(indexDir, query);
+            this.hits = Searcher.search(this.indexDir, query);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(),
                     "I/O Error", JOptionPane.ERROR_MESSAGE,
@@ -539,7 +704,7 @@ public class SearchFrame extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SearchFrame(Resources.getIndexDirPath()).setVisible(true);
+                new SearchFrame().setVisible(true);
             }
         });
     }
@@ -555,18 +720,31 @@ public class SearchFrame extends javax.swing.JFrame {
     private ImageControl imageControl;
     private TrayIconControl trayIconControl;
     
+    private IndexerPanel indexerPanel;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem aboutMenuItem;
     private java.awt.Panel bottomPanel;
+    private javax.swing.JCheckBoxMenuItem classicCheckBoxMenuItem;
+    private javax.swing.JMenuItem exitMenuItem;
+    private javax.swing.JMenu fileMenu;
     private javax.swing.JButton findButton;
+    private javax.swing.JMenu helpMenu;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JMenuBar menuBar;
     private javax.swing.JButton nextButton;
+    private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JButton prevButton;
     private javax.swing.JLabel resultsLabel;
-    private puggle.ui.ClassicResultsPanel resultsPanel;
+    private puggle.ui.ResultsPanel resultsPanel;
     private javax.swing.JScrollPane scrollPane;
     private java.awt.Choice searchChoice;
-    private java.awt.TextField searchField;
-    private java.awt.Label searchLabel;
-    private java.awt.Panel topPanel;
+    private javax.swing.JTextField searchField;
+    private javax.swing.JLabel searchLabel;
+    private javax.swing.JCheckBoxMenuItem tinyCheckBoxMenuItem;
+    private javax.swing.ButtonGroup viewButtonGroup;
+    private javax.swing.JMenu viewMenu;
     // End of variables declaration//GEN-END:variables
 
 }

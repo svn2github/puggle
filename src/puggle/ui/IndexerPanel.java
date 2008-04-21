@@ -1,7 +1,7 @@
 /*
  * IndexerPanel.java
  *
- * Created on 19 Δεκέμβριος 2007, 7:57 μμ
+ * Created on 19 December 2007, 7:57 μμ
  */
 
 package puggle.ui;
@@ -10,8 +10,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import puggle.Indexer.Indexer;
 import puggle.Indexer.PropertiesControl;
 import puggle.Resources.Resources;
@@ -24,36 +26,10 @@ public class IndexerPanel extends javax.swing.JPanel {
     
     /** Creates new form IndexerPanel */
     public IndexerPanel() {
-        File indexDir = new File(Resources.getIndexDirPath());
-        
-        this.propertiesControl = PropertiesControl.getPropertiesControl();
-        
-        this.image_filetypes = this.propertiesControl.getImageFiletypes();
-        this.document_filetypes = this.propertiesControl.getDocumentFiletypes();
-        this.misc_filetypes = this.propertiesControl.getMusicFiletypes();
-                
-        try {
-            this.indexer = new Indexer(indexDir);
-        } catch (IOException ex) {
-            int opt = JOptionPane.showConfirmDialog(this, "Force unlock?",
-                    ex.getMessage(), JOptionPane.YES_NO_OPTION);
 
-            if (opt == JOptionPane.YES_OPTION) {
-                try {
-                    this.indexer = new Indexer(indexDir, true);
-                } catch (IOException e) {
-                    JOptionPane.showMessageDialog(this, e.getMessage(),
-                            "Unspecified error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                JOptionPane.showMessageDialog(this, "Index successfully unlocked",
-                        "Report", JOptionPane.INFORMATION_MESSAGE);
-            } else if (opt == JOptionPane.NO_OPTION) {
-                return;
-            }
-        }
-
+        this.init();
         initComponents();
+        this.loadComponentsStatus();
     }
     
     /** This method is called from within the constructor to
@@ -63,14 +39,12 @@ public class IndexerPanel extends javax.swing.JPanel {
      */
     // <editor-fold defaultstate="collapsed" desc=" Generated Code ">//GEN-BEGIN:initComponents
     private void initComponents() {
-        label7 = new java.awt.Label();
-        label1 = new java.awt.Label();
-        pathField = new java.awt.TextField();
+        foldersLabel = new java.awt.Label();
         textArea = new javax.swing.JTextArea();
         progressBar = new javax.swing.JProgressBar();
-        label6 = new java.awt.Label();
-        label8 = new java.awt.Label();
-        label9 = new java.awt.Label();
+        filetypesLabel = new java.awt.Label();
+        actionsLabel = new java.awt.Label();
+        optionsLabel = new java.awt.Label();
         storeTextCb = new javax.swing.JCheckBox();
         storeThumbsCb = new javax.swing.JCheckBox();
         jpegCheck = new javax.swing.JCheckBox();
@@ -84,20 +58,25 @@ public class IndexerPanel extends javax.swing.JPanel {
         xlsCheck = new javax.swing.JCheckBox();
         pptCheck = new javax.swing.JCheckBox();
         mp3Check = new javax.swing.JCheckBox();
-        pathButton = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        mainToolBar = new javax.swing.JToolBar();
+        newButton = new javax.swing.JButton();
+        openButton = new javax.swing.JButton();
+        aboutButton = new javax.swing.JButton();
         stopButton = new javax.swing.JButton();
         startButton = new javax.swing.JButton();
+        indexDirectoryPanel = new javax.swing.JPanel();
+        indexDirectoryLabel = new javax.swing.JLabel();
+        indexTextField = new javax.swing.JTextField();
+        pathPanel = new javax.swing.JPanel();
+        pathLabel = new java.awt.Label();
+        pathButton = new javax.swing.JButton();
+        pathField = new javax.swing.JTextField();
+        indexLabel = new javax.swing.JLabel();
 
-        label7.setBackground(new java.awt.Color(102, 102, 255));
-        label7.setFont(new java.awt.Font("Tahoma", 1, 14));
-        label7.setForeground(java.awt.Color.white);
-        label7.setText("Indexing Folders");
-
-        label1.setFont(new java.awt.Font("Dialog", 1, 12));
-        label1.setText("Path:");
-
-        pathField.setText(this.propertiesControl.getPath());
+        foldersLabel.setBackground(new java.awt.Color(102, 102, 255));
+        foldersLabel.setFont(new java.awt.Font("Tahoma", 1, 14));
+        foldersLabel.setForeground(java.awt.Color.white);
+        foldersLabel.setText("Indexing Folders");
 
         textArea.setColumns(20);
         textArea.setEditable(false);
@@ -112,20 +91,20 @@ public class IndexerPanel extends javax.swing.JPanel {
         progressBar.setBackground(new java.awt.Color(255, 255, 255));
         progressBar.setForeground(new java.awt.Color(51, 255, 51));
 
-        label6.setBackground(new java.awt.Color(102, 102, 255));
-        label6.setFont(new java.awt.Font("Tahoma", 1, 14));
-        label6.setForeground(java.awt.Color.white);
-        label6.setText("Filetypes");
+        filetypesLabel.setBackground(new java.awt.Color(102, 102, 255));
+        filetypesLabel.setFont(new java.awt.Font("Tahoma", 1, 14));
+        filetypesLabel.setForeground(java.awt.Color.white);
+        filetypesLabel.setText("Filetypes");
 
-        label8.setBackground(new java.awt.Color(102, 102, 255));
-        label8.setFont(new java.awt.Font("Tahoma", 1, 14));
-        label8.setForeground(java.awt.Color.white);
-        label8.setText("Actions");
+        actionsLabel.setBackground(new java.awt.Color(102, 102, 255));
+        actionsLabel.setFont(new java.awt.Font("Tahoma", 1, 14));
+        actionsLabel.setForeground(java.awt.Color.white);
+        actionsLabel.setText("Actions");
 
-        label9.setBackground(new java.awt.Color(102, 102, 255));
-        label9.setFont(new java.awt.Font("Tahoma", 1, 14));
-        label9.setForeground(java.awt.Color.white);
-        label9.setText("Indexing Options");
+        optionsLabel.setBackground(new java.awt.Color(102, 102, 255));
+        optionsLabel.setFont(new java.awt.Font("Tahoma", 1, 14));
+        optionsLabel.setForeground(java.awt.Color.white);
+        optionsLabel.setText("Indexing Options");
 
         storeTextCb.setSelected(this.propertiesControl.getStoreText());
         storeTextCb.setText("Store text");
@@ -214,14 +193,37 @@ public class IndexerPanel extends javax.swing.JPanel {
             this.mp3Check.setSelected(true);
         }
 
-        pathButton.setText("...");
-        pathButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pathButtonMouseClicked(evt);
+        mainToolBar.setFloatable(false);
+        mainToolBar.setAlignmentY(0.48387095F);
+        newButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/filenew.png")));
+        newButton.setToolTipText("Create Index");
+        newButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                newButtonMousePressed(evt);
             }
         });
 
-        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.X_AXIS));
+        mainToolBar.add(newButton);
+
+        openButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fileopen.png")));
+        openButton.setToolTipText("Open Index");
+        openButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openButtonActionPerformed(evt);
+            }
+        });
+
+        mainToolBar.add(openButton);
+
+        aboutButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/help-about.png")));
+        aboutButton.setToolTipText("About");
+        aboutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutButtonActionPerformed(evt);
+            }
+        });
+
+        mainToolBar.add(aboutButton);
 
         stopButton.setText("Stop");
         stopButton.setEnabled(false);
@@ -231,8 +233,6 @@ public class IndexerPanel extends javax.swing.JPanel {
             }
         });
 
-        jPanel1.add(stopButton);
-
         startButton.setText("Start");
         startButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -240,28 +240,90 @@ public class IndexerPanel extends javax.swing.JPanel {
             }
         });
 
-        jPanel1.add(startButton);
+        indexDirectoryLabel.setFont(new java.awt.Font("Dialog", 1, 12));
+        indexDirectoryLabel.setText("Index Directory Path:");
+
+        indexTextField.setEditable(false);
+        this.indexTextField.setText(Resources.getIndexCanonicalPath());
+
+        org.jdesktop.layout.GroupLayout indexDirectoryPanelLayout = new org.jdesktop.layout.GroupLayout(indexDirectoryPanel);
+        indexDirectoryPanel.setLayout(indexDirectoryPanelLayout);
+        indexDirectoryPanelLayout.setHorizontalGroup(
+            indexDirectoryPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(indexDirectoryPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(indexDirectoryLabel)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(indexTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        indexDirectoryPanelLayout.setVerticalGroup(
+            indexDirectoryPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(indexDirectoryPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(indexDirectoryPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(indexDirectoryLabel)
+                    .add(indexTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        pathLabel.setFont(new java.awt.Font("Dialog", 1, 12));
+        pathLabel.setText("Path:");
+
+        pathButton.setText("...");
+        pathButton.setToolTipText("Add Folder");
+        pathButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pathButtonMouseClicked(evt);
+            }
+        });
+
+        this.pathField.setText(this.propertiesControl.getPath());
+
+        org.jdesktop.layout.GroupLayout pathPanelLayout = new org.jdesktop.layout.GroupLayout(pathPanel);
+        pathPanel.setLayout(pathPanelLayout);
+        pathPanelLayout.setHorizontalGroup(
+            pathPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(pathPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(pathLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(pathField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(pathButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        pathPanelLayout.setVerticalGroup(
+            pathPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(pathPanelLayout.createSequentialGroup()
+                .add(14, 14, 14)
+                .add(pathPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                    .add(pathField)
+                    .add(pathLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(pathButton, 0, 0, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+
+        indexLabel.setBackground(new java.awt.Color(102, 102, 255));
+        indexLabel.setFont(new java.awt.Font("Tahoma", 1, 14));
+        indexLabel.setForeground(new java.awt.Color(255, 255, 255));
+        indexLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        indexLabel.setText("Index");
+        indexLabel.setOpaque(true);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(label8, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
-            .add(label6, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
-            .add(label9, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
-            .add(label7, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+            .add(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(progressBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE)
+                .add(storeTextCb)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(storeThumbsCb)
                 .addContainerGap())
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(textArea)
-                    .add(layout.createSequentialGroup()
-                        .add(storeTextCb)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(storeThumbsCb))
                     .add(mp3Check)
                     .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -283,36 +345,54 @@ public class IndexerPanel extends javax.swing.JPanel {
                                 .add(xlsCheck)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(pptCheck))
-                            .add(gifCheck)))
-                    .add(layout.createSequentialGroup()
-                        .add(label1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(pathField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 375, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(pathButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .add(41, 41, 41))
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(397, Short.MAX_VALUE)
-                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(gifCheck))))
                 .addContainerGap())
+            .add(filetypesLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
+                .add(progressBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 571, Short.MAX_VALUE)
+                .addContainerGap())
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
+                .add(textArea)
+                .addContainerGap())
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(463, Short.MAX_VALUE)
+                .add(startButton)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(stopButton)
+                .addContainerGap())
+            .add(layout.createSequentialGroup()
+                .add(0, 0, 0)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(indexLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
+                    .add(mainToolBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
+                    .add(foldersLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
+                    .add(indexDirectoryPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(optionsLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
+                    .add(pathPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(actionsLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(label7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(label1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(pathField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(pathButton))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(label9, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .add(mainToolBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(0, 0, 0)
+                .add(indexLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(0, 0, 0)
+                .add(indexDirectoryPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(0, 0, 0)
+                .add(foldersLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(0, 0, 0)
+                .add(pathPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(0, 0, 0)
+                .add(optionsLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(storeTextCb)
                     .add(storeThumbsCb))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(label6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(filetypesLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jpegCheck)
@@ -330,17 +410,242 @@ public class IndexerPanel extends javax.swing.JPanel {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(mp3Check)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(label8, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(actionsLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(progressBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(textArea, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(17, 17, 17)
-                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(stopButton)
+                    .add(startButton))
+                .add(35, 35, 35))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void aboutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutButtonActionPerformed
+        AboutPanel panel = new AboutPanel();
+        
+        JDialog dialog = new JDialog((java.awt.Frame)null, "About", true);
+        
+        dialog.getContentPane().add(panel);
+        dialog.pack();
+        dialog.setLocationRelativeTo(this);
+        dialog.setResizable(false);
+        dialog.setVisible(true);
+    }//GEN-LAST:event_aboutButtonActionPerformed
+
+    
+    public void init() {
+        this.imageControl = ImageControl.getImageControl();
+        this.propertiesControl = new PropertiesControl(
+                new File(Resources.getApplicationPropertiesCanonicalPath()));
+        
+        this.image_filetypes = this.propertiesControl.getImageFiletypes();
+        this.document_filetypes = this.propertiesControl.getDocumentFiletypes();
+        this.misc_filetypes = this.propertiesControl.getMusicFiletypes();
+    }
+    
+    private void loadComponentsStatus() {
+        this.indexTextField.setText(Resources.getIndexCanonicalPath());
+        this.pathField.setText(this.propertiesControl.getPath());
+        
+        storeTextCb.setSelected(this.propertiesControl.getStoreText());
+        storeThumbsCb.setSelected(this.propertiesControl.getStoreThumbnail());
+    
+        if (this.image_filetypes.contains(new StringBuffer("jpg"))
+        && this.image_filetypes.contains(new StringBuffer("jpeg"))) {
+            this.jpegCheck.setSelected(true);
+        } else {
+            this.jpegCheck.setSelected(false);
+        }
+        
+        if (this.image_filetypes.contains(new StringBuffer("png"))) {
+            this.pngCheck.setSelected(true);
+        } else {
+            this.pngCheck.setSelected(false);
+        }
+        
+        if (this.image_filetypes.contains(new StringBuffer("gif"))) {
+            this.gifCheck.setSelected(true);
+        } else {
+            this.gifCheck.setSelected(false);
+        }
+        
+        if (this.document_filetypes.contains(new StringBuffer("txt"))) {
+            this.txtCheck.setSelected(true);
+        } else {
+            this.txtCheck.setSelected(false);
+        }
+        
+        if (this.document_filetypes.contains(new StringBuffer("pdf"))) {
+            this.pdfCheck.setSelected(true);
+        } else {
+            this.pdfCheck.setSelected(false);
+        }
+        
+        if (this.document_filetypes.contains(new StringBuffer("doc"))) {
+            this.docCheck.setSelected(true);
+        } else {
+            this.docCheck.setSelected(false);
+        }
+        
+        if (this.document_filetypes.contains(new StringBuffer("rtf"))) {
+            this.rtfCheck.setSelected(true);
+        } else {
+            this.rtfCheck.setSelected(false);
+        }
+        
+        if (this.document_filetypes.contains(new StringBuffer("html")) && this.document_filetypes.contains(new StringBuffer("htm"))) {
+            this.htmlCheck.setSelected(true);
+        } else {
+            this.htmlCheck.setSelected(false);
+        }
+        
+        if (this.document_filetypes.contains(new StringBuffer("xls"))) {
+            this.xlsCheck.setSelected(true);
+        } else {
+            this.xlsCheck.setSelected(false);
+        }
+        
+        if (this.document_filetypes.contains(new StringBuffer("ppt"))) {
+            this.pptCheck.setSelected(true);
+        } else {
+            this.pptCheck.setSelected(false);
+        }
+        
+        if (this.misc_filetypes.contains(new StringBuffer("mp3"))) {
+            this.mp3Check.setSelected(true);
+        } else {
+            this.mp3Check.setSelected(false);
+        }
+    }
+    
+    // Deletes all files and subdirectories under dir.
+    // Returns true if all deletions were successful.
+    // If a deletion fails, the method stops attempting to delete and returns false.
+    private boolean deleteDir(File dir) {
+        if (dir.isDirectory()) {
+            String[] children = dir.list();
+            for (int i=0; i<children.length; i++) {
+                boolean success = deleteDir(new File(dir, children[i]));
+                if (!success) {
+                    return false;
+                }
+            }
+        }
+    
+        // The directory is now empty so delete it
+        return dir.delete();
+    }
+    
+    private void newButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newButtonMousePressed
+        String fileName = "";
+        File file = null;
+        
+        JFileChooser fc = new JFileChooser();
+        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        fc.setCurrentDirectory(new java.io.File(Resources.getApplicationDirectoryCanonicalPath()));
+        fc.setDialogTitle("New Index Directory");
+        fc.setApproveButtonToolTipText("Create Index Directory");
+        
+        while(true) {
+            int returnVal = fc.showDialog(this, "Create");
+            
+            if (returnVal == JFileChooser.CANCEL_OPTION){
+                return;
+            }
+            else if (returnVal == JFileChooser.APPROVE_OPTION) {
+                file = fc.getSelectedFile();
+                
+                try { fileName = file.getCanonicalPath(); }
+                catch (IOException ex) { ex.printStackTrace(); }
+                
+                if (file.exists()) {
+                    int opt = JOptionPane.showConfirmDialog(this,
+                            "Index directory '" +fileName +"' already exists.\n"
+                            +"Overwrite? (Hitting 'Yes' will delete existing Index)",
+                            "Error Creating Index Directory",
+                            JOptionPane.YES_NO_OPTION);
+                    
+                    if (opt == JOptionPane.YES_OPTION) {
+                        if (this.deleteDir(file) == false) {
+                            JOptionPane.showMessageDialog(this,
+                                    "Directory '" +fileName +"' cannot be deleted.",
+                                    "Error Creating Index Directory",
+                                    JOptionPane.ERROR_MESSAGE,
+                                    this.imageControl.getErrorIcon());
+                        }
+                    }
+                }
+                
+                /* close current index */
+                this.close();
+                
+                /* create new directory */
+                try { Resources.setIndex(file); }
+                catch (IOException ex) { ex.printStackTrace(); }
+                
+                this.init();
+                this.loadComponentsStatus();
+                
+                return;
+            }
+        }
+        
+    }//GEN-LAST:event_newButtonMousePressed
+
+    private void openButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openButtonActionPerformed
+        JFileChooser fc = new JFileChooser();
+        
+        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        fc.setCurrentDirectory(new java.io.File(Resources.getApplicationDirectoryCanonicalPath()));
+        fc.setDialogTitle("Select Index Directory");
+        
+        boolean error = true;
+        while (error == true) {
+            error = false;
+            
+            int returnVal = fc.showOpenDialog(this);
+            
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                File file = fc.getSelectedFile();
+
+                boolean exists = Indexer.indexExists(file);
+                String directory = file.getPath();
+                
+                if (exists == true) {
+
+                    /* close current index */
+                    this.close();
+                    
+                    /* create new directory */
+                    try { Resources.setIndex(file); }
+                    catch (IOException ex) { ex.printStackTrace(); }
+                    
+                    this.init();
+
+                    this.loadComponentsStatus();
+                    
+                    JOptionPane.showMessageDialog(this,
+                            "Index directory '" +directory +"' successfully loaded.",
+                            "Open Index Directory",
+                            JOptionPane.INFORMATION_MESSAGE,
+                            this.imageControl.getInfoIcon());
+                } else {
+                    JOptionPane.showMessageDialog(this,
+                            "Directory '" +directory +"' is not a valid index.",
+                            "Error Opening Index Directory",
+                            JOptionPane.ERROR_MESSAGE,
+                            this.imageControl.getErrorIcon());
+                    error = true;
+                }
+                
+            } // if
+            
+        } // while
+    }//GEN-LAST:event_openButtonActionPerformed
+    
     private void pathButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pathButtonMouseClicked
         JFileChooser chooser = new JFileChooser();
         chooser.setCurrentDirectory(new java.io.File("."));
@@ -383,9 +688,9 @@ public class IndexerPanel extends javax.swing.JPanel {
             document_filetypes += "html,htm,";
         if (this.xlsCheck.isSelected())
             document_filetypes += "xls,";
-        if (this.xlsCheck.isSelected())
+        if (this.pptCheck.isSelected())
             document_filetypes += "ppt,";
-        if (this.xlsCheck.isSelected())
+        if (this.mp3Check.isSelected())
             music_filetypes += "mp3,";
         
         if (image_filetypes.lastIndexOf(',') != -1) {
@@ -455,6 +760,28 @@ public class IndexerPanel extends javax.swing.JPanel {
             logStream = System.out;
         }
         
+        indexDir = new File(Resources.getIndexCanonicalPath());
+        try {
+            this.indexer = new Indexer(indexDir, this.propertiesControl);
+        } catch (IOException ex) {
+            int opt = JOptionPane.showConfirmDialog(this, "Force unlock?",
+                    ex.getMessage(), JOptionPane.YES_NO_OPTION);
+
+            if (opt == JOptionPane.YES_OPTION) {
+                try {
+                    this.indexer = new Indexer(indexDir, this.propertiesControl, true);
+                } catch (IOException e) {
+                    JOptionPane.showMessageDialog(this, e.getMessage(),
+                            "Unspecified error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                JOptionPane.showMessageDialog(this, "Index successfully unlocked",
+                        "Report", JOptionPane.INFORMATION_MESSAGE);
+            } else if (opt == JOptionPane.NO_OPTION) {
+                return;
+            }
+        }
+        
         this.indexer.setDataDirectories(dataDirsFile);
         this.indexer.setLogger(new JLogger(logStream, this.textArea));
         this.indexer.setProgressBar(this.progressBar);
@@ -467,6 +794,8 @@ public class IndexerPanel extends javax.swing.JPanel {
         this.htmlCheck.setEnabled(false); this.rtfCheck.setEnabled(false);
         this.pathButton.setEnabled(false); this.mp3Check.setEnabled(false);
         storeTextCb.setEnabled(false); storeThumbsCb.setEnabled(false);
+        this.newButton.setEnabled(false); this.openButton.setEnabled(false);
+        this.aboutButton.setEnabled(false);
         this.stopButton.setEnabled(true);
         
         this.IndexerThread = new Thread(this.indexer);
@@ -475,7 +804,9 @@ public class IndexerPanel extends javax.swing.JPanel {
         Thread t = new Thread(
                 new Runnable() {
             public void run() {
-                try { IndexerThread.join(); indexer.optimize(); } catch (InterruptedException ex) {ex.printStackTrace();} catch (IOException ex) {ex.printStackTrace();}
+                try { IndexerThread.join(); indexer.optimize(); indexer.close(); indexer = null;}
+                catch (InterruptedException ex) {ex.printStackTrace();}
+                catch (IOException ex) {ex.printStackTrace();}
                 
                 stopButton.setEnabled(false);
                 startButton.setEnabled(true); pathField.setEnabled(true);
@@ -486,14 +817,16 @@ public class IndexerPanel extends javax.swing.JPanel {
                 htmlCheck.setEnabled(true); rtfCheck.setEnabled(true);
                 pathButton.setEnabled(true); mp3Check.setEnabled(true);
                 storeTextCb.setEnabled(true); storeThumbsCb.setEnabled(true);
+                newButton.setEnabled(true); openButton.setEnabled(true);
+                aboutButton.setEnabled(true);
             }
         });
         t.start();
     }//GEN-LAST:event_startButtonMouseClicked
 
     private void stopButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stopButtonMouseClicked
-        stopButton.setEnabled(false);
-        indexer.stop();
+        this.stopButton.setEnabled(false);
+        this.indexer.stop();
     }//GEN-LAST:event_stopButtonMouseClicked
     
     /**
@@ -507,24 +840,40 @@ public class IndexerPanel extends javax.swing.JPanel {
     }
     
     public void close() {
-        this.indexer.stop();
-        this.indexer.close();
+        if (this.indexer != null) {
+            this.indexer.stop();
+            this.indexer.close();
+        }
+    }
+    
+    protected void finalize() throws Throwable {
+        this.close();
+        super.finalize();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton aboutButton;
+    private java.awt.Label actionsLabel;
     private javax.swing.JCheckBox docCheck;
+    private java.awt.Label filetypesLabel;
+    private java.awt.Label foldersLabel;
     private javax.swing.JCheckBox gifCheck;
     private javax.swing.JCheckBox htmlCheck;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel indexDirectoryLabel;
+    private javax.swing.JPanel indexDirectoryPanel;
+    private javax.swing.JLabel indexLabel;
+    private javax.swing.JLabel indexLabel1;
+    private javax.swing.JTextField indexTextField;
     private javax.swing.JCheckBox jpegCheck;
-    private java.awt.Label label1;
-    private java.awt.Label label6;
-    private java.awt.Label label7;
-    private java.awt.Label label8;
-    private java.awt.Label label9;
+    private javax.swing.JToolBar mainToolBar;
     private javax.swing.JCheckBox mp3Check;
+    private javax.swing.JButton newButton;
+    private javax.swing.JButton openButton;
+    private java.awt.Label optionsLabel;
     private javax.swing.JButton pathButton;
-    private java.awt.TextField pathField;
+    private javax.swing.JTextField pathField;
+    private java.awt.Label pathLabel;
+    private javax.swing.JPanel pathPanel;
     private javax.swing.JCheckBox pdfCheck;
     private javax.swing.JCheckBox pngCheck;
     private javax.swing.JCheckBox pptCheck;
@@ -540,6 +889,8 @@ public class IndexerPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private PropertiesControl propertiesControl;
+    
+    private ImageControl imageControl;
     
     private Thread IndexerThread = null;
     private Indexer indexer = null;

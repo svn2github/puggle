@@ -1,7 +1,7 @@
 /*
  * ClassicResultsPanel.java
  *
- * Created on 16 Μάρτιος 2007, 8:51 μμ
+ * Created on 16 March 2007, 8:51 μμ
  */
 
 package puggle.ui;
@@ -46,69 +46,52 @@ public class ClassicResultsPanel extends ResultsPanel {
     // <editor-fold defaultstate="collapsed" desc=" Generated Code ">//GEN-BEGIN:initComponents
     private void initComponents() {
         mainPanel = new javax.swing.JPanel();
-        resultPanel1 = new puggle.ui.ResultPanel();
-        resultPanel2 = new puggle.ui.ResultPanel();
-        resultPanel3 = new puggle.ui.ResultPanel();
-        resultPanel4 = new puggle.ui.ResultPanel();
-        resultPanel5 = new puggle.ui.ResultPanel();
-        resultPanel6 = new puggle.ui.ResultPanel();
-        resultPanel7 = new puggle.ui.ResultPanel();
-        resultPanel8 = new puggle.ui.ResultPanel();
-        resultPanel9 = new puggle.ui.ResultPanel();
-        resultPanel10 = new puggle.ui.ResultPanel();
+        resultPanel1 = new puggle.ui.ClassicResultPanel();
+        resultPanel2 = new puggle.ui.ClassicResultPanel();
+        resultPanel3 = new puggle.ui.ClassicResultPanel();
+        resultPanel4 = new puggle.ui.ClassicResultPanel();
+        resultPanel5 = new puggle.ui.ClassicResultPanel();
+        resultPanel6 = new puggle.ui.ClassicResultPanel();
+        resultPanel7 = new puggle.ui.ClassicResultPanel();
+        resultPanel8 = new puggle.ui.ClassicResultPanel();
+        resultPanel9 = new puggle.ui.ClassicResultPanel();
+        resultPanel10 = new puggle.ui.ClassicResultPanel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+        mainPanel.setLayout(new java.awt.GridLayout(10, 0, 0, 1));
 
         mainPanel.setAlignmentX(0.0F);
         mainPanel.setAlignmentY(0.0F);
         mainPanel.setMaximumSize(new java.awt.Dimension(10, 10));
+        mainPanel.add(resultPanel1);
 
-        org.jdesktop.layout.GroupLayout mainPanelLayout = new org.jdesktop.layout.GroupLayout(mainPanel);
-        mainPanel.setLayout(mainPanelLayout);
-        mainPanelLayout.setHorizontalGroup(
-            mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(resultPanel3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
-            .add(resultPanel4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
-            .add(resultPanel5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
-            .add(resultPanel6, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
-            .add(resultPanel7, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
-            .add(resultPanel8, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
-            .add(resultPanel9, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
-            .add(resultPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
-            .add(resultPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
-            .add(resultPanel10, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
-        );
-        mainPanelLayout.setVerticalGroup(
-            mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(mainPanelLayout.createSequentialGroup()
-                .add(resultPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(1, 1, 1)
-                .add(resultPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                .add(1, 1, 1)
-                .add(resultPanel3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-                .add(1, 1, 1)
-                .add(resultPanel4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-                .add(1, 1, 1)
-                .add(resultPanel5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-                .add(1, 1, 1)
-                .add(resultPanel6, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-                .add(1, 1, 1)
-                .add(resultPanel7, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-                .add(1, 1, 1)
-                .add(resultPanel8, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
-                .add(1, 1, 1)
-                .add(resultPanel9, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-                .add(1, 1, 1)
-                .add(resultPanel10, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
-        );
+        mainPanel.add(resultPanel2);
+
+        mainPanel.add(resultPanel3);
+
+        mainPanel.add(resultPanel4);
+
+        mainPanel.add(resultPanel5);
+
+        mainPanel.add(resultPanel6);
+
+        mainPanel.add(resultPanel7);
+
+        mainPanel.add(resultPanel8);
+
+        mainPanel.add(resultPanel9);
+
+        mainPanel.add(resultPanel10);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(mainPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(mainPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(mainPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+            .add(mainPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 1022, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -210,7 +193,7 @@ public class ClassicResultsPanel extends ResultsPanel {
         }
     }
     
-    private void printHit(Document doc, int score, ResultPanel resultPanel) {
+    private void printHit(Document doc, int score, ClassicResultPanel resultPanel) {
         String title = doc.get("title");
         String path = doc.get("path");
         long size = Long.parseLong(doc.get("size"));
@@ -246,7 +229,7 @@ public class ClassicResultsPanel extends ResultsPanel {
         }
     }
     
-    public void clearResultPanel(ResultPanel resultPanel) {
+    public void clearResultPanel(ClassicResultPanel resultPanel) {
         resultPanel.setTitle(""); resultPanel.getTitleLabel().setToolTipText("");
         resultPanel.setIcon(null); resultPanel.setPath("");
         resultPanel.getPathLabel().setToolTipText(""); resultPanel.setSize("");
@@ -309,16 +292,16 @@ public class ClassicResultsPanel extends ResultsPanel {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel mainPanel;
-    private puggle.ui.ResultPanel resultPanel1;
-    private puggle.ui.ResultPanel resultPanel10;
-    private puggle.ui.ResultPanel resultPanel2;
-    private puggle.ui.ResultPanel resultPanel3;
-    private puggle.ui.ResultPanel resultPanel4;
-    private puggle.ui.ResultPanel resultPanel5;
-    private puggle.ui.ResultPanel resultPanel6;
-    private puggle.ui.ResultPanel resultPanel7;
-    private puggle.ui.ResultPanel resultPanel8;
-    private puggle.ui.ResultPanel resultPanel9;
+    private puggle.ui.ClassicResultPanel resultPanel1;
+    private puggle.ui.ClassicResultPanel resultPanel10;
+    private puggle.ui.ClassicResultPanel resultPanel2;
+    private puggle.ui.ClassicResultPanel resultPanel3;
+    private puggle.ui.ClassicResultPanel resultPanel4;
+    private puggle.ui.ClassicResultPanel resultPanel5;
+    private puggle.ui.ClassicResultPanel resultPanel6;
+    private puggle.ui.ClassicResultPanel resultPanel7;
+    private puggle.ui.ClassicResultPanel resultPanel8;
+    private puggle.ui.ClassicResultPanel resultPanel9;
     // End of variables declaration//GEN-END:variables
     
 }

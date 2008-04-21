@@ -1,7 +1,7 @@
 /*
  * Searcher.java
  *
- * Created on 3 Σεπτέμβριος 2006, 5:05 μμ
+ * Created on 3 September 2006, 5:05 μμ
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.

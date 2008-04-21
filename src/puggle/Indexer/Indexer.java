@@ -1,7 +1,7 @@
 /*
  * Indexer.java
  *
- * Created on 2 Σεπτέμβριος 2006, 1:52 πμ
+ * Created on 2 September 2006, 1:52 πμ
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.
@@ -70,7 +70,7 @@ public class Indexer implements Runnable {
     private PropertiesControl propertiesControl;
 
     /** Creates a new instance of Indexer */
-    public Indexer(File indexDir) throws IOException {
+    public Indexer(File indexDir, PropertiesControl propertiesControl) throws IOException {
         this.IndexDir = indexDir;
         
         this.TotalBytes = 0;
@@ -80,7 +80,7 @@ public class Indexer implements Runnable {
 
         boolean create = false;
         
-        this.propertiesControl = PropertiesControl.getPropertiesControl();
+        this.propertiesControl = propertiesControl;
         
         if (IndexReader.indexExists(this.IndexDir)) {
             if (IndexReader.isLocked(this.IndexDir.getCanonicalPath())) {
@@ -93,7 +93,7 @@ public class Indexer implements Runnable {
         this.Index = new IndexModifier(this.IndexDir, Resources.getAnalyzer(), create);
     }
     
-    public Indexer(File indexDir, boolean unlock) throws IOException {
+    public Indexer(File indexDir, PropertiesControl propertiesControl, boolean unlock) throws IOException {
         this.IndexDir = indexDir;
         
         this.TotalBytes = 0;
@@ -103,7 +103,7 @@ public class Indexer implements Runnable {
         
         boolean create = false;
         
-        this.propertiesControl = PropertiesControl.getPropertiesControl();
+        this.propertiesControl = propertiesControl;
 
         if (IndexReader.indexExists(this.IndexDir)) {
             if (IndexReader.isLocked(this.IndexDir.getCanonicalPath())) {
@@ -119,24 +119,23 @@ public class Indexer implements Runnable {
         this.Index = new IndexModifier(this.IndexDir, Resources.getAnalyzer(), create);
     }
     
-    public Indexer(File[] dataDir, File indexDir) throws IOException {
+/*    public Indexer(File[] dataDir, File indexDir) throws IOException {
         this(indexDir);
         this.setDataDirectories(dataDir);
     }
-    
-    /** Creates a new instance of Indexer */
-    public Indexer(File[] dataDir, File indexDir, boolean unlock)
+    */
+    public Indexer(File[] dataDir, File indexDir, PropertiesControl propertiesControl, boolean unlock)
             throws IOException {
-        this(indexDir, unlock);
+        this(indexDir, propertiesControl, unlock);
         this.setDataDirectories(dataDir);
     }
     
-    public Indexer(File[] dataDir, File indexDir, JLogger logger, boolean unlock)
+    public Indexer(File[] dataDir, File indexDir, PropertiesControl propertiesControl, JLogger logger, boolean unlock)
             throws IOException {
-        this(dataDir, indexDir, unlock);
+        this(dataDir, indexDir, propertiesControl, unlock);
         this.Logger = logger;
     }
-    
+    /*
     public Indexer(File[] dataDir, File indexDir, JLogger logger)
             throws IOException {
         this(dataDir, indexDir);
@@ -154,7 +153,7 @@ public class Indexer implements Runnable {
         this(dataDir, indexDir, logger);
         this.ProgressBar = p;
     }
-    
+*/
     protected void finalize() {
         try { this.Index.close(); }
         catch (IOException ex) { ex.printStackTrace(); }
@@ -174,6 +173,14 @@ public class Indexer implements Runnable {
         this.Logger = logger;
     }
     
+    public static boolean indexExists(String directory) {
+        return IndexReader.indexExists(directory);
+    }
+
+    public static boolean indexExists(File directory) {
+        return Indexer.indexExists(directory.getPath());
+    }
+
     /**
      * Removes from this index all documents that have been deleted or modified.
      */
@@ -271,7 +278,7 @@ public class Indexer implements Runnable {
         }
         
         for (int i = 0; i < this.DataDir.length; ++i) {
-            FileWalker files = new FileWalker(this.DataDir[i]);
+            FileWalker files = new FileWalker(this.DataDir[i], Resources.getFiletypeFilter(this.propertiesControl));
 
             while (files.hasNext() && !this.Stop) {
                 

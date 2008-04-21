@@ -1,7 +1,7 @@
 /*
  * HTMLHandler.java
  *
- * Created on 4 Σεπτέμβριος 2006, 1:10 πμ
+ * Created on 4 September 2006, 1:10 πμ
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.

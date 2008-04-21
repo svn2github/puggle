@@ -1,7 +1,7 @@
 /*
  * ImageControl.java
  *
- * Created on 5 Φεβρουάριος 2007, 12:05 μμ
+ * Created on 5 February 2007, 12:05 μμ
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.

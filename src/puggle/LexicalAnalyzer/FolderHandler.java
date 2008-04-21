@@ -1,7 +1,7 @@
 /*
  * FolderHandler.java
  *
- * Created on 14 Σεπτέμβριος 2006, 11:42 μμ
+ * Created on 14 September 2006, 11:42 μμ
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.

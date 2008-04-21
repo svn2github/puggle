@@ -1,7 +1,7 @@
 /*
  * CHMHandler.java
  *
- * Created on 23 Σεπτέμβριος 2006, 2:01 πμ
+ * Created on 23 September 2006, 2:01 πμ
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.

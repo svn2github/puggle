@@ -1,7 +1,7 @@
 /*
  * Resources.java
  *
- * Created on 6 Σεπτέμβριος 2006, 6:28 μμ
+ * Created on 6 September 2006, 6:28 μμ
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.
@@ -31,18 +31,29 @@ import org.apache.lucene.analysis.standard.StandardAnalyzer;
  */
 public class Resources {
     
+    /* final string variables */
     public final static String APP_NAME = "Puggle";
     
-    public final static String APP_VERSION = "v0.1";
+    public final static String APP_VERSION = "v0.2";
     
-    private final static String APP_DIR_NAME = System.getProperty("user.home") 
+    private final static String APP_DIRECTORY_NAME = System.getProperty("user.home") 
                 + File.separator + "." + APP_NAME.toLowerCase();
     
-    private static String INDEX_FILE_NAME = APP_DIR_NAME
-                + File.separator + "index";
+    private final static String APP_DIRECTORY_NAME_PORTABLE =
+            System.getProperty("user.dir") + File.separator + "."
+            + APP_NAME.toLowerCase();
+    
+    private final static String LOG_DIRECTORY_NAME      = "logs";
+    private final static String PROPERTIES_FILE_NAME    = "props";
+    
+    /***/
+    
+    private static String INDEX_DIRECTORY_NAME = "default";
+    
+    private static String INDEX_CANONICAL_DIRECTORY_NAME =
+            Resources.APP_DIRECTORY_NAME
+            + File.separator + Resources.INDEX_DIRECTORY_NAME;
 
-    private static String LOG_DIR_NAME = APP_DIR_NAME
-                + File.separator + "logs";
     
     private static Properties Attributes = new Properties();
     
@@ -67,12 +78,20 @@ public class Resources {
         return Resources.APP_VERSION;
     }
 
-    public static String getApplicationDirPath() {
-        return APP_DIR_NAME;
+    public static String getApplicationDirectoryCanonicalPath() {
+        return Resources.APP_DIRECTORY_NAME;
     }
     
-    public static String getIndexDirPath() {
-        return INDEX_FILE_NAME;
+    public static String getApplicationPropertiesCanonicalPath() {
+        return Resources.INDEX_CANONICAL_DIRECTORY_NAME + File.separator + Resources.PROPERTIES_FILE_NAME;
+    }
+
+    public static String getIndexCanonicalPath() {
+        return Resources.INDEX_CANONICAL_DIRECTORY_NAME + File.separator;
+    }
+    
+    public static void setIndex(File path) throws IOException {
+        Resources.INDEX_CANONICAL_DIRECTORY_NAME = path.getCanonicalPath();
     }
     
     public static String[] getMusicFiletypesArray() {
@@ -115,41 +134,27 @@ public class Resources {
         return false;
     }
     
-    private static void makeApplicationFiles() throws IOException {
-        File dir = new File(APP_DIR_NAME);
-        if (dir.exists() == false) {
-            if (dir.mkdir() == false) {
-                throw new IOException("Cannot create directory '" +APP_DIR_NAME +"'");
-            }
-        }
-        
-        dir = new File(LOG_DIR_NAME);
+    public static void makeApplicationDirectoryTree() throws IOException {
+        File dir = new File(Resources.INDEX_CANONICAL_DIRECTORY_NAME);
         if (dir.exists() == false) {
             if (dir.mkdirs() == false) {
-                throw new IOException("Cannot create directory '" +LOG_DIR_NAME +"'");
-            }
-        }
-    }
-    
-    public static void makeApplicationDir() throws IOException {
-        File dir = new File(APP_DIR_NAME);
-        if (dir.exists() == false) {
-            if (dir.mkdir() == false) {
-                throw new IOException("Cannot create directory '" +APP_DIR_NAME +"'");
+                throw new IOException("Cannot create directory '" +dir.getPath() +"'");
             }
         }
     }
 
     public static File getLogFile() throws IOException {
 
+        String logDir = Resources.INDEX_CANONICAL_DIRECTORY_NAME
+                + File.separator + Resources.LOG_DIRECTORY_NAME;
         
-        String filePath = LOG_DIR_NAME + File.separator
+        String filePath = logDir + File.separator
                 + "log" + Long.toHexString(new Date().getTime()) + ".txt";
         
-        File dir = new File(LOG_DIR_NAME);
+        File dir = new File(logDir);
         if (dir.exists() == false) {
             if (dir.mkdirs() == false) {
-                throw new IOException("Cannot create directory '" + LOG_DIR_NAME +"'");
+                throw new IOException("Cannot create directory '" + logDir +"'");
             }
         }
         
@@ -166,8 +171,8 @@ public class Resources {
         return new CombinedAnalyzer();
     }
     
-    public static HashSet<String> getAcceptedFileExtensions() {
-        PropertiesControl prop = PropertiesControl.getPropertiesControl();
+    public static HashSet<String> getAcceptedFileExtensions(PropertiesControl prop) {
+//        PropertiesControl prop = new PropertiesControl(new File(Resources.getApplicationPropertiesName()));
 
         String ext = prop.getImageFiletypes() + ","
                 + prop.getMusicFiletypes() + ","
@@ -183,10 +188,10 @@ public class Resources {
         return set;
     }
     
-    public static FileFilter getFiletypeFilter() {
+    public static FileFilter getFiletypeFilter(final PropertiesControl prop) {
         FileFilter filter = new FileFilter() {
             private HashSet<String> FiletypeSet =
-                    Resources.getAcceptedFileExtensions();
+                    Resources.getAcceptedFileExtensions(prop);
             
             public boolean accept(File file) {
                 if (file.isDirectory()) {

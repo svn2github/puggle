@@ -1,7 +1,7 @@
 /*
  * TrayIconControl.java
  *
- * Created on 31 ּÜספיןע 2007, 11:47 נל
+ * Created on 31 March 2007, 11:47 נל
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.
@@ -32,27 +32,28 @@ public class TrayIconControl {
     
     private JFrame frame;
     
-    public TrayIconControl(JFrame frame) throws UnsupportedOperationException {
+    public TrayIconControl(JFrame f) throws UnsupportedOperationException {
         
         this.imageControl = ImageControl.getImageControl();
         
         this.tray = SystemTray.getSystemTray();
         
-        ActionListener exitListener = new ActionListener() {
+        ActionListener openListener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Exiting...");
-                System.exit(0);
+                frame.setVisible(true);
+                frame.setState(java.awt.Frame.NORMAL);
+                tray.remove(trayIcon);
             }
         };
         
         PopupMenu popup = new PopupMenu();
-        MenuItem defaultItem = new MenuItem("Exit");
-        defaultItem.addActionListener(exitListener);
+        MenuItem defaultItem = new MenuItem("Open Puggle Desktop Search");
+        defaultItem.addActionListener(openListener);
         popup.add(defaultItem);
         
-        this.trayIcon = new TrayIcon(imageControl.getTrayIcon(), "Tray Demo", popup);
+        this.trayIcon = new TrayIcon(imageControl.getTrayIcon(), "Puggle Desktop Search", popup);
         
-        this.frame = frame;
+        this.frame = f;
     }
     
     public void add() {
@@ -70,10 +71,11 @@ public class TrayIconControl {
                     ;
                 }
                 public void mousePressed(MouseEvent e) {
-                    frame.setVisible(true);
-                    frame.setState(java.awt.Frame.NORMAL);
-                    tray.remove(trayIcon);
-                    ;
+                    if (e.getButton() == e.BUTTON1) {
+                        frame.setVisible(true);
+                        frame.setState(java.awt.Frame.NORMAL);
+                        tray.remove(trayIcon);
+                    }
                 }
                 public void mouseReleased(MouseEvent e) {
                     ;

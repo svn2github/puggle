@@ -1,7 +1,7 @@
 /*
  * TinyResultsPanel.java
  *
- * Created on 22 Δεκέμβριος 2007, 2:07 πμ
+ * Created on 22 December 2007, 2:07 πμ
  */
 
 package puggle.ui;
@@ -47,7 +47,7 @@ public class TinyResultsPanel extends ResultsPanel {
         resultPanel9 = new puggle.ui.TinyResultPanel();
         resultPanel10 = new puggle.ui.TinyResultPanel();
 
-        setLayout(new java.awt.GridLayout(10, 1, 0, 2));
+        setLayout(new java.awt.GridLayout(10, 1, 0, 1));
 
         add(resultPanel1);
 
@@ -185,10 +185,8 @@ public class TinyResultsPanel extends ResultsPanel {
     
     public void clearResultPanel(TinyResultPanel resultPanel) {
         resultPanel.setTitle(""); resultPanel.getTitleLabel().setToolTipText("");
-        resultPanel.setIcon(null); resultPanel.setPath("");
-        resultPanel.getPathLabel().setToolTipText(""); resultPanel.setSize("");
-        resultPanel.setFragment(""); 
-        resultPanel.getIconLabel().setText("");
+        resultPanel.setPath("");
+        resultPanel.getPathLabel().setToolTipText("");
     }
     
 

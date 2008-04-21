@@ -1,7 +1,7 @@
 /*
  * ImageHandler.java
  *
- * Created on 4 Σεπτέμβριος 2006, 2:39 πμ
+ * Created on 4 September 2006, 2:39 πμ
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.

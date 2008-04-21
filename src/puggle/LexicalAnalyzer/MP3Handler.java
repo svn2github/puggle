@@ -1,7 +1,7 @@
 /*
  * MP3Handler.java
  *
- * Created on 8 Σεπτέμβριος 2006, 2:35 πμ
+ * Created on 8 September 2006, 2:35 πμ
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.

@@ -1,7 +1,7 @@
 /*
  * TableConfigPanel.java
  *
- * Created on 16 Μάρτιος 2007, 8:51 μμ
+ * Created on 16 March 2007, 8:51 μμ
  */
 
 package puggle.ui;
@@ -43,7 +43,6 @@ public class TableConfigPanel extends ResultsPanel {
      */
     public TableConfigPanel() {
         initComponents();
-        initTables();
     }
     
     /** This method is called from within the constructor to
@@ -53,264 +52,40 @@ public class TableConfigPanel extends ResultsPanel {
      */
     // <editor-fold defaultstate="collapsed" desc=" Generated Code ">//GEN-BEGIN:initComponents
     private void initComponents() {
-        saveButton = new javax.swing.JButton();
-        indexLockTable = new javax.swing.JTable();
-        filetypesTable = new javax.swing.JTable();
-        optionsTable = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        table = new javax.swing.JTable();
 
-        saveButton.setText("Save");
-        saveButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                saveButtonMouseClicked(evt);
-            }
-        });
-
-        indexLockTable.setModel(new javax.swing.table.DefaultTableModel(
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null}
+                {null, null}
             },
             new String [] {
-                "Locked", "Type", "Value"
+                "Attribute", "Value"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-
-        filetypesTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3"
-            }
-        ));
-
-        optionsTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3"
-            }
-        ));
+        table.setTableHeader(null);
+        jScrollPane1.setViewportView(table);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(filetypesTable, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 743, Short.MAX_VALUE)
-            .add(indexLockTable, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 743, Short.MAX_VALUE)
-            .add(optionsTable, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 743, Short.MAX_VALUE)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(676, Short.MAX_VALUE)
-                .add(saveButton)
-                .addContainerGap())
+            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(optionsTable, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(0, 0, 0)
-                .add(indexLockTable, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(0, 0, 0)
-                .add(filetypesTable, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(50, 50, 50)
-                .add(saveButton)
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void saveButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveButtonMouseClicked
-        this.storeTables();
-    }//GEN-LAST:event_saveButtonMouseClicked
-    
-    private void initTables() {
-        this.propertiesControl = PropertiesControl.getPropertiesControl();
-        
-        Set set = this.propertiesControl.getFiletypesSet();
-
-        filetypesTable.setModel(
-                new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"txt", "Boolean", Boolean.toString(set.contains("txt"))},
-                {"pdf", "Boolean", Boolean.toString(set.contains("pdf"))},
-                {"doc", "Boolean", Boolean.toString(set.contains("doc"))},
-                {"rtf", "Boolean", Boolean.toString(set.contains("rtf"))},
-                {"html", "Boolean", Boolean.toString(set.contains("html"))},
-                {"htm", "Boolean", Boolean.toString(set.contains("htm"))},
-                {"xls", "Boolean", Boolean.toString(set.contains("xls"))},
-                {"ppt", "Boolean", Boolean.toString(set.contains("ppt"))},
-                {"jpeg", "Boolean", Boolean.toString(set.contains("jpeg"))},
-                {"jpg", "Boolean", Boolean.toString(set.contains("jpg"))},
-                {"gif", "Boolean", Boolean.toString(set.contains("gif"))},
-                {"png", "Boolean", Boolean.toString(set.contains("png"))},
-                {"mp3", "Boolean", Boolean.toString(set.contains("mp3"))}
-            },
-            new String [] {
-                "Filetypes", "Type", "Value"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        
-        JComboBox comboBox = new JComboBox();
-        comboBox.addItem("true");
-        comboBox.addItem("false");
-        
-        TableColumn valuesColumn = filetypesTable.getColumnModel().getColumn(2);
-        valuesColumn.setCellEditor(new DefaultCellEditor(comboBox));
-        
-        boolean locked = false;
-        try {
-            locked = IndexReader.isLocked(Resources.getIndexDirPath());
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        
-        indexLockTable.setModel(
-                new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Index lock", "Boolean", Boolean.toString(locked)},
-            },
-            new String [] {
-                "Index Lock", "Type", "Value"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        
-        JComboBox comboBox2 = new JComboBox();
-        comboBox2.addItem("true");
-        comboBox2.addItem("false");
-        
-        TableColumn valuesColumn2 = indexLockTable.getColumnModel().getColumn(2);
-        valuesColumn2.setCellEditor(new DefaultCellEditor(comboBox2));
-        
-        DateFormat dateFormat = DateFormat.getDateInstance();
-        
-        optionsTable.setModel(
-                new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Path", "String", this.propertiesControl.getPath()},
-                {"Index", "String", null},
-                {"Last indexed", "Date", dateFormat.format(this.propertiesControl.getLastIndexedDate())},
-                {"Last optimized", "Date", dateFormat.format(this.propertiesControl.getLastOptimizedDate())},
-            },
-            new String [] {
-                "Index Options", "Type", "Value"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                if (rowIndex == 2 || rowIndex == 3)
-                    return false;
-                
-                return canEdit [columnIndex];
-            }
-        });
-    }
-    
-    private void storeTables() {
-        javax.swing.table.DefaultTableModel tableModel = 
-                (javax.swing.table.DefaultTableModel)filetypesTable.getModel();
-        
-        int rows = tableModel.getRowCount();
-        
-        Set imageExtSet = Resources.getImagesFiletypesSet();
-        Set musicExtSet = Resources.getMusicFiletypesSet();
-        Set documentExtSet = Resources.getDocumentsFiletypesSet();
-        
-        for (int i = 0; i < rows; ++i) {
-            if (((String)tableModel.getValueAt(i, 2)).equals("false")) {
-                String extension = (String)tableModel.getValueAt(i, 0);
-                imageExtSet.remove(extension);
-                documentExtSet.remove(extension);
-                musicExtSet.remove(extension);
-            }
-        }
-        
-        tableModel = 
-                (javax.swing.table.DefaultTableModel)optionsTable.getModel();
-        
-        String path = (String)tableModel.getValueAt(0, 2);
-        
-        /* <PATH> */
-        String spl[] = path.split(File.pathSeparator);
-        path = "";
-        for (int i=0; i < spl.length; i++) {
-            File f = new File(spl[i]);
-            if (f.isDirectory() == false || f.exists() == false) {
-                JOptionPane.showMessageDialog(this, "File '" +f
-                        +"' does not exists or is not a directory",
-                        "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            try {
-                path += f.getCanonicalPath() + File.pathSeparator;
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-        this.propertiesControl.setPath(path);
-        /* </PATH> */
-        
-        this.propertiesControl.setDocumentFiletypes((String[]) documentExtSet.toArray(new String[documentExtSet.size()]));
-        this.propertiesControl.setMusicFiletypes((String[]) musicExtSet.toArray(new String[musicExtSet.size()]));
-        this.propertiesControl.setImageFiletypes((String[]) imageExtSet.toArray(new String[imageExtSet.size()]));
-        
-        tableModel = 
-                (javax.swing.table.DefaultTableModel)indexLockTable.getModel();
-        
-        String lock = (String)tableModel.getValueAt(0, 2);
-        
-        if (lock.equals("false")) {
-            try {
-                IndexReader.unlock(FSDirectory.getDirectory(Resources.getIndexDirPath()));
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-        
-        this.propertiesControl.flush();
-    }
-    
     private void executeFile(File file) {
         throw new NullPointerException("Method is not implemented.");
     }
@@ -356,12 +131,14 @@ public class TableConfigPanel extends ResultsPanel {
         throw new NullPointerException("Method is not implemented.");
     }
     
+    public void add(String attr, String value) {
+        /* Append attribute and its value to the table */
+    }
+    
     private PropertiesControl propertiesControl;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable filetypesTable;
-    private javax.swing.JTable indexLockTable;
-    private javax.swing.JTable optionsTable;
-    private javax.swing.JButton saveButton;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
     
 }

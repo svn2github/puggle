@@ -1,7 +1,7 @@
 /*
  * PPTHandler.java
  *
- * Created on 4 Σεπτέμβριος 2006, 10:50 μμ
+ * Created on 4 September 2006, 10:50 μμ
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.

@@ -1,7 +1,7 @@
 /*
  * JLogger.java
  *
- * Created on 23 Σεπτέμβριος 2006, 6:38 μμ
+ * Created on 23 September 2006, 6:38 μμ
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.
