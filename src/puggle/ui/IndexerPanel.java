@@ -39,12 +39,8 @@ public class IndexerPanel extends javax.swing.JPanel {
      */
     // <editor-fold defaultstate="collapsed" desc=" Generated Code ">//GEN-BEGIN:initComponents
     private void initComponents() {
-        foldersLabel = new java.awt.Label();
         textArea = new javax.swing.JTextArea();
         progressBar = new javax.swing.JProgressBar();
-        filetypesLabel = new java.awt.Label();
-        actionsLabel = new java.awt.Label();
-        optionsLabel = new java.awt.Label();
         storeTextCb = new javax.swing.JCheckBox();
         storeThumbsCb = new javax.swing.JCheckBox();
         jpegCheck = new javax.swing.JCheckBox();
@@ -62,6 +58,7 @@ public class IndexerPanel extends javax.swing.JPanel {
         newButton = new javax.swing.JButton();
         openButton = new javax.swing.JButton();
         aboutButton = new javax.swing.JButton();
+        exitButton = new javax.swing.JButton();
         stopButton = new javax.swing.JButton();
         startButton = new javax.swing.JButton();
         indexDirectoryPanel = new javax.swing.JPanel();
@@ -72,11 +69,10 @@ public class IndexerPanel extends javax.swing.JPanel {
         pathButton = new javax.swing.JButton();
         pathField = new javax.swing.JTextField();
         indexLabel = new javax.swing.JLabel();
-
-        foldersLabel.setBackground(new java.awt.Color(102, 102, 255));
-        foldersLabel.setFont(new java.awt.Font("Tahoma", 1, 14));
-        foldersLabel.setForeground(java.awt.Color.white);
-        foldersLabel.setText("Indexing Folders");
+        foldersLabel = new javax.swing.JLabel();
+        optionsLabel = new javax.swing.JLabel();
+        filetypesLabel = new javax.swing.JLabel();
+        actionsLabel = new javax.swing.JLabel();
 
         textArea.setColumns(20);
         textArea.setEditable(false);
@@ -90,21 +86,6 @@ public class IndexerPanel extends javax.swing.JPanel {
 
         progressBar.setBackground(new java.awt.Color(255, 255, 255));
         progressBar.setForeground(new java.awt.Color(51, 255, 51));
-
-        filetypesLabel.setBackground(new java.awt.Color(102, 102, 255));
-        filetypesLabel.setFont(new java.awt.Font("Tahoma", 1, 14));
-        filetypesLabel.setForeground(java.awt.Color.white);
-        filetypesLabel.setText("Filetypes");
-
-        actionsLabel.setBackground(new java.awt.Color(102, 102, 255));
-        actionsLabel.setFont(new java.awt.Font("Tahoma", 1, 14));
-        actionsLabel.setForeground(java.awt.Color.white);
-        actionsLabel.setText("Actions");
-
-        optionsLabel.setBackground(new java.awt.Color(102, 102, 255));
-        optionsLabel.setFont(new java.awt.Font("Tahoma", 1, 14));
-        optionsLabel.setForeground(java.awt.Color.white);
-        optionsLabel.setText("Indexing Options");
 
         storeTextCb.setSelected(this.propertiesControl.getStoreText());
         storeTextCb.setText("Store text");
@@ -225,7 +206,19 @@ public class IndexerPanel extends javax.swing.JPanel {
 
         mainToolBar.add(aboutButton);
 
+        exitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/exit.png")));
+        exitButton.setToolTipText("Exit");
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitButtonActionPerformed(evt);
+            }
+        });
+
+        mainToolBar.add(exitButton);
+
+        stopButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/stop.png")));
         stopButton.setText("Stop");
+        stopButton.setToolTipText("Stop Indexing");
         stopButton.setEnabled(false);
         stopButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -233,7 +226,9 @@ public class IndexerPanel extends javax.swing.JPanel {
             }
         });
 
+        startButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/start.png")));
         startButton.setText("Start");
+        startButton.setToolTipText("Start Indexing");
         startButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 startButtonMouseClicked(evt);
@@ -245,6 +240,7 @@ public class IndexerPanel extends javax.swing.JPanel {
 
         indexTextField.setEditable(false);
         this.indexTextField.setText(Resources.getIndexCanonicalPath());
+        indexTextField.setToolTipText("Absolute path where the Index will be stored");
 
         org.jdesktop.layout.GroupLayout indexDirectoryPanelLayout = new org.jdesktop.layout.GroupLayout(indexDirectoryPanel);
         indexDirectoryPanel.setLayout(indexDirectoryPanelLayout);
@@ -254,7 +250,7 @@ public class IndexerPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .add(indexDirectoryLabel)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(indexTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE)
+                .add(indexTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
                 .addContainerGap())
         );
         indexDirectoryPanelLayout.setVerticalGroup(
@@ -279,6 +275,7 @@ public class IndexerPanel extends javax.swing.JPanel {
         });
 
         this.pathField.setText(this.propertiesControl.getPath());
+        pathField.setToolTipText("");
 
         org.jdesktop.layout.GroupLayout pathPanelLayout = new org.jdesktop.layout.GroupLayout(pathPanel);
         pathPanel.setLayout(pathPanelLayout);
@@ -288,7 +285,7 @@ public class IndexerPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .add(pathLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(pathField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
+                .add(pathField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(pathButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -310,6 +307,30 @@ public class IndexerPanel extends javax.swing.JPanel {
         indexLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         indexLabel.setText("Index");
         indexLabel.setOpaque(true);
+
+        foldersLabel.setBackground(new java.awt.Color(102, 102, 255));
+        foldersLabel.setFont(new java.awt.Font("Tahoma", 1, 14));
+        foldersLabel.setForeground(new java.awt.Color(255, 255, 255));
+        foldersLabel.setText("Indexing Folders");
+        foldersLabel.setOpaque(true);
+
+        optionsLabel.setBackground(new java.awt.Color(102, 102, 255));
+        optionsLabel.setFont(new java.awt.Font("Tahoma", 1, 14));
+        optionsLabel.setForeground(new java.awt.Color(255, 255, 255));
+        optionsLabel.setText("Indexing Options");
+        optionsLabel.setOpaque(true);
+
+        filetypesLabel.setBackground(new java.awt.Color(102, 102, 255));
+        filetypesLabel.setFont(new java.awt.Font("Tahoma", 1, 14));
+        filetypesLabel.setForeground(new java.awt.Color(255, 255, 255));
+        filetypesLabel.setText("Filetypes");
+        filetypesLabel.setOpaque(true);
+
+        actionsLabel.setBackground(new java.awt.Color(102, 102, 255));
+        actionsLabel.setFont(new java.awt.Font("Tahoma", 1, 14));
+        actionsLabel.setForeground(new java.awt.Color(255, 255, 255));
+        actionsLabel.setText("Actions");
+        actionsLabel.setOpaque(true);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -347,17 +368,16 @@ public class IndexerPanel extends javax.swing.JPanel {
                                 .add(pptCheck))
                             .add(gifCheck))))
                 .addContainerGap())
-            .add(filetypesLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
             .add(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(progressBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 571, Short.MAX_VALUE)
+                .add(progressBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
                 .addContainerGap())
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(textArea)
                 .addContainerGap())
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(463, Short.MAX_VALUE)
+                .addContainerGap(421, Short.MAX_VALUE)
                 .add(startButton)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(stopButton)
@@ -365,13 +385,14 @@ public class IndexerPanel extends javax.swing.JPanel {
             .add(layout.createSequentialGroup()
                 .add(0, 0, 0)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(indexLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
-                    .add(mainToolBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
-                    .add(foldersLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
+                    .add(actionsLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
+                    .add(filetypesLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
+                    .add(optionsLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
+                    .add(foldersLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
+                    .add(indexLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
+                    .add(mainToolBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
                     .add(indexDirectoryPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(optionsLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
-                    .add(pathPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(actionsLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)))
+                    .add(pathPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -419,9 +440,15 @@ public class IndexerPanel extends javax.swing.JPanel {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(stopButton)
                     .add(startButton))
-                .add(35, 35, 35))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+        this.close();
+        
+        System.exit(1);
+    }//GEN-LAST:event_exitButtonActionPerformed
 
     private void aboutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutButtonActionPerformed
         AboutPanel panel = new AboutPanel();
@@ -795,7 +822,7 @@ public class IndexerPanel extends javax.swing.JPanel {
         this.pathButton.setEnabled(false); this.mp3Check.setEnabled(false);
         storeTextCb.setEnabled(false); storeThumbsCb.setEnabled(false);
         this.newButton.setEnabled(false); this.openButton.setEnabled(false);
-        this.aboutButton.setEnabled(false);
+        this.aboutButton.setEnabled(false); this.exitButton.setEnabled(false);
         this.stopButton.setEnabled(true);
         
         this.IndexerThread = new Thread(this.indexer);
@@ -818,7 +845,7 @@ public class IndexerPanel extends javax.swing.JPanel {
                 pathButton.setEnabled(true); mp3Check.setEnabled(true);
                 storeTextCb.setEnabled(true); storeThumbsCb.setEnabled(true);
                 newButton.setEnabled(true); openButton.setEnabled(true);
-                aboutButton.setEnabled(true);
+                aboutButton.setEnabled(true); exitButton.setEnabled(true);
             }
         });
         t.start();
@@ -853,23 +880,23 @@ public class IndexerPanel extends javax.swing.JPanel {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aboutButton;
-    private java.awt.Label actionsLabel;
+    private javax.swing.JLabel actionsLabel;
     private javax.swing.JCheckBox docCheck;
-    private java.awt.Label filetypesLabel;
-    private java.awt.Label foldersLabel;
+    private javax.swing.JButton exitButton;
+    private javax.swing.JLabel filetypesLabel;
+    private javax.swing.JLabel foldersLabel;
     private javax.swing.JCheckBox gifCheck;
     private javax.swing.JCheckBox htmlCheck;
     private javax.swing.JLabel indexDirectoryLabel;
     private javax.swing.JPanel indexDirectoryPanel;
     private javax.swing.JLabel indexLabel;
-    private javax.swing.JLabel indexLabel1;
     private javax.swing.JTextField indexTextField;
     private javax.swing.JCheckBox jpegCheck;
     private javax.swing.JToolBar mainToolBar;
     private javax.swing.JCheckBox mp3Check;
     private javax.swing.JButton newButton;
     private javax.swing.JButton openButton;
-    private java.awt.Label optionsLabel;
+    private javax.swing.JLabel optionsLabel;
     private javax.swing.JButton pathButton;
     private javax.swing.JTextField pathField;
     private java.awt.Label pathLabel;
