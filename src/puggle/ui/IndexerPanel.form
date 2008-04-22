@@ -551,7 +551,7 @@
         <Component class="javax.swing.JTextField" name="pathField">
           <Properties>
             <Property name="text" postCode="this.pathField.setText(this.propertiesControl.getPath());"/>
-            <Property name="toolTipText" type="java.lang.String" value=""/>
+            <Property name="toolTipText" type="java.lang.String" value="The paths that will be indexed"/>
           </Properties>
         </Component>
       </SubComponents>

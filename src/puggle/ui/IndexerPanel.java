@@ -275,7 +275,7 @@ public class IndexerPanel extends javax.swing.JPanel {
         });
 
         this.pathField.setText(this.propertiesControl.getPath());
-        pathField.setToolTipText("");
+        pathField.setToolTipText("The paths that will be indexed");
 
         org.jdesktop.layout.GroupLayout pathPanelLayout = new org.jdesktop.layout.GroupLayout(pathPanel);
         pathPanel.setLayout(pathPanelLayout);
