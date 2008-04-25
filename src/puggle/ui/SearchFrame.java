@@ -19,6 +19,7 @@ import java.awt.event.MouseListener;
 import java.io.FileInputStream;
 import java.text.DateFormat;
 import java.util.Properties;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -27,7 +28,7 @@ import puggle.Indexer.Indexer;
 import puggle.LexicalAnalyzer.FileHandler;
 import puggle.LexicalAnalyzer.FileHandlerException;
 import puggle.QueryEvaluator.Searcher;
-import puggle.Indexer.PropertiesControl;
+import puggle.Indexer.IndexProperties;
 import puggle.Resources.Resources;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -71,7 +72,7 @@ public class SearchFrame extends javax.swing.JFrame {
         this.init();
 
         /*
-        long lastModified = this.propertiesControl.getLastIndexed();
+        long lastModified = this.indexerProperties.getLastIndexed();
         
         if (new Date().getTime() - lastModified > 86400000) {
             int opt = JOptionPane.showConfirmDialog(this,
@@ -102,7 +103,7 @@ public class SearchFrame extends javax.swing.JFrame {
     
     private void init() {
         this.indexDir = new File(Resources.getIndexCanonicalPath());
-        this.propertiesControl = new PropertiesControl(
+        this.indexerProperties = new IndexProperties(
                 new File(Resources.getApplicationPropertiesCanonicalPath()));
         this.imageControl = ImageControl.getImageControl();
     }
@@ -129,8 +130,10 @@ public class SearchFrame extends javax.swing.JFrame {
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
+        openPortableMenuItem = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JSeparator();
         exitMenuItem = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JSeparator();
         viewMenu = new javax.swing.JMenu();
         classicCheckBoxMenuItem = new javax.swing.JCheckBoxMenuItem();
         tinyCheckBoxMenuItem = new javax.swing.JCheckBoxMenuItem();
@@ -292,6 +295,15 @@ public class SearchFrame extends javax.swing.JFrame {
 
         fileMenu.add(openMenuItem);
 
+        openPortableMenuItem.setText("Open device Index...");
+        openPortableMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openPortableMenuItemActionPerformed(evt);
+            }
+        });
+
+        fileMenu.add(openPortableMenuItem);
+
         fileMenu.add(jSeparator1);
 
         exitMenuItem.setText("Exit");
@@ -302,6 +314,8 @@ public class SearchFrame extends javax.swing.JFrame {
         });
 
         fileMenu.add(exitMenuItem);
+
+        fileMenu.add(jSeparator2);
 
         menuBar.add(fileMenu);
 
@@ -363,6 +377,77 @@ public class SearchFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void openPortableMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openPortableMenuItemActionPerformed
+        File[] roots = File.listRoots();
+
+        boolean error = true;
+        while (error == true) {
+            error = false;
+            
+            File root = (File)JOptionPane.showInputDialog(this,
+                    "Drive letter:", "Select device", JOptionPane.QUESTION_MESSAGE,
+                    this.imageControl.getQuestionIcon(), roots, new JComboBox());
+            
+            if (root != null) {
+                File file = new File(root.getPath() + ".puggle");
+
+                boolean exists = Indexer.indexExists(file);
+                String directory = file.getPath();
+                
+                if (exists == true) {
+                    try {
+                        Resources.setIndex(file);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                    this.init();
+                    
+                    JOptionPane.showMessageDialog(this,
+                            "Index directory '" +directory +"' successfully loaded.",
+                            "Open Index Directory",
+                            JOptionPane.INFORMATION_MESSAGE,
+                            this.imageControl.getInfoIcon());
+                    
+                    javax.swing.JMenuItem item = new javax.swing.JMenuItem(directory);
+                    item.setFocusable(true);
+                    item.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                            String directory = evt.getActionCommand();
+                            File file = new File(directory);
+                            boolean exists = Indexer.indexExists(file);
+
+                            if (exists == true) {
+                                try {
+                                    Resources.setIndex(file);
+                                } catch (IOException ex) {
+                                    ex.printStackTrace();
+                                }
+                                init();
+                            }
+                            else {
+                                JOptionPane.showMessageDialog(null,
+                                        "Directory '" +directory +"' is not a valid index.",
+                                        "Error Opening Index Directory",
+                                        JOptionPane.ERROR_MESSAGE,
+                                        ImageControl.getImageControl().getErrorIcon());
+                            }
+                        }
+                    });
+                    this.fileMenu.add(item);
+                } else {
+                    JOptionPane.showMessageDialog(this,
+                            "Directory '" +directory +"' is not a valid index.",
+                            "Error Opening Index Directory",
+                            JOptionPane.ERROR_MESSAGE,
+                            this.imageControl.getErrorIcon());
+                    error = true;
+                }
+                
+            } // if
+            
+        } // while
+    }//GEN-LAST:event_openPortableMenuItemActionPerformed
+
     private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
         AboutPanel panel = new AboutPanel();
         
@@ -400,6 +485,8 @@ public class SearchFrame extends javax.swing.JFrame {
     private void searchFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchFieldKeyTyped
         this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
 
+        this.resultsLabel.setText("");
+        
         if (evt.getKeyChar() == '\n' && !searchField.getText().equals("")) {
             this.performSearch();
         }
@@ -455,6 +542,33 @@ public class SearchFrame extends javax.swing.JFrame {
                             "Open Index Directory",
                             JOptionPane.INFORMATION_MESSAGE,
                             this.imageControl.getInfoIcon());
+                    
+                    javax.swing.JMenuItem item = new javax.swing.JMenuItem(directory);
+                    item.setFocusable(true);
+                    item.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                            String directory = evt.getActionCommand();
+                            File file = new File(directory);
+                            boolean exists = Indexer.indexExists(file);
+
+                            if (exists == true) {
+                                try {
+                                    Resources.setIndex(file);
+                                } catch (IOException ex) {
+                                    ex.printStackTrace();
+                                }
+                                init();
+                            }
+                            else {
+                                JOptionPane.showMessageDialog(null,
+                                        "Directory '" +directory +"' is not a valid index.",
+                                        "Error Opening Index Directory",
+                                        JOptionPane.ERROR_MESSAGE,
+                                        ImageControl.getImageControl().getErrorIcon());
+                            }
+                        }
+                    });
+                    this.fileMenu.add(item);
                 } else {
                     JOptionPane.showMessageDialog(this,
                             "Directory '" +directory +"' is not a valid index.",
@@ -576,17 +690,17 @@ public class SearchFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_findButtonMouseClicked
 
     private boolean startIndexing(long delay) throws IOException {
-        long lastModified = this.propertiesControl.getLastIndexed();
+        long lastModified = this.indexerProperties.getLastIndexed();
         
         if (this.indexerThread == null &&
                 new Date().getTime() - lastModified > 600000 /* 10 mins */) {
             
-            File[] dataDirsFile = this.propertiesControl.getDataDirectories();
+            File[] dataDirsFile = this.indexerProperties.getDataDirectories();
             
             File indexDir = new File(Resources.getIndexCanonicalPath());
             
             JLogger logger = new JLogger(System.out);
-            this.indexer = new Indexer(dataDirsFile, indexDir, this.propertiesControl, logger, false);
+            this.indexer = new Indexer(dataDirsFile, indexDir, this.indexerProperties, logger, false);
             this.indexer.setDelay(delay);  // Sleep about 1 sec for every 40 files.
             
             this.indexerThread = new Thread(this.indexer);
@@ -677,7 +791,7 @@ public class SearchFrame extends javax.swing.JFrame {
         
         long end = new Date().getTime();
         
-        this.resultsPanel.setResults(this.query, this.hits);
+        this.resultsPanel.setResults(this.query, this.hits, this.indexerProperties);
         
         JScrollBar bar = this.scrollPane.getVerticalScrollBar();
         bar.setValue(bar.getMinimum());
@@ -716,7 +830,7 @@ public class SearchFrame extends javax.swing.JFrame {
     private Indexer indexer;
     private Thread indexerThread;
     
-    private PropertiesControl propertiesControl;
+    private IndexProperties indexerProperties;
     private ImageControl imageControl;
     private TrayIconControl trayIconControl;
     
@@ -732,9 +846,11 @@ public class SearchFrame extends javax.swing.JFrame {
     private javax.swing.JMenu helpMenu;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JButton nextButton;
     private javax.swing.JMenuItem openMenuItem;
+    private javax.swing.JMenuItem openPortableMenuItem;
     private javax.swing.JButton prevButton;
     private javax.swing.JLabel resultsLabel;
     private puggle.ui.ResultsPanel resultsPanel;

@@ -47,8 +47,8 @@ public class TextHandler implements DocumentHandler {
       try {
           doc.add(new Field("path", f.getCanonicalPath(),
                   Field.Store.YES, Field.Index.UN_TOKENIZED));
-            doc.add(new Field("size", String.valueOf(f.length()),
-                    Field.Store.YES, Field.Index.UN_TOKENIZED));
+          doc.add(new Field("size", String.valueOf(f.length()),
+                  Field.Store.YES, Field.Index.UN_TOKENIZED));
       } catch (IOException e) {
           throw new DocumentHandlerException(e.getMessage());
       }

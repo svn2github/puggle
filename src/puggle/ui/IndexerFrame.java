@@ -15,10 +15,11 @@ import java.io.PrintStream;
 import java.util.Properties;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import org.apache.lucene.index.IndexModifier;
 import org.apache.lucene.index.IndexReader;
 import puggle.Indexer.Indexer;
-import puggle.Indexer.PropertiesControl;
+import puggle.Indexer.IndexProperties;
 import puggle.Resources.Resources;
 
 /**
@@ -47,7 +48,8 @@ public class IndexerFrame extends javax.swing.JFrame {
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Puggle Indexer");
+        setTitle(Resources.APP_NAME + " " + "Indexer" + " " + Resources.APP_VERSION
+        );
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -58,7 +60,7 @@ public class IndexerFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, indexerPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, indexerPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 588, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -90,6 +92,21 @@ public class IndexerFrame extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        
+        try {
+            // Set System L&F
+            UIManager.setLookAndFeel(
+                    UIManager.getSystemLookAndFeelClassName());
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new IndexerFrame().setVisible(true);

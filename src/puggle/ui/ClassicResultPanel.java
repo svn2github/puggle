@@ -238,6 +238,7 @@ public class ClassicResultPanel extends javax.swing.JPanel {
     
     private void executeFile(File file) {
         try {
+            file = file.getCanonicalFile();
             Desktop.getDesktop().open(file);
         } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage(),

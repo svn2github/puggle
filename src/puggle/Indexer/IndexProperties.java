@@ -1,5 +1,5 @@
 /*
- * PropertiesControl.java
+ * IndexProperties.java
  *
  * Created on 31 March 2007, 2:47
  *
@@ -29,16 +29,18 @@ import puggle.Resources.*;
  *
  * @author gvasil
  */
-public class PropertiesControl {
+public class IndexProperties {
 
-    private static PropertiesControl propertiesControl;
+    private static IndexProperties propertiesControl;
     
     private Properties properties;
     
     private File file;
     
-    /** Creates a new instance of PropertiesControl */
-    public PropertiesControl(File file) throws OverlappingFileLockException {
+    /**
+     * Creates a new instance of IndexProperties
+     */
+    public IndexProperties(File file) throws OverlappingFileLockException {
         this.properties = new Properties();
 
         this.file = file;
@@ -55,6 +57,9 @@ public class PropertiesControl {
             properties.setProperty("last_optimized", "0");
             properties.setProperty("store_text", "false");
             properties.setProperty("store_thumbnails", "false");
+            properties.setProperty("filesystem_root", "");
+            properties.setProperty("portable", "false");
+            properties.setProperty("version", Resources.getApplicationVersion());
             
             try {
                 (file.getParentFile()).mkdirs();
@@ -69,6 +74,10 @@ public class PropertiesControl {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+    
+    public File getFile() {
+        return this.file;
     }
     
     protected void finalize() {
@@ -86,6 +95,35 @@ public class PropertiesControl {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+    
+    public synchronized boolean isPortable() {
+        return Boolean.valueOf(this.properties.getProperty("portable"));
+    }
+    
+    /**
+     * Set whether this index is portable or not.
+     */
+    public synchronized void setPortable(boolean b) {
+        this.properties.setProperty("portable", Boolean.toString(b));
+    }
+    
+    /**
+     * Set the root of the filesystem for this index.
+     */
+    public synchronized void setFilesystemRoot(String root) {
+        this.properties.setProperty("filesystem_root", root);
+    }
+    
+    /**
+     * Get the root of the filesystem of this index.
+     */
+    public synchronized String getFilesystemRoot() {
+        return this.properties.getProperty("filesystem_root");
+    }
+    
+    public synchronized String getVersion() {
+        return this.properties.getProperty("version");
     }
     
     public synchronized Set getFiletypesSet() {

@@ -10,12 +10,13 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import puggle.Indexer.Indexer;
-import puggle.Indexer.PropertiesControl;
+import puggle.Indexer.IndexProperties;
 import puggle.Resources.Resources;
 
 /**
@@ -56,6 +57,7 @@ public class IndexerPanel extends javax.swing.JPanel {
         mp3Check = new javax.swing.JCheckBox();
         mainToolBar = new javax.swing.JToolBar();
         newButton = new javax.swing.JButton();
+        newPortableButton = new javax.swing.JButton();
         openButton = new javax.swing.JButton();
         aboutButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
@@ -87,17 +89,20 @@ public class IndexerPanel extends javax.swing.JPanel {
         progressBar.setBackground(new java.awt.Color(255, 255, 255));
         progressBar.setForeground(new java.awt.Color(51, 255, 51));
 
-        storeTextCb.setSelected(this.propertiesControl.getStoreText());
+        storeTextCb.setSelected(this.indexProperties.getStoreText());
         storeTextCb.setText("Store text");
+        storeTextCb.setToolTipText("Store the extracted text of each file");
         storeTextCb.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         storeTextCb.setMargin(new java.awt.Insets(0, 0, 0, 0));
 
-        storeThumbsCb.setSelected(this.propertiesControl.getStoreThumbnail());
+        storeThumbsCb.setSelected(this.indexProperties.getStoreThumbnail());
         storeThumbsCb.setText("Store thumbnails");
+        storeThumbsCb.setToolTipText("Store a thumbnail for each file");
         storeThumbsCb.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         storeThumbsCb.setMargin(new java.awt.Insets(0, 0, 0, 0));
 
         jpegCheck.setText("jpeg");
+        jpegCheck.setToolTipText("Whether to index JPEG files");
         jpegCheck.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jpegCheck.setMargin(new java.awt.Insets(0, 0, 0, 0));
         if (this.image_filetypes.contains(new StringBuffer("jpg")) && this.image_filetypes.contains(new StringBuffer("jpeg"))) {
@@ -105,6 +110,7 @@ public class IndexerPanel extends javax.swing.JPanel {
         }
 
         pngCheck.setText("png");
+        pngCheck.setToolTipText("Whether to index PNG files");
         pngCheck.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         pngCheck.setMargin(new java.awt.Insets(0, 0, 0, 0));
         if (this.image_filetypes.contains(new StringBuffer("png"))) {
@@ -112,6 +118,7 @@ public class IndexerPanel extends javax.swing.JPanel {
         }
 
         gifCheck.setText("gif");
+        gifCheck.setToolTipText("Whether to index GIF files");
         gifCheck.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         gifCheck.setMargin(new java.awt.Insets(0, 0, 0, 0));
         if (this.image_filetypes.contains(new StringBuffer("gif"))) {
@@ -119,6 +126,7 @@ public class IndexerPanel extends javax.swing.JPanel {
         }
 
         txtCheck.setText("txt");
+        txtCheck.setToolTipText("Whether to index TXT files");
         txtCheck.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         txtCheck.setMargin(new java.awt.Insets(0, 0, 0, 0));
         if (this.document_filetypes.contains(new StringBuffer("txt"))) {
@@ -126,6 +134,7 @@ public class IndexerPanel extends javax.swing.JPanel {
         }
 
         pdfCheck.setText("pdf");
+        pdfCheck.setToolTipText("Whether to index PDF files");
         pdfCheck.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         pdfCheck.setMargin(new java.awt.Insets(0, 0, 0, 0));
         if (this.document_filetypes.contains(new StringBuffer("pdf"))) {
@@ -133,6 +142,7 @@ public class IndexerPanel extends javax.swing.JPanel {
         }
 
         docCheck.setText("doc");
+        docCheck.setToolTipText("Whether to index MS WORD files");
         docCheck.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         docCheck.setMargin(new java.awt.Insets(0, 0, 0, 0));
         if (this.document_filetypes.contains(new StringBuffer("doc"))) {
@@ -140,6 +150,7 @@ public class IndexerPanel extends javax.swing.JPanel {
         }
 
         rtfCheck.setText("rtf");
+        rtfCheck.setToolTipText("Whether to index RTF files");
         rtfCheck.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         rtfCheck.setMargin(new java.awt.Insets(0, 0, 0, 0));
         if (this.document_filetypes.contains(new StringBuffer("rtf"))) {
@@ -147,6 +158,7 @@ public class IndexerPanel extends javax.swing.JPanel {
         }
 
         htmlCheck.setText("html");
+        htmlCheck.setToolTipText("Whether to index HTML files");
         htmlCheck.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         htmlCheck.setMargin(new java.awt.Insets(0, 0, 0, 0));
         if (this.document_filetypes.contains(new StringBuffer("html")) && this.document_filetypes.contains(new StringBuffer("htm"))) {
@@ -154,6 +166,7 @@ public class IndexerPanel extends javax.swing.JPanel {
         }
 
         xlsCheck.setText("xls");
+        xlsCheck.setToolTipText("Whether to index MS EXCEL files");
         xlsCheck.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         xlsCheck.setMargin(new java.awt.Insets(0, 0, 0, 0));
         if (this.document_filetypes.contains(new StringBuffer("xls"))) {
@@ -161,6 +174,7 @@ public class IndexerPanel extends javax.swing.JPanel {
         }
 
         pptCheck.setText("ppt");
+        pptCheck.setToolTipText("Whether to index MS POWERPOINT files");
         pptCheck.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         pptCheck.setMargin(new java.awt.Insets(0, 0, 0, 0));
         if (this.document_filetypes.contains(new StringBuffer("ppt"))) {
@@ -168,6 +182,7 @@ public class IndexerPanel extends javax.swing.JPanel {
         }
 
         mp3Check.setText("mp3");
+        mp3Check.setToolTipText("Whether to index MP3 files");
         mp3Check.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         mp3Check.setMargin(new java.awt.Insets(0, 0, 0, 0));
         if (this.misc_filetypes.contains(new StringBuffer("mp3"))) {
@@ -178,13 +193,23 @@ public class IndexerPanel extends javax.swing.JPanel {
         mainToolBar.setAlignmentY(0.48387095F);
         newButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/filenew.png")));
         newButton.setToolTipText("Create Index");
-        newButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                newButtonMousePressed(evt);
+        newButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newButtonActionPerformed(evt);
             }
         });
 
         mainToolBar.add(newButton);
+
+        newPortableButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/filenew-portable.png")));
+        newPortableButton.setToolTipText("Create Portable Index");
+        newPortableButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newPortableButtonActionPerformed(evt);
+            }
+        });
+
+        mainToolBar.add(newPortableButton);
 
         openButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fileopen.png")));
         openButton.setToolTipText("Open Index");
@@ -220,18 +245,18 @@ public class IndexerPanel extends javax.swing.JPanel {
         stopButton.setText("Stop");
         stopButton.setToolTipText("Stop Indexing");
         stopButton.setEnabled(false);
-        stopButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                stopButtonMouseClicked(evt);
+        stopButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stopButtonActionPerformed(evt);
             }
         });
 
         startButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/start.png")));
         startButton.setText("Start");
         startButton.setToolTipText("Start Indexing");
-        startButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                startButtonMouseClicked(evt);
+        startButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startButtonActionPerformed(evt);
             }
         });
 
@@ -250,7 +275,7 @@ public class IndexerPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .add(indexDirectoryLabel)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(indexTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
+                .add(indexTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE)
                 .addContainerGap())
         );
         indexDirectoryPanelLayout.setVerticalGroup(
@@ -274,7 +299,7 @@ public class IndexerPanel extends javax.swing.JPanel {
             }
         });
 
-        this.pathField.setText(this.propertiesControl.getPath());
+        this.pathField.setText(this.indexProperties.getPath());
         pathField.setToolTipText("The paths that will be indexed");
 
         org.jdesktop.layout.GroupLayout pathPanelLayout = new org.jdesktop.layout.GroupLayout(pathPanel);
@@ -285,7 +310,7 @@ public class IndexerPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .add(pathLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(pathField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
+                .add(pathField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(pathButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -341,7 +366,7 @@ public class IndexerPanel extends javax.swing.JPanel {
                 .add(storeTextCb)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(storeThumbsCb)
-                .addContainerGap())
+                .add(461, 461, 461))
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -370,14 +395,14 @@ public class IndexerPanel extends javax.swing.JPanel {
                 .addContainerGap())
             .add(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(progressBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
+                .add(progressBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
                 .addContainerGap())
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(textArea)
                 .addContainerGap())
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(421, Short.MAX_VALUE)
+                .addContainerGap(461, Short.MAX_VALUE)
                 .add(startButton)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(stopButton)
@@ -385,12 +410,12 @@ public class IndexerPanel extends javax.swing.JPanel {
             .add(layout.createSequentialGroup()
                 .add(0, 0, 0)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(actionsLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
-                    .add(filetypesLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
-                    .add(optionsLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
-                    .add(foldersLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
-                    .add(indexLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
-                    .add(mainToolBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
+                    .add(actionsLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
+                    .add(filetypesLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
+                    .add(optionsLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
+                    .add(foldersLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
+                    .add(indexLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
+                    .add(mainToolBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
                     .add(indexDirectoryPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(pathPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
@@ -444,6 +469,317 @@ public class IndexerPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopButtonActionPerformed
+        this.stopButton.setEnabled(false);
+        this.indexer.stop();
+    }//GEN-LAST:event_stopButtonActionPerformed
+
+    private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
+        File dataDir = null, indexDir = null;
+        File[] dataDirsFile = null;
+        
+        /* <Save properties> */
+        image_filetypes = "";
+        document_filetypes = "";
+        misc_filetypes = "";
+        music_filetypes = "";
+        
+        if (this.jpegCheck.isSelected())
+            image_filetypes += "jpeg,jpg,";
+        if (this.pngCheck.isSelected())
+            image_filetypes += "png,";
+        if (this.gifCheck.isSelected())
+            image_filetypes += "gif,";
+        if (this.txtCheck.isSelected())
+            document_filetypes += "txt,";
+        if (this.pdfCheck.isSelected())
+            document_filetypes += "pdf,";
+        if (this.docCheck.isSelected())
+            document_filetypes += "doc,";
+        if (this.rtfCheck.isSelected())
+            document_filetypes += "rtf,";
+        if (this.htmlCheck.isSelected())
+            document_filetypes += "html,htm,";
+        if (this.xlsCheck.isSelected())
+            document_filetypes += "xls,";
+        if (this.pptCheck.isSelected())
+            document_filetypes += "ppt,";
+        if (this.mp3Check.isSelected())
+            music_filetypes += "mp3,";
+        
+        if (image_filetypes.lastIndexOf(',') != -1) {
+            image_filetypes = image_filetypes.substring(0, image_filetypes.lastIndexOf(','));
+        }
+        
+        if (document_filetypes.lastIndexOf(',') != -1) {
+            document_filetypes = document_filetypes.substring(0, document_filetypes.lastIndexOf(','));
+        }
+        
+        if (misc_filetypes.lastIndexOf(',') != -1) {
+            misc_filetypes = misc_filetypes.substring(0, misc_filetypes.lastIndexOf(','));
+        }
+        
+        if (music_filetypes.lastIndexOf(',') != -1) {
+            music_filetypes = music_filetypes.substring(0, music_filetypes.lastIndexOf(','));
+        }
+        
+        this.indexProperties.setImageFiletypes(image_filetypes);
+        this.indexProperties.setDocumentFiletypes(document_filetypes);
+        this.indexProperties.setMiscFiletypes(misc_filetypes);
+        this.indexProperties.setMusicFiletypes(music_filetypes);
+        
+        this.indexProperties.setStoreText(this.storeTextCb.isSelected());
+        this.indexProperties.setStoreThumbnail(this.storeThumbsCb.isSelected());
+        
+        String path = this.pathField.getText().trim();
+        
+        if (path.length() == 0) {
+            JOptionPane.showMessageDialog(this, "Path is empty",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        String spl[] = path.split(File.pathSeparator);
+        path = "";
+        for (int i=0; i < spl.length; i++) {
+            File f = new File(spl[i]);
+            if (f.isDirectory() == false || f.exists() == false) {
+                JOptionPane.showMessageDialog(this, "File '" +f
+                        +"' does not exists or is not a directory",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            try {
+                path += f.getCanonicalPath() + File.pathSeparator;
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        
+        this.indexProperties.setPath(this.pathField.getText());
+        
+        this.indexProperties.flush();
+        
+        dataDirsFile = this.indexProperties.getDataDirectories();
+        
+        File logFile = null;
+        PrintStream logStream = null;
+        
+        try {
+            logFile = Resources.getLogFile();
+            logStream = new PrintStream(new FileOutputStream(logFile));
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Using standard output for logging.",
+                    ex.getMessage(), JOptionPane.INFORMATION_MESSAGE);
+            logStream = System.out;
+        }
+        
+        indexDir = new File(Resources.getIndexCanonicalPath());
+        try {
+            this.indexer = new Indexer(indexDir, this.indexProperties);
+        } catch (IOException ex) {
+            int opt = JOptionPane.showConfirmDialog(this, "Force unlock?",
+                    ex.getMessage(), JOptionPane.YES_NO_OPTION);
+
+            if (opt == JOptionPane.YES_OPTION) {
+                try {
+                    this.indexer = new Indexer(indexDir, this.indexProperties, true);
+                } catch (IOException e) {
+                    JOptionPane.showMessageDialog(this, e.getMessage(),
+                            "Unspecified error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                JOptionPane.showMessageDialog(this, "Index successfully unlocked",
+                        "Report", JOptionPane.INFORMATION_MESSAGE);
+            } else if (opt == JOptionPane.NO_OPTION) {
+                return;
+            }
+        }
+        
+        this.indexer.setDataDirectories(dataDirsFile);
+        this.indexer.setLogger(new JLogger(logStream, this.textArea));
+        this.indexer.setProgressBar(this.progressBar);
+        
+        this.startButton.setEnabled(false); this.pathField.setEnabled(false);
+        this.jpegCheck.setEnabled(false); this.gifCheck.setEnabled(false);
+        this.pngCheck.setEnabled(false); this.txtCheck.setEnabled(false);
+        this.docCheck.setEnabled(false); this.pdfCheck.setEnabled(false);
+        this.xlsCheck.setEnabled(false); this.pptCheck.setEnabled(false);
+        this.htmlCheck.setEnabled(false); this.rtfCheck.setEnabled(false);
+        this.pathButton.setEnabled(false); this.mp3Check.setEnabled(false);
+        storeTextCb.setEnabled(false); storeThumbsCb.setEnabled(false);
+        this.newButton.setEnabled(false); this.openButton.setEnabled(false);
+        this.aboutButton.setEnabled(false); this.exitButton.setEnabled(false);
+        this.newPortableButton.setEnabled(false);
+        this.stopButton.setEnabled(true);
+        
+        this.IndexerThread = new Thread(this.indexer);
+        this.IndexerThread.start();
+        
+        Thread t = new Thread(
+                new Runnable() {
+            public void run() {
+                try { IndexerThread.join(); indexer.optimize(); indexer.close(); indexer = null;}
+                catch (InterruptedException ex) {ex.printStackTrace();}
+                catch (IOException ex) {ex.printStackTrace();}
+                
+                stopButton.setEnabled(false);
+                startButton.setEnabled(true); pathField.setEnabled(true);
+                jpegCheck.setEnabled(true); gifCheck.setEnabled(true);
+                pngCheck.setEnabled(true); txtCheck.setEnabled(true);
+                docCheck.setEnabled(true); pdfCheck.setEnabled(true);
+                xlsCheck.setEnabled(true); pptCheck.setEnabled(true);
+                htmlCheck.setEnabled(true); rtfCheck.setEnabled(true);
+                pathButton.setEnabled(true); mp3Check.setEnabled(true);
+                storeTextCb.setEnabled(true); storeThumbsCb.setEnabled(true);
+                newButton.setEnabled(true); openButton.setEnabled(true);
+                aboutButton.setEnabled(true); exitButton.setEnabled(true);
+                newPortableButton.setEnabled(true);
+            }
+        });
+        t.start();
+    }//GEN-LAST:event_startButtonActionPerformed
+
+    private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
+        String fileName = "";
+        File file = null;
+        
+        JFileChooser fc = new JFileChooser();
+        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        fc.setCurrentDirectory(new java.io.File(Resources.getApplicationDirectoryCanonicalPath()));
+        fc.setDialogTitle("New Index Directory");
+        fc.setApproveButtonToolTipText("Create Index Directory");
+        
+        while(true) {
+            int returnVal = fc.showDialog(this, "Create");
+            
+            if (returnVal == JFileChooser.CANCEL_OPTION){
+                return;
+            }
+            else if (returnVal == JFileChooser.APPROVE_OPTION) {
+                file = fc.getSelectedFile();
+                
+                try { fileName = file.getCanonicalPath(); }
+                catch (IOException ex) { ex.printStackTrace(); }
+                
+                if (file.exists()) {
+                    
+                    Object[] options = {"Open Index", "Overwrite Index"};
+                    int opt = JOptionPane.showOptionDialog(this,
+                            "Index directory '" +fileName +"' already exists.\n"
+                            +"Do you wish to open existing Index or Overwrite?\n"
+                            +"(Choosing to overwrite will delete existing Index)",
+                            "Error Creating Index Directory",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.QUESTION_MESSAGE,
+                            null,
+                            options,
+                            null);
+                    
+                    if (opt == JOptionPane.NO_OPTION) {
+                        if (this.deleteDir(file) == false) {
+                            JOptionPane.showMessageDialog(this,
+                                    "Directory '" +fileName +"' cannot be deleted.",
+                                    "Error Creating Index Directory",
+                                    JOptionPane.ERROR_MESSAGE,
+                                    this.imageControl.getErrorIcon());
+                        }
+                    }
+                }
+                
+                /* close current index */
+                this.close();
+                
+                /* create new directory */
+                try { Resources.setIndex(file); }
+                catch (IOException ex) { ex.printStackTrace(); }
+                
+                this.indexProperties.flush();
+                
+                this.init();
+                this.loadComponentsStatus();
+                
+                return;
+            }
+        }
+    }//GEN-LAST:event_newButtonActionPerformed
+
+    private void newPortableButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPortableButtonActionPerformed
+        File[] roots = File.listRoots();
+        
+        File root = (File)JOptionPane.showInputDialog(this,
+                "Drive letter:", "Select device to index", JOptionPane.QUESTION_MESSAGE,
+                this.imageControl.getQuestionIcon(), roots, new JComboBox());
+        
+        if (root == null) {
+            return;
+        }
+
+        File index = null;
+        try {
+            index = new File(root.getCanonicalPath() + File.separator + ".puggle");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        
+        if (index == null) {
+            return;
+        }
+        else if (index.exists()) {
+            Object[] options = {"Open Index", "Overwrite Index"};
+            int opt = JOptionPane.showOptionDialog(this,
+                    "Index directory '" +index +"' already exists.\n"
+                    +"Do you wish to open existing Index or Overwrite?\n"
+                    +"(Choosing to overwrite will delete existing Index)",
+                    "Error Creating Index Directory",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    options,
+                    null);
+            
+            if (opt == JOptionPane.NO_OPTION) {
+                if (this.deleteDir(index) == false) {
+                    JOptionPane.showMessageDialog(this,
+                            "Directory '" +index +"' cannot be deleted.",
+                            "Error Creating Index Directory",
+                            JOptionPane.ERROR_MESSAGE,
+                            this.imageControl.getErrorIcon());
+                    return;
+                }
+                
+                if (index.mkdir() == false) {
+                    JOptionPane.showMessageDialog(this,
+                            "Cannot create directory '" +index.getAbsolutePath() +"'.",
+                            "Error Creating Index Directory",
+                            JOptionPane.ERROR_MESSAGE,
+                            this.imageControl.getErrorIcon());
+                    return;
+                }
+            }
+        }
+        
+
+
+        /* close current index */
+        this.close();
+        
+        /* create new directory */
+        try { Resources.setIndex(index); }
+        catch (IOException ex) { ex.printStackTrace(); }
+
+        this.init();
+        this.loadComponentsStatus();
+        
+        this.indexProperties.setFilesystemRoot(root.getAbsolutePath());
+        this.indexProperties.setPortable(true);
+        this.indexProperties.flush();
+        
+        this.pathField.setText(root.getAbsolutePath());
+        this.pathField.setEditable(false);
+        this.pathButton.setEnabled(false);
+    }//GEN-LAST:event_newPortableButtonActionPerformed
+
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         this.close();
         
@@ -465,20 +801,30 @@ public class IndexerPanel extends javax.swing.JPanel {
     
     public void init() {
         this.imageControl = ImageControl.getImageControl();
-        this.propertiesControl = new PropertiesControl(
+        this.indexProperties = new IndexProperties(
                 new File(Resources.getApplicationPropertiesCanonicalPath()));
         
-        this.image_filetypes = this.propertiesControl.getImageFiletypes();
-        this.document_filetypes = this.propertiesControl.getDocumentFiletypes();
-        this.misc_filetypes = this.propertiesControl.getMusicFiletypes();
+        this.image_filetypes = this.indexProperties.getImageFiletypes();
+        this.document_filetypes = this.indexProperties.getDocumentFiletypes();
+        this.misc_filetypes = this.indexProperties.getMusicFiletypes();
     }
     
     private void loadComponentsStatus() {
-        this.indexTextField.setText(Resources.getIndexCanonicalPath());
-        this.pathField.setText(this.propertiesControl.getPath());
         
-        storeTextCb.setSelected(this.propertiesControl.getStoreText());
-        storeThumbsCb.setSelected(this.propertiesControl.getStoreThumbnail());
+        if (this.indexProperties.isPortable() == true) {
+            this.pathField.setEditable(false);
+            this.pathButton.setEnabled(false);
+        }
+        else {
+            this.pathField.setEditable(true);
+            this.pathButton.setEnabled(true);
+        }
+        
+        this.indexTextField.setText(Resources.getIndexCanonicalPath());
+        this.pathField.setText(this.indexProperties.getPath());
+        
+        storeTextCb.setSelected(this.indexProperties.getStoreText());
+        storeThumbsCb.setSelected(this.indexProperties.getStoreThumbnail());
     
         if (this.image_filetypes.contains(new StringBuffer("jpg"))
         && this.image_filetypes.contains(new StringBuffer("jpeg"))) {
@@ -566,62 +912,6 @@ public class IndexerPanel extends javax.swing.JPanel {
         return dir.delete();
     }
     
-    private void newButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newButtonMousePressed
-        String fileName = "";
-        File file = null;
-        
-        JFileChooser fc = new JFileChooser();
-        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        fc.setCurrentDirectory(new java.io.File(Resources.getApplicationDirectoryCanonicalPath()));
-        fc.setDialogTitle("New Index Directory");
-        fc.setApproveButtonToolTipText("Create Index Directory");
-        
-        while(true) {
-            int returnVal = fc.showDialog(this, "Create");
-            
-            if (returnVal == JFileChooser.CANCEL_OPTION){
-                return;
-            }
-            else if (returnVal == JFileChooser.APPROVE_OPTION) {
-                file = fc.getSelectedFile();
-                
-                try { fileName = file.getCanonicalPath(); }
-                catch (IOException ex) { ex.printStackTrace(); }
-                
-                if (file.exists()) {
-                    int opt = JOptionPane.showConfirmDialog(this,
-                            "Index directory '" +fileName +"' already exists.\n"
-                            +"Overwrite? (Hitting 'Yes' will delete existing Index)",
-                            "Error Creating Index Directory",
-                            JOptionPane.YES_NO_OPTION);
-                    
-                    if (opt == JOptionPane.YES_OPTION) {
-                        if (this.deleteDir(file) == false) {
-                            JOptionPane.showMessageDialog(this,
-                                    "Directory '" +fileName +"' cannot be deleted.",
-                                    "Error Creating Index Directory",
-                                    JOptionPane.ERROR_MESSAGE,
-                                    this.imageControl.getErrorIcon());
-                        }
-                    }
-                }
-                
-                /* close current index */
-                this.close();
-                
-                /* create new directory */
-                try { Resources.setIndex(file); }
-                catch (IOException ex) { ex.printStackTrace(); }
-                
-                this.init();
-                this.loadComponentsStatus();
-                
-                return;
-            }
-        }
-        
-    }//GEN-LAST:event_newButtonMousePressed
-
     private void openButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openButtonActionPerformed
         JFileChooser fc = new JFileChooser();
         
@@ -674,6 +964,10 @@ public class IndexerPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_openButtonActionPerformed
     
     private void pathButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pathButtonMouseClicked
+        if (this.pathButton.isEnabled() == false) {
+            return;
+        }
+        
         JFileChooser chooser = new JFileChooser();
         chooser.setCurrentDirectory(new java.io.File("."));
         chooser.setDialogTitle("Select Directory");
@@ -686,175 +980,6 @@ public class IndexerPanel extends javax.swing.JPanel {
             pathField.setText(path + chooser.getSelectedFile() +File.pathSeparator);
         }
     }//GEN-LAST:event_pathButtonMouseClicked
-
-    private void startButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startButtonMouseClicked
-        File dataDir = null, indexDir = null;
-        File[] dataDirsFile = null;
-        
-        /* <Save properties> */
-        image_filetypes = "";
-        document_filetypes = "";
-        misc_filetypes = "";
-        music_filetypes = "";
-        
-        if (this.jpegCheck.isSelected())
-            image_filetypes += "jpeg,jpg,";
-        if (this.pngCheck.isSelected())
-            image_filetypes += "png,";
-        if (this.gifCheck.isSelected())
-            image_filetypes += "gif,";
-        if (this.txtCheck.isSelected())
-            document_filetypes += "txt,";
-        if (this.pdfCheck.isSelected())
-            document_filetypes += "pdf,";
-        if (this.docCheck.isSelected())
-            document_filetypes += "doc,";
-        if (this.rtfCheck.isSelected())
-            document_filetypes += "rtf,";
-        if (this.htmlCheck.isSelected())
-            document_filetypes += "html,htm,";
-        if (this.xlsCheck.isSelected())
-            document_filetypes += "xls,";
-        if (this.pptCheck.isSelected())
-            document_filetypes += "ppt,";
-        if (this.mp3Check.isSelected())
-            music_filetypes += "mp3,";
-        
-        if (image_filetypes.lastIndexOf(',') != -1) {
-            image_filetypes = image_filetypes.substring(0, image_filetypes.lastIndexOf(','));
-        }
-        
-        if (document_filetypes.lastIndexOf(',') != -1) {
-            document_filetypes = document_filetypes.substring(0, document_filetypes.lastIndexOf(','));
-        }
-        
-        if (misc_filetypes.lastIndexOf(',') != -1) {
-            misc_filetypes = misc_filetypes.substring(0, misc_filetypes.lastIndexOf(','));
-        }
-        
-        if (music_filetypes.lastIndexOf(',') != -1) {
-            music_filetypes = music_filetypes.substring(0, music_filetypes.lastIndexOf(','));
-        }
-        
-        this.propertiesControl.setImageFiletypes(image_filetypes);
-        this.propertiesControl.setDocumentFiletypes(document_filetypes);
-        this.propertiesControl.setMiscFiletypes(misc_filetypes);
-        this.propertiesControl.setMusicFiletypes(music_filetypes);
-        
-        this.propertiesControl.setStoreText(this.storeTextCb.isSelected());
-        this.propertiesControl.setStoreThumbnail(this.storeThumbsCb.isSelected());
-        
-        String path = this.pathField.getText().trim();
-        
-        if (path.length() == 0) {
-            JOptionPane.showMessageDialog(this, "Path is empty",
-                    "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        String spl[] = path.split(File.pathSeparator);
-        path = "";
-        for (int i=0; i < spl.length; i++) {
-            File f = new File(spl[i]);
-            if (f.isDirectory() == false || f.exists() == false) {
-                JOptionPane.showMessageDialog(this, "File '" +f
-                        +"' does not exists or is not a directory",
-                        "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            try {
-                path += f.getCanonicalPath() + File.pathSeparator;
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-        
-        this.propertiesControl.setPath(this.pathField.getText());
-        
-        this.propertiesControl.flush();
-        
-        dataDirsFile = this.propertiesControl.getDataDirectories();
-        
-        File logFile = null;
-        PrintStream logStream = null;
-        
-        try {
-            logFile = Resources.getLogFile();
-            logStream = new PrintStream(new FileOutputStream(logFile));
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, "Using standard output for logging.",
-                    ex.getMessage(), JOptionPane.INFORMATION_MESSAGE);
-            logStream = System.out;
-        }
-        
-        indexDir = new File(Resources.getIndexCanonicalPath());
-        try {
-            this.indexer = new Indexer(indexDir, this.propertiesControl);
-        } catch (IOException ex) {
-            int opt = JOptionPane.showConfirmDialog(this, "Force unlock?",
-                    ex.getMessage(), JOptionPane.YES_NO_OPTION);
-
-            if (opt == JOptionPane.YES_OPTION) {
-                try {
-                    this.indexer = new Indexer(indexDir, this.propertiesControl, true);
-                } catch (IOException e) {
-                    JOptionPane.showMessageDialog(this, e.getMessage(),
-                            "Unspecified error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                JOptionPane.showMessageDialog(this, "Index successfully unlocked",
-                        "Report", JOptionPane.INFORMATION_MESSAGE);
-            } else if (opt == JOptionPane.NO_OPTION) {
-                return;
-            }
-        }
-        
-        this.indexer.setDataDirectories(dataDirsFile);
-        this.indexer.setLogger(new JLogger(logStream, this.textArea));
-        this.indexer.setProgressBar(this.progressBar);
-        
-        this.startButton.setEnabled(false); this.pathField.setEnabled(false);
-        this.jpegCheck.setEnabled(false); this.gifCheck.setEnabled(false);
-        this.pngCheck.setEnabled(false); this.txtCheck.setEnabled(false);
-        this.docCheck.setEnabled(false); this.pdfCheck.setEnabled(false);
-        this.xlsCheck.setEnabled(false); this.pptCheck.setEnabled(false);
-        this.htmlCheck.setEnabled(false); this.rtfCheck.setEnabled(false);
-        this.pathButton.setEnabled(false); this.mp3Check.setEnabled(false);
-        storeTextCb.setEnabled(false); storeThumbsCb.setEnabled(false);
-        this.newButton.setEnabled(false); this.openButton.setEnabled(false);
-        this.aboutButton.setEnabled(false); this.exitButton.setEnabled(false);
-        this.stopButton.setEnabled(true);
-        
-        this.IndexerThread = new Thread(this.indexer);
-        this.IndexerThread.start();
-        
-        Thread t = new Thread(
-                new Runnable() {
-            public void run() {
-                try { IndexerThread.join(); indexer.optimize(); indexer.close(); indexer = null;}
-                catch (InterruptedException ex) {ex.printStackTrace();}
-                catch (IOException ex) {ex.printStackTrace();}
-                
-                stopButton.setEnabled(false);
-                startButton.setEnabled(true); pathField.setEnabled(true);
-                jpegCheck.setEnabled(true); gifCheck.setEnabled(true);
-                pngCheck.setEnabled(true); txtCheck.setEnabled(true);
-                docCheck.setEnabled(true); pdfCheck.setEnabled(true);
-                xlsCheck.setEnabled(true); pptCheck.setEnabled(true);
-                htmlCheck.setEnabled(true); rtfCheck.setEnabled(true);
-                pathButton.setEnabled(true); mp3Check.setEnabled(true);
-                storeTextCb.setEnabled(true); storeThumbsCb.setEnabled(true);
-                newButton.setEnabled(true); openButton.setEnabled(true);
-                aboutButton.setEnabled(true); exitButton.setEnabled(true);
-            }
-        });
-        t.start();
-    }//GEN-LAST:event_startButtonMouseClicked
-
-    private void stopButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stopButtonMouseClicked
-        this.stopButton.setEnabled(false);
-        this.indexer.stop();
-    }//GEN-LAST:event_stopButtonMouseClicked
     
     /**
      * Return true if indexing is in progress
@@ -895,6 +1020,7 @@ public class IndexerPanel extends javax.swing.JPanel {
     private javax.swing.JToolBar mainToolBar;
     private javax.swing.JCheckBox mp3Check;
     private javax.swing.JButton newButton;
+    private javax.swing.JButton newPortableButton;
     private javax.swing.JButton openButton;
     private javax.swing.JLabel optionsLabel;
     private javax.swing.JButton pathButton;
@@ -915,7 +1041,7 @@ public class IndexerPanel extends javax.swing.JPanel {
     private javax.swing.JCheckBox xlsCheck;
     // End of variables declaration//GEN-END:variables
 
-    private PropertiesControl propertiesControl;
+    private IndexProperties indexProperties;
     
     private ImageControl imageControl;
     

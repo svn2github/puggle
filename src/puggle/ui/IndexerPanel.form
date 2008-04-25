@@ -16,7 +16,7 @@
               <Component id="storeTextCb" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="storeThumbsCb" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="461" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
@@ -53,7 +53,7 @@
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="progressBar" pref="581" max="32767" attributes="2"/>
+              <Component id="progressBar" pref="621" max="32767" attributes="2"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
@@ -62,7 +62,7 @@
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="421" max="32767" attributes="0"/>
+              <EmptySpace pref="461" max="32767" attributes="0"/>
               <Component id="startButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="stopButton" min="-2" max="-2" attributes="0"/>
@@ -71,12 +71,12 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="actionsLabel" alignment="0" pref="601" max="32767" attributes="0"/>
-                  <Component id="filetypesLabel" alignment="0" pref="601" max="32767" attributes="0"/>
-                  <Component id="optionsLabel" alignment="0" pref="601" max="32767" attributes="0"/>
-                  <Component id="foldersLabel" alignment="0" pref="601" max="32767" attributes="0"/>
-                  <Component id="indexLabel" alignment="0" pref="601" max="32767" attributes="0"/>
-                  <Component id="mainToolBar" alignment="0" pref="601" max="32767" attributes="1"/>
+                  <Component id="actionsLabel" alignment="0" pref="641" max="32767" attributes="0"/>
+                  <Component id="filetypesLabel" alignment="0" pref="641" max="32767" attributes="0"/>
+                  <Component id="optionsLabel" alignment="0" pref="641" max="32767" attributes="0"/>
+                  <Component id="foldersLabel" alignment="0" pref="641" max="32767" attributes="0"/>
+                  <Component id="indexLabel" alignment="0" pref="641" max="32767" attributes="0"/>
+                  <Component id="mainToolBar" alignment="0" pref="641" max="32767" attributes="1"/>
                   <Component id="indexDirectoryPanel" alignment="0" max="32767" attributes="1"/>
                   <Component id="pathPanel" alignment="0" max="32767" attributes="1"/>
               </Group>
@@ -171,9 +171,10 @@
     <Component class="javax.swing.JCheckBox" name="storeTextCb">
       <Properties>
         <Property name="selected" type="boolean" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="this.propertiesControl.getStoreText()" type="code"/>
+          <Connection code="this.indexProperties.getStoreText()" type="code"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Store text"/>
+        <Property name="toolTipText" type="java.lang.String" value="Store the extracted text of each file"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
             <EmptyBorder bottom="0" left="0" right="0" top="0"/>
@@ -187,9 +188,10 @@
     <Component class="javax.swing.JCheckBox" name="storeThumbsCb">
       <Properties>
         <Property name="selected" type="boolean" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="this.propertiesControl.getStoreThumbnail()" type="code"/>
+          <Connection code="this.indexProperties.getStoreThumbnail()" type="code"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Store thumbnails"/>
+        <Property name="toolTipText" type="java.lang.String" value="Store a thumbnail for each file"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
             <EmptyBorder bottom="0" left="0" right="0" top="0"/>
@@ -203,6 +205,7 @@
     <Component class="javax.swing.JCheckBox" name="jpegCheck">
       <Properties>
         <Property name="text" type="java.lang.String" value="jpeg"/>
+        <Property name="toolTipText" type="java.lang.String" value="Whether to index JPEG files"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
             <EmptyBorder bottom="0" left="0" right="0" top="0"/>
@@ -219,6 +222,7 @@
     <Component class="javax.swing.JCheckBox" name="pngCheck">
       <Properties>
         <Property name="text" type="java.lang.String" value="png"/>
+        <Property name="toolTipText" type="java.lang.String" value="Whether to index PNG files"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
             <EmptyBorder bottom="0" left="0" right="0" top="0"/>
@@ -235,6 +239,7 @@
     <Component class="javax.swing.JCheckBox" name="gifCheck">
       <Properties>
         <Property name="text" type="java.lang.String" value="gif"/>
+        <Property name="toolTipText" type="java.lang.String" value="Whether to index GIF files"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
             <EmptyBorder bottom="0" left="0" right="0" top="0"/>
@@ -251,6 +256,7 @@
     <Component class="javax.swing.JCheckBox" name="txtCheck">
       <Properties>
         <Property name="text" type="java.lang.String" value="txt"/>
+        <Property name="toolTipText" type="java.lang.String" value="Whether to index TXT files"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
             <EmptyBorder bottom="0" left="0" right="0" top="0"/>
@@ -267,6 +273,7 @@
     <Component class="javax.swing.JCheckBox" name="pdfCheck">
       <Properties>
         <Property name="text" type="java.lang.String" value="pdf"/>
+        <Property name="toolTipText" type="java.lang.String" value="Whether to index PDF files"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
             <EmptyBorder bottom="0" left="0" right="0" top="0"/>
@@ -283,6 +290,7 @@
     <Component class="javax.swing.JCheckBox" name="docCheck">
       <Properties>
         <Property name="text" type="java.lang.String" value="doc"/>
+        <Property name="toolTipText" type="java.lang.String" value="Whether to index MS WORD files"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
             <EmptyBorder bottom="0" left="0" right="0" top="0"/>
@@ -299,6 +307,7 @@
     <Component class="javax.swing.JCheckBox" name="rtfCheck">
       <Properties>
         <Property name="text" type="java.lang.String" value="rtf"/>
+        <Property name="toolTipText" type="java.lang.String" value="Whether to index RTF files"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
             <EmptyBorder bottom="0" left="0" right="0" top="0"/>
@@ -315,6 +324,7 @@
     <Component class="javax.swing.JCheckBox" name="htmlCheck">
       <Properties>
         <Property name="text" type="java.lang.String" value="html"/>
+        <Property name="toolTipText" type="java.lang.String" value="Whether to index HTML files"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
             <EmptyBorder bottom="0" left="0" right="0" top="0"/>
@@ -331,6 +341,7 @@
     <Component class="javax.swing.JCheckBox" name="xlsCheck">
       <Properties>
         <Property name="text" type="java.lang.String" value="xls"/>
+        <Property name="toolTipText" type="java.lang.String" value="Whether to index MS EXCEL files"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
             <EmptyBorder bottom="0" left="0" right="0" top="0"/>
@@ -347,6 +358,7 @@
     <Component class="javax.swing.JCheckBox" name="pptCheck">
       <Properties>
         <Property name="text" type="java.lang.String" value="ppt"/>
+        <Property name="toolTipText" type="java.lang.String" value="Whether to index MS POWERPOINT files"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
             <EmptyBorder bottom="0" left="0" right="0" top="0"/>
@@ -363,6 +375,7 @@
     <Component class="javax.swing.JCheckBox" name="mp3Check">
       <Properties>
         <Property name="text" type="java.lang.String" value="mp3"/>
+        <Property name="toolTipText" type="java.lang.String" value="Whether to index MP3 files"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
             <EmptyBorder bottom="0" left="0" right="0" top="0"/>
@@ -392,7 +405,18 @@
             <Property name="toolTipText" type="java.lang.String" value="Create Index"/>
           </Properties>
           <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="newButtonMousePressed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="newPortableButton">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/filenew-portable.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Create Portable Index"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newPortableButtonActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="openButton">
@@ -440,7 +464,7 @@
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="stopButtonMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="stopButtonActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="startButton">
@@ -452,7 +476,7 @@
         <Property name="toolTipText" type="java.lang.String" value="Start Indexing"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="startButtonMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="startButtonActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="indexDirectoryPanel">
@@ -464,7 +488,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="indexDirectoryLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="indexTextField" pref="459" max="32767" attributes="0"/>
+                  <Component id="indexTextField" pref="499" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -509,7 +533,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="pathLabel" min="-2" pref="33" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="pathField" pref="507" max="32767" attributes="0"/>
+                  <Component id="pathField" pref="547" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="pathButton" min="-2" pref="25" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -550,7 +574,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="pathField">
           <Properties>
-            <Property name="text" postCode="this.pathField.setText(this.propertiesControl.getPath());"/>
+            <Property name="text" postCode="this.pathField.setText(this.indexProperties.getPath());"/>
             <Property name="toolTipText" type="java.lang.String" value="The paths that will be indexed"/>
           </Properties>
         </Component>

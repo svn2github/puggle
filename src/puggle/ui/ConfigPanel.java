@@ -46,7 +46,7 @@ import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.search.Hits;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.store.FSDirectory;
-import puggle.Indexer.PropertiesControl;
+import puggle.Indexer.IndexProperties;
 import puggle.LexicalAnalyzer.FileHandler;
 import puggle.LexicalAnalyzer.FileHandlerException;
 import puggle.Resources.Resources;
@@ -58,10 +58,10 @@ import puggle.Resources.Resources;
 public class ConfigPanel extends ResultsPanel {
     
     /**
-     * Creates new form ClassicResultsPanel
+     * Creates new form ConfigPanel
      */
     public ConfigPanel() {
-        this.propertiesControl = new PropertiesControl(
+        this.propertiesControl = new IndexProperties(
                 new File(Resources.getApplicationPropertiesCanonicalPath()));
         
         this.image_filetypes = this.propertiesControl.getImageFiletypes();
@@ -479,7 +479,7 @@ public class ConfigPanel extends ResultsPanel {
     private String document_filetypes = "";
     private String misc_filetypes = "";
     private String music_filetypes = "";
-    private PropertiesControl propertiesControl;
+    private IndexProperties propertiesControl;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Checkbox docCheck;

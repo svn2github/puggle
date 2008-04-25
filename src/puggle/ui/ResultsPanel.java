@@ -8,6 +8,7 @@ package puggle.ui;
 
 import org.apache.lucene.search.Hits;
 import org.apache.lucene.search.Query;
+import puggle.Indexer.IndexProperties;
 
 /**
  *
@@ -32,12 +33,16 @@ public class ResultsPanel extends javax.swing.JPanel {
 
     }// </editor-fold>//GEN-END:initComponents
     
-    public void setResults(Query query, Hits hits)
+    public void setResults(Query query, Hits hits, IndexProperties properties)
     throws UnsupportedOperationException {
         throw new UnsupportedOperationException("Not yet implemented");
     }
     
     public int getCurrentResultsNumber() throws UnsupportedOperationException {
+        throw new UnsupportedOperationException("Not yet implemented");
+    };
+    
+    public void setCurrentResultsNumber(int number) throws UnsupportedOperationException {
         throw new UnsupportedOperationException("Not yet implemented");
     };
     

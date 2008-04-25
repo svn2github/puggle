@@ -27,7 +27,7 @@ import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.search.Hits;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.store.FSDirectory;
-import puggle.Indexer.PropertiesControl;
+import puggle.Indexer.IndexProperties;
 import puggle.LexicalAnalyzer.FileHandler;
 import puggle.LexicalAnalyzer.FileHandlerException;
 import puggle.Resources.Resources;
@@ -135,7 +135,7 @@ public class TableConfigPanel extends ResultsPanel {
         /* Append attribute and its value to the table */
     }
     
-    private PropertiesControl propertiesControl;
+    private IndexProperties propertiesControl;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable table;

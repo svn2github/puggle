@@ -20,6 +20,7 @@ import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.search.Hits;
 import org.apache.lucene.search.Query;
+import puggle.Indexer.IndexProperties;
 import puggle.LexicalAnalyzer.FileHandler;
 import puggle.LexicalAnalyzer.FileHandlerException;
 
@@ -196,6 +197,11 @@ public class ClassicResultsPanel extends ResultsPanel {
     private void printHit(Document doc, int score, ClassicResultPanel resultPanel) {
         String title = doc.get("title");
         String path = doc.get("path");
+        if (this.indexProperties.isPortable()) {
+            path = this.indexProperties.getFilesystemRoot() + path;
+            doc.removeField("path");
+            doc.add(new Field("path", path, Field.Store.YES, Field.Index.UN_TOKENIZED));
+        }
         long size = Long.parseLong(doc.get("size"));
         if (title == null || title.trim().compareTo("") == 0) {
             title = path.substring(path.lastIndexOf(File.separatorChar) + 1);
@@ -241,16 +247,24 @@ public class ClassicResultsPanel extends ResultsPanel {
     
 
     
-    public void setResults(Query query, Hits hits) {
+    public void setResults(Query query, Hits hits, IndexProperties properties) {
         this.hits = hits;
         this.query = query;
         this.currHits = 0;
         this.totalHits = hits.length();
+        this.indexProperties = properties;
         this.printCurrentHits();
     }
     
     public int getCurrentResultsNumber() {
         return (this.currHits);
+    }
+    
+    public void setCurrentResultsNumber(int number) {
+        if (number < 0 || number >= this.totalHits) {
+            throw new IllegalArgumentException("Number:" +number + " Total:" +this.totalHits);
+        }
+        this.currHits = number;
     }
     
     public int getTotalResultsNumber() {
@@ -282,6 +296,8 @@ public class ClassicResultsPanel extends ResultsPanel {
         }
         return false;
     }
+    
+    private IndexProperties indexProperties;
     
     private ImageControl imageControl;
     private Hits hits;

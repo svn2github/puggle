@@ -17,6 +17,7 @@ import java.util.Properties;
 import javax.swing.ImageIcon;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
+import puggle.Resources.RelativePath;
 import puggle.ui.ImageControl;
 
 /**
@@ -56,21 +57,31 @@ public class FileHandler {
         this.handlerProps.setProperty("png", "puggle.LexicalAnalyzer.ImageHandler");
     }
 
+    /**
+     * Analyze the corresponding file and returns a document with the appropriate
+     * information filled.
+     *
+     * @param file the file to be analyzed.
+     *
+     * @return a document with the appropriate information.
+     */
     public Document getDocument(File file) throws FileHandlerException {
-
+        Document doc = null;
+        
+        String name = file.getName();
+        int dotIndex = name.lastIndexOf(".");
+        
         if (file.isDirectory()) {
             try {
-                return new FolderHandler().getDocument(file);
+                doc = new FolderHandler().getDocument(file);
+                //return new FolderHandler().getDocument(file);
             } catch (DocumentHandlerException ex) {
                 throw new FileHandlerException(
                         "Directory cannot be handled: "
                         + file.getAbsolutePath(), ex);
             }
         }
-        
-        String name = file.getName();
-        int dotIndex = name.lastIndexOf(".");
-        if ((dotIndex > 0) && (dotIndex < name.length())) {
+        else if ((dotIndex > 0) && (dotIndex < name.length())) {
             String ext = name.substring(dotIndex + 1, name.length());
             ext = ext.toLowerCase();
             String handlerClassName = handlerProps.getProperty(ext);
@@ -85,7 +96,7 @@ public class FileHandler {
                         (DocumentHandler) handlerClass.newInstance();
                 handler.setStoreText(this.STORE_TEXT);
                 handler.setStoreThumbnail(this.STORE_THUMBNAIL);
-                return handler.getDocument(file);
+                doc = handler.getDocument(file);
             }
             catch (ClassNotFoundException e) {
                 throw new FileHandlerException(
@@ -118,7 +129,44 @@ public class FileHandler {
                         + file.getAbsolutePath());
             }
         }
-        return null;
+        
+        /* XXX  TODO: Do not create fields during lexical analysis at each handler */
+        doc.removeField("path");
+        doc.removeField("size");
+        
+        try {
+            doc.add(new Field("path", file.getCanonicalPath(),
+                    Field.Store.YES, Field.Index.UN_TOKENIZED));
+            doc.add(new Field("size", String.valueOf(file.length()),
+                    Field.Store.YES, Field.Index.UN_TOKENIZED));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        
+        return doc;
+    }
+    
+    /**
+     * Analyze the corresponding file and returns a document with the appropriate
+     * information filled. The path of the file is relative with the home file.
+     *
+     * @param file the file to be analyzed.
+     * @param home the file that will be used as root to find the relative path
+     * of the file to be analyzed.
+     *
+     * @return a document with the appropriate information.
+     */
+    public Document getDocument(File file, File home) throws FileHandlerException {
+        Document doc = this.getDocument(file);
+        
+        if (home != null) {
+            String path = RelativePath.getRelativePath(home, file);
+            
+            doc.removeField("path");
+            doc.add(new Field("path", path, Field.Store.YES, Field.Index.UN_TOKENIZED));
+        }
+        
+        return doc;
     }
     
     public static ImageIcon getThumbnail(Document doc) throws FileHandlerException {

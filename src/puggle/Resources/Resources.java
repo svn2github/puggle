@@ -12,7 +12,7 @@ package puggle.Resources;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-import puggle.Indexer.PropertiesControl;
+import puggle.Indexer.IndexProperties;
 import puggle.LexicalAnalyzer.CombinedAnalyzer;
 import java.io.File;
 import java.io.FileFilter;
@@ -34,14 +34,10 @@ public class Resources {
     /* final string variables */
     public final static String APP_NAME = "Puggle";
     
-    public final static String APP_VERSION = "v0.2";
+    public final static String APP_VERSION = "v0.2.1";
     
     private final static String APP_DIRECTORY_NAME = System.getProperty("user.home") 
                 + File.separator + "." + APP_NAME.toLowerCase();
-    
-    private final static String APP_DIRECTORY_NAME_PORTABLE =
-            System.getProperty("user.dir") + File.separator + "."
-            + APP_NAME.toLowerCase();
     
     private final static String LOG_DIRECTORY_NAME      = "logs";
     private final static String PROPERTIES_FILE_NAME    = "props";
@@ -83,7 +79,8 @@ public class Resources {
     }
     
     public static String getApplicationPropertiesCanonicalPath() {
-        return Resources.INDEX_CANONICAL_DIRECTORY_NAME + File.separator + Resources.PROPERTIES_FILE_NAME;
+        return Resources.INDEX_CANONICAL_DIRECTORY_NAME + File.separator
+                + Resources.PROPERTIES_FILE_NAME;
     }
 
     public static String getIndexCanonicalPath() {
@@ -171,8 +168,8 @@ public class Resources {
         return new CombinedAnalyzer();
     }
     
-    public static HashSet<String> getAcceptedFileExtensions(PropertiesControl prop) {
-//        PropertiesControl prop = new PropertiesControl(new File(Resources.getApplicationPropertiesName()));
+    public static HashSet<String> getAcceptedFileExtensions(IndexProperties prop) {
+//        IndexProperties prop = new IndexProperties(new File(Resources.getApplicationPropertiesName()));
 
         String ext = prop.getImageFiletypes() + ","
                 + prop.getMusicFiletypes() + ","
@@ -188,7 +185,7 @@ public class Resources {
         return set;
     }
     
-    public static FileFilter getFiletypeFilter(final PropertiesControl prop) {
+    public static FileFilter getFiletypeFilter(final IndexProperties prop) {
         FileFilter filter = new FileFilter() {
             private HashSet<String> FiletypeSet =
                     Resources.getAcceptedFileExtensions(prop);
