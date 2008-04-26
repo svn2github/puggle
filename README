@@ -1,4 +1,4 @@
-Puggle Desktop Search Engine, version 0.2
+Puggle Desktop Search Engine, version 0.2.1
 -----------------------------------------------------------------------------
 Author: Giorgos Vasiliadis, gvasil@csd.uoc.gr
 
@@ -9,7 +9,16 @@ Puggle is a desktop search engine written exclusively in Java. It provides
 full text search over files, folders, music, photos, web pages and more
 that are stored locally on your computer.
 
-It is build in top of the famous Apache Lucene library and can run in
+With Puggle it is able to create many different indices, each with different
+configuration. For example, you may have a different index for your music
+collection as well as your documents. Each of them can be used on demand, by
+simply loading it.
+
+Furthermore, Puggle supports indexing of portable devices, like USB flash
+drives or external hard disks. The index will be stored in the device, using
+relative paths, allowing to search over the data very quickly on any computer.
+
+Puggle is built in top of the famous Apache Lucene library and can run in
 various operating systems, including MS Windows and Linux.
 
 

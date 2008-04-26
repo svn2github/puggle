@@ -170,8 +170,10 @@ public class SearchFrame extends javax.swing.JFrame {
         resultsLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         nextButton.setFont(new java.awt.Font("Tahoma", 0, 12));
+        nextButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right-arrow.png")));
         nextButton.setText("Next Results");
         nextButton.setEnabled(false);
+        nextButton.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         nextButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 nextButtonMouseClicked(evt);
@@ -179,6 +181,7 @@ public class SearchFrame extends javax.swing.JFrame {
         });
 
         prevButton.setFont(new java.awt.Font("Tahoma", 0, 12));
+        prevButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/left-arrow.png")));
         prevButton.setText("Previous Results");
         prevButton.setEnabled(false);
         prevButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -194,7 +197,7 @@ public class SearchFrame extends javax.swing.JFrame {
             .add(bottomPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(resultsLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 335, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 119, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 71, Short.MAX_VALUE)
                 .add(prevButton)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(nextButton)
@@ -378,6 +381,17 @@ public class SearchFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void openPortableMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openPortableMenuItemActionPerformed
+        String os = System.getProperty("os.name").toLowerCase();
+        if (os.indexOf("windows") > 0) {
+            JOptionPane.showMessageDialog(this,
+                    "Sorry, indexing of portable devices is currenly supported\n"
+                    +"only in MS Windows operating systems.",
+                    "Invalid operation",
+                    JOptionPane.ERROR_MESSAGE,
+                    this.imageControl.getErrorIcon());
+            return;
+        }
+        
         File[] roots = File.listRoots();
 
         boolean error = true;

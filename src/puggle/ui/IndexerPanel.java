@@ -66,15 +66,17 @@ public class IndexerPanel extends javax.swing.JPanel {
         indexDirectoryPanel = new javax.swing.JPanel();
         indexDirectoryLabel = new javax.swing.JLabel();
         indexTextField = new javax.swing.JTextField();
-        pathPanel = new javax.swing.JPanel();
-        pathLabel = new java.awt.Label();
-        pathButton = new javax.swing.JButton();
-        pathField = new javax.swing.JTextField();
         indexLabel = new javax.swing.JLabel();
         foldersLabel = new javax.swing.JLabel();
         optionsLabel = new javax.swing.JLabel();
         filetypesLabel = new javax.swing.JLabel();
         actionsLabel = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        pathScrollPane = new javax.swing.JScrollPane();
+        pathList = new javax.swing.JList();
+        this.pathList.setModel(new javax.swing.DefaultListModel());
+        addFolderButton = new javax.swing.JButton();
+        removeFolderButton = new javax.swing.JButton();
 
         textArea.setColumns(20);
         textArea.setEditable(false);
@@ -275,7 +277,7 @@ public class IndexerPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .add(indexDirectoryLabel)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(indexTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE)
+                .add(indexTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
                 .addContainerGap())
         );
         indexDirectoryPanelLayout.setVerticalGroup(
@@ -286,44 +288,6 @@ public class IndexerPanel extends javax.swing.JPanel {
                     .add(indexDirectoryLabel)
                     .add(indexTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        pathLabel.setFont(new java.awt.Font("Dialog", 1, 12));
-        pathLabel.setText("Path:");
-
-        pathButton.setText("...");
-        pathButton.setToolTipText("Add Folder");
-        pathButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pathButtonMouseClicked(evt);
-            }
-        });
-
-        this.pathField.setText(this.indexProperties.getPath());
-        pathField.setToolTipText("The paths that will be indexed");
-
-        org.jdesktop.layout.GroupLayout pathPanelLayout = new org.jdesktop.layout.GroupLayout(pathPanel);
-        pathPanel.setLayout(pathPanelLayout);
-        pathPanelLayout.setHorizontalGroup(
-            pathPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(pathPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .add(pathLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(pathField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(pathButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        pathPanelLayout.setVerticalGroup(
-            pathPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(pathPanelLayout.createSequentialGroup()
-                .add(14, 14, 14)
-                .add(pathPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(pathField)
-                    .add(pathLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(pathButton, 0, 0, Short.MAX_VALUE))
-                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         indexLabel.setBackground(new java.awt.Color(102, 102, 255));
@@ -357,52 +321,61 @@ public class IndexerPanel extends javax.swing.JPanel {
         actionsLabel.setText("Actions");
         actionsLabel.setOpaque(true);
 
+        pathScrollPane.setBackground(new java.awt.Color(255, 255, 255));
+        pathScrollPane.setViewportView(pathList);
+
+        addFolderButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/list-add.png")));
+        addFolderButton.setText("Add");
+        addFolderButton.setToolTipText("Add folder");
+        addFolderButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        addFolderButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addFolderButtonActionPerformed(evt);
+            }
+        });
+
+        removeFolderButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/list-remove.png")));
+        removeFolderButton.setText("Remove");
+        removeFolderButton.setToolTipText("Remove folder");
+        removeFolderButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        removeFolderButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeFolderButtonActionPerformed(evt);
+            }
+        });
+
+        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(pathScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(addFolderButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 97, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(removeFolderButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                    .add(pathScrollPane, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 66, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jPanel1Layout.createSequentialGroup()
+                        .add(addFolderButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 29, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(removeFolderButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 29, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .add(13, 13, 13))
+        );
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .addContainerGap()
-                .add(storeTextCb)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(storeThumbsCb)
-                .add(461, 461, 461))
-            .add(layout.createSequentialGroup()
-                .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(mp3Check)
-                    .add(layout.createSequentialGroup()
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jpegCheck)
-                            .add(txtCheck))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(pdfCheck)
-                            .add(pngCheck))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(layout.createSequentialGroup()
-                                .add(docCheck)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(rtfCheck)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(htmlCheck)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(xlsCheck)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(pptCheck))
-                            .add(gifCheck))))
-                .addContainerGap())
-            .add(layout.createSequentialGroup()
-                .addContainerGap()
-                .add(progressBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
-                .addContainerGap())
-            .add(layout.createSequentialGroup()
-                .addContainerGap()
-                .add(textArea)
-                .addContainerGap())
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(461, Short.MAX_VALUE)
+                .addContainerGap(418, Short.MAX_VALUE)
                 .add(startButton)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(stopButton)
@@ -410,28 +383,69 @@ public class IndexerPanel extends javax.swing.JPanel {
             .add(layout.createSequentialGroup()
                 .add(0, 0, 0)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(actionsLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
-                    .add(filetypesLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
-                    .add(optionsLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
-                    .add(foldersLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
-                    .add(indexLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
-                    .add(mainToolBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
+                    .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(indexDirectoryPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(pathPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .add(indexLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)
+                    .add(mainToolBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)
+                    .add(foldersLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)))
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(actionsLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+                    .add(filetypesLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+                    .add(optionsLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+                    .add(layout.createSequentialGroup()
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(layout.createSequentialGroup()
+                                .add(storeTextCb)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(storeThumbsCb))
+                            .add(mp3Check)
+                            .add(layout.createSequentialGroup()
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(jpegCheck)
+                                    .add(txtCheck))
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(pdfCheck)
+                                    .add(pngCheck))
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(layout.createSequentialGroup()
+                                        .add(docCheck)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(rtfCheck)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(htmlCheck)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(xlsCheck)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(pptCheck))
+                                    .add(gifCheck))))
+                        .add(99, 99, 99))))
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
+                .add(progressBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
+                .addContainerGap())
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
+                .add(textArea, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+            .add(layout.createSequentialGroup()
                 .add(mainToolBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(0, 0, 0)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(indexLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(0, 0, 0)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(indexDirectoryPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(0, 0, 0)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(foldersLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(0, 0, 0)
-                .add(pathPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(0, 0, 0)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 90, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(optionsLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
@@ -461,13 +475,39 @@ public class IndexerPanel extends javax.swing.JPanel {
                 .add(progressBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(textArea, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(stopButton)
                     .add(startButton))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void removeFolderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeFolderButtonActionPerformed
+        int[] selectedRows = this.pathList.getSelectedIndices();
+        
+        java.util.Arrays.sort(selectedRows);
+        
+        javax.swing.DefaultListModel model = 
+                (javax.swing.DefaultListModel)this.pathList.getModel();
+        
+        for (int i = selectedRows.length - 1; i >= 0; --i) {
+            model.removeElementAt(selectedRows[i]);
+        }
+    }//GEN-LAST:event_removeFolderButtonActionPerformed
+
+    private void addFolderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFolderButtonActionPerformed
+        JFileChooser chooser = new JFileChooser();
+        chooser.setCurrentDirectory(new java.io.File("."));
+        chooser.setDialogTitle("Select Directory");
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            javax.swing.DefaultListModel model = 
+                    (javax.swing.DefaultListModel)this.pathList.getModel();
+
+            model.addElement(chooser.getSelectedFile().getPath());
+        }
+    }//GEN-LAST:event_addFolderButtonActionPerformed
 
     private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopButtonActionPerformed
         this.stopButton.setEnabled(false);
@@ -531,22 +571,23 @@ public class IndexerPanel extends javax.swing.JPanel {
         this.indexProperties.setStoreText(this.storeTextCb.isSelected());
         this.indexProperties.setStoreThumbnail(this.storeThumbsCb.isSelected());
         
-        String path = this.pathField.getText().trim();
-        
-        if (path.length() == 0) {
-            JOptionPane.showMessageDialog(this, "Path is empty",
-                    "Error", JOptionPane.ERROR_MESSAGE);
+        javax.swing.DefaultListModel model = 
+                (javax.swing.DefaultListModel)this.pathList.getModel();
+        int rowCount = model.getSize();
+        if (rowCount == 0) {
+            JOptionPane.showMessageDialog(this, "No indexing folders have been added.",
+                    "Indexing error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
-        String spl[] = path.split(File.pathSeparator);
-        path = "";
-        for (int i=0; i < spl.length; i++) {
-            File f = new File(spl[i]);
+        String path = "";
+        for (int i = 0; i < rowCount; ++i) {
+            File f = new File((String)model.getElementAt(i));
+            
             if (f.isDirectory() == false || f.exists() == false) {
                 JOptionPane.showMessageDialog(this, "File '" +f
                         +"' does not exists or is not a directory",
-                        "Error", JOptionPane.ERROR_MESSAGE);
+                        "Indexing error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             try {
@@ -556,7 +597,7 @@ public class IndexerPanel extends javax.swing.JPanel {
             }
         }
         
-        this.indexProperties.setPath(this.pathField.getText());
+        this.indexProperties.setPath(path);
         
         this.indexProperties.flush();
         
@@ -600,13 +641,15 @@ public class IndexerPanel extends javax.swing.JPanel {
         this.indexer.setLogger(new JLogger(logStream, this.textArea));
         this.indexer.setProgressBar(this.progressBar);
         
-        this.startButton.setEnabled(false); this.pathField.setEnabled(false);
+        this.startButton.setEnabled(false);
+        this.pathList.setEnabled(false); this.addFolderButton.setEnabled(false);
+        this.removeFolderButton.setEnabled(false);
         this.jpegCheck.setEnabled(false); this.gifCheck.setEnabled(false);
         this.pngCheck.setEnabled(false); this.txtCheck.setEnabled(false);
         this.docCheck.setEnabled(false); this.pdfCheck.setEnabled(false);
         this.xlsCheck.setEnabled(false); this.pptCheck.setEnabled(false);
         this.htmlCheck.setEnabled(false); this.rtfCheck.setEnabled(false);
-        this.pathButton.setEnabled(false); this.mp3Check.setEnabled(false);
+        this.mp3Check.setEnabled(false);
         storeTextCb.setEnabled(false); storeThumbsCb.setEnabled(false);
         this.newButton.setEnabled(false); this.openButton.setEnabled(false);
         this.aboutButton.setEnabled(false); this.exitButton.setEnabled(false);
@@ -624,13 +667,15 @@ public class IndexerPanel extends javax.swing.JPanel {
                 catch (IOException ex) {ex.printStackTrace();}
                 
                 stopButton.setEnabled(false);
-                startButton.setEnabled(true); pathField.setEnabled(true);
+                startButton.setEnabled(true);
+                pathList.setEnabled(true); addFolderButton.setEnabled(true);
+                removeFolderButton.setEnabled(true);
                 jpegCheck.setEnabled(true); gifCheck.setEnabled(true);
                 pngCheck.setEnabled(true); txtCheck.setEnabled(true);
                 docCheck.setEnabled(true); pdfCheck.setEnabled(true);
                 xlsCheck.setEnabled(true); pptCheck.setEnabled(true);
                 htmlCheck.setEnabled(true); rtfCheck.setEnabled(true);
-                pathButton.setEnabled(true); mp3Check.setEnabled(true);
+                mp3Check.setEnabled(true);
                 storeTextCb.setEnabled(true); storeThumbsCb.setEnabled(true);
                 newButton.setEnabled(true); openButton.setEnabled(true);
                 aboutButton.setEnabled(true); exitButton.setEnabled(true);
@@ -705,6 +750,17 @@ public class IndexerPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_newButtonActionPerformed
 
     private void newPortableButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPortableButtonActionPerformed
+        String os = System.getProperty("os.name").toLowerCase();
+        if (os.indexOf("windows") > 0) {
+            JOptionPane.showMessageDialog(this,
+                    "Sorry, indexing of portable devices is currenly supported\n"
+                    +"only in MS Windows operating systems.",
+                    "Invalid operation",
+                    JOptionPane.ERROR_MESSAGE,
+                    this.imageControl.getErrorIcon());
+            return;
+        }
+        
         File[] roots = File.listRoots();
         
         File root = (File)JOptionPane.showInputDialog(this,
@@ -775,9 +831,13 @@ public class IndexerPanel extends javax.swing.JPanel {
         this.indexProperties.setPortable(true);
         this.indexProperties.flush();
         
-        this.pathField.setText(root.getAbsolutePath());
-        this.pathField.setEditable(false);
-        this.pathButton.setEnabled(false);
+        javax.swing.DefaultListModel model = 
+                (javax.swing.DefaultListModel)this.pathList.getModel();
+        model.addElement(root.getAbsolutePath());
+        
+        this.pathList.setEnabled(false);
+        this.addFolderButton.setEnabled(false);
+        this.removeFolderButton.setEnabled(false);
     }//GEN-LAST:event_newPortableButtonActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
@@ -812,16 +872,27 @@ public class IndexerPanel extends javax.swing.JPanel {
     private void loadComponentsStatus() {
         
         if (this.indexProperties.isPortable() == true) {
-            this.pathField.setEditable(false);
-            this.pathButton.setEnabled(false);
+            this.pathList.setEnabled(false);
+            this.addFolderButton.setEnabled(false);
         }
         else {
-            this.pathField.setEditable(true);
-            this.pathButton.setEnabled(true);
+            this.pathList.setEnabled(true);
+            this.addFolderButton.setEnabled(true);
         }
         
         this.indexTextField.setText(Resources.getIndexCanonicalPath());
-        this.pathField.setText(this.indexProperties.getPath());
+        
+        javax.swing.DefaultListModel model = 
+                (javax.swing.DefaultListModel)this.pathList.getModel();
+        
+        /* clear list */
+        model.clear();
+        
+        /* load new values */
+        String splt[] = this.indexProperties.getPath().split(File.pathSeparator);
+        for (int i = 0; i < splt.length; ++i) {
+            model.addElement(splt[i]);
+        }
         
         storeTextCb.setSelected(this.indexProperties.getStoreText());
         storeThumbsCb.setSelected(this.indexProperties.getStoreThumbnail());
@@ -962,25 +1033,7 @@ public class IndexerPanel extends javax.swing.JPanel {
             
         } // while
     }//GEN-LAST:event_openButtonActionPerformed
-    
-    private void pathButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pathButtonMouseClicked
-        if (this.pathButton.isEnabled() == false) {
-            return;
-        }
         
-        JFileChooser chooser = new JFileChooser();
-        chooser.setCurrentDirectory(new java.io.File("."));
-        chooser.setDialogTitle("Select Directory");
-        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-            String path = pathField.getText();
-            if (path.lastIndexOf(File.pathSeparator) != path.length() - 1) {
-                path += File.pathSeparator;
-            }
-            pathField.setText(path + chooser.getSelectedFile() +File.pathSeparator);
-        }
-    }//GEN-LAST:event_pathButtonMouseClicked
-    
     /**
      * Return true if indexing is in progress
      */
@@ -1006,6 +1059,7 @@ public class IndexerPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aboutButton;
     private javax.swing.JLabel actionsLabel;
+    private javax.swing.JButton addFolderButton;
     private javax.swing.JCheckBox docCheck;
     private javax.swing.JButton exitButton;
     private javax.swing.JLabel filetypesLabel;
@@ -1016,6 +1070,7 @@ public class IndexerPanel extends javax.swing.JPanel {
     private javax.swing.JPanel indexDirectoryPanel;
     private javax.swing.JLabel indexLabel;
     private javax.swing.JTextField indexTextField;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JCheckBox jpegCheck;
     private javax.swing.JToolBar mainToolBar;
     private javax.swing.JCheckBox mp3Check;
@@ -1023,14 +1078,13 @@ public class IndexerPanel extends javax.swing.JPanel {
     private javax.swing.JButton newPortableButton;
     private javax.swing.JButton openButton;
     private javax.swing.JLabel optionsLabel;
-    private javax.swing.JButton pathButton;
-    private javax.swing.JTextField pathField;
-    private java.awt.Label pathLabel;
-    private javax.swing.JPanel pathPanel;
+    private javax.swing.JList pathList;
+    private javax.swing.JScrollPane pathScrollPane;
     private javax.swing.JCheckBox pdfCheck;
     private javax.swing.JCheckBox pngCheck;
     private javax.swing.JCheckBox pptCheck;
     private javax.swing.JProgressBar progressBar;
+    private javax.swing.JButton removeFolderButton;
     private javax.swing.JCheckBox rtfCheck;
     private javax.swing.JButton startButton;
     private javax.swing.JButton stopButton;
