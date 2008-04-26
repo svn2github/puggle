@@ -36,6 +36,9 @@ public class Resources {
     
     public final static String APP_VERSION = "v0.2.1";
     
+    /** This variable indicates whether the portable edition will run */
+    private final static boolean PORTABLE_EDITION = false;
+    
     private final static String APP_DIRECTORY_NAME = System.getProperty("user.home") 
                 + File.separator + "." + APP_NAME.toLowerCase();
     
@@ -72,6 +75,10 @@ public class Resources {
     
     public static String getApplicationVersion() {
         return Resources.APP_VERSION;
+    }
+    
+    public static boolean isPortableEdition() {
+        return Resources.PORTABLE_EDITION;
     }
 
     public static String getApplicationDirectoryCanonicalPath() {

@@ -56,9 +56,9 @@ public class ImageControl {
     private static final float DEFAULT_JPEG_QUALITY = 0.75f;
     private static final int DEFAULT_THUMBNAIL_HEIGHT = 150;
     
-    private static final int ICON_DIMENSION = 64;
+    private static int ICON_DIMENSION = 64;
     
-    private static final int IMAGE_DIMENSION = 80;
+    private static int IMAGE_DIMENSION = 80;
     
     private static ImageControl imageControl;
     

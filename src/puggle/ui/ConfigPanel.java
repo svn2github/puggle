@@ -425,7 +425,7 @@ public class ConfigPanel extends ResultsPanel {
         
         this.propertiesControl.setPath(this.pathField.getText());
 
-        this.propertiesControl.flush();
+        //this.propertiesControl.flush();
     }//GEN-LAST:event_saveButtonMouseClicked
     
 

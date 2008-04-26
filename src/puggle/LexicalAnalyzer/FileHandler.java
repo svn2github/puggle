@@ -184,6 +184,15 @@ public class FileHandler {
         return icon;
     }
     
+    public static ImageIcon getThumbnail(Document doc, int x, int y) throws FileHandlerException {
+        ImageIcon icon = FileHandler.getThumbnail(doc);
+        
+        java.awt.Image image =
+                icon.getImage().getScaledInstance(x, y, java.awt.image.BufferedImage.SCALE_SMOOTH);
+        
+        return new ImageIcon(image);
+    }
+    
     public String getText(Document doc) throws FileHandlerException {
         File file = new File(doc.get("path"));
         

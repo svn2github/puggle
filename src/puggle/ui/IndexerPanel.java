@@ -30,7 +30,7 @@ public class IndexerPanel extends javax.swing.JPanel {
 
         this.init();
         initComponents();
-        this.loadComponentsStatus();
+        this.indexPropertiesPanel.setProperties(this.indexProperties);
     }
     
     /** This method is called from within the constructor to
@@ -42,19 +42,6 @@ public class IndexerPanel extends javax.swing.JPanel {
     private void initComponents() {
         textArea = new javax.swing.JTextArea();
         progressBar = new javax.swing.JProgressBar();
-        storeTextCb = new javax.swing.JCheckBox();
-        storeThumbsCb = new javax.swing.JCheckBox();
-        jpegCheck = new javax.swing.JCheckBox();
-        pngCheck = new javax.swing.JCheckBox();
-        gifCheck = new javax.swing.JCheckBox();
-        txtCheck = new javax.swing.JCheckBox();
-        pdfCheck = new javax.swing.JCheckBox();
-        docCheck = new javax.swing.JCheckBox();
-        rtfCheck = new javax.swing.JCheckBox();
-        htmlCheck = new javax.swing.JCheckBox();
-        xlsCheck = new javax.swing.JCheckBox();
-        pptCheck = new javax.swing.JCheckBox();
-        mp3Check = new javax.swing.JCheckBox();
         mainToolBar = new javax.swing.JToolBar();
         newButton = new javax.swing.JButton();
         newPortableButton = new javax.swing.JButton();
@@ -63,20 +50,8 @@ public class IndexerPanel extends javax.swing.JPanel {
         exitButton = new javax.swing.JButton();
         stopButton = new javax.swing.JButton();
         startButton = new javax.swing.JButton();
-        indexDirectoryPanel = new javax.swing.JPanel();
-        indexDirectoryLabel = new javax.swing.JLabel();
-        indexTextField = new javax.swing.JTextField();
-        indexLabel = new javax.swing.JLabel();
-        foldersLabel = new javax.swing.JLabel();
-        optionsLabel = new javax.swing.JLabel();
-        filetypesLabel = new javax.swing.JLabel();
         actionsLabel = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        pathScrollPane = new javax.swing.JScrollPane();
-        pathList = new javax.swing.JList();
-        this.pathList.setModel(new javax.swing.DefaultListModel());
-        addFolderButton = new javax.swing.JButton();
-        removeFolderButton = new javax.swing.JButton();
+        indexPropertiesPanel = new puggle.ui.IndexPropertiesPanel();
 
         textArea.setColumns(20);
         textArea.setEditable(false);
@@ -90,106 +65,6 @@ public class IndexerPanel extends javax.swing.JPanel {
 
         progressBar.setBackground(new java.awt.Color(255, 255, 255));
         progressBar.setForeground(new java.awt.Color(51, 255, 51));
-
-        storeTextCb.setSelected(this.indexProperties.getStoreText());
-        storeTextCb.setText("Store text");
-        storeTextCb.setToolTipText("Store the extracted text of each file");
-        storeTextCb.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        storeTextCb.setMargin(new java.awt.Insets(0, 0, 0, 0));
-
-        storeThumbsCb.setSelected(this.indexProperties.getStoreThumbnail());
-        storeThumbsCb.setText("Store thumbnails");
-        storeThumbsCb.setToolTipText("Store a thumbnail for each file");
-        storeThumbsCb.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        storeThumbsCb.setMargin(new java.awt.Insets(0, 0, 0, 0));
-
-        jpegCheck.setText("jpeg");
-        jpegCheck.setToolTipText("Whether to index JPEG files");
-        jpegCheck.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        jpegCheck.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        if (this.image_filetypes.contains(new StringBuffer("jpg")) && this.image_filetypes.contains(new StringBuffer("jpeg"))) {
-            this.jpegCheck.setSelected(true);
-        }
-
-        pngCheck.setText("png");
-        pngCheck.setToolTipText("Whether to index PNG files");
-        pngCheck.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        pngCheck.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        if (this.image_filetypes.contains(new StringBuffer("png"))) {
-            this.pngCheck.setSelected(true);
-        }
-
-        gifCheck.setText("gif");
-        gifCheck.setToolTipText("Whether to index GIF files");
-        gifCheck.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        gifCheck.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        if (this.image_filetypes.contains(new StringBuffer("gif"))) {
-            this.gifCheck.setSelected(true);
-        }
-
-        txtCheck.setText("txt");
-        txtCheck.setToolTipText("Whether to index TXT files");
-        txtCheck.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        txtCheck.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        if (this.document_filetypes.contains(new StringBuffer("txt"))) {
-            this.txtCheck.setSelected(true);
-        }
-
-        pdfCheck.setText("pdf");
-        pdfCheck.setToolTipText("Whether to index PDF files");
-        pdfCheck.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        pdfCheck.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        if (this.document_filetypes.contains(new StringBuffer("pdf"))) {
-            this.pdfCheck.setSelected(true);
-        }
-
-        docCheck.setText("doc");
-        docCheck.setToolTipText("Whether to index MS WORD files");
-        docCheck.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        docCheck.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        if (this.document_filetypes.contains(new StringBuffer("doc"))) {
-            this.docCheck.setSelected(true);
-        }
-
-        rtfCheck.setText("rtf");
-        rtfCheck.setToolTipText("Whether to index RTF files");
-        rtfCheck.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        rtfCheck.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        if (this.document_filetypes.contains(new StringBuffer("rtf"))) {
-            this.rtfCheck.setSelected(true);
-        }
-
-        htmlCheck.setText("html");
-        htmlCheck.setToolTipText("Whether to index HTML files");
-        htmlCheck.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        htmlCheck.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        if (this.document_filetypes.contains(new StringBuffer("html")) && this.document_filetypes.contains(new StringBuffer("htm"))) {
-            this.htmlCheck.setSelected(true);
-        }
-
-        xlsCheck.setText("xls");
-        xlsCheck.setToolTipText("Whether to index MS EXCEL files");
-        xlsCheck.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        xlsCheck.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        if (this.document_filetypes.contains(new StringBuffer("xls"))) {
-            this.xlsCheck.setSelected(true);
-        }
-
-        pptCheck.setText("ppt");
-        pptCheck.setToolTipText("Whether to index MS POWERPOINT files");
-        pptCheck.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        pptCheck.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        if (this.document_filetypes.contains(new StringBuffer("ppt"))) {
-            this.pptCheck.setSelected(true);
-        }
-
-        mp3Check.setText("mp3");
-        mp3Check.setToolTipText("Whether to index MP3 files");
-        mp3Check.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        mp3Check.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        if (this.misc_filetypes.contains(new StringBuffer("mp3"))) {
-            this.mp3Check.setSelected(true);
-        }
 
         mainToolBar.setFloatable(false);
         mainToolBar.setAlignmentY(0.48387095F);
@@ -262,249 +137,51 @@ public class IndexerPanel extends javax.swing.JPanel {
             }
         });
 
-        indexDirectoryLabel.setFont(new java.awt.Font("Dialog", 1, 12));
-        indexDirectoryLabel.setText("Index Directory Path:");
-
-        indexTextField.setEditable(false);
-        this.indexTextField.setText(Resources.getIndexCanonicalPath());
-        indexTextField.setToolTipText("Absolute path where the Index will be stored");
-
-        org.jdesktop.layout.GroupLayout indexDirectoryPanelLayout = new org.jdesktop.layout.GroupLayout(indexDirectoryPanel);
-        indexDirectoryPanel.setLayout(indexDirectoryPanelLayout);
-        indexDirectoryPanelLayout.setHorizontalGroup(
-            indexDirectoryPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(indexDirectoryPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .add(indexDirectoryLabel)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(indexTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        indexDirectoryPanelLayout.setVerticalGroup(
-            indexDirectoryPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(indexDirectoryPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .add(indexDirectoryPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(indexDirectoryLabel)
-                    .add(indexTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        indexLabel.setBackground(new java.awt.Color(102, 102, 255));
-        indexLabel.setFont(new java.awt.Font("Tahoma", 1, 14));
-        indexLabel.setForeground(new java.awt.Color(255, 255, 255));
-        indexLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        indexLabel.setText("Index");
-        indexLabel.setOpaque(true);
-
-        foldersLabel.setBackground(new java.awt.Color(102, 102, 255));
-        foldersLabel.setFont(new java.awt.Font("Tahoma", 1, 14));
-        foldersLabel.setForeground(new java.awt.Color(255, 255, 255));
-        foldersLabel.setText("Indexing Folders");
-        foldersLabel.setOpaque(true);
-
-        optionsLabel.setBackground(new java.awt.Color(102, 102, 255));
-        optionsLabel.setFont(new java.awt.Font("Tahoma", 1, 14));
-        optionsLabel.setForeground(new java.awt.Color(255, 255, 255));
-        optionsLabel.setText("Indexing Options");
-        optionsLabel.setOpaque(true);
-
-        filetypesLabel.setBackground(new java.awt.Color(102, 102, 255));
-        filetypesLabel.setFont(new java.awt.Font("Tahoma", 1, 14));
-        filetypesLabel.setForeground(new java.awt.Color(255, 255, 255));
-        filetypesLabel.setText("Filetypes");
-        filetypesLabel.setOpaque(true);
-
         actionsLabel.setBackground(new java.awt.Color(102, 102, 255));
         actionsLabel.setFont(new java.awt.Font("Tahoma", 1, 14));
         actionsLabel.setForeground(new java.awt.Color(255, 255, 255));
         actionsLabel.setText("Actions");
         actionsLabel.setOpaque(true);
 
-        pathScrollPane.setBackground(new java.awt.Color(255, 255, 255));
-        pathScrollPane.setViewportView(pathList);
-
-        addFolderButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/list-add.png")));
-        addFolderButton.setText("Add");
-        addFolderButton.setToolTipText("Add folder");
-        addFolderButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        addFolderButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addFolderButtonActionPerformed(evt);
-            }
-        });
-
-        removeFolderButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/list-remove.png")));
-        removeFolderButton.setText("Remove");
-        removeFolderButton.setToolTipText("Remove folder");
-        removeFolderButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        removeFolderButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeFolderButtonActionPerformed(evt);
-            }
-        });
-
-        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .add(pathScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(removeFolderButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 97, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(addFolderButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 97, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(pathScrollPane, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 66, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jPanel1Layout.createSequentialGroup()
-                        .add(addFolderButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 29, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(removeFolderButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 29, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .add(13, 13, 13))
-        );
-
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(layout.createSequentialGroup()
+                .add(10, 10, 10)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, textArea, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, progressBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE))
+                .addContainerGap())
+            .add(actionsLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(418, Short.MAX_VALUE)
+                .addContainerGap(398, Short.MAX_VALUE)
                 .add(startButton)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(stopButton)
                 .addContainerGap())
-            .add(layout.createSequentialGroup()
-                .add(10, 10, 10)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createSequentialGroup()
-                        .add(storeTextCb)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(storeThumbsCb))
-                    .add(mp3Check)
-                    .add(layout.createSequentialGroup()
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jpegCheck)
-                            .add(txtCheck))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(pdfCheck)
-                            .add(pngCheck))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(layout.createSequentialGroup()
-                                .add(docCheck)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(rtfCheck)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(htmlCheck)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(xlsCheck)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(pptCheck))
-                            .add(gifCheck))))
-                .addContainerGap(313, Short.MAX_VALUE))
-            .add(layout.createSequentialGroup()
-                .addContainerGap()
-                .add(progressBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
-                .addContainerGap())
-            .add(layout.createSequentialGroup()
-                .addContainerGap()
-                .add(textArea, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
-                .addContainerGap())
-            .add(layout.createSequentialGroup()
-                .add(0, 0, 0)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, actionsLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, filetypesLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, optionsLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)
-                    .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(indexDirectoryPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(indexLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)
-                    .add(mainToolBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)
-                    .add(foldersLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)))
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, indexPropertiesPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, mainToolBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .add(mainToolBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(indexLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(indexDirectoryPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(foldersLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 90, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(optionsLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(storeTextCb)
-                    .add(storeThumbsCb))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(filetypesLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jpegCheck)
-                    .add(pngCheck)
-                    .add(gifCheck))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(txtCheck)
-                    .add(pdfCheck)
-                    .add(docCheck)
-                    .add(rtfCheck)
-                    .add(htmlCheck)
-                    .add(xlsCheck)
-                    .add(pptCheck))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(mp3Check)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(indexPropertiesPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .add(actionsLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(progressBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(textArea, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(stopButton)
                     .add(startButton))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void removeFolderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeFolderButtonActionPerformed
-        int[] selectedRows = this.pathList.getSelectedIndices();
-        
-        java.util.Arrays.sort(selectedRows);
-        
-        javax.swing.DefaultListModel model = 
-                (javax.swing.DefaultListModel)this.pathList.getModel();
-        
-        for (int i = selectedRows.length - 1; i >= 0; --i) {
-            model.removeElementAt(selectedRows[i]);
-        }
-    }//GEN-LAST:event_removeFolderButtonActionPerformed
-
-    private void addFolderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFolderButtonActionPerformed
-        JFileChooser chooser = new JFileChooser();
-        chooser.setCurrentDirectory(new java.io.File("."));
-        chooser.setDialogTitle("Select Directory");
-        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-            javax.swing.DefaultListModel model = 
-                    (javax.swing.DefaultListModel)this.pathList.getModel();
-
-            model.addElement(chooser.getSelectedFile().getPath());
-        }
-    }//GEN-LAST:event_addFolderButtonActionPerformed
 
     private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopButtonActionPerformed
         this.stopButton.setEnabled(false);
@@ -514,89 +191,6 @@ public class IndexerPanel extends javax.swing.JPanel {
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
         File dataDir = null, indexDir = null;
         File[] dataDirsFile = null;
-        
-        /* <Save properties> */
-        image_filetypes = "";
-        document_filetypes = "";
-        misc_filetypes = "";
-        music_filetypes = "";
-        
-        if (this.jpegCheck.isSelected())
-            image_filetypes += "jpeg,jpg,";
-        if (this.pngCheck.isSelected())
-            image_filetypes += "png,";
-        if (this.gifCheck.isSelected())
-            image_filetypes += "gif,";
-        if (this.txtCheck.isSelected())
-            document_filetypes += "txt,";
-        if (this.pdfCheck.isSelected())
-            document_filetypes += "pdf,";
-        if (this.docCheck.isSelected())
-            document_filetypes += "doc,";
-        if (this.rtfCheck.isSelected())
-            document_filetypes += "rtf,";
-        if (this.htmlCheck.isSelected())
-            document_filetypes += "html,htm,";
-        if (this.xlsCheck.isSelected())
-            document_filetypes += "xls,";
-        if (this.pptCheck.isSelected())
-            document_filetypes += "ppt,";
-        if (this.mp3Check.isSelected())
-            music_filetypes += "mp3,";
-        
-        if (image_filetypes.lastIndexOf(',') != -1) {
-            image_filetypes = image_filetypes.substring(0, image_filetypes.lastIndexOf(','));
-        }
-        
-        if (document_filetypes.lastIndexOf(',') != -1) {
-            document_filetypes = document_filetypes.substring(0, document_filetypes.lastIndexOf(','));
-        }
-        
-        if (misc_filetypes.lastIndexOf(',') != -1) {
-            misc_filetypes = misc_filetypes.substring(0, misc_filetypes.lastIndexOf(','));
-        }
-        
-        if (music_filetypes.lastIndexOf(',') != -1) {
-            music_filetypes = music_filetypes.substring(0, music_filetypes.lastIndexOf(','));
-        }
-        
-        this.indexProperties.setImageFiletypes(image_filetypes);
-        this.indexProperties.setDocumentFiletypes(document_filetypes);
-        this.indexProperties.setMiscFiletypes(misc_filetypes);
-        this.indexProperties.setMusicFiletypes(music_filetypes);
-        
-        this.indexProperties.setStoreText(this.storeTextCb.isSelected());
-        this.indexProperties.setStoreThumbnail(this.storeThumbsCb.isSelected());
-        
-        javax.swing.DefaultListModel model = 
-                (javax.swing.DefaultListModel)this.pathList.getModel();
-        int rowCount = model.getSize();
-        if (rowCount == 0) {
-            JOptionPane.showMessageDialog(this, "No indexing folders have been added.",
-                    "Indexing error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        String path = "";
-        for (int i = 0; i < rowCount; ++i) {
-            File f = new File((String)model.getElementAt(i));
-            
-            if (f.isDirectory() == false || f.exists() == false) {
-                JOptionPane.showMessageDialog(this, "File '" +f
-                        +"' does not exists or is not a directory",
-                        "Indexing error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            try {
-                path += f.getCanonicalPath() + File.pathSeparator;
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-        
-        this.indexProperties.setPath(path);
-        
-        this.indexProperties.flush();
         
         dataDirsFile = this.indexProperties.getDataDirectories();
         
@@ -639,15 +233,7 @@ public class IndexerPanel extends javax.swing.JPanel {
         this.indexer.setProgressBar(this.progressBar);
         
         this.startButton.setEnabled(false);
-        this.pathList.setEnabled(false); this.addFolderButton.setEnabled(false);
-        this.removeFolderButton.setEnabled(false);
-        this.jpegCheck.setEnabled(false); this.gifCheck.setEnabled(false);
-        this.pngCheck.setEnabled(false); this.txtCheck.setEnabled(false);
-        this.docCheck.setEnabled(false); this.pdfCheck.setEnabled(false);
-        this.xlsCheck.setEnabled(false); this.pptCheck.setEnabled(false);
-        this.htmlCheck.setEnabled(false); this.rtfCheck.setEnabled(false);
-        this.mp3Check.setEnabled(false);
-        storeTextCb.setEnabled(false); storeThumbsCb.setEnabled(false);
+        this.indexPropertiesPanel.setEnabled(false);
         this.newButton.setEnabled(false); this.openButton.setEnabled(false);
         this.aboutButton.setEnabled(false); this.exitButton.setEnabled(false);
         this.newPortableButton.setEnabled(false);
@@ -665,15 +251,7 @@ public class IndexerPanel extends javax.swing.JPanel {
                 
                 stopButton.setEnabled(false);
                 startButton.setEnabled(true);
-                pathList.setEnabled(true); addFolderButton.setEnabled(true);
-                removeFolderButton.setEnabled(true);
-                jpegCheck.setEnabled(true); gifCheck.setEnabled(true);
-                pngCheck.setEnabled(true); txtCheck.setEnabled(true);
-                docCheck.setEnabled(true); pdfCheck.setEnabled(true);
-                xlsCheck.setEnabled(true); pptCheck.setEnabled(true);
-                htmlCheck.setEnabled(true); rtfCheck.setEnabled(true);
-                mp3Check.setEnabled(true);
-                storeTextCb.setEnabled(true); storeThumbsCb.setEnabled(true);
+                indexPropertiesPanel.setEnabled(true);
                 newButton.setEnabled(true); openButton.setEnabled(true);
                 aboutButton.setEnabled(true); exitButton.setEnabled(true);
                 newPortableButton.setEnabled(true);
@@ -736,10 +314,10 @@ public class IndexerPanel extends javax.swing.JPanel {
                 try { Resources.setIndex(file); }
                 catch (IOException ex) { ex.printStackTrace(); }
                 
-                this.indexProperties.flush();
+                //this.indexProperties.flush();
                 
                 this.init();
-                this.loadComponentsStatus();
+                this.indexPropertiesPanel.setProperties(this.indexProperties);
                 
                 return;
             }
@@ -822,19 +400,11 @@ public class IndexerPanel extends javax.swing.JPanel {
         catch (IOException ex) { ex.printStackTrace(); }
 
         this.init();
-        this.loadComponentsStatus();
         
         this.indexProperties.setFilesystemRoot(root.getAbsolutePath());
         this.indexProperties.setPortable(true);
-        this.indexProperties.flush();
-        
-        javax.swing.DefaultListModel model = 
-                (javax.swing.DefaultListModel)this.pathList.getModel();
-        model.addElement(root.getAbsolutePath());
-        
-        this.pathList.setEnabled(false);
-        this.addFolderButton.setEnabled(false);
-        this.removeFolderButton.setEnabled(false);
+
+        this.indexPropertiesPanel.setProperties(this.indexProperties);
     }//GEN-LAST:event_newPortableButtonActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
@@ -864,104 +434,6 @@ public class IndexerPanel extends javax.swing.JPanel {
         this.image_filetypes = this.indexProperties.getImageFiletypes();
         this.document_filetypes = this.indexProperties.getDocumentFiletypes();
         this.misc_filetypes = this.indexProperties.getMusicFiletypes();
-    }
-    
-    private void loadComponentsStatus() {
-        
-        if (this.indexProperties.isPortable() == true) {
-            this.pathList.setEnabled(false);
-            this.addFolderButton.setEnabled(false);
-            this.removeFolderButton.setEnabled(false);
-        }
-        else {
-            this.pathList.setEnabled(true);
-            this.addFolderButton.setEnabled(true);
-            this.removeFolderButton.setEnabled(true);
-        }
-        
-        this.indexTextField.setText(Resources.getIndexCanonicalPath());
-        
-        javax.swing.DefaultListModel model = 
-                (javax.swing.DefaultListModel)this.pathList.getModel();
-        
-        /* clear list */
-        model.clear();
-        
-        /* load new values */
-        String splt[] = this.indexProperties.getPath().split(File.pathSeparator);
-        for (int i = 0; i < splt.length; ++i) {
-            model.addElement(splt[i]);
-        }
-        
-        storeTextCb.setSelected(this.indexProperties.getStoreText());
-        storeThumbsCb.setSelected(this.indexProperties.getStoreThumbnail());
-    
-        if (this.image_filetypes.contains(new StringBuffer("jpg"))
-        && this.image_filetypes.contains(new StringBuffer("jpeg"))) {
-            this.jpegCheck.setSelected(true);
-        } else {
-            this.jpegCheck.setSelected(false);
-        }
-        
-        if (this.image_filetypes.contains(new StringBuffer("png"))) {
-            this.pngCheck.setSelected(true);
-        } else {
-            this.pngCheck.setSelected(false);
-        }
-        
-        if (this.image_filetypes.contains(new StringBuffer("gif"))) {
-            this.gifCheck.setSelected(true);
-        } else {
-            this.gifCheck.setSelected(false);
-        }
-        
-        if (this.document_filetypes.contains(new StringBuffer("txt"))) {
-            this.txtCheck.setSelected(true);
-        } else {
-            this.txtCheck.setSelected(false);
-        }
-        
-        if (this.document_filetypes.contains(new StringBuffer("pdf"))) {
-            this.pdfCheck.setSelected(true);
-        } else {
-            this.pdfCheck.setSelected(false);
-        }
-        
-        if (this.document_filetypes.contains(new StringBuffer("doc"))) {
-            this.docCheck.setSelected(true);
-        } else {
-            this.docCheck.setSelected(false);
-        }
-        
-        if (this.document_filetypes.contains(new StringBuffer("rtf"))) {
-            this.rtfCheck.setSelected(true);
-        } else {
-            this.rtfCheck.setSelected(false);
-        }
-        
-        if (this.document_filetypes.contains(new StringBuffer("html")) && this.document_filetypes.contains(new StringBuffer("htm"))) {
-            this.htmlCheck.setSelected(true);
-        } else {
-            this.htmlCheck.setSelected(false);
-        }
-        
-        if (this.document_filetypes.contains(new StringBuffer("xls"))) {
-            this.xlsCheck.setSelected(true);
-        } else {
-            this.xlsCheck.setSelected(false);
-        }
-        
-        if (this.document_filetypes.contains(new StringBuffer("ppt"))) {
-            this.pptCheck.setSelected(true);
-        } else {
-            this.pptCheck.setSelected(false);
-        }
-        
-        if (this.misc_filetypes.contains(new StringBuffer("mp3"))) {
-            this.mp3Check.setSelected(true);
-        } else {
-            this.mp3Check.setSelected(false);
-        }
     }
     
     // Deletes all files and subdirectories under dir.
@@ -1012,7 +484,7 @@ public class IndexerPanel extends javax.swing.JPanel {
                     
                     this.init();
 
-                    this.loadComponentsStatus();
+                    this.indexPropertiesPanel.setProperties(this.indexProperties);
                     
                     JOptionPane.showMessageDialog(this,
                             "Index directory '" +directory +"' successfully loaded.",
@@ -1058,40 +530,16 @@ public class IndexerPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aboutButton;
     private javax.swing.JLabel actionsLabel;
-    private javax.swing.JButton addFolderButton;
-    private javax.swing.JCheckBox docCheck;
     private javax.swing.JButton exitButton;
-    private javax.swing.JLabel filetypesLabel;
-    private javax.swing.JLabel foldersLabel;
-    private javax.swing.JCheckBox gifCheck;
-    private javax.swing.JCheckBox htmlCheck;
-    private javax.swing.JLabel indexDirectoryLabel;
-    private javax.swing.JPanel indexDirectoryPanel;
-    private javax.swing.JLabel indexLabel;
-    private javax.swing.JTextField indexTextField;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JCheckBox jpegCheck;
+    private puggle.ui.IndexPropertiesPanel indexPropertiesPanel;
     private javax.swing.JToolBar mainToolBar;
-    private javax.swing.JCheckBox mp3Check;
     private javax.swing.JButton newButton;
     private javax.swing.JButton newPortableButton;
     private javax.swing.JButton openButton;
-    private javax.swing.JLabel optionsLabel;
-    private javax.swing.JList pathList;
-    private javax.swing.JScrollPane pathScrollPane;
-    private javax.swing.JCheckBox pdfCheck;
-    private javax.swing.JCheckBox pngCheck;
-    private javax.swing.JCheckBox pptCheck;
     private javax.swing.JProgressBar progressBar;
-    private javax.swing.JButton removeFolderButton;
-    private javax.swing.JCheckBox rtfCheck;
     private javax.swing.JButton startButton;
     private javax.swing.JButton stopButton;
-    private javax.swing.JCheckBox storeTextCb;
-    private javax.swing.JCheckBox storeThumbsCb;
     private javax.swing.JTextArea textArea;
-    private javax.swing.JCheckBox txtCheck;
-    private javax.swing.JCheckBox xlsCheck;
     // End of variables declaration//GEN-END:variables
 
     private IndexProperties indexProperties;

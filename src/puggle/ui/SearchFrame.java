@@ -69,8 +69,6 @@ public class SearchFrame extends javax.swing.JFrame {
             System.err.println(ex.getMessage());
         }
         
-        this.init();
-
         /*
         long lastModified = this.indexerProperties.getLastIndexed();
         
@@ -96,6 +94,13 @@ public class SearchFrame extends javax.swing.JFrame {
 
         initComponents();
         
+        this.init();
+        
+        /* if portable edition, remove menu bar */
+        if (Resources.isPortableEdition() == true) {
+            this.setJMenuBar(null);
+        }
+        
         /* idiot patch to initialize classic panel */
         this.resultsPanel = new ClassicResultsPanel();
         this.scrollPane.setViewportView(this.resultsPanel);
@@ -103,8 +108,13 @@ public class SearchFrame extends javax.swing.JFrame {
     
     private void init() {
         this.indexDir = new File(Resources.getIndexCanonicalPath());
+        
         this.indexerProperties = new IndexProperties(
                 new File(Resources.getApplicationPropertiesCanonicalPath()));
+        
+        this.indexTextArea.setText("Last full index was at: "
+                +this.indexerProperties.getLastIndexedString());
+        
         this.imageControl = ImageControl.getImageControl();
     }
     
@@ -116,17 +126,25 @@ public class SearchFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc=" Generated Code ">//GEN-BEGIN:initComponents
     private void initComponents() {
         viewButtonGroup = new javax.swing.ButtonGroup();
-        bottomPanel = new java.awt.Panel();
-        resultsLabel = new javax.swing.JLabel();
-        nextButton = new javax.swing.JButton();
-        prevButton = new javax.swing.JButton();
         scrollPane = new javax.swing.JScrollPane();
         resultsPanel = new puggle.ui.ResultsPanel();
-        jPanel1 = new javax.swing.JPanel();
+        searchPanel = new javax.swing.JPanel();
         searchChoice = new java.awt.Choice();
         findButton = new javax.swing.JButton();
         searchLabel = new javax.swing.JLabel();
         searchField = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        bottomPanel = new java.awt.Panel();
+        resultsLabel = new javax.swing.JLabel();
+        nextButton = new javax.swing.JButton();
+        prevButton = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        startButton = new javax.swing.JButton();
+        stopButton = new javax.swing.JButton();
+        indexProgressBar = new javax.swing.JProgressBar();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        indexTextArea = new javax.swing.JTextArea();
+        propertiesButton = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -165,6 +183,79 @@ public class SearchFrame extends javax.swing.JFrame {
             }
         });
 
+        scrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        org.jdesktop.layout.GroupLayout resultsPanelLayout = new org.jdesktop.layout.GroupLayout(resultsPanel);
+        resultsPanel.setLayout(resultsPanelLayout);
+        resultsPanelLayout.setHorizontalGroup(
+            resultsPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 1264, Short.MAX_VALUE)
+        );
+        resultsPanelLayout.setVerticalGroup(
+            resultsPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 439, Short.MAX_VALUE)
+        );
+        scrollPane.setViewportView(resultsPanel);
+
+        searchPanel.setBackground(new java.awt.Color(234, 233, 234));
+        searchChoice.setFont(new java.awt.Font("Dialog", 0, 13));
+        searchChoice.addItem("All");
+        searchChoice.addItem("Music");
+        searchChoice.addItem("Pictures");
+        searchChoice.addItem("Documents");
+
+        findButton.setFont(new java.awt.Font("Tahoma", 1, 12));
+        findButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon-search.png")));
+        findButton.setText("Find");
+        findButton.setToolTipText("Find");
+        findButton.setFocusable(false);
+        findButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                findButtonMouseClicked(evt);
+            }
+        });
+
+        searchLabel.setFont(new java.awt.Font("Dialog", 1, 12));
+        searchLabel.setText("Search Items :");
+
+        searchField.setFont(new java.awt.Font("Dialog", 0, 13));
+        searchField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                searchFieldKeyTyped(evt);
+            }
+        });
+
+        org.jdesktop.layout.GroupLayout searchPanelLayout = new org.jdesktop.layout.GroupLayout(searchPanel);
+        searchPanel.setLayout(searchPanelLayout);
+        searchPanelLayout.setHorizontalGroup(
+            searchPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(searchPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(searchLabel)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(searchField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(searchChoice, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 102, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(findButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 91, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        searchPanelLayout.setVerticalGroup(
+            searchPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(searchPanelLayout.createSequentialGroup()
+                .add(searchPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(searchPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(findButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 45, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(searchPanelLayout.createSequentialGroup()
+                        .add(22, 22, 22)
+                        .add(searchPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(searchPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                                .add(searchChoice, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .add(org.jdesktop.layout.GroupLayout.BASELINE, searchLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .add(searchField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         bottomPanel.setBackground(new java.awt.Color(234, 233, 234));
         resultsLabel.setFont(new java.awt.Font("Tahoma", 1, 14));
         resultsLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -197,7 +288,7 @@ public class SearchFrame extends javax.swing.JFrame {
             .add(bottomPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(resultsLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 335, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 71, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 51, Short.MAX_VALUE)
                 .add(prevButton)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(nextButton)
@@ -214,77 +305,94 @@ public class SearchFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        scrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        org.jdesktop.layout.GroupLayout resultsPanelLayout = new org.jdesktop.layout.GroupLayout(resultsPanel);
-        resultsPanel.setLayout(resultsPanelLayout);
-        resultsPanelLayout.setHorizontalGroup(
-            resultsPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 698, Short.MAX_VALUE)
-        );
-        resultsPanelLayout.setVerticalGroup(
-            resultsPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 439, Short.MAX_VALUE)
-        );
-        scrollPane.setViewportView(resultsPanel);
-
-        jPanel1.setBackground(new java.awt.Color(234, 233, 234));
-        searchChoice.setFont(new java.awt.Font("Dialog", 0, 13));
-        searchChoice.addItem("All");
-        searchChoice.addItem("Music");
-        searchChoice.addItem("Pictures");
-        searchChoice.addItem("Documents");
-
-        findButton.setFont(new java.awt.Font("Tahoma", 1, 12));
-        findButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon-search.png")));
-        findButton.setText("Find");
-        findButton.setToolTipText("Find");
-        findButton.setFocusable(false);
-        findButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                findButtonMouseClicked(evt);
+        jPanel3.setBackground(new java.awt.Color(234, 233, 234));
+        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        startButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/start1.png")));
+        startButton.setToolTipText("Start indexing documents");
+        startButton.setBorder(null);
+        startButton.setBorderPainted(false);
+        startButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startButtonActionPerformed(evt);
             }
         });
 
-        searchLabel.setFont(new java.awt.Font("Dialog", 1, 12));
-        searchLabel.setText("Search Items :");
-
-        searchField.setFont(new java.awt.Font("Dialog", 0, 13));
-        searchField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                searchFieldKeyTyped(evt);
+        stopButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/stop2.png")));
+        stopButton.setToolTipText("Stop indexing");
+        stopButton.setBorder(null);
+        stopButton.setBorderPainted(false);
+        stopButton.setEnabled(false);
+        stopButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stopButtonActionPerformed(evt);
             }
         });
 
-        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel1Layout.createSequentialGroup()
+        indexProgressBar.setToolTipText("Indexing progress");
+
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        indexTextArea.setColumns(20);
+        indexTextArea.setEditable(false);
+        indexTextArea.setRows(5);
+        indexTextArea.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        indexTextArea.setSelectionColor(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setViewportView(indexTextArea);
+
+        propertiesButton.setText("...");
+        propertiesButton.setToolTipText("Index properties");
+        propertiesButton.setBorder(null);
+        propertiesButton.setBorderPainted(false);
+        propertiesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                propertiesButtonActionPerformed(evt);
+            }
+        });
+
+        org.jdesktop.layout.GroupLayout jPanel3Layout = new org.jdesktop.layout.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .add(searchLabel)
+                .add(startButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(2, 2, 2)
+                .add(stopButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 19, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(searchField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
+                .add(propertiesButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 19, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(searchChoice, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 102, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(findButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 91, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(indexProgressBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 54, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel1Layout.createSequentialGroup()
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .add(findButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 45, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(jPanel1Layout.createSequentialGroup()
-                        .add(22, 22, 22)
-                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                                .add(searchChoice, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .add(org.jdesktop.layout.GroupLayout.BASELINE, searchLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .add(searchField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel3Layout.createSequentialGroup()
+                .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, jScrollPane1, 0, 0, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                        .add(org.jdesktop.layout.GroupLayout.LEADING, indexProgressBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(org.jdesktop.layout.GroupLayout.LEADING, startButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 17, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, stopButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 17, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, propertiesButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 17, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(bottomPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(jPanel3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel2Layout.createSequentialGroup()
+                .add(bottomPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(0, 0, 0)
+                .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 24, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(0, 0, 0))
         );
 
         fileMenu.setText("File");
@@ -364,21 +472,62 @@ public class SearchFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, bottomPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .add(scrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+            .add(searchPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(scrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+            .add(jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+            .add(layout.createSequentialGroup()
+                .add(searchPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(1, 1, 1)
-                .add(scrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
+                .add(scrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
                 .add(1, 1, 1)
-                .add(bottomPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
         );
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void propertiesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_propertiesButtonActionPerformed
+        IndexPropertiesPanel panel = new IndexPropertiesPanel();
+        panel.setProperties(this.indexerProperties);
+        
+        JDialog dialog = new JDialog(this, "Index Properties", true);
+        
+        dialog.getContentPane().add(panel);
+        dialog.pack();
+        dialog.setLocationRelativeTo(this);
+        dialog.setResizable(true);
+        dialog.setVisible(true);
+    }//GEN-LAST:event_propertiesButtonActionPerformed
+
+    private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopButtonActionPerformed
+        this.stopIndexing();
+        this.startButton.setEnabled(true);
+        this.propertiesButton.setEnabled(true);
+        this.stopButton.setEnabled(false);
+    }//GEN-LAST:event_stopButtonActionPerformed
+
+    private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
+        try {
+            boolean status = this.startIndexing(25);
+            if (status == true) {
+                this.startButton.setEnabled(false);
+                this.propertiesButton.setEnabled(false);
+                this.stopButton.setEnabled(true);
+                System.out.println("Puggle Indexer:" +
+                        "Indexing process started in background.");
+            }
+        } catch (IOException ex) {
+            // someone else is indexing.
+            JOptionPane.showMessageDialog(this,
+                    ex.getMessage(),
+                    "Indexing failed",
+                    JOptionPane.ERROR_MESSAGE,
+                    this.imageControl.getErrorIcon());
+            return;
+        }
+    }//GEN-LAST:event_startButtonActionPerformed
 
     private void openPortableMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openPortableMenuItemActionPerformed
         String os = System.getProperty("os.name").toLowerCase();
@@ -713,8 +862,9 @@ public class SearchFrame extends javax.swing.JFrame {
             
             File indexDir = new File(Resources.getIndexCanonicalPath());
             
-            JLogger logger = new JLogger(System.out);
+            JLogger logger = new JLogger(System.out, this.indexTextArea);
             this.indexer = new Indexer(dataDirsFile, indexDir, this.indexerProperties, logger, false);
+            this.indexer.setProgressBar(this.indexProgressBar);
             this.indexer.setDelay(delay);  // Sleep about 1 sec for every 40 files.
             
             this.indexerThread = new Thread(this.indexer);
@@ -858,7 +1008,11 @@ public class SearchFrame extends javax.swing.JFrame {
     private javax.swing.JMenu fileMenu;
     private javax.swing.JButton findButton;
     private javax.swing.JMenu helpMenu;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JProgressBar indexProgressBar;
+    private javax.swing.JTextArea indexTextArea;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JMenuBar menuBar;
@@ -866,12 +1020,16 @@ public class SearchFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JMenuItem openPortableMenuItem;
     private javax.swing.JButton prevButton;
+    private javax.swing.JButton propertiesButton;
     private javax.swing.JLabel resultsLabel;
     private puggle.ui.ResultsPanel resultsPanel;
     private javax.swing.JScrollPane scrollPane;
     private java.awt.Choice searchChoice;
     private javax.swing.JTextField searchField;
     private javax.swing.JLabel searchLabel;
+    private javax.swing.JPanel searchPanel;
+    private javax.swing.JButton startButton;
+    private javax.swing.JButton stopButton;
     private javax.swing.JCheckBoxMenuItem tinyCheckBoxMenuItem;
     private javax.swing.ButtonGroup viewButtonGroup;
     private javax.swing.JMenu viewMenu;

@@ -42,6 +42,7 @@ public class TinyResultPanel extends javax.swing.JPanel {
         menuItem = new javax.swing.JMenuItem();
         pathLabel = new javax.swing.JLabel();
         titleLabel = new javax.swing.JLabel();
+        iconLabel = new javax.swing.JLabel();
 
         menuItem.setFont(new java.awt.Font("Tahoma", 0, 10));
         menuItem.setText("Copy");
@@ -90,17 +91,32 @@ public class TinyResultPanel extends javax.swing.JPanel {
             }
         });
 
+        iconLabel.setBackground(new java.awt.Color(244, 242, 249));
+        iconLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        iconLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        iconLabel.setOpaque(true);
+        iconLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                iconLabelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                iconLabelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                iconLabelMouseExited(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .addContainerGap()
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .add(iconLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 56, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(pathLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .add(titleLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)))
+                    .add(pathLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
+                    .add(titleLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -108,9 +124,34 @@ public class TinyResultPanel extends javax.swing.JPanel {
             .add(layout.createSequentialGroup()
                 .add(titleLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(pathLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(pathLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(0, 0, 0))
+            .add(iconLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void iconLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconLabelMouseExited
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_iconLabelMouseExited
+
+    private void iconLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconLabelMouseEntered
+        if (iconLabel.getIcon() != null) {
+            setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        }
+    }//GEN-LAST:event_iconLabelMouseEntered
+
+    private void iconLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconLabelMouseClicked
+        int button = evt.getButton();
+        if (button == java.awt.event.MouseEvent.BUTTON1
+                && !titleLabel.getText().equals("")) {
+            try {
+                this.executeFile(new File(titleLabel.getToolTipText()));
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(),
+                        "Error", JOptionPane.ERROR_MESSAGE, this.imageControl.getErrorIcon());
+            }
+        }
+    }//GEN-LAST:event_iconLabelMouseClicked
 
     private void menuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemActionPerformed
         // get the system clipboard
@@ -207,14 +248,15 @@ public class TinyResultPanel extends javax.swing.JPanel {
     }
     
     public void setIcon(Icon icon) {
-        throw new NullPointerException("Method not implemented");
+        this.iconLabel.setIcon(icon);
     }
     
     public javax.swing.JLabel getIconLabel() {
-        throw new NullPointerException("Method not implemented");
+        return this.iconLabel;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel iconLabel;
     private javax.swing.JMenuItem menuItem;
     private javax.swing.JLabel pathLabel;
     private javax.swing.JPopupMenu popupMenu;

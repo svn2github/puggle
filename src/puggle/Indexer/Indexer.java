@@ -360,7 +360,7 @@ public class Indexer implements Runnable {
         this.Index.optimize();
         
         this.indexerProperties.setLastOptimized(new Date().getTime());
-        this.indexerProperties.flush();
+        //this.indexerProperties.flush();
         
         if (this.ProgressBar != null) {
             this.ProgressBar.setMinimum(0);
@@ -394,7 +394,7 @@ public class Indexer implements Runnable {
             
             if (!this.Stop) {
                 this.indexerProperties.setLastIndexed(new Date().getTime());
-                this.indexerProperties.flush();
+                //this.indexerProperties.flush();
             }
             
             long end = new Date().getTime();

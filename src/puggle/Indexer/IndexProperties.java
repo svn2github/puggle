@@ -84,7 +84,7 @@ public class IndexProperties {
         this.flush();
     }
     
-    public synchronized void flush() {
+    private synchronized void flush() {
         try {
             properties.store(
                     new FileOutputStream(this.file),
@@ -106,6 +106,7 @@ public class IndexProperties {
      */
     public synchronized void setPortable(boolean b) {
         this.properties.setProperty("portable", Boolean.toString(b));
+        this.flush();
     }
     
     /**
@@ -113,6 +114,7 @@ public class IndexProperties {
      */
     public synchronized void setFilesystemRoot(String root) {
         this.properties.setProperty("filesystem_root", root);
+        this.flush();
     }
     
     /**
@@ -153,6 +155,8 @@ public class IndexProperties {
         }
         
         setImageFiletypes(sb.substring(0, sb.length() - 1 >= 0 ? sb.length() - 1 : 0));
+        
+        this.flush();
     }
     
     public synchronized void setDocumentFiletypes(String str[]) {
@@ -163,6 +167,8 @@ public class IndexProperties {
         }
         
         setDocumentFiletypes(sb.substring(0, sb.length() - 1 >= 0 ? sb.length() - 1 : 0));
+        
+        this.flush();
     }
     
     /**
@@ -170,6 +176,7 @@ public class IndexProperties {
      */
     public synchronized void setDocumentFiletypes(String str) {
         this.properties.setProperty("document_filetypes", str);
+        this.flush();
     }
     
     /**
@@ -177,6 +184,7 @@ public class IndexProperties {
      */
     public synchronized void setImageFiletypes(String str) {
         this.properties.setProperty("image_filetypes", str);
+        this.flush();
     }
     
     public synchronized void setMiscFiletypes(String str[]) {
@@ -187,6 +195,8 @@ public class IndexProperties {
         }
         
         setMiscFiletypes(sb.substring(0, sb.length() - 1 >= 0 ? sb.length() - 1 : 0));
+        
+        this.flush();
     }
     
     public synchronized void setMusicFiletypes(String str[]) {
@@ -197,6 +207,8 @@ public class IndexProperties {
         }
         
         setMusicFiletypes(sb.substring(0, sb.length() - 1 >= 0 ? sb.length() - 1 : 0));
+        
+        this.flush();
     }
     
     /**
@@ -204,10 +216,12 @@ public class IndexProperties {
      */
     public synchronized void setMiscFiletypes(String str) {
         this.properties.setProperty("misc_filetypes", str);
+        this.flush();
     }
     
     public synchronized void setMusicFiletypes(String str) {
         this.properties.setProperty("music_filetypes", str);
+        this.flush();
     }
     
     public synchronized String[] getDocumentFiletypesArray() {
@@ -242,9 +256,23 @@ public class IndexProperties {
         long milis = Long.valueOf(this.properties.getProperty("last_indexed"));
         return new Date(milis);
     }
+    
+    public synchronized String getLastIndexedString() {
+        long milis = this.getLastIndexed();
+        String lastIndexedString = "";
+        if (milis == 0) {
+            lastIndexedString = "never";
+        }
+        else {
+            lastIndexedString = new Date(milis).toString();
+        }
+        
+        return lastIndexedString;
+    }
 
     public synchronized void setLastIndexed(long millis) {
         this.properties.setProperty("last_indexed", Long.toString(millis));
+        this.flush();
     }
     
     public synchronized long getLastOptimized() {
@@ -258,6 +286,7 @@ public class IndexProperties {
 
     public synchronized void setLastOptimized(long millis) {
         this.properties.setProperty("last_optimized", Long.toString(millis));
+        this.flush();
     }
     
     
@@ -266,11 +295,13 @@ public class IndexProperties {
     }
     
     public synchronized void setPath(File file) {
-        throw new NullPointerException("Method not implemented.");
+        this.properties.setProperty("path", file.getPath());
+        this.flush();
     }
     
     public synchronized void setPath(String file) {
         this.properties.setProperty("path", file);
+        this.flush();
     }
     
     /**
@@ -278,6 +309,7 @@ public class IndexProperties {
      */
     public synchronized void setStoreText(boolean b) {
         this.properties.setProperty("store_text", Boolean.toString(b));
+        this.flush();
     }
     
     /**
@@ -292,6 +324,7 @@ public class IndexProperties {
      */
     public synchronized void setStoreThumbnail(boolean b) {
         this.properties.setProperty("store_thumbnails", Boolean.toString(b));
+        this.flush();
     }
     
     /**

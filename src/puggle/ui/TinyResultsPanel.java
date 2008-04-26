@@ -187,11 +187,21 @@ public class TinyResultsPanel extends ResultsPanel {
         String folder = path.substring(0, path.lastIndexOf(File.separatorChar) + 1);
         resultPanel.setPath(folder);
         resultPanel.getPathLabel().setToolTipText(folder);
+        
+        try {
+            ImageIcon icon = FileHandler.getThumbnail(doc, ICON_DIMENSION, ICON_DIMENSION);
+            resultPanel.getIconLabel().setText("");
+            resultPanel.setIcon(icon);
+        } catch (FileHandlerException e) {
+            resultPanel.getIconLabel().setForeground(Color.RED);
+            resultPanel.getIconLabel().setText("File not found");
+            resultPanel.getIconLabel().setIcon(null);
+        }
     }
     
     public void clearResultPanel(TinyResultPanel resultPanel) {
         resultPanel.setTitle(""); resultPanel.getTitleLabel().setToolTipText("");
-        resultPanel.setPath("");
+        resultPanel.setPath(""); resultPanel.setIcon(null);
         resultPanel.getPathLabel().setToolTipText("");
     }
     
@@ -267,5 +277,7 @@ public class TinyResultsPanel extends ResultsPanel {
     private puggle.ui.TinyResultPanel resultPanel8;
     private puggle.ui.TinyResultPanel resultPanel9;
     // End of variables declaration//GEN-END:variables
+
+    private final int ICON_DIMENSION = 32;
     
 }
