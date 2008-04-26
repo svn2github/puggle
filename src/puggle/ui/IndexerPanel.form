@@ -19,60 +19,42 @@
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanel1" alignment="0" max="32767" attributes="1"/>
-                  <Component id="indexDirectoryPanel" alignment="0" max="32767" attributes="1"/>
-                  <Component id="indexLabel" alignment="0" pref="598" max="32767" attributes="1"/>
-                  <Component id="mainToolBar" alignment="0" pref="598" max="32767" attributes="1"/>
-                  <Component id="foldersLabel" alignment="0" pref="598" max="32767" attributes="1"/>
-              </Group>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="actionsLabel" alignment="0" pref="588" max="32767" attributes="0"/>
-                  <Component id="filetypesLabel" alignment="0" pref="588" max="32767" attributes="1"/>
-                  <Component id="optionsLabel" alignment="0" pref="588" max="32767" attributes="1"/>
                   <Group type="102" alignment="0" attributes="0">
+                      <Component id="storeTextCb" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="storeThumbsCb" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="mp3Check" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jpegCheck" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtCheck" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="pdfCheck" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="pngCheck" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="storeTextCb" min="-2" max="-2" attributes="0"/>
+                              <Component id="docCheck" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="storeThumbsCb" min="-2" max="-2" attributes="0"/>
+                              <Component id="rtfCheck" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="htmlCheck" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="xlsCheck" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="pptCheck" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="mp3Check" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jpegCheck" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtCheck" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="pdfCheck" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="pngCheck" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="docCheck" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="rtfCheck" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="htmlCheck" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="xlsCheck" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="pptCheck" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="gifCheck" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="gifCheck" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace pref="313" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
@@ -83,6 +65,19 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="textArea" pref="578" max="32767" attributes="2"/>
               <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="actionsLabel" alignment="1" pref="598" max="32767" attributes="0"/>
+                  <Component id="filetypesLabel" alignment="1" pref="598" max="32767" attributes="1"/>
+                  <Component id="optionsLabel" alignment="1" pref="598" max="32767" attributes="1"/>
+                  <Component id="jPanel1" alignment="0" max="32767" attributes="1"/>
+                  <Component id="indexDirectoryPanel" alignment="0" max="32767" attributes="1"/>
+                  <Component id="indexLabel" alignment="0" pref="598" max="32767" attributes="1"/>
+                  <Component id="mainToolBar" alignment="0" pref="598" max="32767" attributes="1"/>
+                  <Component id="foldersLabel" alignment="0" pref="598" max="32767" attributes="1"/>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -613,8 +608,8 @@
                   <Component id="pathScrollPane" pref="475" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="removeFolderButton" min="-2" pref="97" max="-2" attributes="1"/>
                       <Component id="addFolderButton" min="-2" pref="97" max="-2" attributes="1"/>
-                      <Component id="removeFolderButton" pref="97" max="32767" attributes="1"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
