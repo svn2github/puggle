@@ -871,10 +871,12 @@ public class IndexerPanel extends javax.swing.JPanel {
         if (this.indexProperties.isPortable() == true) {
             this.pathList.setEnabled(false);
             this.addFolderButton.setEnabled(false);
+            this.removeFolderButton.setEnabled(false);
         }
         else {
             this.pathList.setEnabled(true);
             this.addFolderButton.setEnabled(true);
+            this.removeFolderButton.setEnabled(true);
         }
         
         this.indexTextField.setText(Resources.getIndexCanonicalPath());
