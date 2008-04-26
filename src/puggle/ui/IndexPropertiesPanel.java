@@ -432,11 +432,6 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
         javax.swing.DefaultListModel model = 
                 (javax.swing.DefaultListModel)this.pathList.getModel();
         int rowCount = model.getSize();
-        if (rowCount == 0) {
-            JOptionPane.showMessageDialog(this, "No indexing folders have been added.",
-                    "Indexing error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
         
         String path = "";
         for (int i = 0; i < rowCount; ++i) {
@@ -547,7 +542,7 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
         model.clear();
         
         /* load new values */
-        String splt[] = indexProperties.getPath().split(File.pathSeparator);
+        File splt[] = indexProperties.getDataDirectories();
         for (int i = 0; i < splt.length; ++i) {
             model.addElement(splt[i]);
         }

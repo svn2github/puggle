@@ -40,31 +40,24 @@ public class IndexerPanel extends javax.swing.JPanel {
      */
     // <editor-fold defaultstate="collapsed" desc=" Generated Code ">//GEN-BEGIN:initComponents
     private void initComponents() {
-        textArea = new javax.swing.JTextArea();
-        progressBar = new javax.swing.JProgressBar();
+        toolBarPanel = new javax.swing.JPanel();
         mainToolBar = new javax.swing.JToolBar();
         newButton = new javax.swing.JButton();
         newPortableButton = new javax.swing.JButton();
         openButton = new javax.swing.JButton();
         aboutButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
-        stopButton = new javax.swing.JButton();
-        startButton = new javax.swing.JButton();
-        actionsLabel = new javax.swing.JLabel();
         indexPropertiesPanel = new puggle.ui.IndexPropertiesPanel();
+        actionsPanel = new javax.swing.JPanel();
+        actionsLabel = new javax.swing.JLabel();
+        progressBar = new javax.swing.JProgressBar();
+        textArea = new javax.swing.JTextArea();
+        startButton = new javax.swing.JButton();
+        stopButton = new javax.swing.JButton();
 
-        textArea.setColumns(20);
-        textArea.setEditable(false);
-        textArea.setFont(new java.awt.Font("Monospaced", 0, 10));
-        textArea.setLineWrap(true);
-        textArea.setRows(5);
-        textArea.setWrapStyleWord(true);
-        textArea.setBorder(null);
-        textArea.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        textArea.setEnabled(false);
+        setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
 
-        progressBar.setBackground(new java.awt.Color(255, 255, 255));
-        progressBar.setForeground(new java.awt.Color(51, 255, 51));
+        toolBarPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 1, 1));
 
         mainToolBar.setFloatable(false);
         mainToolBar.setAlignmentY(0.48387095F);
@@ -118,15 +111,30 @@ public class IndexerPanel extends javax.swing.JPanel {
 
         mainToolBar.add(exitButton);
 
-        stopButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/stop.png")));
-        stopButton.setText("Stop");
-        stopButton.setToolTipText("Stop Indexing");
-        stopButton.setEnabled(false);
-        stopButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                stopButtonActionPerformed(evt);
-            }
-        });
+        toolBarPanel.add(mainToolBar);
+
+        add(toolBarPanel);
+
+        add(indexPropertiesPanel);
+
+        actionsLabel.setBackground(new java.awt.Color(102, 102, 255));
+        actionsLabel.setFont(new java.awt.Font("Tahoma", 1, 14));
+        actionsLabel.setForeground(new java.awt.Color(255, 255, 255));
+        actionsLabel.setText("Actions");
+        actionsLabel.setOpaque(true);
+
+        progressBar.setBackground(new java.awt.Color(255, 255, 255));
+        progressBar.setForeground(new java.awt.Color(51, 255, 51));
+
+        textArea.setColumns(20);
+        textArea.setEditable(false);
+        textArea.setFont(new java.awt.Font("Monospaced", 0, 10));
+        textArea.setLineWrap(true);
+        textArea.setRows(5);
+        textArea.setWrapStyleWord(true);
+        textArea.setBorder(null);
+        textArea.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        textArea.setEnabled(false);
 
         startButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/start.png")));
         startButton.setText("Start");
@@ -137,50 +145,52 @@ public class IndexerPanel extends javax.swing.JPanel {
             }
         });
 
-        actionsLabel.setBackground(new java.awt.Color(102, 102, 255));
-        actionsLabel.setFont(new java.awt.Font("Tahoma", 1, 14));
-        actionsLabel.setForeground(new java.awt.Color(255, 255, 255));
-        actionsLabel.setText("Actions");
-        actionsLabel.setOpaque(true);
+        stopButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/stop.png")));
+        stopButton.setText("Stop");
+        stopButton.setToolTipText("Stop Indexing");
+        stopButton.setEnabled(false);
+        stopButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stopButtonActionPerformed(evt);
+            }
+        });
 
-        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(10, 10, 10)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, textArea, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, progressBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE))
+        org.jdesktop.layout.GroupLayout actionsPanelLayout = new org.jdesktop.layout.GroupLayout(actionsPanel);
+        actionsPanel.setLayout(actionsPanelLayout);
+        actionsPanelLayout.setHorizontalGroup(
+            actionsPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, actionsLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
+            .add(actionsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(progressBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
                 .addContainerGap())
-            .add(actionsLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(398, Short.MAX_VALUE)
+            .add(actionsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(textArea, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
+                .addContainerGap())
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, actionsPanelLayout.createSequentialGroup()
+                .addContainerGap(410, Short.MAX_VALUE)
                 .add(startButton)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(stopButton)
                 .addContainerGap())
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, indexPropertiesPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, mainToolBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(mainToolBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(indexPropertiesPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        actionsPanelLayout.setVerticalGroup(
+            actionsPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(actionsPanelLayout.createSequentialGroup()
                 .add(actionsLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(progressBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(textArea, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                .add(actionsPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(stopButton)
                     .add(startButton))
-                .addContainerGap())
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+        add(actionsPanel);
+
     }// </editor-fold>//GEN-END:initComponents
 
     private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopButtonActionPerformed
@@ -193,6 +203,12 @@ public class IndexerPanel extends javax.swing.JPanel {
         File[] dataDirsFile = null;
         
         dataDirsFile = this.indexProperties.getDataDirectories();
+        
+        if (dataDirsFile.length == 0) {
+            JOptionPane.showMessageDialog(this, "No indexing folders have been added.",
+                    "Indexing error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         
         File logFile = null;
         PrintStream logStream = null;
@@ -530,6 +546,7 @@ public class IndexerPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aboutButton;
     private javax.swing.JLabel actionsLabel;
+    private javax.swing.JPanel actionsPanel;
     private javax.swing.JButton exitButton;
     private puggle.ui.IndexPropertiesPanel indexPropertiesPanel;
     private javax.swing.JToolBar mainToolBar;
@@ -540,6 +557,7 @@ public class IndexerPanel extends javax.swing.JPanel {
     private javax.swing.JButton startButton;
     private javax.swing.JButton stopButton;
     private javax.swing.JTextArea textArea;
+    private javax.swing.JPanel toolBarPanel;
     // End of variables declaration//GEN-END:variables
 
     private IndexProperties indexProperties;

@@ -335,7 +335,13 @@ public class IndexProperties {
     }
     
     public synchronized File[] getDataDirectories() {
-        String[] dataDirs = this.properties.getProperty("path").split(File.pathSeparator);
+        String path = this.properties.getProperty("path");
+        
+        if (path.equals("") == true) {
+            return new File[0];
+        }
+        
+        String[] dataDirs = path.split(File.pathSeparator);
         File[] dataDirsFile = new File[dataDirs.length];
         
         for (int i = 0; i < dataDirs.length; ++i) {
