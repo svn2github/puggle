@@ -84,6 +84,12 @@ public class IndexProperties {
         this.flush();
     }
     
+    public synchronized void close() {
+        this.flush();
+        this.file = null;
+        this.properties = null;
+    }
+    
     private synchronized void flush() {
         try {
             properties.store(

@@ -7,7 +7,7 @@
  * and open the template in the editor.
  */
 
-package puggle.ui;
+package puggle.Util;
 
 import org.apache.lucene.search.highlight.SimpleHTMLEncoder;
 import org.apache.lucene.search.highlight.SimpleHTMLFormatter;
@@ -44,6 +44,24 @@ import org.apache.lucene.search.highlight.QueryScorer;
  * @author gvasil
  */
 public class Util {
+    
+    // Deletes all files and subdirectories under dir.
+    // Returns true if all deletions were successful.
+    // If a deletion fails, the method stops attempting to delete and returns false.
+    public static boolean deleteDir(File dir) {
+        if (dir.isDirectory()) {
+            String[] children = dir.list();
+            for (int i=0; i<children.length; i++) {
+                boolean success = deleteDir(new File(dir, children[i]));
+                if (!success) {
+                    return false;
+                }
+            }
+        }
+    
+        // The directory is now empty so delete it
+        return dir.delete();
+    }
 
     public static String getFragment(Document doc, Query query) {
         File file = new File(doc.get("path"));

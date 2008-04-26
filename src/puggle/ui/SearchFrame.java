@@ -49,6 +49,7 @@ import org.apache.lucene.document.Field;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.search.Hits;
 import org.apache.lucene.search.Query;
+import puggle.Util.Util;
 
 /**
  *
@@ -232,7 +233,7 @@ public class SearchFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .add(searchLabel)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(searchField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
+                .add(searchField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(searchChoice, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 102, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -288,7 +289,7 @@ public class SearchFrame extends javax.swing.JFrame {
             .add(bottomPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(resultsLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 335, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 93, Short.MAX_VALUE)
                 .add(prevButton)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(nextButton)
@@ -361,7 +362,7 @@ public class SearchFrame extends javax.swing.JFrame {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(propertiesButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 19, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 566, Short.MAX_VALUE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(indexProgressBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 54, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -473,7 +474,7 @@ public class SearchFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(searchPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .add(scrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+            .add(scrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
             .add(jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -519,13 +520,24 @@ public class SearchFrame extends javax.swing.JFrame {
                         "Indexing process started in background.");
             }
         } catch (IOException ex) {
-            // someone else is indexing.
-            JOptionPane.showMessageDialog(this,
-                    ex.getMessage(),
-                    "Indexing failed",
-                    JOptionPane.ERROR_MESSAGE,
-                    this.imageControl.getErrorIcon());
-            return;
+            int opt = JOptionPane.showConfirmDialog(this, "Force unlock?",
+                    ex.getMessage(), JOptionPane.YES_NO_OPTION);
+
+            if (opt == JOptionPane.YES_OPTION) {
+                try {
+                    Indexer indexer = new Indexer(indexDir, this.indexerProperties, true);
+                    indexer.close(); indexer = null;
+                } catch (IOException e) {
+                    JOptionPane.showMessageDialog(this, e.getMessage(),
+                            "Unspecified error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                JOptionPane.showMessageDialog(this, "Index successfully unlocked",
+                        "Report", JOptionPane.INFORMATION_MESSAGE);
+                this.startButtonActionPerformed(evt);
+            } else if (opt == JOptionPane.NO_OPTION) {
+                return;
+            }
         }
     }//GEN-LAST:event_startButtonActionPerformed
 
@@ -759,7 +771,7 @@ public class SearchFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowGainedFocus
    
     private void formWindowIconified(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowIconified
-        if (this.trayIconControl != null) {
+/*        if (this.trayIconControl != null) {
             this.trayIconControl.add();
         }
 
@@ -778,10 +790,11 @@ public class SearchFrame extends javax.swing.JFrame {
             System.out.println(ex.getMessage());
             return;
         }
+ */
     }//GEN-LAST:event_formWindowIconified
 
     private void formWindowDeiconified(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowDeiconified
-        this.stopIndexing();
+//        this.stopIndexing();
     }//GEN-LAST:event_formWindowDeiconified
 
     private void nextButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextButtonMouseClicked

@@ -516,7 +516,7 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
     
     public void setProperties(IndexProperties properties) {
         
-        indexProperties = properties;
+        this.indexProperties = properties;
         
         String image_filetypes = indexProperties.getImageFiletypes();
         String document_filetypes = indexProperties.getDocumentFiletypes();

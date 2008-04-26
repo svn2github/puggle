@@ -23,6 +23,7 @@ import org.apache.lucene.search.Query;
 import puggle.Indexer.IndexProperties;
 import puggle.LexicalAnalyzer.FileHandler;
 import puggle.LexicalAnalyzer.FileHandlerException;
+import puggle.Util.Util;
 
 /**
  *

@@ -34,7 +34,7 @@ public class Resources {
     /* final string variables */
     public final static String APP_NAME = "Puggle";
     
-    public final static String APP_VERSION = "v0.2.1";
+    public final static String APP_VERSION = "0.21";
     
     /** This variable indicates whether the portable edition will run */
     private final static boolean PORTABLE_EDITION = false;

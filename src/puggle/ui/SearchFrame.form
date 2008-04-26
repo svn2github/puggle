@@ -125,7 +125,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="searchPanel" alignment="0" max="32767" attributes="1"/>
-          <Component id="scrollPane" alignment="0" pref="680" max="32767" attributes="0"/>
+          <Component id="scrollPane" alignment="0" pref="722" max="32767" attributes="0"/>
           <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
@@ -180,7 +180,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="searchLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="searchField" pref="361" max="32767" attributes="0"/>
+                  <Component id="searchField" pref="403" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="searchChoice" min="-2" pref="102" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -294,7 +294,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="resultsLabel" min="-2" pref="335" max="-2" attributes="0"/>
-                      <EmptySpace pref="51" max="32767" attributes="0"/>
+                      <EmptySpace pref="93" max="32767" attributes="0"/>
                       <Component id="prevButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="nextButton" min="-2" max="-2" attributes="0"/>
@@ -381,7 +381,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="propertiesButton" min="-2" pref="19" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="524" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="566" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="indexProgressBar" min="-2" pref="54" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="1"/>

@@ -18,6 +18,7 @@ import javax.swing.UIManager;
 import puggle.Indexer.Indexer;
 import puggle.Indexer.IndexProperties;
 import puggle.Resources.Resources;
+import puggle.Util.Util;
 
 /**
  *
@@ -313,7 +314,7 @@ public class IndexerPanel extends javax.swing.JPanel {
                             null);
                     
                     if (opt == JOptionPane.NO_OPTION) {
-                        if (this.deleteDir(file) == false) {
+                        if (Util.deleteDir(file) == false) {
                             JOptionPane.showMessageDialog(this,
                                     "Directory '" +fileName +"' cannot be deleted.",
                                     "Error Creating Index Directory",
@@ -386,7 +387,7 @@ public class IndexerPanel extends javax.swing.JPanel {
                     null);
             
             if (opt == JOptionPane.NO_OPTION) {
-                if (this.deleteDir(index) == false) {
+                if (Util.deleteDir(index) == false) {
                     JOptionPane.showMessageDialog(this,
                             "Directory '" +index +"' cannot be deleted.",
                             "Error Creating Index Directory",
@@ -450,24 +451,6 @@ public class IndexerPanel extends javax.swing.JPanel {
         this.image_filetypes = this.indexProperties.getImageFiletypes();
         this.document_filetypes = this.indexProperties.getDocumentFiletypes();
         this.misc_filetypes = this.indexProperties.getMusicFiletypes();
-    }
-    
-    // Deletes all files and subdirectories under dir.
-    // Returns true if all deletions were successful.
-    // If a deletion fails, the method stops attempting to delete and returns false.
-    private boolean deleteDir(File dir) {
-        if (dir.isDirectory()) {
-            String[] children = dir.list();
-            for (int i=0; i<children.length; i++) {
-                boolean success = deleteDir(new File(dir, children[i]));
-                if (!success) {
-                    return false;
-                }
-            }
-        }
-    
-        // The directory is now empty so delete it
-        return dir.delete();
     }
     
     private void openButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openButtonActionPerformed
