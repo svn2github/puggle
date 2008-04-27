@@ -10,6 +10,7 @@
 package puggle;
 
 import java.io.File;
+import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -19,6 +20,7 @@ import puggle.Indexer.Indexer;
 import puggle.Resources.Resources;
 import puggle.Util.Util;
 import puggle.ui.ImageControl;
+import puggle.ui.IndexPropertiesPanel;
 import puggle.ui.IndexerFrame;
 import puggle.ui.SearchFrame;
 import java.io.IOException;
@@ -83,6 +85,17 @@ public class Main {
                 props.setPath(root.getPath());
                 Indexer indexer = new Indexer(index, props);
                 indexer.close();
+                
+                IndexPropertiesPanel panel = new IndexPropertiesPanel();
+                panel.setProperties(props);
+                
+                JDialog dialog = new JDialog((java.awt.Dialog)null, "Index Properties", true);
+                
+                dialog.getContentPane().add(panel);
+                dialog.pack();
+                dialog.setLocationRelativeTo(null);
+                dialog.setResizable(true);
+                dialog.setVisible(true);
             }
             
             java.awt.EventQueue.invokeLater(new Runnable() {

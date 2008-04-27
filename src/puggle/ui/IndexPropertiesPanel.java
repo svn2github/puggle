@@ -454,7 +454,6 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
     }
     
     private void storeIndexingFiletypes() {
-        System.out.println("lala");
         File dataDir = null, indexDir = null;
         File[] dataDirsFile = null;
         
