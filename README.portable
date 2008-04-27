@@ -1,0 +1,47 @@
+Puggle Desktop Search Engine, version 0.21 (Portable)
+-----------------------------------------------------------------------------
+Author: Giorgos Vasiliadis, gvasil@csd.uoc.gr
+
+
+1. INTRODUCTION
+============================
+This is the portable version of Puggle - the desktop search engine that
+provides full text search over files, folders, music, photos, web pages
+and more that are stored locally on your computer.
+
+It is suitable for use on removable storage disks, like external hard disk
+drives or usb sticks. The index file is stored in the same directory that the
+executable files are. Furthermore, the relative paths of the indexed file are
+stored in respect to the executable path.
+
+
+2. HOW TO RUN
+============================
+Puggle needs Java Runtime Environment (JRE) version 6 or later to run. You
+can download it from http://java.sun.com/javase/downloads/index.jsp, if it
+is not already installed on your system.
+
+Puggle is composed of two parts: the Indexer and the Searcher. The Indexer
+is responsible for building and updating the index. The Searcher uses the
+index to evaluate the queries supplied by the user and present the results.
+
+Windows
+-------
+To run the Indexer, double-click the 'puggle-indexer.bat' script that is
+located in bin/ directory. The Searcher can be executed by running the
+'puggle.bat' script in the same directory.
+
+
+3. HOW TO BUILD FROM SOURCES
+============================
+You have to install Java SDK 6 or later in order to compile Puggle. You can
+download it from http://java.sun.com/javase/downloads/index.jsp, if it is
+not already installed on your system.
+The best way to compile the source code is to use Netbeans.  Using Netbeans,
+simply import the 'Puggle' directory as a new project.
+
+
+4. FEEDBACK
+============================
+Feel free to send any comments, bugs or feature requests at gvasil@csd.uoc.gr.
+
