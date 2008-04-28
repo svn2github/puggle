@@ -102,6 +102,15 @@ public class SearchFrame extends javax.swing.JFrame {
             this.setJMenuBar(null);
         }
         
+        if (new Date().getTime() - this.indexerProperties.getLastIndexed() > 600000) {
+            this.lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-important.png")));
+            this.lastIndexedLabel.setToolTipText("Index is outdated. Please start indexer.");
+        }
+        else {
+            this.lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-green.png")));
+            this.lastIndexedLabel.setToolTipText("");
+        }
+        
         /* idiot patch to initialize classic panel */
         this.resultsPanel = new ClassicResultsPanel();
         this.scrollPane.setViewportView(this.resultsPanel);
@@ -147,7 +156,6 @@ public class SearchFrame extends javax.swing.JFrame {
         indexTextArea = new javax.swing.JTextArea();
         propertiesButton = new javax.swing.JButton();
         lastIndexedLabel = new javax.swing.JLabel();
-        this.lastIndexedLabel.setVisible(false);
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -354,7 +362,7 @@ public class SearchFrame extends javax.swing.JFrame {
         });
 
         lastIndexedLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-red.png")));
+        lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-important.png")));
         lastIndexedLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         org.jdesktop.layout.GroupLayout jPanel3Layout = new org.jdesktop.layout.GroupLayout(jPanel3);
@@ -891,6 +899,9 @@ public class SearchFrame extends javax.swing.JFrame {
             this.indexerThread = new Thread(this.indexer);
             this.indexerThread.start();
             
+            this.lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-green.png")));
+            this.lastIndexedLabel.setToolTipText("");
+            
             return true;
         }
         
@@ -995,6 +1006,15 @@ public class SearchFrame extends javax.swing.JFrame {
                 " milliseconds) that matched query '" +
                 q + "'."
         );
+        
+        if (new Date().getTime() - this.indexerProperties.getLastIndexed() > 600000) {
+            this.lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-important.png")));
+            this.lastIndexedLabel.setToolTipText("Index is outdated. Please start indexer.");
+        }
+        else {
+            this.lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-green.png")));
+            this.lastIndexedLabel.setToolTipText("");
+        }
     }
 
     /**
