@@ -146,6 +146,8 @@ public class SearchFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         indexTextArea = new javax.swing.JTextArea();
         propertiesButton = new javax.swing.JButton();
+        lastIndexedLabel = new javax.swing.JLabel();
+        this.lastIndexedLabel.setVisible(false);
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -160,7 +162,7 @@ public class SearchFrame extends javax.swing.JFrame {
         aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle(Resources.APP_NAME + " " + Resources.APP_VERSION);
+        setTitle(Resources.APP_NAME + " " + Resources.APP_VERSION + ((Resources.isPortableEdition() == true) ? " (Portable)" : ""));
         setBackground(new java.awt.Color(241, 240, 240));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setName("frame");
@@ -233,7 +235,7 @@ public class SearchFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .add(searchLabel)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(searchField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
+                .add(searchField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(searchChoice, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 102, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -289,7 +291,7 @@ public class SearchFrame extends javax.swing.JFrame {
             .add(bottomPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(resultsLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 335, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 93, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 102, Short.MAX_VALUE)
                 .add(prevButton)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(nextButton)
@@ -308,9 +310,9 @@ public class SearchFrame extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(234, 233, 234));
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        startButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/start1.png")));
+        startButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media-play.png")));
         startButton.setToolTipText("Start indexing documents");
-        startButton.setBorder(null);
+        startButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         startButton.setBorderPainted(false);
         startButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -318,9 +320,9 @@ public class SearchFrame extends javax.swing.JFrame {
             }
         });
 
-        stopButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/stop2.png")));
+        stopButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media-stop.png")));
         stopButton.setToolTipText("Stop indexing");
-        stopButton.setBorder(null);
+        stopButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         stopButton.setBorderPainted(false);
         stopButton.setEnabled(false);
         stopButton.addActionListener(new java.awt.event.ActionListener() {
@@ -336,13 +338,14 @@ public class SearchFrame extends javax.swing.JFrame {
         indexTextArea.setColumns(20);
         indexTextArea.setEditable(false);
         indexTextArea.setRows(5);
+        indexTextArea.setToolTipText("");
         indexTextArea.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         indexTextArea.setSelectionColor(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(indexTextArea);
 
-        propertiesButton.setText("...");
-        propertiesButton.setToolTipText("Index properties");
-        propertiesButton.setBorder(null);
+        propertiesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/preferences.png")));
+        propertiesButton.setToolTipText("Set indexing properties");
+        propertiesButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         propertiesButton.setBorderPainted(false);
         propertiesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -350,33 +353,38 @@ public class SearchFrame extends javax.swing.JFrame {
             }
         });
 
+        lastIndexedLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-red.png")));
+        lastIndexedLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
         org.jdesktop.layout.GroupLayout jPanel3Layout = new org.jdesktop.layout.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .add(startButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(2, 2, 2)
-                .add(stopButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 19, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel3Layout.createSequentialGroup()
+                .add(lastIndexedLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 21, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(startButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(0, 0, 0)
+                .add(stopButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 19, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(0, 0, 0)
                 .add(propertiesButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 19, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 566, Short.MAX_VALUE)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(indexProgressBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 54, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel3Layout.createSequentialGroup()
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel3Layout.createSequentialGroup()
                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(org.jdesktop.layout.GroupLayout.LEADING, jScrollPane1, 0, 0, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                        .add(org.jdesktop.layout.GroupLayout.LEADING, indexProgressBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(org.jdesktop.layout.GroupLayout.LEADING, startButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 17, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, stopButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 17, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, propertiesButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 17, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, indexProgressBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, propertiesButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, stopButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)
+                    .add(startButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, lastIndexedLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 18, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -474,7 +482,7 @@ public class SearchFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(searchPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .add(scrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
+            .add(scrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 731, Short.MAX_VALUE)
             .add(jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -1028,6 +1036,7 @@ public class SearchFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel lastIndexedLabel;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JButton nextButton;
     private javax.swing.JMenuItem openMenuItem;

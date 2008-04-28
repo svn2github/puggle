@@ -53,6 +53,17 @@ public class Main {
         
         
         if (Resources.isPortableEdition() == true) {
+            String os = System.getProperty("os.name").toLowerCase();
+            if (os.indexOf("windows") > 0) {
+                JOptionPane.showMessageDialog(null,
+                        "Sorry, portable edition is currently running\n"
+                        +"only in MS Windows operating systems.",
+                        "Puggle Portable",
+                        JOptionPane.ERROR_MESSAGE,
+                        ImageControl.getImageControl().getErrorIcon());
+                return;
+            }
+            
             File root = new File(System.getProperty("user.dir"));
             while (root.getParentFile() != null) {
                 root = root.getParentFile();
@@ -66,16 +77,18 @@ public class Main {
             
             if (props.getVersion().equals(Resources.getApplicationVersion()) == false) {
                 props.close(); props = null;
+                System.gc();
                 File f = new File(Resources.getIndexCanonicalPath());
                 if (Util.deleteDir(f) == false) {
                     JOptionPane.showMessageDialog(null,
-                            "Cannot delete old format directory '" +f +"'.\n"
-                            + "Please remove it manually and start again.",
+                            "Cannot delete directory '" +f +"'.\n"
+                            + "Please remove it manually and start application again.",
                             "Error Opening Index Directory",
                             JOptionPane.ERROR_MESSAGE,
                             ImageControl.getImageControl().getErrorIcon());
                     System.exit(1);
                 }
+                props = new IndexProperties(propsFile);
             }
             
             if (IndexReader.indexExists(Resources.getIndexCanonicalPath()) == false) {
@@ -86,7 +99,7 @@ public class Main {
                 Indexer indexer = new Indexer(index, props);
                 indexer.close();
                 
-                IndexPropertiesPanel panel = new IndexPropertiesPanel();
+/*                IndexPropertiesPanel panel = new IndexPropertiesPanel();
                 panel.setProperties(props);
                 
                 JDialog dialog = new JDialog((java.awt.Dialog)null, "Index Properties", true);
@@ -96,6 +109,7 @@ public class Main {
                 dialog.setLocationRelativeTo(null);
                 dialog.setResizable(true);
                 dialog.setVisible(true);
+ */
             }
             
             java.awt.EventQueue.invokeLater(new Runnable() {

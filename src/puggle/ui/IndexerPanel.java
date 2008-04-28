@@ -468,10 +468,15 @@ public class IndexerPanel extends javax.swing.JPanel {
             
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                 File file = fc.getSelectedFile();
+                
+                /* check if root directory */
+                if (file.getParent() == null) {
+                    file = new File(file.getPath() + ".puggle");
+                }
 
                 boolean exists = Indexer.indexExists(file);
                 String directory = file.getPath();
-                
+
                 if (exists == true) {
 
                     /* close current index */
