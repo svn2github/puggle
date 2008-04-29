@@ -173,10 +173,15 @@ public class TinyResultsPanel extends ResultsPanel {
     private void printHit(Document doc, int score, TinyResultPanel resultPanel) {
         String title = doc.get("title");
         String path = doc.get("path");
-        if (this.indexProperties.isPortable()) {
-            path = this.indexProperties.getFilesystemRoot() + path;
+        String path_portable = doc.get("path_portable");
+        if (this.indexProperties.isPortable() && path_portable == null) {
+            path = path_portable = this.indexProperties.getFilesystemRoot() + path;
+            doc.add(new Field("path_portable", path_portable, Field.Store.YES, Field.Index.UN_TOKENIZED));
             doc.removeField("path");
-            doc.add(new Field("path", path, Field.Store.YES, Field.Index.UN_TOKENIZED));
+            doc.add(new Field("path", path_portable, Field.Store.YES, Field.Index.UN_TOKENIZED));
+        }
+        if (this.indexProperties.isPortable()) {
+            path = path_portable;
         }
         long size = Long.parseLong(doc.get("size"));
         if (title == null || title.trim().compareTo("") == 0) {
