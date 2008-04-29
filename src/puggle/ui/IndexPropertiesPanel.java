@@ -417,8 +417,11 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_addFolderButtonActionPerformed
 
     public void setEnabled(boolean b) {
-        this.pathList.setEnabled(b); this.addFolderButton.setEnabled(b);
-        this.removeFolderButton.setEnabled(b);
+        if (this.indexProperties.isPortable() == true) {
+            this.pathList.setEnabled(false);
+            this.addFolderButton.setEnabled(false);
+            this.removeFolderButton.setEnabled(false);
+        }
         this.jpegCheck.setEnabled(b); this.gifCheck.setEnabled(b);
         this.pngCheck.setEnabled(b); this.txtCheck.setEnabled(b);
         this.docCheck.setEnabled(b); this.pdfCheck.setEnabled(b);
