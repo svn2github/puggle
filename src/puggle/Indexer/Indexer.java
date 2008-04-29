@@ -67,10 +67,10 @@ public class Indexer implements Runnable {
     
     private long Delay = 0; // ms
     
-    private IndexProperties indexerProperties;
+    private IndexProperties indexProperties;
 
     /** Creates a new instance of Indexer */
-    public Indexer(File indexDir, IndexProperties indexerProperties) throws IOException {
+    public Indexer(File indexDir, IndexProperties indexProperties) throws IOException {
         this.IndexDir = indexDir;
         
         this.TotalBytes = 0;
@@ -80,7 +80,7 @@ public class Indexer implements Runnable {
 
         boolean create = false;
         
-        this.indexerProperties = indexerProperties;
+        this.indexProperties = indexProperties;
         
         if (IndexReader.indexExists(this.IndexDir)) {
             if (IndexReader.isLocked(this.IndexDir.getCanonicalPath())) {
@@ -93,7 +93,7 @@ public class Indexer implements Runnable {
         this.Index = new IndexModifier(this.IndexDir, Resources.getAnalyzer(), create);
     }
     
-    public Indexer(File indexDir, IndexProperties indexerProperties, boolean unlock) throws IOException {
+    public Indexer(File indexDir, IndexProperties indexProperties, boolean unlock) throws IOException {
         this.IndexDir = indexDir;
         
         this.TotalBytes = 0;
@@ -103,7 +103,7 @@ public class Indexer implements Runnable {
         
         boolean create = false;
         
-        this.indexerProperties = indexerProperties;
+        this.indexProperties = indexProperties;
 
         if (IndexReader.indexExists(this.IndexDir)) {
             if (IndexReader.isLocked(this.IndexDir.getCanonicalPath())) {
@@ -124,15 +124,15 @@ public class Indexer implements Runnable {
         this.setDataDirectories(dataDir);
     }
     */
-    public Indexer(File[] dataDir, File indexDir, IndexProperties indexerProperties, boolean unlock)
+    public Indexer(File[] dataDir, File indexDir, IndexProperties indexProperties, boolean unlock)
             throws IOException {
-        this(indexDir, indexerProperties, unlock);
+        this(indexDir, indexProperties, unlock);
         this.setDataDirectories(dataDir);
     }
     
-    public Indexer(File[] dataDir, File indexDir, IndexProperties indexerProperties, JLogger logger, boolean unlock)
+    public Indexer(File[] dataDir, File indexDir, IndexProperties indexProperties, JLogger logger, boolean unlock)
             throws IOException {
-        this(dataDir, indexDir, indexerProperties, unlock);
+        this(dataDir, indexDir, indexProperties, unlock);
         this.Logger = logger;
     }
     /*
@@ -213,7 +213,14 @@ public class Indexer implements Runnable {
             }
             
             Document doc = indexReader.document(i);
-            File file = new File(doc.get("path"));
+            String path = doc.get("path");
+            
+            if (this.indexProperties.isPortable()) {
+                path = this.indexProperties.getFilesystemRoot() + path;
+            
+            }
+            
+            File file = new File(path);
             
             if (!file.exists()) {
                 this.Index.deleteDocument(i);
@@ -263,8 +270,8 @@ public class Indexer implements Runnable {
      */
     private synchronized void indexDocuments() throws IOException {
         FileHandler handler = new FileHandler(
-                this.indexerProperties.getStoreText(),
-                this.indexerProperties.getStoreThumbnail());
+                this.indexProperties.getStoreText(),
+                this.indexProperties.getStoreThumbnail());
 
         this.Index.setMaxFieldLength(100000); // 100K
         
@@ -278,7 +285,7 @@ public class Indexer implements Runnable {
         }
         
         for (int i = 0; i < this.DataDir.length; ++i) {
-            FileWalker files = new FileWalker(this.DataDir[i], Resources.getFiletypeFilter(this.indexerProperties));
+            FileWalker files = new FileWalker(this.DataDir[i], Resources.getFiletypeFilter(this.indexProperties));
 
             while (files.hasNext() && !this.Stop) {
                 
@@ -299,8 +306,8 @@ public class Indexer implements Runnable {
                 String errDescr = "";
                 
                 File root = null;
-                if (this.indexerProperties.isPortable() == true) {
-                    root = new File(this.indexerProperties.getFilesystemRoot());
+                if (this.indexProperties.isPortable() == true) {
+                    root = new File(this.indexProperties.getFilesystemRoot());
                 }
                 
                 try {
@@ -359,8 +366,8 @@ public class Indexer implements Runnable {
         
         this.Index.optimize();
         
-        this.indexerProperties.setLastOptimized(new Date().getTime());
-        //this.indexerProperties.flush();
+        this.indexProperties.setLastOptimized(new Date().getTime());
+        //this.indexProperties.flush();
         
         if (this.ProgressBar != null) {
             this.ProgressBar.setMinimum(0);
@@ -393,8 +400,8 @@ public class Indexer implements Runnable {
             }
             
             if (!this.Stop) {
-                this.indexerProperties.setLastIndexed(new Date().getTime());
-                //this.indexerProperties.flush();
+                this.indexProperties.setLastIndexed(new Date().getTime());
+                //this.indexProperties.flush();
             }
             
             long end = new Date().getTime();

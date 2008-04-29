@@ -104,7 +104,7 @@ public class SearchFrame extends javax.swing.JFrame {
         
         if (new Date().getTime() - this.indexerProperties.getLastIndexed() > INDEX_DT) {
             this.lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-important.png")));
-            this.lastIndexedLabel.setToolTipText("Index is outdated. Please start indexer.");
+            this.lastIndexedLabel.setToolTipText("Index is outdated or incomplete. Please start indexer.");
         }
         else {
             this.lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-green.png")));
@@ -526,7 +526,7 @@ public class SearchFrame extends javax.swing.JFrame {
         
         if (new Date().getTime() - this.indexerProperties.getLastIndexed() > INDEX_DT) {
             this.lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-important.png")));
-            this.lastIndexedLabel.setToolTipText("Index is outdated. Please start indexer.");
+            this.lastIndexedLabel.setToolTipText("Index is outdated or incomplete. Please start indexer.");
         }
         else {
             this.lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-green.png")));
@@ -1023,7 +1023,7 @@ public class SearchFrame extends javax.swing.JFrame {
         
         if (new Date().getTime() - this.indexerProperties.getLastIndexed() > INDEX_DT) {
             this.lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-important.png")));
-            this.lastIndexedLabel.setToolTipText("Index is outdated. Please start indexer.");
+            this.lastIndexedLabel.setToolTipText("Index is outdated or incomplete. Please start indexer.");
         }
         else {
             this.lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-green.png")));
