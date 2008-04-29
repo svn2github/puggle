@@ -18,6 +18,7 @@ import puggle.FileWalker.FileWalker;
 import puggle.LexicalAnalyzer.FileHandler;
 import puggle.LexicalAnalyzer.FileHandlerException;
 import puggle.Indexer.IndexProperties;
+import puggle.Resources.RelativePath;
 import puggle.Resources.Resources;
 import puggle.ui.ImageControl;
 import puggle.ui.JLogger;
@@ -295,20 +296,27 @@ public class Indexer implements Runnable {
                     try { Thread.sleep(Delay); }
                     catch (InterruptedException e) { e.printStackTrace(); }
                 }
+                
+                File root = null;
+                if (this.indexProperties.isPortable() == true) {
+                    root = new File(this.indexProperties.getFilesystemRoot());
+                }
 
-                if (indexReader.termDocs(new Term("path", file.getCanonicalPath())).next()) {
-                    continue;
+                if (this.indexProperties.isPortable() == true) {
+                    String path = RelativePath.getRelativePath(root, file);
+                    if (indexReader.termDocs(new Term("path", path)).next()) {
+                        continue;
+                    }
+                } else {
+                    if (indexReader.termDocs(new Term("path", file.getCanonicalPath())).next()) {
+                        continue;
+                    }
                 }
                 
                 String filename = file.getCanonicalPath();
 
                 Document doc = null;
                 String errDescr = "";
-                
-                File root = null;
-                if (this.indexProperties.isPortable() == true) {
-                    root = new File(this.indexProperties.getFilesystemRoot());
-                }
                 
                 try {
                     doc = handler.getDocument(file, root);
