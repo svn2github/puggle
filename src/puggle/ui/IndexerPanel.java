@@ -419,6 +419,7 @@ public class IndexerPanel extends javax.swing.JPanel {
         this.init();
         
         this.indexProperties.setFilesystemRoot(root.getAbsolutePath());
+        this.indexProperties.setPath(root);
         this.indexProperties.setPortable(true);
 
         this.indexPropertiesPanel.setProperties(this.indexProperties);
