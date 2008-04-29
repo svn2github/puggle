@@ -322,6 +322,7 @@ public class SearchFrame extends javax.swing.JFrame {
         startButton.setToolTipText("Start indexing documents");
         startButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         startButton.setBorderPainted(false);
+        startButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         startButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 startButtonActionPerformed(evt);
@@ -333,6 +334,7 @@ public class SearchFrame extends javax.swing.JFrame {
         stopButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         stopButton.setBorderPainted(false);
         stopButton.setEnabled(false);
+        stopButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         stopButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 stopButtonActionPerformed(evt);
@@ -355,6 +357,7 @@ public class SearchFrame extends javax.swing.JFrame {
         propertiesButton.setToolTipText("Set indexing properties");
         propertiesButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         propertiesButton.setBorderPainted(false);
+        propertiesButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         propertiesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 propertiesButtonActionPerformed(evt);
