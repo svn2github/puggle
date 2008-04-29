@@ -1048,11 +1048,11 @@ public class SearchFrame extends javax.swing.JFrame {
                 q + "'."
         );
         
-        if (new Date().getTime() - this.indexerProperties.getLastIndexed() > INDEX_DT) {
+        if ((this.indexerThread == null) && ((new Date().getTime() - this.indexerProperties.getLastIndexed()) > INDEX_DT)) {
             this.lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-important.png")));
             this.lastIndexedLabel.setToolTipText("Index is outdated or incomplete. Please start indexer.");
         }
-        else {
+        else  {
             this.lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-green.png")));
             this.lastIndexedLabel.setToolTipText(null);
         }
