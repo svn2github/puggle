@@ -102,13 +102,13 @@ public class SearchFrame extends javax.swing.JFrame {
             this.setJMenuBar(null);
         }
         
-        if (new Date().getTime() - this.indexerProperties.getLastIndexed() > 600000) {
+        if (new Date().getTime() - this.indexerProperties.getLastIndexed() > INDEX_DT) {
             this.lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-important.png")));
             this.lastIndexedLabel.setToolTipText("Index is outdated. Please start indexer.");
         }
         else {
             this.lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-green.png")));
-            this.lastIndexedLabel.setToolTipText("");
+            this.lastIndexedLabel.setToolTipText(null);
         }
         
         /* idiot patch to initialize classic panel */
@@ -523,6 +523,15 @@ public class SearchFrame extends javax.swing.JFrame {
         this.startButton.setEnabled(true);
         this.propertiesButton.setEnabled(true);
         this.stopButton.setEnabled(false);
+        
+        if (new Date().getTime() - this.indexerProperties.getLastIndexed() > INDEX_DT) {
+            this.lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-important.png")));
+            this.lastIndexedLabel.setToolTipText("Index is outdated. Please start indexer.");
+        }
+        else {
+            this.lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-green.png")));
+            this.lastIndexedLabel.setToolTipText(null);
+        }
     }//GEN-LAST:event_stopButtonActionPerformed
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
@@ -716,6 +725,11 @@ public class SearchFrame extends javax.swing.JFrame {
             
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                 File file = fc.getSelectedFile();
+                
+                /* check if root directory */
+                if (file.getParent() == null) {
+                    file = new File(file.getPath() + ".puggle");
+                }
 
                 boolean exists = Indexer.indexExists(file);
                 String directory = file.getPath();
@@ -885,7 +899,7 @@ public class SearchFrame extends javax.swing.JFrame {
         long lastModified = this.indexerProperties.getLastIndexed();
         
         if (this.indexerThread == null &&
-                new Date().getTime() - lastModified > 600000 /* 10 mins */) {
+                new Date().getTime() - lastModified > INDEX_DT) {
             
             File[] dataDirsFile = this.indexerProperties.getDataDirectories();
             
@@ -900,7 +914,7 @@ public class SearchFrame extends javax.swing.JFrame {
             this.indexerThread.start();
             
             this.lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-green.png")));
-            this.lastIndexedLabel.setToolTipText("");
+            this.lastIndexedLabel.setToolTipText(null);
             
             return true;
         }
@@ -1007,13 +1021,13 @@ public class SearchFrame extends javax.swing.JFrame {
                 q + "'."
         );
         
-        if (new Date().getTime() - this.indexerProperties.getLastIndexed() > 600000) {
+        if (new Date().getTime() - this.indexerProperties.getLastIndexed() > INDEX_DT) {
             this.lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-important.png")));
             this.lastIndexedLabel.setToolTipText("Index is outdated. Please start indexer.");
         }
         else {
             this.lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-green.png")));
-            this.lastIndexedLabel.setToolTipText("");
+            this.lastIndexedLabel.setToolTipText(null);
         }
     }
 
@@ -1040,6 +1054,8 @@ public class SearchFrame extends javax.swing.JFrame {
     private TrayIconControl trayIconControl;
     
     private IndexerPanel indexerPanel;
+    
+    private final static int INDEX_DT = 86400000; // 24 hours
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
