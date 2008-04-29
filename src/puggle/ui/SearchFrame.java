@@ -546,6 +546,32 @@ public class SearchFrame extends javax.swing.JFrame {
                 this.stopButton.setEnabled(true);
                 System.out.println("Puggle Indexer:" +
                         "Indexing process started in background.");
+                
+                this.lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-green.png")));
+                this.lastIndexedLabel.setToolTipText("Indexing in progess...");
+                
+                Thread t = new Thread(
+                        new Runnable() {
+                    public void run() {
+                        try {
+                            indexerThread.join();
+                            indexer.optimize();
+                            indexer.close();
+                            indexerThread = null;
+                            indexer = null;
+                        } catch (InterruptedException ex) {
+                            ex.printStackTrace();
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                        
+                        stopButton.setEnabled(false);
+                        startButton.setEnabled(true);
+                        propertiesButton.setEnabled(true);
+                    }
+                });
+                t.start();
+                
             }
         } catch (IOException ex) {
             int opt = JOptionPane.showConfirmDialog(this, "Force unlock?",
@@ -915,10 +941,7 @@ public class SearchFrame extends javax.swing.JFrame {
             
             this.indexerThread = new Thread(this.indexer);
             this.indexerThread.start();
-            
-            this.lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-green.png")));
-            this.lastIndexedLabel.setToolTipText(null);
-            
+
             return true;
         }
         
@@ -927,8 +950,9 @@ public class SearchFrame extends javax.swing.JFrame {
     
     private void stopIndexing() {
         if (this.indexerThread != null) {
-            this.indexer.close();
-            this.indexerThread = null;
+            this.indexer.stop();
+            //this.indexer.close();
+            //this.indexerThread = null;
         }
     }
     
