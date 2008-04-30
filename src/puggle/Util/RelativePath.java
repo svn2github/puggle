@@ -1,7 +1,7 @@
 /*
  * RelativePath.java
  *
- * Created on 22 April 2008, 4:37 μμ
+ * Created on 22 April 2008, 4:37
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.
