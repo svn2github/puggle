@@ -120,8 +120,52 @@ public class Main {
         }
         else {
             Resources.makeApplicationDirectoryTree();
+            
+            File index = new File(Resources.getApplicationDirectoryCanonicalPath());
+            File propsFile = new File(Resources.getApplicationPropertiesCanonicalPath());
+            
+            IndexProperties props = new IndexProperties(propsFile);
+            
+            if (props.getVersion().equals(Resources.getApplicationVersion()) == false) {
+                props.close(); props = null;
+                System.gc();
+                File f = new File(Resources.getIndexCanonicalPath());
+                if (Util.deleteDir(f) == false) {
+                    JOptionPane.showMessageDialog(null,
+                            "Cannot delete directory '" +f +"'.\n"
+                            + "Please remove it manually and start application again.",
+                            "Error Opening Index Directory",
+                            JOptionPane.ERROR_MESSAGE,
+                            ImageControl.getImageControl().getErrorIcon());
+                    System.exit(1);
+                }
+                props = new IndexProperties(propsFile);
+            }
+            
+            if (IndexReader.indexExists(Resources.getIndexCanonicalPath()) == false) {
+                props.setPath(System.getProperty("user.home"));
+                Indexer indexer = new Indexer(index, props);
+                indexer.close();
+                
+                IndexPropertiesPanel panel = new IndexPropertiesPanel();
+                panel.setProperties(props);
+                
+                JDialog dialog = new JDialog((java.awt.Dialog)null, "Index Properties", true);
+                
+                dialog.getContentPane().add(panel);
+                dialog.pack();
+                dialog.setLocationRelativeTo(null);
+                dialog.setResizable(true);
+                dialog.setVisible(true);
+            }
+            
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new SearchFrame().setVisible(true);
+                }
+            });
 
-            if (IndexReader.indexExists(Resources.getIndexCanonicalPath())) {
+/*            if (IndexReader.indexExists(Resources.getIndexCanonicalPath())) {
                 java.awt.EventQueue.invokeLater(new Runnable() {
                     public void run() {
                         new SearchFrame().setVisible(true);
@@ -215,7 +259,7 @@ public class Main {
                         
                     } // while
                 }
-            }
+            }*/
         } // else (Resources.isPortableEdition() == false)
     }
     
