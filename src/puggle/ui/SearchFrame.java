@@ -927,8 +927,7 @@ public class SearchFrame extends javax.swing.JFrame {
     private boolean startIndexing(long delay) throws IOException {
         long lastModified = this.indexerProperties.getLastIndexed();
         
-        if (this.indexerThread == null &&
-                new Date().getTime() - lastModified > INDEX_DT) {
+        if (this.indexerThread == null) {
             
             File[] dataDirsFile = this.indexerProperties.getDataDirectories();
             
