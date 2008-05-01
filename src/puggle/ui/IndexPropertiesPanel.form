@@ -3,6 +3,7 @@
 <Form version="1.3" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <AuxValues>
     <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="2"/>
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
@@ -51,12 +52,12 @@
                       </Group>
                       <EmptySpace pref="273" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="filetypesLabel" alignment="1" pref="558" max="32767" attributes="1"/>
-                  <Component id="optionsLabel" alignment="1" pref="558" max="32767" attributes="1"/>
+                  <Component id="filetypesLabel" alignment="1" pref="594" max="32767" attributes="1"/>
+                  <Component id="optionsLabel" alignment="1" pref="594" max="32767" attributes="1"/>
                   <Component id="jPanel1" alignment="0" max="32767" attributes="1"/>
                   <Component id="indexDirectoryPanel" alignment="0" max="32767" attributes="1"/>
-                  <Component id="indexLabel" alignment="0" pref="558" max="32767" attributes="1"/>
-                  <Component id="foldersLabel" alignment="0" pref="558" max="32767" attributes="1"/>
+                  <Component id="indexLabel" alignment="0" pref="594" max="32767" attributes="1"/>
+                  <Component id="foldersLabel" alignment="0" pref="594" max="32767" attributes="1"/>
               </Group>
               <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
           </Group>
@@ -335,7 +336,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="indexDirectoryLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="indexTextField" pref="416" max="32767" attributes="0"/>
+                  <Component id="indexTextField" pref="429" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -356,9 +357,6 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="indexDirectoryLabel">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="12" style="1"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Index Directory Path:"/>
           </Properties>
         </Component>
@@ -439,7 +437,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="pathScrollPane" pref="435" max="32767" attributes="0"/>
+                  <Component id="pathScrollPane" pref="467" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="removeFolderButton" min="-2" pref="97" max="-2" attributes="1"/>

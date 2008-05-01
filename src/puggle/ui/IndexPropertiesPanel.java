@@ -410,10 +410,20 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
             javax.swing.DefaultListModel model = 
                     (javax.swing.DefaultListModel)this.pathList.getModel();
 
-            model.addElement(chooser.getSelectedFile().getPath());
+            String path = chooser.getSelectedFile().getPath();
+            int len = model.getSize();
+            
+            while (--len >= 0) {
+                if (path.equals(model.getElementAt(len)) == true) {
+                    return;
+                }
+            }
+            
+            model.addElement(path);
+            this.storeIndexingFolders();
         }
         
-        this.storeIndexingFolders();
+        
     }//GEN-LAST:event_addFolderButtonActionPerformed
 
     public void setEnabled(boolean b) {
@@ -546,7 +556,7 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
         /* load new values */
         File splt[] = indexProperties.getDataDirectories();
         for (int i = 0; i < splt.length; ++i) {
-            model.addElement(splt[i]);
+            model.addElement(splt[i].getPath());
         }
         
         storeTextCb.setSelected(indexProperties.getStoreText());
