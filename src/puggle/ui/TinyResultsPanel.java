@@ -205,7 +205,7 @@ public class TinyResultsPanel extends ResultsPanel {
     }
     
     public void clearResultPanel(TinyResultPanel resultPanel) {
-        resultPanel.setTitle(""); resultPanel.getTitleLabel().setToolTipText("");
+        resultPanel.setTitle(""); resultPanel.getTitleLabel().setToolTipText(null);
         resultPanel.setPath(""); resultPanel.setIcon(null);
         resultPanel.getPathLabel().setToolTipText(null);
     }
