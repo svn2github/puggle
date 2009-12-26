@@ -17,7 +17,7 @@ import java.util.Properties;
 import javax.swing.ImageIcon;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
-import puggle.Resources.RelativePath;
+import puggle.Util.RelativePath;
 import puggle.ui.ImageControl;
 
 /**

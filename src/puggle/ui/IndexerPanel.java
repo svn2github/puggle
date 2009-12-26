@@ -14,7 +14,6 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.UIManager;
 import puggle.Indexer.Indexer;
 import puggle.Indexer.IndexProperties;
 import puggle.Resources.Resources;
@@ -417,7 +416,7 @@ public class IndexerPanel extends javax.swing.JPanel {
         catch (IOException ex) { ex.printStackTrace(); }
 
         this.init();
-        
+
         this.indexProperties.setFilesystemRoot(root.getAbsolutePath());
         this.indexProperties.setPath(root);
         this.indexProperties.setPortable(true);
@@ -527,6 +526,7 @@ public class IndexerPanel extends javax.swing.JPanel {
         }
     }
     
+    @Override
     protected void finalize() throws Throwable {
         this.close();
         super.finalize();

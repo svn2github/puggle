@@ -62,23 +62,23 @@ public class TrayIconControl {
             
             MouseListener mouseListener = new MouseListener() {
                 public void mouseClicked(MouseEvent e) {
-                    ;
+                    
                 }
                 public void mouseEntered(MouseEvent e) {
-                    ;
+                    
                 }
                 public void mouseExited(MouseEvent e) {
-                    ;
+                    
                 }
                 public void mousePressed(MouseEvent e) {
-                    if (e.getButton() == e.BUTTON1) {
+                    if (e.getButton() == MouseEvent.BUTTON1) {
                         frame.setVisible(true);
                         frame.setState(java.awt.Frame.NORMAL);
                         tray.remove(trayIcon);
                     }
                 }
                 public void mouseReleased(MouseEvent e) {
-                    ;
+                    
                 }
             };
 

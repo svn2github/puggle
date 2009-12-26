@@ -16,14 +16,10 @@ import puggle.Indexer.IndexProperties;
 import puggle.LexicalAnalyzer.CombinedAnalyzer;
 import java.io.File;
 import java.io.FileFilter;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Properties;
 import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
 
 /**
  *
@@ -34,10 +30,14 @@ public class Resources {
     /* final string variables */
     public final static String APP_NAME = "Puggle";
     
-    public final static String APP_VERSION = "0.21";
+    public final static String APP_VERSION = "0.50";
+
+    public final static String APP_AUTHOR = "Giorgos Vasiliadis";
+
+    public final static String APP_WEBSITE = "http://puggle.sourceforge.net";
     
     /** This variable indicates whether the portable edition will run */
-    private final static boolean PORTABLE_EDITION = false;
+    private final static boolean PORTABLE_EDITION = true;
     
     private final static String APP_DIRECTORY_NAME = System.getProperty("user.home") 
                 + File.separator + "." + APP_NAME.toLowerCase();
@@ -75,6 +75,14 @@ public class Resources {
     
     public static String getApplicationVersion() {
         return Resources.APP_VERSION;
+    }
+
+    public static String getApplicationAuthor() {
+        return Resources.APP_AUTHOR;
+    }
+
+    public static String getApplicationWebsite() {
+        return Resources.APP_WEBSITE;
     }
     
     public static boolean isPortableEdition() {

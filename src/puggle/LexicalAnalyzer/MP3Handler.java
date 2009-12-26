@@ -10,15 +10,12 @@
 package puggle.LexicalAnalyzer;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.RandomAccessFile;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.farng.mp3.MP3File;
 import org.farng.mp3.TagException;
-import org.farng.mp3.id3.AbstractID3v2;
 import org.farng.mp3.id3.ID3v1;
 
 /**

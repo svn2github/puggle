@@ -9,7 +9,6 @@
 
 package puggle.LexicalAnalyzer;
 
-import java.io.CharArrayWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

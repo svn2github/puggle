@@ -15,24 +15,11 @@ import puggle.LexicalAnalyzer.CombinedAnalyzer;
 import puggle.LexicalAnalyzer.FileHandler;
 import puggle.LexicalAnalyzer.FileHandlerException;
 import puggle.Resources.Resources;
-import java.awt.Cursor;
-import java.awt.Image;
-import java.awt.Insets;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StringReader;
 import java.sql.Time;
 import java.text.DateFormat;
-import java.util.Date;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.DefaultStyledDocument;
-import javax.swing.text.Style;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyleContext;
-import javax.swing.text.StyledDocument;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.search.Query;
@@ -210,4 +197,17 @@ public class Util {
         
         return query;
     }
+
+    public static void hideFile(File f)
+            throws InterruptedException, IOException {
+
+        String os = System.getProperty("os.name").toLowerCase();
+
+        if (os.indexOf("windows") >= 0) {
+            // win32 command line variant
+            Process p = Runtime.getRuntime().exec("attrib +h " + f.getPath());
+            p.waitFor();
+        }
+    }
+
 }

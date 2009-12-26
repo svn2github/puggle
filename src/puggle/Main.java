@@ -10,8 +10,6 @@
 package puggle;
 
 import java.io.File;
-import javax.swing.JDialog;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -20,11 +18,10 @@ import puggle.Indexer.Indexer;
 import puggle.Resources.Resources;
 import puggle.Util.Util;
 import puggle.ui.ImageControl;
-import puggle.ui.IndexPropertiesPanel;
-import puggle.ui.IndexerFrame;
 import puggle.ui.SearchFrame;
 import java.io.IOException;
 import org.apache.lucene.index.IndexReader;
+import puggle.ui.IndexPropertiesDialog;
 
 /**
  *
@@ -54,7 +51,7 @@ public class Main {
         
         if (Resources.isPortableEdition() == true) {
             String os = System.getProperty("os.name").toLowerCase();
-            if (os.indexOf("windows") > 0) {
+            if (os.indexOf("windows") < 0) {
                 JOptionPane.showMessageDialog(null,
                         "Sorry, portable edition is currently running\n"
                         +"only in MS Windows operating systems.",
@@ -111,12 +108,6 @@ public class Main {
                 dialog.setVisible(true);
  */
             }
-            
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    new SearchFrame().setVisible(true);
-                }
-            });
         }
         else {
             Resources.makeApplicationDirectoryTree();
@@ -147,24 +138,16 @@ public class Main {
                 Indexer indexer = new Indexer(index, props);
                 indexer.close();
                 
-                IndexPropertiesPanel panel = new IndexPropertiesPanel();
-                panel.setProperties(props);
+                IndexPropertiesDialog dialog = new IndexPropertiesDialog((java.awt.Frame)null, true);
+                dialog.setProperties(props);
+
+                /* Check all options in dialog; default option for new Index */
+                dialog.indexPropertiesPanel.setSelected(true);
                 
-                JDialog dialog = new JDialog((java.awt.Dialog)null, "Index Properties", true);
-                
-                dialog.getContentPane().add(panel);
-                dialog.pack();
                 dialog.setLocationRelativeTo(null);
-                dialog.setResizable(true);
                 dialog.setVisible(true);
             }
             
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    new SearchFrame().setVisible(true);
-                }
-            });
-
 /*            if (IndexReader.indexExists(Resources.getIndexCanonicalPath())) {
                 java.awt.EventQueue.invokeLater(new Runnable() {
                     public void run() {
@@ -261,6 +244,15 @@ public class Main {
                 }
             }*/
         } // else (Resources.isPortableEdition() == false)
+
+        // pop-up window!
+        java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    SearchFrame frm = new SearchFrame();
+                    frm.setLocationRelativeTo(null);
+                    frm.setVisible(true);
+                }
+            });
     }
     
 }

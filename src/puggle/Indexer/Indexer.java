@@ -9,37 +9,20 @@
 
 package puggle.Indexer;
 
-import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.util.Properties;
 import puggle.FileWalker.FileWalker;
 import puggle.LexicalAnalyzer.FileHandler;
 import puggle.LexicalAnalyzer.FileHandlerException;
-import puggle.Indexer.IndexProperties;
-import puggle.Resources.RelativePath;
+import puggle.Util.RelativePath;
 import puggle.Resources.Resources;
-import puggle.ui.ImageControl;
 import puggle.ui.JLogger;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
-import javax.swing.JLabel;
 import javax.swing.JProgressBar;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
-import org.apache.lucene.document.Field;
 import org.apache.lucene.index.IndexModifier;
 import org.apache.lucene.index.IndexReader;
-import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.Term;
-import org.apache.lucene.index.TermDocs;
-import org.apache.lucene.queryParser.QueryParser;
-import org.apache.lucene.search.Hits;
-import org.apache.lucene.search.IndexSearcher;
-import org.apache.lucene.search.Query;
-import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
 /**
@@ -155,6 +138,7 @@ public class Indexer implements Runnable {
         this.ProgressBar = p;
     }
 */
+    @Override
     protected void finalize() {
         try { this.Index.close(); }
         catch (IOException ex) { ex.printStackTrace(); }

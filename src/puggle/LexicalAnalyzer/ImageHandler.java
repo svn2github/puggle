@@ -9,7 +9,6 @@
 
 package puggle.LexicalAnalyzer;
 
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -17,7 +16,6 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
-import puggle.ui.ImageControl;
 
 /**
  *

@@ -6,31 +6,12 @@
 
 package puggle.ui;
 
-import java.awt.Color;
-import java.awt.Desktop;
 import java.io.File;
-import java.io.IOException;
-import java.text.DateFormat;
-import java.util.Set;
-import javax.swing.DefaultCellEditor;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollBar;
-import javax.swing.table.TableColumn;
-import javax.swing.text.html.HTMLEditorKit;
 import org.apache.lucene.document.Document;
-import org.apache.lucene.document.Field;
-import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.search.Hits;
 import org.apache.lucene.search.Query;
-import org.apache.lucene.store.FSDirectory;
 import puggle.Indexer.IndexProperties;
-import puggle.LexicalAnalyzer.FileHandler;
-import puggle.LexicalAnalyzer.FileHandlerException;
-import puggle.Resources.Resources;
 
 /**
  *

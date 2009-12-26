@@ -14,7 +14,6 @@ import java.awt.datatransfer.Transferable;
 import java.io.File;
 import javax.swing.Icon;
 import javax.swing.JOptionPane;
-import javax.swing.text.html.HTMLEditorKit;
 
 /**
  *

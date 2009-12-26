@@ -9,15 +9,10 @@
 
 package puggle.ui;
 
-import com.sun.image.codec.jpeg.JPEGCodec;
-import com.sun.image.codec.jpeg.JPEGEncodeParam;
-import com.sun.image.codec.jpeg.JPEGImageEncoder;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
-import java.awt.image.MemoryImageSource;
-import java.awt.image.PixelGrabber;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -26,7 +21,6 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageWriter;
-import javax.imageio.stream.ImageInputStream;
 import javax.imageio.stream.ImageOutputStream;
 import javax.swing.ImageIcon;
 import org.jpedal.PdfDecoder;
@@ -264,6 +258,7 @@ public class ImageControl {
         return data;
     }
     
+    @Override
     protected Object clone() throws CloneNotSupportedException {
         throw new CloneNotSupportedException(); 
     }

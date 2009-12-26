@@ -11,15 +11,12 @@ package puggle.QueryEvaluator;
 
 import puggle.LexicalAnalyzer.CombinedAnalyzer;
 import puggle.LexicalAnalyzer.FileHandler;
-import puggle.LexicalAnalyzer.TextHandler;
 import puggle.Resources.Resources;
 import java.io.IOException;
 import java.io.StringReader;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexReader;
-import org.apache.lucene.index.TermPositionVector;
-import org.apache.lucene.index.TermVectorOffsetInfo;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
@@ -29,7 +26,6 @@ import org.apache.lucene.search.highlight.QueryScorer;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.queryParser.QueryParser;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import java.io.File;
 import java.util.Date;
 

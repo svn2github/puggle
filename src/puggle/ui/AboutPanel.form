@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.3" maxVersion="1.3" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
     <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="2"/>
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
@@ -11,7 +16,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jTabbedPane1" alignment="0" pref="441" max="32767" attributes="0"/>
+          <Component id="jTabbedPane1" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -42,7 +47,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel3" alignment="1" pref="436" max="32767" attributes="0"/>
+                  <Component id="jLabel3" alignment="1" pref="441" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -59,7 +64,7 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/logo.png"/>
+                  <Image iconType="3" name="/puggle-frame.png"/>
                 </Property>
               </Properties>
             </Component>
@@ -82,7 +87,7 @@
                           <Component id="jPanel1" alignment="1" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel1" pref="416" max="32767" attributes="0"/>
+                              <Component id="jLabel1" pref="421" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -94,7 +99,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="37" max="32767" attributes="0"/>
+                      <EmptySpace pref="32" max="32767" attributes="0"/>
                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -120,51 +125,50 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="1" attributes="0">
-                                                  <Component id="label4" pref="112" max="32767" attributes="0"/>
-                                                  <Component id="jLabel2" alignment="0" pref="112" max="32767" attributes="1"/>
-                                                  <Component id="label3" alignment="0" pref="112" max="32767" attributes="1"/>
-                                              </Group>
-                                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                                  <Component id="label5" alignment="0" max="32767" attributes="1"/>
-                                                  <Component id="label1" alignment="0" pref="112" max="32767" attributes="1"/>
-                                              </Group>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="label1" min="-2" pref="112" max="-2" attributes="1"/>
+                                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                                          <Component id="versionLabel" pref="270" max="32767" attributes="1"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="label2" pref="137" max="32767" attributes="1"/>
-                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="label5" pref="110" max="32767" attributes="1"/>
+                                                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="label2" pref="135" max="32767" attributes="1"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="javaLabel" alignment="0" pref="270" max="32767" attributes="1"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="osLabel" alignment="0" pref="270" max="32767" attributes="1"/>
+                                                      <Component id="authorLabel" alignment="0" pref="270" max="32767" attributes="1"/>
+                                                      <Component id="websiteLabel" alignment="0" pref="270" max="32767" attributes="1"/>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="label7" pref="107" max="32767" attributes="1"/>
+                                          <EmptySpace min="-2" pref="304" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="label8" min="-2" pref="112" max="-2" attributes="1"/>
+                                          <EmptySpace min="-2" pref="299" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="versionLabel" alignment="0" min="-2" pref="273" max="-2" attributes="1"/>
-                                      <Component id="javaLabel" pref="273" max="32767" attributes="1"/>
-                                      <Group type="102" attributes="0">
-                                          <Component id="osLabel" pref="263" max="32767" attributes="1"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Component id="vmLabel" pref="263" max="32767" attributes="1"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Component id="vendorLabel" pref="263" max="32767" attributes="1"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Component id="javaHomeLabel" pref="263" max="32767" attributes="1"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="label6" pref="112" max="32767" attributes="1"/>
-                                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                                  <Component id="indexLabel" pref="263" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="label6" pref="115" max="32767" attributes="1"/>
+                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                  <Component id="indexLabel" pref="265" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -174,11 +178,21 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="label1" max="32767" attributes="1"/>
-                              <Component id="versionLabel" alignment="1" min="-2" max="-2" attributes="1"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="label1" alignment="3" max="32767" attributes="1"/>
+                              <Component id="versionLabel" alignment="3" min="-2" max="-2" attributes="1"/>
                           </Group>
-                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="label8" alignment="3" max="32767" attributes="1"/>
+                              <Component id="websiteLabel" alignment="3" min="-2" max="-2" attributes="1"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="label7" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="authorLabel" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="label5" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="osLabel" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
@@ -186,29 +200,14 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="javaLabel" max="32767" attributes="1"/>
-                              <Component id="label2" alignment="0" max="32767" attributes="1"/>
+                              <Component id="label2" alignment="0" min="-2" max="-2" attributes="1"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="label3" alignment="3" min="-2" max="-2" attributes="1"/>
-                              <Component id="vmLabel" alignment="3" min="-2" max="-2" attributes="1"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="vendorLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="label4" alignment="3" min="-2" max="-2" attributes="1"/>
-                              <Component id="javaHomeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="indexLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="label6" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="indexLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -220,11 +219,6 @@
                       <Font name="Tahoma" size="11" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Product Version:"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="versionLabel">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="test" postCode="this.versionLabel.setText(Resources.getApplicationName() +&quot; &quot; +Resources.getApplicationVersion());"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="label5">
@@ -271,45 +265,6 @@
                     <Property name="text" type="java.lang.String" value="test" postCode="this.javaLabel.setText(System.getProperty(&quot;java.version&quot;));"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="label3">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="11" style="1"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="VM:"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="vmLabel">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="test" postCode="this.vmLabel.setText(System.getProperty(&quot;java.vm.name&quot;));"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel2">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="11" style="1"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Vendor:"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="vendorLabel">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="test" postCode="this.vendorLabel.setText(System.getProperty(&quot;java.vendor&quot;));"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="label4">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="11" style="1"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Java Home:"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="javaHomeLabel">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="test" postCode="this.javaHomeLabel.setText(System.getProperty(&quot;java.home&quot;));"/>
-                  </Properties>
-                </Component>
                 <Component class="javax.swing.JLabel" name="label6">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -321,6 +276,52 @@
                 <Component class="javax.swing.JLabel" name="indexLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="test" postCode="this.indexLabel.setText(Resources.getIndexCanonicalPath());"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="label7">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="11" style="1"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Author:"/>
+                    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[92, 14]"/>
+                    </Property>
+                    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[92, 14]"/>
+                    </Property>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[92, 14]"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="authorLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="Resources.getApplicationAuthor()" type="code"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="label8">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="11" style="1"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Website:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="websiteLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="Resources.getApplicationWebsite()" type="code"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="versionLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="Resources.APP_NAME + &quot; &quot; +&#xd;&#xa;((Resources.isPortableEdition() == true) ?&#xd;&#xa;&quot;Portable &quot; : &quot;Desktop &quot;)&#xd;&#xa;+ &quot;Search &quot;&#xd;&#xa;+ Resources.APP_VERSION" type="code"/>
+                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>

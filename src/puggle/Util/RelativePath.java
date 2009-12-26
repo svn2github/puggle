@@ -7,7 +7,7 @@
  * and open the template in the editor.
  */
 
-package puggle.Resources;
+package puggle.Util;
 
 import java.io.*;
 import java.util.*;
