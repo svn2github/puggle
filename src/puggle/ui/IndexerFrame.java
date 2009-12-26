@@ -43,7 +43,7 @@ public class IndexerFrame extends javax.swing.JFrame {
         );
         setIconImage(Toolkit.getDefaultToolkit()
             .getImage(getClass().
-                getResource("/puggle.png")));
+                getResource("/16x16/puggle.png")));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);

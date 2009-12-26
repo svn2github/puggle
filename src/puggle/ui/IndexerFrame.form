@@ -14,7 +14,7 @@
       <Connection code="Resources.APP_NAME + &quot; Desktop &quot; + &quot;Indexer&quot; + &quot; &quot; + Resources.APP_VERSION&#xa;" type="code"/>
     </Property>
     <Property name="iconImage" type="java.awt.Image" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-      <Connection code="Toolkit.getDefaultToolkit()&#xd;&#xa;    .getImage(getClass().&#xd;&#xa;    getResource(&quot;/puggle.png&quot;))" type="code"/>
+      <Connection code="Toolkit.getDefaultToolkit()&#xd;&#xa;    .getImage(getClass().&#xd;&#xa;    getResource(&quot;/16x16/puggle.png&quot;))" type="code"/>
     </Property>
   </Properties>
   <SyntheticProperties>

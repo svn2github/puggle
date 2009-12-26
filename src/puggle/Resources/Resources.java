@@ -37,7 +37,7 @@ public class Resources {
     public final static String APP_WEBSITE = "http://puggle.sourceforge.net";
     
     /** This variable indicates whether the portable edition will run */
-    private final static boolean PORTABLE_EDITION = true;
+    private final static boolean PORTABLE_EDITION = false;
     
     private final static String APP_DIRECTORY_NAME = System.getProperty("user.home") 
                 + File.separator + "." + APP_NAME.toLowerCase();

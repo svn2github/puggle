@@ -143,349 +143,362 @@ public class SearchFrame extends javax.swing.JFrame {
         viewMenu = new javax.swing.JMenu();
         classicCheckBoxMenuItem = new javax.swing.JCheckBoxMenuItem();
         tinyCheckBoxMenuItem = new javax.swing.JCheckBoxMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        indexerCheckBoxMenuItem = new javax.swing.JCheckBoxMenuItem();
         helpMenu = new javax.swing.JMenu();
         aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle(((Resources.isPortableEdition() == true) ?
-            "Portable " : "") +
-        Resources.APP_NAME + " "
-        + Resources.APP_VERSION);
-    setBackground(new java.awt.Color(241, 240, 240));
-    setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-    setIconImage(Toolkit.getDefaultToolkit()
-        .getImage(getClass().
-            getResource("/puggle.png")));
-    setName("frame"); // NOI18N
-    addWindowFocusListener(new java.awt.event.WindowFocusListener() {
-        public void windowGainedFocus(java.awt.event.WindowEvent evt) {
-            formWindowGainedFocus(evt);
-        }
-        public void windowLostFocus(java.awt.event.WindowEvent evt) {
-            formWindowLostFocus(evt);
-        }
-    });
-    addWindowListener(new java.awt.event.WindowAdapter() {
-        public void windowClosing(java.awt.event.WindowEvent evt) {
-            formWindowClosing(evt);
-        }
-        public void windowDeiconified(java.awt.event.WindowEvent evt) {
-            formWindowDeiconified(evt);
-        }
-        public void windowIconified(java.awt.event.WindowEvent evt) {
-            formWindowIconified(evt);
-        }
-    });
+        setTitle(Resources.APP_NAME + " " +
+            ((Resources.isPortableEdition() == true) ?
+                "Portable " : "Desktop ")
+            + "Search "
+            + Resources.APP_VERSION);
+        setBackground(new java.awt.Color(241, 240, 240));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setIconImage(Toolkit.getDefaultToolkit()
+            .getImage(getClass().
+                getResource("/puggle.png")));
+        setName("frame"); // NOI18N
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+                formWindowLostFocus(evt);
+            }
+        });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+            public void windowDeiconified(java.awt.event.WindowEvent evt) {
+                formWindowDeiconified(evt);
+            }
+            public void windowIconified(java.awt.event.WindowEvent evt) {
+                formWindowIconified(evt);
+            }
+        });
 
-    scrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-    org.jdesktop.layout.GroupLayout resultsPanelLayout = new org.jdesktop.layout.GroupLayout(resultsPanel);
-    resultsPanel.setLayout(resultsPanelLayout);
-    resultsPanelLayout.setHorizontalGroup(
-        resultsPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-        .add(0, 1264, Short.MAX_VALUE)
-    );
-    resultsPanelLayout.setVerticalGroup(
-        resultsPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-        .add(0, 439, Short.MAX_VALUE)
-    );
+        org.jdesktop.layout.GroupLayout resultsPanelLayout = new org.jdesktop.layout.GroupLayout(resultsPanel);
+        resultsPanel.setLayout(resultsPanelLayout);
+        resultsPanelLayout.setHorizontalGroup(
+            resultsPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 1264, Short.MAX_VALUE)
+        );
+        resultsPanelLayout.setVerticalGroup(
+            resultsPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 439, Short.MAX_VALUE)
+        );
 
-    scrollPane.setViewportView(resultsPanel);
+        scrollPane.setViewportView(resultsPanel);
 
-    searchPanel.setBackground(new java.awt.Color(234, 233, 234));
+        searchPanel.setBackground(new java.awt.Color(234, 233, 234));
 
-    searchChoice.setFont(new java.awt.Font("Dialog", 0, 13));
-    searchChoice.addItem("All");
-    searchChoice.addItem("Music");
-    searchChoice.addItem("Pictures");
-    searchChoice.addItem("Documents");
+        searchChoice.setFont(new java.awt.Font("Dialog", 0, 13));
+        searchChoice.addItem("All");
+        searchChoice.addItem("Music");
+        searchChoice.addItem("Pictures");
+        searchChoice.addItem("Documents");
 
-    findButton.setFont(new java.awt.Font("Tahoma", 1, 12));
-    findButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon-search.png"))); // NOI18N
-    findButton.setText("Find");
-    findButton.setToolTipText("Find");
-    findButton.setFocusable(false);
-    findButton.addMouseListener(new java.awt.event.MouseAdapter() {
-        public void mouseClicked(java.awt.event.MouseEvent evt) {
-            findButtonMouseClicked(evt);
-        }
-    });
+        findButton.setFont(new java.awt.Font("Tahoma", 1, 12));
+        findButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon-search.png"))); // NOI18N
+        findButton.setText("Find");
+        findButton.setToolTipText("Find");
+        findButton.setFocusable(false);
+        findButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                findButtonMouseClicked(evt);
+            }
+        });
 
-    searchLabel.setFont(new java.awt.Font("Dialog", 1, 12));
-    searchLabel.setText("Search Items :");
+        searchLabel.setFont(new java.awt.Font("Dialog", 1, 12));
+        searchLabel.setText("Search Items :");
 
-    searchField.setFont(new java.awt.Font("Dialog", 0, 13));
-    searchField.addKeyListener(new java.awt.event.KeyAdapter() {
-        public void keyTyped(java.awt.event.KeyEvent evt) {
-            searchFieldKeyTyped(evt);
-        }
-    });
+        searchField.setFont(new java.awt.Font("Dialog", 0, 13));
+        searchField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                searchFieldKeyTyped(evt);
+            }
+        });
 
-    org.jdesktop.layout.GroupLayout searchPanelLayout = new org.jdesktop.layout.GroupLayout(searchPanel);
-    searchPanel.setLayout(searchPanelLayout);
-    searchPanelLayout.setHorizontalGroup(
-        searchPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-        .add(searchPanelLayout.createSequentialGroup()
-            .addContainerGap()
-            .add(searchLabel)
-            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-            .add(searchField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
-            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-            .add(searchChoice, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 102, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-            .add(findButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 91, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap())
-    );
-    searchPanelLayout.setVerticalGroup(
-        searchPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-        .add(searchPanelLayout.createSequentialGroup()
-            .add(searchPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                .add(searchPanelLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .add(findButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 45, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(searchPanelLayout.createSequentialGroup()
-                    .add(22, 22, 22)
-                    .add(searchPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                        .add(searchPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                            .add(searchChoice, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .add(searchLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .add(searchField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
-            .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-    );
+        org.jdesktop.layout.GroupLayout searchPanelLayout = new org.jdesktop.layout.GroupLayout(searchPanel);
+        searchPanel.setLayout(searchPanelLayout);
+        searchPanelLayout.setHorizontalGroup(
+            searchPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(searchPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(searchLabel)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(searchField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(searchChoice, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 102, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(findButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 91, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        searchPanelLayout.setVerticalGroup(
+            searchPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(searchPanelLayout.createSequentialGroup()
+                .add(searchPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(searchPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(findButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 45, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(searchPanelLayout.createSequentialGroup()
+                        .add(22, 22, 22)
+                        .add(searchPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(searchPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                                .add(searchChoice, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .add(searchLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .add(searchField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
-    bottomPanel.setLayout(new javax.swing.BoxLayout(bottomPanel, javax.swing.BoxLayout.Y_AXIS));
+        bottomPanel.setLayout(new javax.swing.BoxLayout(bottomPanel, javax.swing.BoxLayout.Y_AXIS));
 
-    navigationPanel.setBackground(new java.awt.Color(234, 233, 234));
+        navigationPanel.setBackground(new java.awt.Color(234, 233, 234));
 
-    resultsLabel.setFont(new java.awt.Font("Tahoma", 1, 14));
-    resultsLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        resultsLabel.setFont(new java.awt.Font("Tahoma", 1, 14));
+        resultsLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-    nextButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-    nextButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right-arrow.png"))); // NOI18N
-    nextButton.setText("Next Results");
-    nextButton.setEnabled(false);
-    nextButton.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-    nextButton.addMouseListener(new java.awt.event.MouseAdapter() {
-        public void mouseClicked(java.awt.event.MouseEvent evt) {
-            nextButtonMouseClicked(evt);
-        }
-    });
+        nextButton.setFont(new java.awt.Font("Tahoma", 0, 12));
+        nextButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right-arrow.png"))); // NOI18N
+        nextButton.setText("Next Results");
+        nextButton.setEnabled(false);
+        nextButton.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        nextButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nextButtonMouseClicked(evt);
+            }
+        });
 
-    prevButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-    prevButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/left-arrow.png"))); // NOI18N
-    prevButton.setText("Previous Results");
-    prevButton.setEnabled(false);
-    prevButton.addMouseListener(new java.awt.event.MouseAdapter() {
-        public void mouseClicked(java.awt.event.MouseEvent evt) {
-            prevButtonMouseClicked(evt);
-        }
-    });
+        prevButton.setFont(new java.awt.Font("Tahoma", 0, 12));
+        prevButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/left-arrow.png"))); // NOI18N
+        prevButton.setText("Previous Results");
+        prevButton.setEnabled(false);
+        prevButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                prevButtonMouseClicked(evt);
+            }
+        });
 
-    org.jdesktop.layout.GroupLayout navigationPanelLayout = new org.jdesktop.layout.GroupLayout(navigationPanel);
-    navigationPanel.setLayout(navigationPanelLayout);
-    navigationPanelLayout.setHorizontalGroup(
-        navigationPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-        .add(navigationPanelLayout.createSequentialGroup()
-            .addContainerGap()
-            .add(resultsLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 335, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 172, Short.MAX_VALUE)
-            .add(prevButton)
-            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-            .add(nextButton)
-            .addContainerGap())
-    );
-    navigationPanelLayout.setVerticalGroup(
-        navigationPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-        .add(resultsLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
-        .add(org.jdesktop.layout.GroupLayout.TRAILING, navigationPanelLayout.createSequentialGroup()
-            .addContainerGap(12, Short.MAX_VALUE)
-            .add(navigationPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                .add(nextButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(prevButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-            .addContainerGap())
-    );
+        org.jdesktop.layout.GroupLayout navigationPanelLayout = new org.jdesktop.layout.GroupLayout(navigationPanel);
+        navigationPanel.setLayout(navigationPanelLayout);
+        navigationPanelLayout.setHorizontalGroup(
+            navigationPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(navigationPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(resultsLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 335, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 172, Short.MAX_VALUE)
+                .add(prevButton)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(nextButton)
+                .addContainerGap())
+        );
+        navigationPanelLayout.setVerticalGroup(
+            navigationPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(resultsLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, navigationPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(navigationPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(nextButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(prevButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
 
-    bottomPanel.add(navigationPanel);
+        bottomPanel.add(navigationPanel);
 
-    indexerPanel.setBackground(new java.awt.Color(234, 233, 234));
-    indexerPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-    indexerPanel.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
+        indexerPanel.setBackground(new java.awt.Color(234, 233, 234));
+        indexerPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        indexerPanel.setFont(new java.awt.Font("Verdana", 0, 11));
 
-    startButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media-play.png"))); // NOI18N
-    startButton.setToolTipText("Start indexing documents");
-    startButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-    startButton.setBorderPainted(false);
-    startButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    startButton.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            startButtonActionPerformed(evt);
-        }
-    });
+        startButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media-play.png"))); // NOI18N
+        startButton.setToolTipText("Start indexing documents");
+        startButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        startButton.setBorderPainted(false);
+        startButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        startButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startButtonActionPerformed(evt);
+            }
+        });
 
-    stopButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media-stop.png"))); // NOI18N
-    stopButton.setToolTipText("Stop indexing");
-    stopButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-    stopButton.setBorderPainted(false);
-    stopButton.setEnabled(false);
-    stopButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    stopButton.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            stopButtonActionPerformed(evt);
-        }
-    });
+        stopButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media-stop.png"))); // NOI18N
+        stopButton.setToolTipText("Stop indexing");
+        stopButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        stopButton.setBorderPainted(false);
+        stopButton.setEnabled(false);
+        stopButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        stopButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stopButtonActionPerformed(evt);
+            }
+        });
 
-    indexerProgressBar.setToolTipText("Indexing progress");
+        indexerProgressBar.setToolTipText("Indexing progress");
 
-    indexerScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-    indexerScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        indexerScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        indexerScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
-    indexerTextArea.setColumns(20);
-    indexerTextArea.setEditable(false);
-    indexerTextArea.setRows(5);
-    indexerTextArea.setToolTipText("");
-    indexerTextArea.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-    indexerTextArea.setSelectionColor(new java.awt.Color(255, 255, 255));
-    indexerScrollPane.setViewportView(indexerTextArea);
+        indexerTextArea.setColumns(20);
+        indexerTextArea.setEditable(false);
+        indexerTextArea.setRows(5);
+        indexerTextArea.setToolTipText("");
+        indexerTextArea.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        indexerTextArea.setSelectionColor(new java.awt.Color(255, 255, 255));
+        indexerScrollPane.setViewportView(indexerTextArea);
 
-    propertiesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/preferences.png"))); // NOI18N
-    propertiesButton.setToolTipText("Set indexing properties");
-    propertiesButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-    propertiesButton.setBorderPainted(false);
-    propertiesButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    propertiesButton.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            propertiesButtonActionPerformed(evt);
-        }
-    });
+        propertiesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/preferences.png"))); // NOI18N
+        propertiesButton.setToolTipText("Set indexing properties");
+        propertiesButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        propertiesButton.setBorderPainted(false);
+        propertiesButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        propertiesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                propertiesButtonActionPerformed(evt);
+            }
+        });
 
-    lastIndexedLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-important.png"))); // NOI18N
-    lastIndexedLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lastIndexedLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-important.png"))); // NOI18N
+        lastIndexedLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-    org.jdesktop.layout.GroupLayout indexerPanelLayout = new org.jdesktop.layout.GroupLayout(indexerPanel);
-    indexerPanel.setLayout(indexerPanelLayout);
-    indexerPanelLayout.setHorizontalGroup(
-        indexerPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-        .add(indexerPanelLayout.createSequentialGroup()
-            .add(lastIndexedLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-            .add(startButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-            .add(0, 0, 0)
-            .add(stopButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-            .add(0, 0, 0)
-            .add(propertiesButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-            .add(indexerScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 639, Short.MAX_VALUE)
-            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-            .add(indexerProgressBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 54, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-    );
-    indexerPanelLayout.setVerticalGroup(
-        indexerPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-        .add(indexerPanelLayout.createSequentialGroup()
-            .add(indexerPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                .add(propertiesButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(stopButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(org.jdesktop.layout.GroupLayout.TRAILING, startButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+        org.jdesktop.layout.GroupLayout indexerPanelLayout = new org.jdesktop.layout.GroupLayout(indexerPanel);
+        indexerPanel.setLayout(indexerPanelLayout);
+        indexerPanelLayout.setHorizontalGroup(
+            indexerPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(indexerPanelLayout.createSequentialGroup()
                 .add(lastIndexedLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(indexerPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, indexerProgressBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, indexerScrollPane, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-            .addContainerGap())
-    );
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(startButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(0, 0, 0)
+                .add(stopButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(0, 0, 0)
+                .add(propertiesButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(indexerScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 639, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(indexerProgressBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 54, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+        );
+        indexerPanelLayout.setVerticalGroup(
+            indexerPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(indexerPanelLayout.createSequentialGroup()
+                .add(indexerPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(propertiesButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(stopButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, startButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(lastIndexedLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(indexerPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                        .add(org.jdesktop.layout.GroupLayout.LEADING, indexerProgressBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(org.jdesktop.layout.GroupLayout.LEADING, indexerScrollPane, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
 
-    bottomPanel.add(indexerPanel);
+        bottomPanel.add(indexerPanel);
 
-    fileMenu.setText("File");
-    fileMenu.add(jSeparator3);
+        fileMenu.setText("File");
+        fileMenu.add(jSeparator3);
 
-    openMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/16x16/open.png"))); // NOI18N
-    openMenuItem.setText("Open Index...");
-    openMenuItem.setFocusable(true);
-    openMenuItem.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            openMenuItemActionPerformed(evt);
-        }
-    });
-    fileMenu.add(openMenuItem);
+        openMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/16x16/open.png"))); // NOI18N
+        openMenuItem.setText("Open Index...");
+        openMenuItem.setFocusable(true);
+        openMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openMenuItemActionPerformed(evt);
+            }
+        });
+        fileMenu.add(openMenuItem);
 
-    openPortableMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/16x16/open.png"))); // NOI18N
-    openPortableMenuItem.setText("Open Portable Device Index...");
-    openPortableMenuItem.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            openPortableMenuItemActionPerformed(evt);
-        }
-    });
-    fileMenu.add(openPortableMenuItem);
-    fileMenu.add(jSeparator1);
+        openPortableMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/16x16/open.png"))); // NOI18N
+        openPortableMenuItem.setText("Open Portable Device Index...");
+        openPortableMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openPortableMenuItemActionPerformed(evt);
+            }
+        });
+        fileMenu.add(openPortableMenuItem);
+        fileMenu.add(jSeparator1);
 
-    exitMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/16x16/exit.png"))); // NOI18N
-    exitMenuItem.setText("Exit");
-    exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            exitMenuItemActionPerformed(evt);
-        }
-    });
-    fileMenu.add(exitMenuItem);
+        exitMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/16x16/exit.png"))); // NOI18N
+        exitMenuItem.setText("Exit");
+        exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitMenuItemActionPerformed(evt);
+            }
+        });
+        fileMenu.add(exitMenuItem);
 
-    menuBar.add(fileMenu);
+        menuBar.add(fileMenu);
 
-    viewMenu.setText("View");
+        viewMenu.setText("View");
 
-    viewButtonGroup.add(classicCheckBoxMenuItem);
-    classicCheckBoxMenuItem.setSelected(true);
-    classicCheckBoxMenuItem.setText("Classic");
-    classicCheckBoxMenuItem.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            classicCheckBoxMenuItemActionPerformed(evt);
-        }
-    });
-    viewMenu.add(classicCheckBoxMenuItem);
+        viewButtonGroup.add(classicCheckBoxMenuItem);
+        classicCheckBoxMenuItem.setSelected(true);
+        classicCheckBoxMenuItem.setText("Classic");
+        classicCheckBoxMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                classicCheckBoxMenuItemActionPerformed(evt);
+            }
+        });
+        viewMenu.add(classicCheckBoxMenuItem);
 
-    viewButtonGroup.add(tinyCheckBoxMenuItem);
-    tinyCheckBoxMenuItem.setText("Tiny");
-    tinyCheckBoxMenuItem.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            tinyCheckBoxMenuItemActionPerformed(evt);
-        }
-    });
-    viewMenu.add(tinyCheckBoxMenuItem);
+        viewButtonGroup.add(tinyCheckBoxMenuItem);
+        tinyCheckBoxMenuItem.setText("Tiny");
+        tinyCheckBoxMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tinyCheckBoxMenuItemActionPerformed(evt);
+            }
+        });
+        viewMenu.add(tinyCheckBoxMenuItem);
+        viewMenu.add(jSeparator2);
 
-    menuBar.add(viewMenu);
+        indexerCheckBoxMenuItem.setSelected(true);
+        indexerCheckBoxMenuItem.setText("Indexer Toolbar");
+        indexerCheckBoxMenuItem.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                indexerCheckBoxMenuItemItemStateChanged(evt);
+            }
+        });
+        viewMenu.add(indexerCheckBoxMenuItem);
 
-    helpMenu.setText("Help");
+        menuBar.add(viewMenu);
 
-    aboutMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/16x16/about.png"))); // NOI18N
-    aboutMenuItem.setText("About");
-    aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            aboutMenuItemActionPerformed(evt);
-        }
-    });
-    helpMenu.add(aboutMenuItem);
+        helpMenu.setText("Help");
 
-    menuBar.add(helpMenu);
+        aboutMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/16x16/about.png"))); // NOI18N
+        aboutMenuItem.setText("About");
+        aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutMenuItemActionPerformed(evt);
+            }
+        });
+        helpMenu.add(aboutMenuItem);
 
-    setJMenuBar(menuBar);
+        menuBar.add(helpMenu);
 
-    org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
-    getContentPane().setLayout(layout);
-    layout.setHorizontalGroup(
-        layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-        .add(searchPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        .add(scrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 801, Short.MAX_VALUE)
-        .add(bottomPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 801, Short.MAX_VALUE)
-    );
-    layout.setVerticalGroup(
-        layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-        .add(layout.createSequentialGroup()
-            .add(searchPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-            .add(1, 1, 1)
-            .add(scrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
-            .add(1, 1, 1)
-            .add(bottomPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-    );
+        setJMenuBar(menuBar);
 
-    pack();
+        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(searchPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(scrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 801, Short.MAX_VALUE)
+            .add(bottomPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 801, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(layout.createSequentialGroup()
+                .add(searchPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(1, 1, 1)
+                .add(scrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
+                .add(0, 0, 0)
+                .add(bottomPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 79, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+        );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void propertiesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_propertiesButtonActionPerformed
@@ -936,6 +949,15 @@ public class SearchFrame extends javax.swing.JFrame {
         } // while
 }//GEN-LAST:event_openMenuItemActionPerformed
 
+    private void indexerCheckBoxMenuItemItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_indexerCheckBoxMenuItemItemStateChanged
+        if (this.indexerCheckBoxMenuItem.isSelected() == true) {
+            bottomPanel.add(this.indexerPanel);
+        } else {
+            bottomPanel.remove(this.indexerPanel);
+        }
+        this.bottomPanel.updateUI();
+}//GEN-LAST:event_indexerCheckBoxMenuItemItemStateChanged
+
     private boolean startIndexing(long delay) throws IOException {
         long lastModified = this.indexerProperties.getLastIndexed();
         
@@ -1101,11 +1123,13 @@ public class SearchFrame extends javax.swing.JFrame {
     private javax.swing.JMenu fileMenu;
     private javax.swing.JButton findButton;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JCheckBoxMenuItem indexerCheckBoxMenuItem;
     private javax.swing.JPanel indexerPanel;
     private javax.swing.JProgressBar indexerProgressBar;
     private javax.swing.JScrollPane indexerScrollPane;
     private javax.swing.JTextArea indexerTextArea;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JLabel lastIndexedLabel;
     private javax.swing.JMenuBar menuBar;

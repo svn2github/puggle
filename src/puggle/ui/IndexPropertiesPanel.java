@@ -249,7 +249,7 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
         optionsLabel.setOpaque(true);
 
         filetypesLabel.setBackground(new java.awt.Color(102, 102, 255));
-        filetypesLabel.setFont(new java.awt.Font("Tahoma", 1, 14));
+        filetypesLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         filetypesLabel.setForeground(new java.awt.Color(255, 255, 255));
         filetypesLabel.setText("Filetypes");
         filetypesLabel.setOpaque(true);
@@ -357,7 +357,7 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(foldersLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 90, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(optionsLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
