@@ -757,12 +757,16 @@ public class SearchFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_prevButtonMouseClicked
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        if (this.indexerThread != null) {
+/*        if (this.indexerThread != null) {
             this.dispose();                    
             this.indexer.close();
         }
-        
+
         System.exit(0);
+ */
+        if (this.trayIconControl != null) {
+            this.trayIconControl.add();
+        }
     }//GEN-LAST:event_formWindowClosing
 
     private void findButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_findButtonMouseClicked

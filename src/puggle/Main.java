@@ -89,24 +89,11 @@ public class Main {
             }
             
             if (IndexReader.indexExists(Resources.getIndexCanonicalPath()) == false) {
-                
                 props.setPortable(true);
                 props.setFilesystemRoot(root.getAbsolutePath());
                 props.setPath(root.getPath());
                 Indexer indexer = new Indexer(index, props);
                 indexer.close();
-                
-/*                IndexPropertiesPanel panel = new IndexPropertiesPanel();
-                panel.setProperties(props);
-                
-                JDialog dialog = new JDialog((java.awt.Dialog)null, "Index Properties", true);
-                
-                dialog.getContentPane().add(panel);
-                dialog.pack();
-                dialog.setLocationRelativeTo(null);
-                dialog.setResizable(true);
-                dialog.setVisible(true);
- */
             }
         }
         else {

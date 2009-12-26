@@ -18,6 +18,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JFrame;
+import puggle.Resources.Resources;
 
 /**
  *
@@ -47,11 +48,17 @@ public class TrayIconControl {
         };
         
         PopupMenu popup = new PopupMenu();
-        MenuItem defaultItem = new MenuItem("Open Puggle Desktop Search");
+        MenuItem defaultItem = new MenuItem("Open " + Resources.APP_NAME
+                + " " +((Resources.isPortableEdition() == true) ?
+                    "Portable " : "Desktop ")
+                    + "Search ");
         defaultItem.addActionListener(openListener);
         popup.add(defaultItem);
         
-        this.trayIcon = new TrayIcon(imageControl.getTrayIcon(), "Puggle Desktop Search", popup);
+        this.trayIcon = new TrayIcon(imageControl.getTrayIcon(),
+                Resources.APP_NAME + " " +
+                ((Resources.isPortableEdition() == true) ? "Portable " : "Desktop ")
+                + "Search ", popup);
         
         this.frame = f;
     }

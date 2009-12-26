@@ -74,7 +74,7 @@ public class ImageControl {
 
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         
-        this.TRAY_ICON = toolkit.getImage(getClass().getResource("/tray-icon.png"));
+        this.TRAY_ICON = toolkit.getImage(getClass().getResource("/16x16/puggle.png"));
         
         this.iconsTable = new Hashtable<String, ImageIcon>();
         
