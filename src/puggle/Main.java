@@ -162,9 +162,6 @@ public class Main {
                 IndexPropertiesDialog dialog = new IndexPropertiesDialog((java.awt.Frame)null, true);
                 dialog.setProperties(props);
 
-                /* Check all options in dialog; default option for new Index */
-                dialog.indexPropertiesPanel.setSelected(true);
-                
                 dialog.setLocationRelativeTo(null);
                 dialog.setVisible(true);
             }

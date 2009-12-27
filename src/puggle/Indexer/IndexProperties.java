@@ -45,15 +45,15 @@ public class IndexProperties {
         try {
             properties.load(new FileInputStream(file));
         } catch (FileNotFoundException ex) {
-            properties.setProperty("document_filetypes", "");
-            properties.setProperty("image_filetypes", "");
-            properties.setProperty("music_filetypes", "");
+            properties.setProperty("document_filetypes", "txt,pdf,doc,rtf,html,htm,xls,ppt");
+            properties.setProperty("image_filetypes", "jpeg,jpg,png,gif");
+            properties.setProperty("music_filetypes", "mp3");
             properties.setProperty("misc_filetypes", "");
             properties.setProperty("path", "");
             properties.setProperty("last_indexed", "0");
             properties.setProperty("last_optimized", "0");
-            properties.setProperty("store_text", "false");
-            properties.setProperty("store_thumbnails", "false");
+            properties.setProperty("store_text", "true");
+            properties.setProperty("store_thumbnails", "true");
             properties.setProperty("filesystem_root", "");
             properties.setProperty("portable", "false");
             properties.setProperty("version", Resources.getApplicationVersion());
@@ -77,6 +77,7 @@ public class IndexProperties {
         return this.file;
     }
     
+    @Override
     protected void finalize() {
         this.flush();
     }

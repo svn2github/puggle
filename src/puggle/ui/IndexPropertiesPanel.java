@@ -449,19 +449,6 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
         this.mp3Check.setEnabled(b);
         this.storeTextCb.setEnabled(b); this.storeThumbsCb.setEnabled(b);
     }
-
-    public void setSelected(boolean b) {
-        this.jpegCheck.setSelected(b); this.gifCheck.setSelected(b);
-        this.pngCheck.setSelected(b); this.txtCheck.setSelected(b);
-        this.docCheck.setSelected(b); this.pdfCheck.setSelected(b);
-        this.xlsCheck.setSelected(b); this.pptCheck.setSelected(b);
-        this.htmlCheck.setSelected(b); this.rtfCheck.setSelected(b);
-        this.mp3Check.setSelected(b);
-        this.storeTextCb.setSelected(b); this.storeThumbsCb.setSelected(b);
-        /* XXX TODO fix this */
-        this.storeIndexingFiletypes();
-        this.storeIndexingOptions();
-    }
     
     private void storeIndexingFolders() {
         javax.swing.DefaultListModel model = 
