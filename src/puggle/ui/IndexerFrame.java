@@ -39,7 +39,7 @@ public class IndexerFrame extends javax.swing.JFrame {
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle(Resources.APP_NAME + " Desktop " + "Indexer" + " " + Resources.APP_VERSION
+        setTitle(Resources.APP_NAME + " Indexer" + " " + Resources.APP_VERSION
         );
         setIconImage(Toolkit.getDefaultToolkit()
             .getImage(getClass().

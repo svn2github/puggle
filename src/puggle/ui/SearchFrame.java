@@ -421,6 +421,7 @@ public class SearchFrame extends javax.swing.JFrame {
         fileMenu.add(openPortableMenuItem);
         fileMenu.add(jSeparator1);
 
+        exitMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
         exitMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/16x16/exit.png"))); // NOI18N
         exitMenuItem.setText("Exit");
         exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -502,45 +503,10 @@ public class SearchFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void propertiesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_propertiesButtonActionPerformed
-       
         IndexPropertiesDialog dialog = new IndexPropertiesDialog((java.awt.Frame)null, true);
         dialog.setProperties(this.indexerProperties);
         dialog.setLocationRelativeTo(null);
         dialog.setVisible(true);
-        /*IndexPropertiesPanel panel = new IndexPropertiesPanel();
-        panel.setProperties(this.indexerProperties);
-
-        // XXX TODO: Same code is used in Main.java. It may be better to
-        // create a separate dialog class
-        //
-                final JDialog dialog = new JDialog((java.awt.Dialog)null, "Index Properties", true);
-
-                dialog.setIconImage(Toolkit.getDefaultToolkit()
-                        .getImage(getClass().
-                        getResource("/preferences.png")));
-
-                JButton btn = new JButton("Close");
-                btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/22x22/ok.png")));
-                btn.addActionListener(
-                        new ActionListener(){
-                            public void actionPerformed(ActionEvent e){
-                                dialog.dispose();
-                            }
-                        }
-                );
-
-                JPanel dummyPanel = new JPanel();
-                dummyPanel.add(panel);
-                dummyPanel.add(new JSeparator());
-                dummyPanel.add(btn);
-                dummyPanel.setLayout(new BoxLayout(dummyPanel, BoxLayout.PAGE_AXIS));
-
-                dialog.getContentPane().add(dummyPanel);
-                dialog.pack();
-                dialog.setLocationRelativeTo(null);
-                dialog.setResizable(true);
-                dialog.setVisible(true);
-         */
     }//GEN-LAST:event_propertiesButtonActionPerformed
 
     private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopButtonActionPerformed

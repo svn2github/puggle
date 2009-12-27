@@ -20,6 +20,9 @@ import puggle.Util.Util;
 import puggle.ui.ImageControl;
 import puggle.ui.SearchFrame;
 import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.nio.channels.FileChannel;
+import java.nio.channels.FileLock;
 import org.apache.lucene.index.IndexReader;
 import puggle.ui.IndexPropertiesDialog;
 
@@ -28,12 +31,12 @@ import puggle.ui.IndexPropertiesDialog;
  * @author gvasil
  */
 public class Main {
-    
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException {
-        
+
         try {
             // Set System L&F
             UIManager.setLookAndFeel(
@@ -47,8 +50,39 @@ public class Main {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
-        
-        
+
+        /* Check if application already running */
+        try {
+            lockFile = new File(System.getProperty("user.home") 
+                + File.separator + "puggle.lock");
+            // Check if the lock exist
+            if (lockFile.exists()) {
+                // if exist try to delete it
+                lockFile.delete();
+            }
+            // Try to get the lock
+            channel = new RandomAccessFile(lockFile, "rw").getChannel();
+            lock = channel.tryLock();
+            if(lock == null)
+            {
+                // File is lock by other application
+                channel.close();
+                JOptionPane.showMessageDialog(null,
+                        "Another instance of Puggle is already running.",
+                        "Puggle",
+                        JOptionPane.ERROR_MESSAGE,
+                        ImageControl.getImageControl().getErrorIcon());
+                return;
+            }
+            // Add shutdown hook to release lock when application shutdown
+            ShutdownHook shutdownHook = new ShutdownHook();
+            Runtime.getRuntime().addShutdownHook(shutdownHook);
+        }
+        catch(IOException e)
+        {
+            throw new RuntimeException("Could not start process.", e);
+        }
+
         if (Resources.isPortableEdition() == true) {
             String os = System.getProperty("os.name").toLowerCase();
             if (os.indexOf("windows") < 0) {
@@ -241,5 +275,29 @@ public class Main {
                 }
             });
     }
+
+    public static void unlockFile() {
+        // release and delete file lock
+        try {
+            if(lock != null) {
+                lock.release();
+                channel.close();
+                lockFile.delete();
+            }
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    static class ShutdownHook extends Thread {
+        @Override
+        public void run() {
+            unlockFile();
+        }
+    }
+
+    private static File lockFile;
+    private static FileChannel channel;
+    private static FileLock lock;
     
 }
