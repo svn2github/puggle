@@ -52,7 +52,7 @@ public class IndexProperties {
             properties.setProperty("path", "");
             properties.setProperty("last_indexed", "0");
             properties.setProperty("last_optimized", "0");
-            properties.setProperty("store_text", "true");
+            properties.setProperty("store_text", "false");
             properties.setProperty("store_thumbnails", "true");
             properties.setProperty("filesystem_root", "");
             properties.setProperty("portable", "false");
