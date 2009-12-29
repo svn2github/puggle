@@ -622,15 +622,13 @@ public class SearchFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_classicCheckBoxMenuItemActionPerformed
 
     private void searchFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchFieldKeyTyped
-        this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
-
         this.resultsLabel.setText("");
         
         if (evt.getKeyChar() == '\n' && !searchField.getText().equals("")) {
+            this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
             this.performSearch();
+            this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         }
-        
-        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_searchFieldKeyTyped
 
     private void formWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowLostFocus
@@ -1054,7 +1052,7 @@ public class SearchFrame extends javax.swing.JFrame {
             this.lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-important.png")));
             this.lastIndexedLabel.setToolTipText("Index is outdated or incomplete. Please start indexer.");
         }
-        else if (this.indexerThread.isAlive()) {
+        else if (this.indexerThread != null && (this.indexerThread.isAlive())) {
             this.lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-green.png")));
             this.lastIndexedLabel.setToolTipText("Indexing in progress...");
         }

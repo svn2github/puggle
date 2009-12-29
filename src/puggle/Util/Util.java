@@ -164,17 +164,17 @@ public class Util {
         if (b > 1073741824) {
             g = b / 1073741824;
             b -= g * 1073741824;
-            str = "- " +g +"G -";
+            str = g +" GB";
         } else if (b > 1048576) {
             m = b / 1048576;
             b -= m * 1048576;
-            str = "- " +m +"M -";
+            str = m +" MB";
         } else if (b > 1024) {
             k = b / 1024;
             b -= k * 1024;
-            str = "- " +k +"K -";
+            str = k +" KB";
         } else {
-            str = "- " +b +" -";
+            str = b +" bytes";
         }
         
         return str;

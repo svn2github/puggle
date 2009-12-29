@@ -30,7 +30,7 @@ public class Resources {
     /* final string variables */
     public final static String APP_NAME = "Puggle";
     
-    public final static String APP_VERSION = "0.51";
+    public final static String APP_VERSION = "0.52";
 
     public final static String APP_AUTHOR = "Giorgos Vasiliadis";
 

@@ -83,6 +83,8 @@ public class Main {
             throw new RuntimeException("Could not start process.", e);
         }
 
+        IndexProperties props = null;
+
         if (Resources.isPortableEdition() == true) {
             String os = System.getProperty("os.name").toLowerCase();
             if (os.indexOf("windows") < 0) {
@@ -104,7 +106,7 @@ public class Main {
             Resources.setIndex(index);
             
             File propsFile = new File(Resources.getApplicationPropertiesCanonicalPath());
-            IndexProperties props = new IndexProperties(propsFile);
+            props = new IndexProperties(propsFile);
             
             if (props.getVersion().equals(Resources.getApplicationVersion()) == false) {
                 props.close(); props = null;
@@ -114,7 +116,7 @@ public class Main {
                     JOptionPane.showMessageDialog(null,
                             "Cannot delete directory '" +f +"'.\n"
                             + "Please remove it manually and start application again.",
-                            "Error Opening Index Directory",
+                            "Error Removing Old Index Directory",
                             JOptionPane.ERROR_MESSAGE,
                             ImageControl.getImageControl().getErrorIcon());
                     System.exit(1);
@@ -128,6 +130,11 @@ public class Main {
                 props.setPath(root.getPath());
                 Indexer indexer = new Indexer(index, props);
                 indexer.close();
+
+                IndexPropertiesDialog dialog = new IndexPropertiesDialog((java.awt.Frame)null, true);
+                dialog.setProperties(props);
+                dialog.setLocationRelativeTo(null);
+                dialog.setVisible(true);
             }
         }
         else {
@@ -136,7 +143,7 @@ public class Main {
             File index = new File(Resources.getApplicationDirectoryCanonicalPath());
             File propsFile = new File(Resources.getApplicationPropertiesCanonicalPath());
             
-            IndexProperties props = new IndexProperties(propsFile);
+            props = new IndexProperties(propsFile);
             
             if (props.getVersion().equals(Resources.getApplicationVersion()) == false) {
                 props.close(); props = null;
@@ -146,7 +153,7 @@ public class Main {
                     JOptionPane.showMessageDialog(null,
                             "Cannot delete directory '" +f +"'.\n"
                             + "Please remove it manually and start application again.",
-                            "Error Opening Index Directory",
+                            "Error Removing Old Index Directory",
                             JOptionPane.ERROR_MESSAGE,
                             ImageControl.getImageControl().getErrorIcon());
                     System.exit(1);
@@ -158,109 +165,12 @@ public class Main {
                 props.setPath(System.getProperty("user.home"));
                 Indexer indexer = new Indexer(index, props);
                 indexer.close();
-                
+
                 IndexPropertiesDialog dialog = new IndexPropertiesDialog((java.awt.Frame)null, true);
                 dialog.setProperties(props);
-
                 dialog.setLocationRelativeTo(null);
                 dialog.setVisible(true);
             }
-            
-/*            if (IndexReader.indexExists(Resources.getIndexCanonicalPath())) {
-                java.awt.EventQueue.invokeLater(new Runnable() {
-                    public void run() {
-                        new SearchFrame().setVisible(true);
-                    }
-                });
-            } else {
-                Object[] options = {"Create Index...", "Open Index..."};
-                
-                int n = JOptionPane.showOptionDialog(null,
-                        "Puggle wasn't able to find any valid Index Directory.\n "
-                        + "You can either create a new one or explicity load an\n"
-                        + "existing one.",
-                        "Puggle Desktop Search",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE,
-                        null,
-                        options,
-                        null);
-                
-                if (n == JOptionPane.YES_OPTION) {
-                    java.awt.EventQueue.invokeLater(new Runnable() {
-                        public void run() {
-                            new IndexerFrame().setVisible(true);
-                        }
-                    });
-                }
-                else if (n == JOptionPane.NO_OPTION) {
-                    JFileChooser fc = new JFileChooser();
-                    
-                    fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-                    fc.setCurrentDirectory(new java.io.File(Resources.getApplicationDirectoryCanonicalPath()));
-                    fc.setDialogTitle("Select Index Directory");
-                    
-                    boolean error = true;
-                    while (error == true) {
-                        error = false;
-                        
-                        int returnVal = fc.showOpenDialog(null);
-                        
-                        if (returnVal == JFileChooser.APPROVE_OPTION) {
-                            File file = fc.getSelectedFile();
-                            
-                            boolean exists = Indexer.indexExists(file);
-                            String directory = file.getPath();
-                            
-                            if (exists == true) {
-                                try {
-                                    Resources.setIndex(file);
-                                } catch (IOException ex) {
-                                    ex.printStackTrace();
-                                }
-                                
-                                File propsFile = new File(Resources.getApplicationPropertiesCanonicalPath());
-                                IndexProperties props = new IndexProperties(propsFile);
-                                
-                                if (props.getVersion().equals(Resources.getApplicationVersion()) == false) {
-                                    props.close(); props = null;
-                                    File f = new File(Resources.getIndexCanonicalPath());
-                                    if (Util.deleteDir(f) == false) {
-                                        JOptionPane.showMessageDialog(null,
-                                                "Cannot delete old format directory '" +f +"'.\n"
-                                                + "Please remove it manually and start again.",
-                                                "Error Opening Index Directory",
-                                                JOptionPane.ERROR_MESSAGE,
-                                                ImageControl.getImageControl().getErrorIcon());
-                                        System.exit(1);
-                                    }
-                                }
-                                
-                                JOptionPane.showMessageDialog(null,
-                                        "Index directory '" +directory +"' successfully loaded.",
-                                        "Open Index Directory",
-                                        JOptionPane.INFORMATION_MESSAGE,
-                                        ImageControl.getImageControl().getInfoIcon());
-                                
-                                java.awt.EventQueue.invokeLater(new Runnable() {
-                                    public void run() {
-                                        new SearchFrame().setVisible(true);
-                                    }
-                                });
-                            } else {
-                                JOptionPane.showMessageDialog(null,
-                                        "Directory '" +directory +"' is not a valid index.",
-                                        "Error Opening Index Directory",
-                                        JOptionPane.ERROR_MESSAGE,
-                                        ImageControl.getImageControl().getErrorIcon());
-                                error = true;
-                            }
-
-                        } // if
-                        
-                    } // while
-                }
-            }*/
         } // else (Resources.isPortableEdition() == false)
 
         // pop-up window!
