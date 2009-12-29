@@ -8,10 +8,12 @@ package puggle.ui;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import puggle.Indexer.IndexProperties;
 import puggle.Resources.Resources;
+import puggle.Util.Util;
 
 /**
  *
@@ -58,6 +60,12 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
         this.pathList.setModel(new javax.swing.DefaultListModel());
         addFolderButton = new javax.swing.JButton();
         removeFolderButton = new javax.swing.JButton();
+        filetypesLabel1 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        lastIndexedLabel = new javax.swing.JLabel();
+        zipCheck = new javax.swing.JCheckBox();
+        jLabel2 = new javax.swing.JLabel();
+        indexSizeLabel = new javax.swing.JLabel();
 
         storeTextCb.setSelected(true);
         storeTextCb.setText("Store text");
@@ -216,7 +224,7 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .add(indexDirectoryLabel)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(indexTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
+                .add(indexTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
                 .addContainerGap())
         );
         indexDirectoryPanelLayout.setVerticalGroup(
@@ -249,7 +257,7 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
         optionsLabel.setOpaque(true);
 
         filetypesLabel.setBackground(new java.awt.Color(102, 102, 255));
-        filetypesLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        filetypesLabel.setFont(new java.awt.Font("Tahoma", 1, 14));
         filetypesLabel.setForeground(new java.awt.Color(255, 255, 255));
         filetypesLabel.setText("Filetypes");
         filetypesLabel.setOpaque(true);
@@ -284,7 +292,7 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .add(pathScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
+                .add(pathScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(removeFolderButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 97, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -304,20 +312,53 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
                 .add(13, 13, 13))
         );
 
+        filetypesLabel1.setBackground(new java.awt.Color(102, 102, 255));
+        filetypesLabel1.setFont(new java.awt.Font("Tahoma", 1, 14));
+        filetypesLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        filetypesLabel1.setText("Index Information");
+        filetypesLabel1.setOpaque(true);
+
+        jLabel1.setText("Last Full Indexing was at:");
+
+        lastIndexedLabel.setText("<empty>");
+
+        zipCheck.setSelected(true);
+        zipCheck.setText("zip");
+        zipCheck.setToolTipText("Whether to index MP3 files");
+        zipCheck.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        zipCheck.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        zipCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                storeIndexingFiletypes(evt);
+            }
+        });
+
+        jLabel2.setText("Index Size:");
+
+        indexSizeLabel.setText("<empty>");
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
+                .add(zipCheck)
+                .addContainerGap(563, Short.MAX_VALUE))
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
+                .add(mp3Check)
+                .addContainerGap(557, Short.MAX_VALUE))
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createSequentialGroup()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, filetypesLabel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
                         .add(10, 10, 10)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(layout.createSequentialGroup()
                                 .add(storeTextCb)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(storeThumbsCb))
-                            .add(mp3Check)
                             .add(layout.createSequentialGroup()
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(jpegCheck)
@@ -339,14 +380,24 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                         .add(pptCheck))
                                     .add(gifCheck))))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 309, Short.MAX_VALUE))
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, filetypesLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, optionsLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
-                    .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(indexDirectoryPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(indexLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
-                    .add(foldersLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 319, Short.MAX_VALUE))
+                    .add(filetypesLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
+                    .add(optionsLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, indexDirectoryPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, indexLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, foldersLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE))
                 .add(0, 0, 0))
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jLabel1)
+                    .add(jLabel2))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(indexSizeLabel)
+                    .add(lastIndexedLabel))
+                .addContainerGap(419, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -357,7 +408,7 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(foldersLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 90, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(optionsLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -381,8 +432,20 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
                     .add(xlsCheck)
                     .add(pptCheck))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(zipCheck)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(mp3Check)
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(filetypesLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel1)
+                    .add(lastIndexedLabel))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel2)
+                    .add(indexSizeLabel))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -446,6 +509,7 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
         this.docCheck.setEnabled(b); this.pdfCheck.setEnabled(b);
         this.xlsCheck.setEnabled(b); this.pptCheck.setEnabled(b);
         this.htmlCheck.setEnabled(b); this.rtfCheck.setEnabled(b);
+        this.zipCheck.setEnabled(b);
         this.mp3Check.setEnabled(b);
         this.storeTextCb.setEnabled(b); this.storeThumbsCb.setEnabled(b);
     }
@@ -484,6 +548,7 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
         String document_filetypes = "";
         String misc_filetypes = "";
         String music_filetypes = "";
+        String archive_filetypes = "";
         
         if (this.jpegCheck.isSelected())
             image_filetypes += "jpeg,jpg,";
@@ -507,6 +572,8 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
             document_filetypes += "ppt,";
         if (this.mp3Check.isSelected())
             music_filetypes += "mp3,";
+        if (this.zipCheck.isSelected())
+            archive_filetypes += "zip,";
         
         if (image_filetypes.lastIndexOf(',') != -1) {
             image_filetypes = image_filetypes.substring(0, image_filetypes.lastIndexOf(','));
@@ -523,11 +590,16 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
         if (music_filetypes.lastIndexOf(',') != -1) {
             music_filetypes = music_filetypes.substring(0, music_filetypes.lastIndexOf(','));
         }
+
+        if (archive_filetypes.lastIndexOf(',') != -1) {
+            archive_filetypes = archive_filetypes.substring(0, archive_filetypes.lastIndexOf(','));
+        }
         
         this.indexProperties.setImageFiletypes(image_filetypes);
         this.indexProperties.setDocumentFiletypes(document_filetypes);
         this.indexProperties.setMiscFiletypes(misc_filetypes);
         this.indexProperties.setMusicFiletypes(music_filetypes);
+        this.indexProperties.setArchiveFiletypes(archive_filetypes);
     }
     
     private void storeIndexingOptions() {
@@ -541,7 +613,8 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
         
         String image_filetypes = indexProperties.getImageFiletypes();
         String document_filetypes = indexProperties.getDocumentFiletypes();
-        String misc_filetypes = indexProperties.getMusicFiletypes();
+        String music_filetypes = indexProperties.getMusicFiletypes();
+        String archive_filetypes = indexProperties.getArchiveFiletypes();
         
         if (indexProperties.isPortable() == true) {
             this.pathList.setEnabled(false);
@@ -571,107 +644,112 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
         storeTextCb.setSelected(indexProperties.getStoreText());
         storeThumbsCb.setSelected(indexProperties.getStoreThumbnail());
     
-        if (image_filetypes.contains(new StringBuffer("jpg"))
-        && image_filetypes.contains(new StringBuffer("jpeg"))) {
+        if (image_filetypes != null && (image_filetypes.contains(new StringBuffer("jpg"))
+        && image_filetypes.contains(new StringBuffer("jpeg")))) {
             this.jpegCheck.setSelected(true);
         } else {
             this.jpegCheck.setSelected(false);
         }
         
-        if (image_filetypes.contains(new StringBuffer("png"))) {
+        if (image_filetypes != null && (image_filetypes.contains(new StringBuffer("png")))) {
             this.pngCheck.setSelected(true);
         } else {
             this.pngCheck.setSelected(false);
         }
         
-        if (image_filetypes.contains(new StringBuffer("gif"))) {
+        if (image_filetypes != null && (image_filetypes.contains(new StringBuffer("gif")))) {
             this.gifCheck.setSelected(true);
         } else {
             this.gifCheck.setSelected(false);
         }
         
-        if (document_filetypes.contains(new StringBuffer("txt"))) {
+        if (document_filetypes != null && (document_filetypes.contains(new StringBuffer("txt")))) {
             this.txtCheck.setSelected(true);
         } else {
             this.txtCheck.setSelected(false);
         }
         
-        if (document_filetypes.contains(new StringBuffer("pdf"))) {
+        if (document_filetypes != null && (document_filetypes.contains(new StringBuffer("pdf")))) {
             this.pdfCheck.setSelected(true);
         } else {
             this.pdfCheck.setSelected(false);
         }
         
-        if (document_filetypes.contains(new StringBuffer("doc"))) {
+        if (document_filetypes != null && (document_filetypes.contains(new StringBuffer("doc")))) {
             this.docCheck.setSelected(true);
         } else {
             this.docCheck.setSelected(false);
         }
         
-        if (document_filetypes.contains(new StringBuffer("rtf"))) {
+        if (document_filetypes != null && (document_filetypes.contains(new StringBuffer("rtf")))) {
             this.rtfCheck.setSelected(true);
         } else {
             this.rtfCheck.setSelected(false);
         }
         
-        if (document_filetypes.contains(new StringBuffer("html")) && document_filetypes.contains(new StringBuffer("htm"))) {
+        if (document_filetypes != null && (document_filetypes.contains(new StringBuffer("html")) && document_filetypes.contains(new StringBuffer("htm")))) {
             this.htmlCheck.setSelected(true);
         } else {
             this.htmlCheck.setSelected(false);
         }
         
-        if (document_filetypes.contains(new StringBuffer("xls"))) {
+        if (document_filetypes != null && (document_filetypes.contains(new StringBuffer("xls")))) {
             this.xlsCheck.setSelected(true);
         } else {
             this.xlsCheck.setSelected(false);
         }
         
-        if (document_filetypes.contains(new StringBuffer("ppt"))) {
+        if (document_filetypes != null && (document_filetypes.contains(new StringBuffer("ppt")))) {
             this.pptCheck.setSelected(true);
         } else {
             this.pptCheck.setSelected(false);
         }
         
-        if (misc_filetypes.contains(new StringBuffer("mp3"))) {
+        if (music_filetypes != null && (music_filetypes.contains(new StringBuffer("mp3")))) {
             this.mp3Check.setSelected(true);
         } else {
             this.mp3Check.setSelected(false);
         }
-    }
-    
-    // Deletes all files and subdirectories under dir.
-    // Returns true if all deletions were successful.
-    // If a deletion fails, the method stops attempting to delete and returns false.
-    private boolean deleteDir(File dir) {
-        if (dir.isDirectory()) {
-            String[] children = dir.list();
-            for (int i=0; i<children.length; i++) {
-                boolean success = deleteDir(new File(dir, children[i]));
-                if (!success) {
-                    return false;
-                }
-            }
-        }
-    
-        // The directory is now empty so delete it
-        return dir.delete();
-    }
 
+        if (archive_filetypes != null && (archive_filetypes.contains(new StringBuffer("zip")))) {
+            this.zipCheck.setSelected(true);
+        } else {
+            this.zipCheck.setSelected(false);
+        }
+
+        if (this.indexProperties.getLastIndexed() == 0) {
+            this.lastIndexedLabel.setText("Never");
+            this.lastIndexedLabel.setToolTipText("Index is incomplete. Please start indexer.");
+        }
+        else {
+            this.lastIndexedLabel.setText(
+                    DateFormat.getDateInstance().format(this.indexProperties.getLastIndexedDate()));
+        }
+
+        this.indexSizeLabel.setText(Util.adjustSize(Util.getFileSize(new File(Resources.getIndexCanonicalPath()))));
+
+    }
+    
     private IndexProperties indexProperties;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addFolderButton;
     private javax.swing.JCheckBox docCheck;
     private javax.swing.JLabel filetypesLabel;
+    private javax.swing.JLabel filetypesLabel1;
     private javax.swing.JLabel foldersLabel;
     private javax.swing.JCheckBox gifCheck;
     private javax.swing.JCheckBox htmlCheck;
     private javax.swing.JLabel indexDirectoryLabel;
     private javax.swing.JPanel indexDirectoryPanel;
     private javax.swing.JLabel indexLabel;
+    private javax.swing.JLabel indexSizeLabel;
     private javax.swing.JTextField indexTextField;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JCheckBox jpegCheck;
+    private javax.swing.JLabel lastIndexedLabel;
     private javax.swing.JCheckBox mp3Check;
     private javax.swing.JLabel optionsLabel;
     private javax.swing.JList pathList;
@@ -685,6 +763,7 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
     private javax.swing.JCheckBox storeThumbsCb;
     private javax.swing.JCheckBox txtCheck;
     private javax.swing.JCheckBox xlsCheck;
+    private javax.swing.JCheckBox zipCheck;
     // End of variables declaration//GEN-END:variables
     
 }

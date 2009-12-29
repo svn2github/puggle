@@ -20,7 +20,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
-import puggle.Resources.*;
+import puggle.Resources.Resources;
+import puggle.Util.Util;
 
 /**
  *
@@ -48,6 +49,7 @@ public class IndexProperties {
             properties.setProperty("document_filetypes", "txt,pdf,doc,rtf,html,htm,xls,ppt");
             properties.setProperty("image_filetypes", "jpeg,jpg,png,gif");
             properties.setProperty("music_filetypes", "mp3");
+            properties.setProperty("archive_filetypes", "zip");
             properties.setProperty("misc_filetypes", "");
             properties.setProperty("path", "");
             properties.setProperty("last_indexed", "0");
@@ -139,18 +141,19 @@ public class IndexProperties {
         set.addAll(Arrays.asList(getDocumentFiletypesArray()));
         set.addAll(Arrays.asList(getMusicFiletypesArray()));
         set.addAll(Arrays.asList(getMiscFiletypesArray()));
+        set.addAll(Arrays.asList(getArchiveFiletypesArray()));
         
         return set;
     }
-    
-    public synchronized String[] getImageFiletypesArray() {
-        return this.properties.getProperty("image_filetypes").split(",");
+
+    /**
+     * Set image file types as a String object seperated by commas
+     */
+    public synchronized void setImageFiletypes(String str) {
+        this.properties.setProperty("image_filetypes", str);
+        this.flush();
     }
-    
-    public synchronized String getImageFiletypes() {
-        return this.properties.getProperty("image_filetypes");
-    }
-    
+
     public synchronized void setImageFiletypes(String str[]) {
         //throw new NullPointerException("Method not implemented.");
         StringBuffer sb = new StringBuffer();
@@ -162,7 +165,23 @@ public class IndexProperties {
         
         this.flush();
     }
-    
+
+    public synchronized String[] getImageFiletypesArray() {
+        return this.properties.getProperty("image_filetypes").split(",");
+    }
+
+    public synchronized String getImageFiletypes() {
+        return this.properties.getProperty("image_filetypes");
+    }
+
+    /**
+     * Set document file types as a String object seperated by commas
+     */
+    public synchronized void setDocumentFiletypes(String str) {
+        this.properties.setProperty("document_filetypes", str);
+        this.flush();
+    }
+
     public synchronized void setDocumentFiletypes(String str[]) {
         //throw new NullPointerException("Method not implemented.");
         StringBuffer sb = new StringBuffer();
@@ -175,22 +194,50 @@ public class IndexProperties {
         this.flush();
     }
     
+    public synchronized String[] getDocumentFiletypesArray() {
+        return this.properties.getProperty("document_filetypes").split(",");
+    }
+
+    public synchronized String getDocumentFiletypes() {
+        return this.properties.getProperty("document_filetypes");
+    }
+
+    public synchronized void setArchiveFiletypes(String str[]) {
+        //throw new NullPointerException("Method not implemented.");
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < str.length; ++i) {
+            sb.append(str[i] + ",");
+        }
+
+        setArchiveFiletypes(sb.substring(0, sb.length() - 1 >= 0 ? sb.length() - 1 : 0));
+
+        this.flush();
+    }
+
     /**
      * Set document file types as a String object seperated by commas
      */
-    public synchronized void setDocumentFiletypes(String str) {
-        this.properties.setProperty("document_filetypes", str);
+    public synchronized void setArchiveFiletypes(String str) {
+        this.properties.setProperty("archive_filetypes", str);
         this.flush();
     }
-    
+
+    public synchronized String[] getArchiveFiletypesArray() {
+        return this.properties.getProperty("archive_filetypes").split(",");
+    }
+
+    public synchronized String getArchiveFiletypes() {
+        return this.properties.getProperty("archive_filetypes");
+    }
+
     /**
-     * Set image file types as a String object seperated by commas
+     * Set misc file types as a String object seperated by commas
      */
-    public synchronized void setImageFiletypes(String str) {
-        this.properties.setProperty("image_filetypes", str);
+    public synchronized void setMiscFiletypes(String str) {
+        this.properties.setProperty("misc_filetypes", str);
         this.flush();
     }
-    
+
     public synchronized void setMiscFiletypes(String str[]) {
         //throw new NullPointerException("Method not implemented.");
         StringBuffer sb = new StringBuffer();
@@ -202,7 +249,20 @@ public class IndexProperties {
         
         this.flush();
     }
-    
+
+    public synchronized String getMiscFiletypes() {
+        return this.properties.getProperty("misc_filetypes");
+    }
+
+    public synchronized String[] getMiscFiletypesArray() {
+        return this.properties.getProperty("misc_filetypes").split(",");
+    }
+
+    public synchronized void setMusicFiletypes(String str) {
+        this.properties.setProperty("music_filetypes", str);
+        this.flush();
+    }
+
     public synchronized void setMusicFiletypes(String str[]) {
         //throw new NullPointerException("Method not implemented.");
         StringBuffer sb = new StringBuffer();
@@ -213,35 +273,6 @@ public class IndexProperties {
         setMusicFiletypes(sb.substring(0, sb.length() - 1 >= 0 ? sb.length() - 1 : 0));
         
         this.flush();
-    }
-    
-    /**
-     * Set misc file types as a String object seperated by commas
-     */
-    public synchronized void setMiscFiletypes(String str) {
-        this.properties.setProperty("misc_filetypes", str);
-        this.flush();
-    }
-    
-    public synchronized void setMusicFiletypes(String str) {
-        this.properties.setProperty("music_filetypes", str);
-        this.flush();
-    }
-    
-    public synchronized String[] getDocumentFiletypesArray() {
-        return this.properties.getProperty("document_filetypes").split(",");
-    }
-    
-    public synchronized String getDocumentFiletypes() {
-        return this.properties.getProperty("document_filetypes");
-    }
-    
-    public synchronized String getMiscFiletypes() {
-        return this.properties.getProperty("misc_filetypes");
-    }
-
-    public synchronized String[] getMiscFiletypesArray() {
-        return this.properties.getProperty("misc_filetypes").split(",");
     }
     
     public synchronized String[] getMusicFiletypesArray() {

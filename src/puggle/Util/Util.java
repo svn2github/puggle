@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.sql.Time;
 import java.text.DateFormat;
+import java.util.Random;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.search.Query;
@@ -48,6 +49,23 @@ public class Util {
     
         // The directory is now empty so delete it
         return dir.delete();
+    }
+
+    public static File createTempDir() {
+        final String baseTempPath = System.getProperty("java.io.tmpdir");
+
+        Random rand = new Random();
+        int randomInt = 1 + rand.nextInt();
+
+        File tempDir = new File(baseTempPath + File.separator + "tempDir" + randomInt);
+        while (tempDir.exists() == true) {
+            randomInt++;
+            tempDir = new File(baseTempPath + File.separator + "tempDir" + randomInt);
+        }
+
+        tempDir.mkdir();
+
+        return tempDir;
     }
 
     public static String getFragment(Document doc, Query query) {
@@ -175,7 +193,7 @@ public class Util {
     }
     
     public static String selectAllDocumentsQuery() {
-        String ext[] = Resources.getDocumentsFiletypesArray();
+        String ext[] = Resources.getDocumentFiletypesArray();
         
         String query = "(filetype:" + ext[0];
         for (int i = 1; i < ext.length; ++i) {
@@ -187,7 +205,7 @@ public class Util {
     }
     
     public static String selectAllImagesQuery() {
-        String ext[] = Resources.getImagesFiletypesArray();
+        String ext[] = Resources.getImageFiletypesArray();
         
         String query = "(filetype:" + ext[0];
         for (int i = 1; i < ext.length; ++i) {
@@ -207,6 +225,25 @@ public class Util {
             // win32 command line variant
             Process p = Runtime.getRuntime().exec("attrib +h " + f.getPath());
             p.waitFor();
+        }
+    }
+
+    public static long getFileSize(File file) {
+        long size = 0;
+
+        if (file.isDirectory() == false) {
+            return file.length();
+        }
+        else {
+            File[] filelist = file.listFiles();
+            for (int i = 0; i < filelist.length; i++) {
+                if (filelist[i].isDirectory()) {
+                    size += getFileSize(filelist[i]);
+                } else {
+                    size += filelist[i].length();
+                }
+            }
+            return size;
         }
     }
 

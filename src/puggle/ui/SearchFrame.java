@@ -347,7 +347,6 @@ public class SearchFrame extends javax.swing.JFrame {
         indexerTextArea.setRows(5);
         indexerTextArea.setToolTipText("");
         indexerTextArea.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        indexerTextArea.setSelectionColor(new java.awt.Color(255, 255, 255));
         indexerScrollPane.setViewportView(indexerTextArea);
 
         propertiesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/preferences.png"))); // NOI18N
@@ -1051,9 +1050,13 @@ public class SearchFrame extends javax.swing.JFrame {
                 q + "'."
         );
         
-        if ((this.indexerThread == null) && ((new Date().getTime() - this.indexerProperties.getLastIndexed()) > INDEX_DT)) {
+        if (this.indexerThread == null && ((new Date().getTime() - this.indexerProperties.getLastIndexed()) > INDEX_DT)) {
             this.lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-important.png")));
             this.lastIndexedLabel.setToolTipText("Index is outdated or incomplete. Please start indexer.");
+        }
+        else if (this.indexerThread.isAlive()) {
+            this.lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-green.png")));
+            this.lastIndexedLabel.setToolTipText("Indexing in progress...");
         }
         else  {
             this.lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-green.png")));

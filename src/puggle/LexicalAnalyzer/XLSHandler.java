@@ -44,7 +44,7 @@ public class XLSHandler implements DocumentHandler {
         }
         
         Document doc = new Document();
-        
+  /*
         try {
             doc.add(new Field("path", f.getCanonicalPath(),
                     Field.Store.YES, Field.Index.UN_TOKENIZED));
@@ -53,7 +53,7 @@ public class XLSHandler implements DocumentHandler {
         } catch (IOException e) {
             throw new DocumentHandlerException(e.getMessage());
         }
-        
+    */
         doc.add(new Field("filetype", "xls", Field.Store.YES,
                 Field.Index.UN_TOKENIZED));
         doc.add(new Field("last modified", String.valueOf(f.lastModified()),

@@ -30,11 +30,11 @@ public class FolderHandler implements DocumentHandler {
             
             doc.add(new Field("content", filename, Field.Store.NO,
                     Field.Index.TOKENIZED, Field.TermVector.YES));
-            doc.add(new Field("path", path,
+/*            doc.add(new Field("path", path,
                     Field.Store.YES, Field.Index.UN_TOKENIZED));
             doc.add(new Field("size", String.valueOf(file.length()),
                     Field.Store.YES, Field.Index.UN_TOKENIZED));
-        } catch (IOException e) {
+*/        } catch (IOException e) {
             throw new DocumentHandlerException(e.getMessage());
         }
         

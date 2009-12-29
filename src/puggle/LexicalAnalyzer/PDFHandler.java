@@ -48,7 +48,7 @@ public class PDFHandler implements DocumentHandler {
       }
 
       Document doc = new Document();
-      
+/*
       try {
           path = f.getCanonicalPath();
           doc.add(new Field("path", path,
@@ -58,7 +58,7 @@ public class PDFHandler implements DocumentHandler {
       } catch (IOException e) {
           throw new DocumentHandlerException(e.getMessage());
       }
-      
+  */
       doc.add(new Field("filetype", "pdf", Field.Store.YES,
               Field.Index.UN_TOKENIZED));
       doc.add(new Field("last modified", String.valueOf(f.lastModified()),

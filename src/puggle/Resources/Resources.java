@@ -60,13 +60,17 @@ public class Resources {
         "mp3"
     };
     
-    private final static String[] IMAGES_FILETYPES = {
+    private final static String[] IMAGE_FILETYPES = {
         "jpg", "jpeg", "gif", "png"
     };
     
-    private final static String[] DOCUMENTS_FILETYPES = {
+    private final static String[] DOCUMENT_FILETYPES = {
         "txt", "pdf", "doc", "rtf", "html", "htm",
         "xls", "ppt"
+    };
+
+    private final static String[] ARCHIVE_FILETYPES = {
+        "zip"
     };
     
     public static String getApplicationName() {
@@ -119,30 +123,40 @@ public class Resources {
         return set;
     }
     
-    public static String[] getImagesFiletypesArray() {
-        return IMAGES_FILETYPES;
+    public static String[] getImageFiletypesArray() {
+        return IMAGE_FILETYPES;
     }
     
-    public static Set getImagesFiletypesSet() {
+    public static Set getImageFiletypesSet() {
         HashSet<String> set = new HashSet<String>();
-        set.addAll(Arrays.asList(IMAGES_FILETYPES));
+        set.addAll(Arrays.asList(IMAGE_FILETYPES));
         return set;
     }
     
-    public static String[] getDocumentsFiletypesArray() {
-        return DOCUMENTS_FILETYPES;
+    public static String[] getDocumentFiletypesArray() {
+        return DOCUMENT_FILETYPES;
     }
     
-    public static Set getDocumentsFiletypesSet() {
+    public static Set getDocumentFiletypesSet() {
         HashSet<String> set = new HashSet<String>();
-        set.addAll(Arrays.asList(DOCUMENTS_FILETYPES));
+        set.addAll(Arrays.asList(DOCUMENT_FILETYPES));
+        return set;
+    }
+
+    public static String[] getArchiveFiletypesArray() {
+        return ARCHIVE_FILETYPES;
+    }
+
+    public static Set getArchivesFiletypesSet() {
+        HashSet<String> set = new HashSet<String>();
+        set.addAll(Arrays.asList(ARCHIVE_FILETYPES));
         return set;
     }
     
     public static boolean isImage(String extension) {
         extension = extension.toLowerCase();
-        for (int i = 0; i < IMAGES_FILETYPES.length; ++i) {
-            if (extension.equals(IMAGES_FILETYPES[i]))
+        for (int i = 0; i < IMAGE_FILETYPES.length; ++i) {
+            if (extension.equals(IMAGE_FILETYPES[i]))
                 return true;
         }
         
@@ -191,7 +205,8 @@ public class Resources {
 
         String ext = prop.getImageFiletypes() + ","
                 + prop.getMusicFiletypes() + ","
-                + prop.getDocumentFiletypes();
+                + prop.getDocumentFiletypes() + ","
+                + prop.getArchiveFiletypes();
         
         HashSet<String> set = new HashSet<String>();
         

@@ -49,11 +49,11 @@ public class ImageHandler implements DocumentHandler {
                     Field.Index.TOKENIZED, Field.TermVector.YES));
             doc.add(new Field("content", parent, Field.Store.NO,
                     Field.Index.TOKENIZED, Field.TermVector.YES));
-            doc.add(new Field("path", path,
+/*            doc.add(new Field("path", path,
                     Field.Store.YES, Field.Index.UN_TOKENIZED));
             doc.add(new Field("size", String.valueOf(f.length()),
                     Field.Store.YES, Field.Index.UN_TOKENIZED));
-            doc.add(new Field("width", String.valueOf(width),
+*/            doc.add(new Field("width", String.valueOf(width),
                     Field.Store.YES, Field.Index.UN_TOKENIZED));
             doc.add(new Field("height", String.valueOf(height),
                     Field.Store.YES, Field.Index.UN_TOKENIZED));

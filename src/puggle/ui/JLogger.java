@@ -10,9 +10,7 @@
 package puggle.ui;
 
 import java.io.PrintStream;
-import javax.swing.JLabel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 /**
  *

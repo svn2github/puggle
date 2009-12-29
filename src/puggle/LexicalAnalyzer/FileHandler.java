@@ -55,6 +55,8 @@ public class FileHandler {
         this.handlerProps.setProperty("jpeg", "puggle.LexicalAnalyzer.ImageHandler");
         this.handlerProps.setProperty("gif", "puggle.LexicalAnalyzer.ImageHandler");
         this.handlerProps.setProperty("png", "puggle.LexicalAnalyzer.ImageHandler");
+
+        this.handlerProps.setProperty("zip", "puggle.LexicalAnalyzer.ZipHandler");
     }
 
     /**
@@ -131,8 +133,8 @@ public class FileHandler {
         }
         
         /* XXX  TODO: Do not create fields during lexical analysis at each handler */
-        doc.removeField("path");
-        doc.removeField("size");
+//        doc.removeField("path");
+//        doc.removeField("size");
         
         try {
             doc.add(new Field("path", file.getCanonicalPath(),
