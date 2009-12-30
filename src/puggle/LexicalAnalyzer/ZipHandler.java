@@ -38,16 +38,18 @@ public class ZipHandler implements DocumentHandler {
       }
 
       Document doc = new Document();
-/*
+
       try {
+          doc.add(new Field("filename", f.getName(), Field.Store.YES,
+                  Field.Index.TOKENIZED));
           doc.add(new Field("path", f.getCanonicalPath(),
                   Field.Store.YES, Field.Index.UN_TOKENIZED));
           doc.add(new Field("size", String.valueOf(f.length()),
-                  Field.Store.YES, Field.Index.UN_TOKENIZED));
+                    Field.Store.YES, Field.Index.UN_TOKENIZED));
       } catch (IOException e) {
           throw new DocumentHandlerException(e.getMessage());
       }
-  */
+
       doc.add(new Field("filetype", "zip", Field.Store.YES,
               Field.Index.UN_TOKENIZED));
       doc.add(new Field("last modified", String.valueOf(f.lastModified()),
@@ -87,14 +89,13 @@ public class ZipHandler implements DocumentHandler {
   }
   
   private String getText(ZipInputStream is) throws IOException {
-      FileHandler handler = new FileHandler(true, false); //store text, not thumbs
+      FileHandler handler = new FileHandler(true, true); //store text, not thumbs
 
       StringBuffer str = new StringBuffer();
 
       File tmpDir = Util.createTempDir();
       String tmpDirPath = tmpDir.getPath();
 
-      // Get the first entry
       ZipEntry entry = null;
       while ((entry = is.getNextEntry()) != null) {
           String outFileName = null;
@@ -105,19 +106,17 @@ public class ZipHandler implements DocumentHandler {
               dir.mkdirs();
           }
           else {
-              // Open the output file
+              // unzipping archive
               outFileName = tmpDirPath + File.separator + entry.getName();
               System.out.println(outFileName);
               OutputStream out = new FileOutputStream(outFileName);
 
-              // Transfer bytes from the ZIP file to the output file
               byte[] buf = new byte[1024];
               int len;
               while ((len = is.read(buf)) > 0) {
                   out.write(buf, 0, len);
               }
 
-              // Close the streams
               out.close();
           }
 
@@ -133,6 +132,7 @@ public class ZipHandler implements DocumentHandler {
           
       }
 
+      // delete unzipped files
       Util.deleteDir(tmpDir);
 
       return str.toString();

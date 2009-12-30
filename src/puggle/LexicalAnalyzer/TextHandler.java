@@ -38,14 +38,16 @@ public class TextHandler implements DocumentHandler {
 
       Document doc = new Document();
       
-      /*try {
+      try {
+          doc.add(new Field("filename", f.getName(), Field.Store.YES,
+                  Field.Index.TOKENIZED));
           doc.add(new Field("path", f.getCanonicalPath(),
                   Field.Store.YES, Field.Index.UN_TOKENIZED));
           doc.add(new Field("size", String.valueOf(f.length()),
-                  Field.Store.YES, Field.Index.UN_TOKENIZED));
+                    Field.Store.YES, Field.Index.UN_TOKENIZED));
       } catch (IOException e) {
           throw new DocumentHandlerException(e.getMessage());
-      }*/
+      }
       
       doc.add(new Field("filetype", "txt", Field.Store.YES,
               Field.Index.UN_TOKENIZED));

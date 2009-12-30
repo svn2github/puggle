@@ -49,15 +49,18 @@ public class PPTHandler implements DocumentHandler, POIFSReaderListener {
         }
         
         Document doc = new Document();
-/*        try {
-            doc.add(new Field("path", f.getCanonicalPath(),
+
+      try {
+          doc.add(new Field("filename", f.getName(), Field.Store.YES,
+                  Field.Index.TOKENIZED));
+          doc.add(new Field("path", f.getCanonicalPath(),
+                  Field.Store.YES, Field.Index.UN_TOKENIZED));
+          doc.add(new Field("size", String.valueOf(f.length()),
                     Field.Store.YES, Field.Index.UN_TOKENIZED));
-            doc.add(new Field("size", String.valueOf(f.length()),
-                    Field.Store.YES, Field.Index.UN_TOKENIZED));
-        } catch (IOException e) {
-            throw new DocumentHandlerException(e.getMessage());
-        }
-   */
+      } catch (IOException e) {
+          throw new DocumentHandlerException(e.getMessage());
+      }
+
         doc.add(new Field("filetype", "ppt", Field.Store.YES,
                 Field.Index.UN_TOKENIZED));
         doc.add(new Field("last modified", String.valueOf(f.lastModified()),

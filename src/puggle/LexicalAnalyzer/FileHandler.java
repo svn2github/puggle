@@ -76,7 +76,6 @@ public class FileHandler {
         if (file.isDirectory()) {
             try {
                 doc = new FolderHandler().getDocument(file);
-                //return new FolderHandler().getDocument(file);
             } catch (DocumentHandlerException ex) {
                 throw new FileHandlerException(
                         "Directory cannot be handled: "
@@ -132,8 +131,10 @@ public class FileHandler {
             }
         }
 
+/*        doc.removeField("path");
+        doc.removeField("size");
+
         try {
-            System.out.println(file.getName());
             doc.add(new Field("filename", file.getName(), Field.Store.YES,
               Field.Index.TOKENIZED));
             doc.add(new Field("path", file.getCanonicalPath(),
@@ -143,7 +144,7 @@ public class FileHandler {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        
+  */
         return doc;
     }
     
