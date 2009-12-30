@@ -131,12 +131,11 @@ public class FileHandler {
                         + file.getAbsolutePath());
             }
         }
-        
-        /* XXX  TODO: Do not create fields during lexical analysis at each handler */
-//        doc.removeField("path");
-//        doc.removeField("size");
-        
+
         try {
+            System.out.println(file.getName());
+            doc.add(new Field("filename", file.getName(), Field.Store.YES,
+              Field.Index.TOKENIZED));
             doc.add(new Field("path", file.getCanonicalPath(),
                     Field.Store.YES, Field.Index.UN_TOKENIZED));
             doc.add(new Field("size", String.valueOf(file.length()),
