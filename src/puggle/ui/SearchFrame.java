@@ -19,6 +19,7 @@ import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
+import javax.swing.JFrame;
 import javax.swing.JScrollBar;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.search.Hits;
@@ -146,13 +147,15 @@ public class SearchFrame extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         indexerCheckBoxMenuItem = new javax.swing.JCheckBoxMenuItem();
         helpMenu = new javax.swing.JMenu();
+        helpMenuItem = new javax.swing.JMenuItem();
+        jSeparator5 = new javax.swing.JPopupMenu.Separator();
         aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle(Resources.APP_NAME + " " +
             ((Resources.isPortableEdition() == true) ?
                 "Portable " : "Desktop ")
-            + "Search "
+            + "Search v"
             + Resources.APP_VERSION);
         setBackground(new java.awt.Color(241, 240, 240));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -384,14 +387,13 @@ public class SearchFrame extends javax.swing.JFrame {
         indexerPanelLayout.setVerticalGroup(
             indexerPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(indexerPanelLayout.createSequentialGroup()
-                .add(indexerPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(propertiesButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(stopButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, startButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(lastIndexedLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(indexerPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                        .add(org.jdesktop.layout.GroupLayout.LEADING, indexerProgressBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(org.jdesktop.layout.GroupLayout.LEADING, indexerScrollPane, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                .add(indexerPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                    .add(propertiesButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+                    .add(stopButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+                    .add(startButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+                    .add(lastIndexedLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+                    .add(indexerScrollPane, 0, 0, Short.MAX_VALUE)
+                    .add(indexerProgressBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -400,7 +402,7 @@ public class SearchFrame extends javax.swing.JFrame {
         fileMenu.setText("File");
         fileMenu.add(jSeparator3);
 
-        openMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/16x16/open.png"))); // NOI18N
+        openMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/16x16/fileopen.png"))); // NOI18N
         openMenuItem.setText("Open Index...");
         openMenuItem.setFocusable(true);
         openMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -410,7 +412,7 @@ public class SearchFrame extends javax.swing.JFrame {
         });
         fileMenu.add(openMenuItem);
 
-        openPortableMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/16x16/open.png"))); // NOI18N
+        openPortableMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/16x16/fileopen.png"))); // NOI18N
         openPortableMenuItem.setText("Open Portable Device Index...");
         openPortableMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -445,7 +447,7 @@ public class SearchFrame extends javax.swing.JFrame {
         viewMenu.add(classicCheckBoxMenuItem);
 
         viewButtonGroup.add(tinyCheckBoxMenuItem);
-        tinyCheckBoxMenuItem.setText("Tiny");
+        tinyCheckBoxMenuItem.setText("Small Icons");
         tinyCheckBoxMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tinyCheckBoxMenuItemActionPerformed(evt);
@@ -466,6 +468,16 @@ public class SearchFrame extends javax.swing.JFrame {
         menuBar.add(viewMenu);
 
         helpMenu.setText("Help");
+
+        helpMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/16x16/help.png"))); // NOI18N
+        helpMenuItem.setText("Help Contents");
+        helpMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                helpContentsMenuItemActionPerformed(evt);
+            }
+        });
+        helpMenu.add(helpMenuItem);
+        helpMenu.add(jSeparator5);
 
         aboutMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/16x16/about.png"))); // NOI18N
         aboutMenuItem.setText("About");
@@ -925,6 +937,16 @@ public class SearchFrame extends javax.swing.JFrame {
         this.bottomPanel.updateUI();
 }//GEN-LAST:event_indexerCheckBoxMenuItemItemStateChanged
 
+    private void helpContentsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpContentsMenuItemActionPerformed
+        JFrame helpFrame = new net.sourceforge.helpgui.gui.MainFrame("/help/","plastic");
+        helpFrame.setTitle("Puggle Help");
+        helpFrame.setIconImage(Toolkit.getDefaultToolkit()
+            .getImage(getClass().
+                getResource("/16x16/help.png")));
+        helpFrame.setVisible(true);
+
+    }//GEN-LAST:event_helpContentsMenuItemActionPerformed
+
     private boolean startIndexing(long delay) throws IOException {
         long lastModified = this.indexerProperties.getLastIndexed();
         
@@ -1094,6 +1116,7 @@ public class SearchFrame extends javax.swing.JFrame {
     private javax.swing.JMenu fileMenu;
     private javax.swing.JButton findButton;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JMenuItem helpMenuItem;
     private javax.swing.JCheckBoxMenuItem indexerCheckBoxMenuItem;
     private javax.swing.JPanel indexerPanel;
     private javax.swing.JProgressBar indexerProgressBar;
@@ -1102,6 +1125,7 @@ public class SearchFrame extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
+    private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JLabel lastIndexedLabel;
     private javax.swing.JMenuBar menuBar;
     private java.awt.Panel navigationPanel;
