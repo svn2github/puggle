@@ -248,6 +248,7 @@ public class ClassicResultsPanel extends ResultsPanel {
     
 
     
+    @Override
     public void setResults(Query query, Hits hits, IndexProperties properties) {
         this.hits = hits;
         this.query = query;
@@ -257,10 +258,12 @@ public class ClassicResultsPanel extends ResultsPanel {
         this.printCurrentHits();
     }
     
+    @Override
     public int getCurrentResultsNumber() {
         return (this.currHits);
     }
     
+    @Override
     public void setCurrentResultsNumber(int number) {
         if (number < 0 || number >= this.totalHits) {
             throw new IllegalArgumentException("Number:" +number + " Total:" +this.totalHits);
@@ -268,18 +271,22 @@ public class ClassicResultsPanel extends ResultsPanel {
         this.currHits = number;
     }
     
+    @Override
     public int getTotalResultsNumber() {
         return (this.totalHits);
     }
     
+    @Override
     public boolean hasPreviousResults() {
         return (this.currHits - 10 >= 0);
     }
     
+    @Override
     public boolean hasNextResults() {
         return (this.currHits + 10 < this.totalHits);
     }
     
+    @Override
     public boolean nextResults() {
         if (this.hasNextResults()) {
             this.currHits += 10;
@@ -289,6 +296,7 @@ public class ClassicResultsPanel extends ResultsPanel {
         return false;
     }
     
+    @Override
     public boolean previousResults() {
         if (this.hasPreviousResults()) {
             this.currHits -= 10;

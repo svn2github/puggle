@@ -67,7 +67,6 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         indexSizeLabel = new javax.swing.JLabel();
 
-        storeTextCb.setSelected(true);
         storeTextCb.setText("Store text");
         storeTextCb.setToolTipText("Store the extracted text of each file");
         storeTextCb.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -78,7 +77,6 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
             }
         });
 
-        storeThumbsCb.setSelected(true);
         storeThumbsCb.setText("Store thumbnails");
         storeThumbsCb.setToolTipText("Store a thumbnail for each file");
         storeThumbsCb.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -89,7 +87,6 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
             }
         });
 
-        jpegCheck.setSelected(true);
         jpegCheck.setText("jpeg");
         jpegCheck.setToolTipText("Whether to index JPEG files");
         jpegCheck.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -100,7 +97,6 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
             }
         });
 
-        pngCheck.setSelected(true);
         pngCheck.setText("png");
         pngCheck.setToolTipText("Whether to index PNG files");
         pngCheck.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -111,7 +107,6 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
             }
         });
 
-        gifCheck.setSelected(true);
         gifCheck.setText("gif");
         gifCheck.setToolTipText("Whether to index GIF files");
         gifCheck.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -122,7 +117,6 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
             }
         });
 
-        txtCheck.setSelected(true);
         txtCheck.setText("txt");
         txtCheck.setToolTipText("Whether to index TXT files");
         txtCheck.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -133,7 +127,6 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
             }
         });
 
-        pdfCheck.setSelected(true);
         pdfCheck.setText("pdf");
         pdfCheck.setToolTipText("Whether to index PDF files");
         pdfCheck.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -144,7 +137,6 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
             }
         });
 
-        docCheck.setSelected(true);
         docCheck.setText("doc");
         docCheck.setToolTipText("Whether to index MS WORD files");
         docCheck.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -155,7 +147,6 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
             }
         });
 
-        rtfCheck.setSelected(true);
         rtfCheck.setText("rtf");
         rtfCheck.setToolTipText("Whether to index RTF files");
         rtfCheck.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -166,7 +157,6 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
             }
         });
 
-        htmlCheck.setSelected(true);
         htmlCheck.setText("html");
         htmlCheck.setToolTipText("Whether to index HTML files");
         htmlCheck.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -177,7 +167,6 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
             }
         });
 
-        xlsCheck.setSelected(true);
         xlsCheck.setText("xls");
         xlsCheck.setToolTipText("Whether to index MS EXCEL files");
         xlsCheck.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -188,7 +177,6 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
             }
         });
 
-        pptCheck.setSelected(true);
         pptCheck.setText("ppt");
         pptCheck.setToolTipText("Whether to index MS POWERPOINT files");
         pptCheck.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -199,7 +187,6 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
             }
         });
 
-        mp3Check.setSelected(true);
         mp3Check.setText("mp3");
         mp3Check.setToolTipText("Whether to index MP3 files");
         mp3Check.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -322,7 +309,6 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
 
         lastIndexedLabel.setText("<empty>");
 
-        zipCheck.setSelected(true);
         zipCheck.setText("zip");
         zipCheck.setToolTipText("Whether to index MP3 files");
         zipCheck.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));

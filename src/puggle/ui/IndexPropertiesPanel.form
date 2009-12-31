@@ -99,7 +99,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="foldersLabel" min="-2" pref="33" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <Component id="jPanel1" min="-2" pref="90" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="optionsLabel" min="-2" pref="33" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -149,7 +149,6 @@
   <SubComponents>
     <Component class="javax.swing.JCheckBox" name="storeTextCb">
       <Properties>
-        <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="Store text"/>
         <Property name="toolTipText" type="java.lang.String" value="Store the extracted text of each file"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -167,7 +166,6 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="storeThumbsCb">
       <Properties>
-        <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="Store thumbnails"/>
         <Property name="toolTipText" type="java.lang.String" value="Store a thumbnail for each file"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -185,7 +183,6 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="jpegCheck">
       <Properties>
-        <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="jpeg"/>
         <Property name="toolTipText" type="java.lang.String" value="Whether to index JPEG files"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -203,7 +200,6 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="pngCheck">
       <Properties>
-        <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="png"/>
         <Property name="toolTipText" type="java.lang.String" value="Whether to index PNG files"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -221,7 +217,6 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="gifCheck">
       <Properties>
-        <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="gif"/>
         <Property name="toolTipText" type="java.lang.String" value="Whether to index GIF files"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -239,7 +234,6 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="txtCheck">
       <Properties>
-        <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="txt"/>
         <Property name="toolTipText" type="java.lang.String" value="Whether to index TXT files"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -257,7 +251,6 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="pdfCheck">
       <Properties>
-        <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="pdf"/>
         <Property name="toolTipText" type="java.lang.String" value="Whether to index PDF files"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -275,7 +268,6 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="docCheck">
       <Properties>
-        <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="doc"/>
         <Property name="toolTipText" type="java.lang.String" value="Whether to index MS WORD files"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -293,7 +285,6 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="rtfCheck">
       <Properties>
-        <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="rtf"/>
         <Property name="toolTipText" type="java.lang.String" value="Whether to index RTF files"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -311,7 +302,6 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="htmlCheck">
       <Properties>
-        <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="html"/>
         <Property name="toolTipText" type="java.lang.String" value="Whether to index HTML files"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -329,7 +319,6 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="xlsCheck">
       <Properties>
-        <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="xls"/>
         <Property name="toolTipText" type="java.lang.String" value="Whether to index MS EXCEL files"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -347,7 +336,6 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="pptCheck">
       <Properties>
-        <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="ppt"/>
         <Property name="toolTipText" type="java.lang.String" value="Whether to index MS POWERPOINT files"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -365,7 +353,6 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="mp3Check">
       <Properties>
-        <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="mp3"/>
         <Property name="toolTipText" type="java.lang.String" value="Whether to index MP3 files"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -595,7 +582,6 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="zipCheck">
       <Properties>
-        <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="zip"/>
         <Property name="toolTipText" type="java.lang.String" value="Whether to index MP3 files"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">

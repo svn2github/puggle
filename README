@@ -1,4 +1,4 @@
-Puggle Desktop Search Engine, version 0.2.1
+Puggle Desktop Search Engine, version 0.50
 -----------------------------------------------------------------------------
 Author: Giorgos Vasiliadis, gvasil@csd.uoc.gr
 
@@ -34,9 +34,15 @@ index to evaluate the queries supplied by the user and present the results.
 
 Windows
 -------
-To run the Indexer, double-click the 'puggle-indexer.bat' script that is
-located in bin/ directory. The Searcher can be executed by running the
-'puggle.bat' script in the same directory.
+You can either install Puggle, using the setup installer, or use the
+executable files.
+To run Puggle, execute the 'puggle.exe' file (or 'puggle.bat' script)
+that is located in bin/ directory.
+
+Linux
+-------
+To run Puggle, execute the 'puggle.sh' script that is located in bin/
+directory.
 
 
 3. HOW TO BUILD FROM SOURCES

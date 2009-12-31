@@ -41,6 +41,7 @@ public class IndexPropertiesDialog extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Index Properties");
+        setIconImage(null);
         setIconImages(null);
         setResizable(false);
 

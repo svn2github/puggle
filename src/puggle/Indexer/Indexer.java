@@ -142,6 +142,7 @@ public class Indexer implements Runnable {
     protected void finalize() {
         try { this.Index.close(); }
         catch (IOException ex) { ex.printStackTrace(); }
+        catch (IllegalStateException ex) { ex.printStackTrace(); }
         
         this.Index = null;
     }
