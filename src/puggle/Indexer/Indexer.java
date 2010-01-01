@@ -441,6 +441,8 @@ public class Indexer implements Runnable {
 
     public void close() {
         this.stop();
-        this.finalize();
+        if (this.Index != null) {
+            this.finalize();
+        }
     }
 }
