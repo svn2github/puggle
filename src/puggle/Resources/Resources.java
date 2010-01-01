@@ -72,6 +72,14 @@ public class Resources {
     private final static String[] ARCHIVE_FILETYPES = {
         "zip"
     };
+
+    private final static String[] APPLICATION_FILETYPES = {
+        "exe", "com", "cab", "msi"
+    };
+
+    private final static String[] MISC_FILETYPES = {
+        ""
+    };
     
     public static String getApplicationName() {
         return Resources.APP_NAME;
@@ -122,6 +130,42 @@ public class Resources {
         set.addAll(Arrays.asList(MUSIC_FILETYPES));
         return set;
     }
+
+    public static String getMusicFiletypes() {
+        String str = "";
+        for (int i=0; i < MUSIC_FILETYPES.length; ++i) {
+            str += MUSIC_FILETYPES[i] + ",";
+        }
+
+        if (str.lastIndexOf(',') != -1) {
+            str = str.substring(0, str.lastIndexOf(','));
+        }
+
+        return str;
+    }
+
+    public static String[] getMiscFiletypesArray() {
+        return MISC_FILETYPES;
+    }
+
+    public static Set getMiscFiletypesSet() {
+        HashSet<String> set = new HashSet<String>();
+        set.addAll(Arrays.asList(MISC_FILETYPES));
+        return set;
+    }
+
+    public static String getMiscFiletypes() {
+        String str = "";
+        for (int i=0; i < MISC_FILETYPES.length; ++i) {
+            str += MISC_FILETYPES[i] + ",";
+        }
+
+        if (str.lastIndexOf(',') != -1) {
+            str = str.substring(0, str.lastIndexOf(','));
+        }
+
+        return str;
+    }
     
     public static String[] getImageFiletypesArray() {
         return IMAGE_FILETYPES;
@@ -131,6 +175,19 @@ public class Resources {
         HashSet<String> set = new HashSet<String>();
         set.addAll(Arrays.asList(IMAGE_FILETYPES));
         return set;
+    }
+
+    public static String getImageFiletypes() {
+        String str = "";
+        for (int i=0; i < IMAGE_FILETYPES.length; ++i) {
+            str += IMAGE_FILETYPES[i] + ",";
+        }
+
+        if (str.lastIndexOf(',') != -1) {
+            str = str.substring(0, str.lastIndexOf(','));
+        }
+
+        return str;
     }
     
     public static String[] getDocumentFiletypesArray() {
@@ -143,6 +200,20 @@ public class Resources {
         return set;
     }
 
+    public static String getDocumentFiletypes() {
+        String str = "";
+        for (int i=0; i < DOCUMENT_FILETYPES.length; ++i) {
+            str += DOCUMENT_FILETYPES[i] + ",";
+        }
+
+        if (str.lastIndexOf(',') != -1) {
+            str = str.substring(0, str.lastIndexOf(','));
+        }
+
+        return str;
+    }
+
+
     public static String[] getArchiveFiletypesArray() {
         return ARCHIVE_FILETYPES;
     }
@@ -152,7 +223,43 @@ public class Resources {
         set.addAll(Arrays.asList(ARCHIVE_FILETYPES));
         return set;
     }
-    
+
+    public static String getArchiveFiletypes() {
+        String str = "";
+        for (int i=0; i < ARCHIVE_FILETYPES.length; ++i) {
+            str += ARCHIVE_FILETYPES[i] + ",";
+        }
+
+        if (str.lastIndexOf(',') != -1) {
+            str = str.substring(0, str.lastIndexOf(','));
+        }
+
+        return str;
+    }
+
+    public static String[] getApplicationFiletypesArray() {
+        return APPLICATION_FILETYPES;
+    }
+
+    public static Set getApplicationFiletypesSet() {
+        HashSet<String> set = new HashSet<String>();
+        set.addAll(Arrays.asList(APPLICATION_FILETYPES));
+        return set;
+    }
+
+    public static String getApplicationFiletypes() {
+        String str = "";
+        for (int i=0; i < APPLICATION_FILETYPES.length; ++i) {
+            str += APPLICATION_FILETYPES[i] + ",";
+        }
+
+        if (str.lastIndexOf(',') != -1) {
+            str = str.substring(0, str.lastIndexOf(','));
+        }
+
+        return str;
+    }
+
     public static boolean isImage(String extension) {
         extension = extension.toLowerCase();
         for (int i = 0; i < IMAGE_FILETYPES.length; ++i) {
@@ -201,18 +308,20 @@ public class Resources {
     }
     
     public static HashSet<String> getAcceptedFileExtensions(IndexProperties prop) {
-//        IndexProperties prop = new IndexProperties(new File(Resources.getApplicationPropertiesName()));
-
         String ext = prop.getImageFiletypes() + ","
                 + prop.getMusicFiletypes() + ","
                 + prop.getDocumentFiletypes() + ","
-                + prop.getArchiveFiletypes();
+                + prop.getArchiveFiletypes() + ","
+                + prop.getApplicationFiletypes() + ","
+                + prop.getMiscFiletypes();
         
         HashSet<String> set = new HashSet<String>();
         
         String str[] = ext.split(",");
         for (int i=0; i < str.length; i++) {
-            set.add(str[i]);
+            if (str[i].length() > 0) {
+                set.add(str[i]);
+            }
         }
         
         return set;

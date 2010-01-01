@@ -45,42 +45,20 @@ public class SearchFrame extends javax.swing.JFrame {
             System.err.println(ex.getMessage());
         }
         
-        /*
-        long lastModified = this.indexerProperties.getLastIndexed();
-        
-        if (new Date().getTime() - lastModified > 86400000) {
-            int opt = JOptionPane.showConfirmDialog(this,
-                    "Index appears to be older than one day. (Last update was at "
-                    + DateFormat.getDateInstance().format(lastModified)
-                    +")\nUpdate now?",
-                    "Update index",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.WARNING_MESSAGE,
-                    this.imageControl.getWarningIcon()
-                    );
-            
-            if (opt == JOptionPane.YES_OPTION) {
-                java.awt.EventQueue.invokeLater(new Runnable() {
-                    public void run() {
-                        new IndexerFrame().setVisible(true);
-                    }
-                });
-            }
-        }*/
-
         initComponents();
         
         this.init();
-        
-        /* if portable edition, remove menu bar */
+
+        // XXX is this really needed?
+        /* if portable edition, remove open index menu */
         if (Resources.isPortableEdition() == true) {
-            //this.setJMenuBar(null);
             this.fileMenu.remove(this.openMenuItem);
         }
         
         if (new Date().getTime() - this.indexerProperties.getLastIndexed() > INDEX_DT) {
             this.lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-important.png")));
             this.lastIndexedLabel.setToolTipText("Index is outdated or incomplete. Please start indexer.");
+            // force indexer to start
             this.startButtonActionPerformed(null);
         }
         else {
@@ -644,42 +622,17 @@ public class SearchFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_searchFieldKeyTyped
 
     private void formWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowLostFocus
-        /*try {
-            this.startIndexing(50);
-        } catch (IOException ex) {
-            // someone else is indexing. do nothing..
-        }*/
     }//GEN-LAST:event_formWindowLostFocus
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-        /*this.stopIndexing();*/
+        this.stopButtonActionPerformed(null);
     }//GEN-LAST:event_formWindowGainedFocus
    
     private void formWindowIconified(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowIconified
-/*        if (this.trayIconControl != null) {
-            this.trayIconControl.add();
-        }
 
-        try {
-            boolean status = this.startIndexing(25);
-            if (this.trayIconControl != null && status == true) {
-                this.trayIconControl.displayMessage("Puggle Indexer",
-                        "Indexing process started in background.",
-                        TrayIcon.MessageType.INFO);
-            }
-        } catch (IOException ex) {
-            // someone else is indexing.
-            this.trayIconControl.displayMessage("Puggle Indexer",
-                    "Indexing failed: " +ex.getMessage(),
-                    TrayIcon.MessageType.ERROR);
-            System.out.println(ex.getMessage());
-            return;
-        }
- */
     }//GEN-LAST:event_formWindowIconified
 
     private void formWindowDeiconified(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowDeiconified
-//        this.stopIndexing();
     }//GEN-LAST:event_formWindowDeiconified
 
     private void nextButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextButtonMouseClicked
@@ -732,16 +685,12 @@ public class SearchFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_prevButtonMouseClicked
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-/*        if (this.indexerThread != null) {
-            this.dispose();                    
-            this.indexer.close();
-        }
-
-        System.exit(0);
- */
         if (this.trayIconControl != null) {
             this.trayIconControl.add();
+            this.trayIconControl.setToolTip("Indexing started in background...");
         }
+
+        this.startButtonActionPerformed(null);
     }//GEN-LAST:event_formWindowClosing
 
     private void findButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_findButtonMouseClicked
@@ -959,7 +908,7 @@ public class SearchFrame extends javax.swing.JFrame {
             JLogger logger = new JLogger(System.out, this.indexerTextArea);
             this.indexer = new Indexer(dataDirsFile, indexDir_l, this.indexerProperties, logger, false);
             this.indexer.setProgressBar(this.indexerProgressBar);
-            this.indexer.setDelay(delay);  // Sleep about 1 sec for every 40 files.
+            this.indexer.setDelay(delay);
             
             this.indexerThread = new Thread(this.indexer);
             this.indexerThread.start();
@@ -973,8 +922,6 @@ public class SearchFrame extends javax.swing.JFrame {
     private void stopIndexing() {
         if (this.indexerThread != null) {
             this.indexer.stop();
-            //this.indexer.close();
-            //this.indexerThread = null;
         }
     }
     

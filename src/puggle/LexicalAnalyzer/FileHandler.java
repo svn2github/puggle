@@ -12,7 +12,6 @@ package puggle.LexicalAnalyzer;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Properties;
 import javax.swing.ImageIcon;
 import org.apache.lucene.document.Document;
@@ -57,6 +56,11 @@ public class FileHandler {
         this.handlerProps.setProperty("png", "puggle.LexicalAnalyzer.ImageHandler");
 
         this.handlerProps.setProperty("zip", "puggle.LexicalAnalyzer.ZipHandler");
+
+        this.handlerProps.setProperty("exe", "puggle.LexicalAnalyzer.AppHandler");
+        this.handlerProps.setProperty("com", "puggle.LexicalAnalyzer.AppHandler");
+        this.handlerProps.setProperty("cab", "puggle.LexicalAnalyzer.AppHandler");
+        this.handlerProps.setProperty("msi", "puggle.LexicalAnalyzer.AppHandler");
     }
 
     /**

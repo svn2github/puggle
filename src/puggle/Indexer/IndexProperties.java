@@ -45,11 +45,12 @@ public class IndexProperties {
         try {
             properties.load(new FileInputStream(file));
         } catch (FileNotFoundException ex) {
-            properties.setProperty("document_filetypes", "txt,pdf,doc,rtf,html,htm,xls,ppt");
-            properties.setProperty("image_filetypes", "jpeg,jpg,png,gif");
-            properties.setProperty("music_filetypes", "mp3");
-            properties.setProperty("archive_filetypes", "zip");
-            properties.setProperty("misc_filetypes", "");
+            properties.setProperty("document_filetypes", Resources.getDocumentFiletypes()/*"txt,pdf,doc,rtf,html,htm,xls,ppt"*/);
+            properties.setProperty("image_filetypes", Resources.getImageFiletypes()/*"jpeg,jpg,png,gif"*/);
+            properties.setProperty("music_filetypes", Resources.getMusicFiletypes()/*"mp3"*/);
+            properties.setProperty("archive_filetypes", Resources.getArchiveFiletypes()/*"zip"*/);
+            properties.setProperty("misc_filetypes", Resources.getMusicFiletypes()/*""*/);
+            properties.setProperty("application_filetypes", Resources.getApplicationFiletypes()/*""*/);
             properties.setProperty("path", "");
             properties.setProperty("last_indexed", "0");
             properties.setProperty("last_optimized", "0");
@@ -140,6 +141,7 @@ public class IndexProperties {
         set.addAll(Arrays.asList(getDocumentFiletypesArray()));
         set.addAll(Arrays.asList(getMusicFiletypesArray()));
         set.addAll(Arrays.asList(getMiscFiletypesArray()));
+        set.addAll(Arrays.asList(getApplicationFiletypesArray()));
         set.addAll(Arrays.asList(getArchiveFiletypesArray()));
         
         return set;
@@ -154,7 +156,6 @@ public class IndexProperties {
     }
 
     public synchronized void setImageFiletypes(String str[]) {
-        //throw new NullPointerException("Method not implemented.");
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < str.length; ++i) {
             sb.append(str[i] + ",");
@@ -182,7 +183,6 @@ public class IndexProperties {
     }
 
     public synchronized void setDocumentFiletypes(String str[]) {
-        //throw new NullPointerException("Method not implemented.");
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < str.length; ++i) {
             sb.append(str[i] + ",");
@@ -202,7 +202,6 @@ public class IndexProperties {
     }
 
     public synchronized void setArchiveFiletypes(String str[]) {
-        //throw new NullPointerException("Method not implemented.");
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < str.length; ++i) {
             sb.append(str[i] + ",");
@@ -229,6 +228,33 @@ public class IndexProperties {
         return this.properties.getProperty("archive_filetypes");
     }
 
+    public synchronized void setApplicationFiletypes(String str[]) {
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < str.length; ++i) {
+            sb.append(str[i] + ",");
+        }
+
+        setApplicationFiletypes(sb.substring(0, sb.length() - 1 >= 0 ? sb.length() - 1 : 0));
+
+        this.flush();
+    }
+
+    /**
+     * Set document file types as a String object seperated by commas
+     */
+    public synchronized void setApplicationFiletypes(String str) {
+        this.properties.setProperty("application_filetypes", str);
+        this.flush();
+    }
+
+    public synchronized String[] getApplicationFiletypesArray() {
+        return this.properties.getProperty("application_filetypes").split(",");
+    }
+
+    public synchronized String getApplicationFiletypes() {
+        return this.properties.getProperty("application_filetypes");
+    }
+
     /**
      * Set misc file types as a String object seperated by commas
      */
@@ -238,7 +264,6 @@ public class IndexProperties {
     }
 
     public synchronized void setMiscFiletypes(String str[]) {
-        //throw new NullPointerException("Method not implemented.");
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < str.length; ++i) {
             sb.append(str[i] + ",");
@@ -263,7 +288,6 @@ public class IndexProperties {
     }
 
     public synchronized void setMusicFiletypes(String str[]) {
-        //throw new NullPointerException("Method not implemented.");
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < str.length; ++i) {
             sb.append(str[i] + ",");

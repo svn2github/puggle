@@ -59,13 +59,12 @@ public class TrayIconControl {
                 Resources.APP_NAME + " " +
                 ((Resources.isPortableEdition() == true) ? "Portable " : "Desktop ")
                 + "Search ", popup);
-        
+
         this.frame = f;
     }
     
     public void add() {
         if (SystemTray.isSupported()) {
-            //Image image = Toolkit.getDefaultToolkit().getImage("gtk-find.png");
             
             MouseListener mouseListener = new MouseListener() {
                 public void mouseClicked(MouseEvent e) {
@@ -119,6 +118,10 @@ public class TrayIconControl {
     
     public void displayMessage(String caption, String text, TrayIcon.MessageType type) {
         trayIcon.displayMessage(caption, text, type);
+    }
+
+    public void setToolTip(String text) {
+        this.trayIcon.setToolTip(text);
     }
 }
 
