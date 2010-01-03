@@ -196,8 +196,8 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="searchPanel" alignment="0" max="32767" attributes="1"/>
-          <Component id="scrollPane" alignment="0" pref="801" max="32767" attributes="0"/>
-          <Component id="bottomPanel" alignment="0" pref="801" max="32767" attributes="0"/>
+          <Component id="scrollPane" alignment="0" pref="633" max="32767" attributes="0"/>
+          <Component id="bottomPanel" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -205,7 +205,7 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="searchPanel" min="-2" max="-2" attributes="1"/>
               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-              <Component id="scrollPane" pref="396" max="32767" attributes="0"/>
+              <Component id="scrollPane" pref="453" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
               <Component id="bottomPanel" min="-2" pref="79" max="-2" attributes="0"/>
           </Group>
@@ -230,7 +230,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="439" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="451" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -251,7 +251,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="searchLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="searchField" pref="482" max="32767" attributes="0"/>
+                  <Component id="searchField" pref="314" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="searchChoice" min="-2" pref="102" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -350,7 +350,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="resultsLabel" min="-2" pref="335" max="-2" attributes="0"/>
-                      <EmptySpace pref="172" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="prevButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="nextButton" min="-2" max="-2" attributes="0"/>
@@ -441,7 +441,7 @@
                       <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
                       <Component id="propertiesButton" min="-2" pref="22" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="indexerScrollPane" pref="639" max="32767" attributes="0"/>
+                      <Component id="indexerScrollPane" pref="471" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="indexerProgressBar" min="-2" pref="54" max="-2" attributes="0"/>
                   </Group>

@@ -172,7 +172,7 @@ public class ListResultsPanel extends ResultsPanel {
     }
 
     @Override
-    public void setResults(Query query, Hits hits, IndexProperties properties) {
+    public synchronized void setResults(Query query, Hits hits, IndexProperties properties) {
         this.hits = hits;
         this.query = query;
         this.totalHits = hits.length();

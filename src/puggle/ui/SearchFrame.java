@@ -176,7 +176,7 @@ public class SearchFrame extends javax.swing.JFrame {
         );
         resultsPanelLayout.setVerticalGroup(
             resultsPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 439, Short.MAX_VALUE)
+            .add(0, 451, Short.MAX_VALUE)
         );
 
         scrollPane.setViewportView(resultsPanel);
@@ -218,7 +218,7 @@ public class SearchFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .add(searchLabel)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(searchField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
+                .add(searchField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(searchChoice, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 102, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -277,7 +277,7 @@ public class SearchFrame extends javax.swing.JFrame {
             .add(navigationPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(resultsLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 335, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 172, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .add(prevButton)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(nextButton)
@@ -363,7 +363,7 @@ public class SearchFrame extends javax.swing.JFrame {
                 .add(0, 0, 0)
                 .add(propertiesButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(indexerScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 639, Short.MAX_VALUE)
+                .add(indexerScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(indexerProgressBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 54, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
         );
@@ -499,15 +499,15 @@ public class SearchFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(searchPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .add(scrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 801, Short.MAX_VALUE)
-            .add(bottomPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 801, Short.MAX_VALUE)
+            .add(scrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE)
+            .add(bottomPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .add(searchPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(1, 1, 1)
-                .add(scrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
+                .add(scrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
                 .add(0, 0, 0)
                 .add(bottomPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 79, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
         );
@@ -1005,12 +1005,13 @@ public class SearchFrame extends javax.swing.JFrame {
             
             File indexDir_l = new File(Resources.getIndexCanonicalPath());
             
-            JLogger logger = new JLogger(System.out, this.indexerTextArea);
+            JLogger logger = new JLogger(null, this.indexerTextArea);
             this.indexer = new Indexer(dataDirsFile, indexDir_l, this.indexerProperties, logger, false);
             this.indexer.setProgressBar(this.indexerProgressBar);
             this.indexer.setDelay(delay);
             
             this.indexerThread = new Thread(this.indexer);
+            this.indexerThread.setPriority(Thread.MIN_PRIORITY);
             this.indexerThread.start();
 
             return true;
@@ -1099,19 +1100,25 @@ public class SearchFrame extends javax.swing.JFrame {
         
         long end = new Date().getTime();
         
-        this.resultsPanel.setResults(this.query, this.hits, this.indexerProperties);
-        
-        JScrollBar bar = this.scrollPane.getVerticalScrollBar();
-        bar.setValue(bar.getMinimum());
-        
-        prevButton.setEnabled(false);
-        if (this.resultsPanel.hasNextResults()) {
-            nextButton.setEnabled(true);
-        } else {
-            nextButton.setEnabled(false);
-        }
-        
-        this.updateResultsLabel();
+//        Thread t = new Thread(
+//                new Runnable() {
+//            public void run() {
+                resultsPanel.setResults(query, hits, indexerProperties);
+
+                JScrollBar bar = scrollPane.getVerticalScrollBar();
+                bar.setValue(bar.getMinimum());
+
+                prevButton.setEnabled(false);
+                if (resultsPanel.hasNextResults()) {
+                    nextButton.setEnabled(true);
+                } else {
+                    nextButton.setEnabled(false);
+                }
+
+                updateResultsLabel();
+//            }
+//        });
+//        t.start();
 
         System.out.println("Found " + hits.length() +
                 " document(s) (in " + (end - start) +

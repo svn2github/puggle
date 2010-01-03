@@ -48,6 +48,8 @@ public class ImageControl {
     private ImageIcon UPDATE_ICON;
     
     private Image TRAY_ICON;
+
+    private Image SPINNER_ICON;
     
     private static final float DEFAULT_JPEG_QUALITY = 0.75f;
     private static final int DEFAULT_THUMBNAIL_HEIGHT = 150;
@@ -78,6 +80,8 @@ public class ImageControl {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         
         this.TRAY_ICON = toolkit.getImage(getClass().getResource("/16x16/puggle.png"));
+
+        this.SPINNER_ICON = toolkit.getImage(getClass().getResource("/gnome-spinner.png"));
         
         this.iconsTable = new Hashtable<String, ImageIcon>();
         
@@ -149,7 +153,15 @@ public class ImageControl {
     public Image getTrayIcon() {
         return this.TRAY_ICON;
     }
+
+    public Image getSpinnerIcon() {
+        return this.SPINNER_ICON;
+    }
     
+    public ImageIcon getSpinnerImageIcon() {
+        return new ImageIcon(this.SPINNER_ICON);
+    }
+
     /**A method that scales a Buffered image and takes the required height as a refference point**/
     public BufferedImage getPDFScaledCover(String filename, int maxDim)
     throws java.lang.Exception {
