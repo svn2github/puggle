@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import org.apache.lucene.document.Document;
+import org.apache.lucene.document.Field;
 import org.apache.lucene.search.Hits;
 import org.apache.lucene.search.Query;
 import puggle.Indexer.IndexProperties;
@@ -119,7 +120,19 @@ public class ListResultsPanel extends ResultsPanel {
             if (value instanceof Document) {
                 Document doc = (Document)value;
 
-                label.setText(doc.get("path"));
+                String path = doc.get("path");
+                String path_portable = doc.get("path_portable");
+                if (indexProperties.isPortable() && path_portable == null) {
+                    path = path_portable = indexProperties.getFilesystemRoot() + path;
+                    doc.add(new Field("path_portable", path_portable, Field.Store.YES, Field.Index.UN_TOKENIZED));
+                    doc.removeField("path");
+                    doc.add(new Field("path", path_portable, Field.Store.YES, Field.Index.UN_TOKENIZED));
+                }
+                if (indexProperties.isPortable()) {
+                    path = path_portable;
+                }
+
+                label.setText(path);
 
                 try {
                     ImageIcon icon = FileHandler.getDefaultThumbnail(doc, 16, 16);
@@ -136,8 +149,6 @@ public class ListResultsPanel extends ResultsPanel {
     }
     
     private void printCurrentHits() {
-        sun.awt.shell.ShellFolder sf;
-
         javax.swing.DefaultListModel model =
                 (javax.swing.DefaultListModel)this.resultsList.getModel();
 
