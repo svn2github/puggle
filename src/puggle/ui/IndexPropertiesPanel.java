@@ -65,7 +65,6 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
         zipCheck = new javax.swing.JCheckBox();
         jLabel2 = new javax.swing.JLabel();
         indexSizeLabel = new javax.swing.JLabel();
-        compressedCb = new javax.swing.JCheckBox();
         rarCheck = new javax.swing.JCheckBox();
 
         storeTextCb.setText("Store text");
@@ -324,16 +323,6 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
 
         indexSizeLabel.setText("<empty>");
 
-        compressedCb.setText("Compressed");
-        compressedCb.setToolTipText("Compress index to save space on disk");
-        compressedCb.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        compressedCb.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        compressedCb.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                storeIndexingOptions(evt);
-            }
-        });
-
         rarCheck.setText("rar");
         rarCheck.setToolTipText("Whether to index RAR archives");
         rarCheck.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -365,9 +354,7 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
                             .add(layout.createSequentialGroup()
                                 .add(storeTextCb)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(storeThumbsCb)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(compressedCb))
+                                .add(storeThumbsCb))
                             .add(layout.createSequentialGroup()
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(jpegCheck)
@@ -424,8 +411,7 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(storeTextCb)
-                    .add(storeThumbsCb)
-                    .add(compressedCb))
+                    .add(storeThumbsCb))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(filetypesLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -525,7 +511,7 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
         this.zipCheck.setEnabled(b); this.rarCheck.setEnabled(b);
         this.mp3Check.setEnabled(b);
         this.storeTextCb.setEnabled(b); this.storeThumbsCb.setEnabled(b);
-        this.compressedCb.setEnabled(b);
+//        this.compressedCb.setEnabled(b);
     }
     
     private void storeIndexingFolders() {
@@ -621,7 +607,7 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
     private void storeIndexingOptions() {
         this.indexProperties.setStoreText(this.storeTextCb.isSelected());
         this.indexProperties.setStoreThumbnail(this.storeThumbsCb.isSelected());
-        this.indexProperties.setCompressed(this.compressedCb.isSelected());
+//        this.indexProperties.setCompressed(this.compressedCb.isSelected());
     }
     
     public void setProperties(IndexProperties properties) {
@@ -660,7 +646,7 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
         
         this.storeTextCb.setSelected(this.indexProperties.getStoreText());
         this.storeThumbsCb.setSelected(this.indexProperties.getStoreThumbnail());
-        this.compressedCb.setSelected(this.indexProperties.isCompressed());
+//        this.compressedCb.setSelected(this.indexProperties.isCompressed());
     
         if (image_filetypes != null && (image_filetypes.contains(new StringBuffer("jpg"))
         && image_filetypes.contains(new StringBuffer("jpeg")))) {
@@ -758,7 +744,6 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addFolderButton;
-    private javax.swing.JCheckBox compressedCb;
     private javax.swing.JCheckBox docCheck;
     private javax.swing.JLabel filetypesLabel;
     private javax.swing.JLabel filetypesLabel1;
