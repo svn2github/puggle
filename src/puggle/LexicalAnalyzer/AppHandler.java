@@ -37,22 +37,11 @@ public class AppHandler implements DocumentHandler {
       }
 
       Document doc = new Document();
-      
-      try {
-          doc.add(new Field("path", f.getCanonicalPath(),
-                  Field.Store.YES, Field.Index.UN_TOKENIZED));
-          doc.add(new Field("size", String.valueOf(f.length()),
-                    Field.Store.YES, Field.Index.UN_TOKENIZED));
-      } catch (IOException e) {
-          throw new DocumentHandlerException(e.getMessage());
-      }
 
       int dotIndex = fileName.lastIndexOf(".");
       String ext = fileName.substring(dotIndex + 1, fileName.length());
       String name = fileName.substring(0, dotIndex);
 
-      doc.add(new Field("filename", name, Field.Store.YES,
-                  Field.Index.TOKENIZED));
       doc.add(new Field("filetype", ext, Field.Store.YES,
               Field.Index.UN_TOKENIZED));
 
