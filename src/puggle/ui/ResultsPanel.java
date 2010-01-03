@@ -65,6 +65,10 @@ public class ResultsPanel extends javax.swing.JPanel {
     public boolean previousResults() throws UnsupportedOperationException {
         throw new UnsupportedOperationException("Not yet implemented");
     };
+
+    public int getResultsNumberPerFrame() throws UnsupportedOperationException {
+        throw new UnsupportedOperationException("Not yet implemented");
+    };
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

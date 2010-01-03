@@ -305,6 +305,11 @@ public class ClassicResultsPanel extends ResultsPanel {
         }
         return false;
     }
+
+    @Override
+    public int getResultsNumberPerFrame() {
+        return 10;
+    };
     
     private IndexProperties indexProperties;
     
