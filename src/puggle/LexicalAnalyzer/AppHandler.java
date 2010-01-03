@@ -55,8 +55,6 @@ public class AppHandler implements DocumentHandler {
                   Field.Index.TOKENIZED));
       doc.add(new Field("filetype", ext, Field.Store.YES,
               Field.Index.UN_TOKENIZED));
-      doc.add(new Field("last modified", String.valueOf(f.lastModified()),
-              Field.Store.YES, Field.Index.NO));
 
       doc.add(new Field("app", name, Field.Store.NO,
                   Field.Index.TOKENIZED));

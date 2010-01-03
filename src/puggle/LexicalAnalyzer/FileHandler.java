@@ -12,6 +12,7 @@ package puggle.LexicalAnalyzer;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Properties;
 import javax.swing.ImageIcon;
 import org.apache.lucene.document.Document;
@@ -77,6 +78,8 @@ public class FileHandler {
         
         String name = file.getName();
         int dotIndex = name.lastIndexOf(".");
+
+        String ext = "";
         
         if (file.isDirectory()) {
             try {
@@ -88,68 +91,83 @@ public class FileHandler {
             }
         }
         else if ((dotIndex > 0) && (dotIndex < name.length())) {
-            String ext = name.substring(dotIndex + 1, name.length());
+            ext = name.substring(dotIndex + 1, name.length());
             ext = ext.toLowerCase();
             String handlerClassName = handlerProps.getProperty(ext);
             
-            if (handlerClassName == null) {
-                return null;
-            }
-            
-            try {
-                Class handlerClass = Class.forName(handlerClassName);
-                DocumentHandler handler =
-                        (DocumentHandler) handlerClass.newInstance();
-                handler.setStoreText(this.STORE_TEXT);
-                handler.setStoreThumbnail(this.STORE_THUMBNAIL);
-                doc = handler.getDocument(file);
-            }
-            catch (ClassNotFoundException e) {
-                throw new FileHandlerException(
-                        "Cannot create instance of : "
-                        + handlerClassName, e);
-            }
-            catch (InstantiationException e) {
-                throw new FileHandlerException(
-                        "Cannot create instance of : "
-                        + handlerClassName, e);
-            }
-            catch (IllegalAccessException e) {
-                throw new FileHandlerException(
-                        "Cannot create instance of : "
-                        + handlerClassName, e);
-            }
-            catch (DocumentHandlerException e) {
-                throw new FileHandlerException(
-                        "Document cannot be handled: "
-                        + file.getAbsolutePath(), e);
-            }
-            catch (Exception e) {
-                throw new FileHandlerException(
-                        "Document cannot be handled: "
-                        + file.getAbsolutePath(), e);
-            }
-            catch (OutOfMemoryError bounded){
-                throw new FileHandlerException(
-                        "Out of Memory while handling: "
-                        + file.getAbsolutePath());
+            if (handlerClassName != null) {
+                try {
+                    Class handlerClass = Class.forName(handlerClassName);
+                    DocumentHandler handler =
+                            (DocumentHandler) handlerClass.newInstance();
+                    handler.setStoreText(this.STORE_TEXT);
+                    handler.setStoreThumbnail(this.STORE_THUMBNAIL);
+                    doc = handler.getDocument(file);
+                }
+                catch (ClassNotFoundException e) {
+                    doc = null;
+                    /*throw new FileHandlerException(
+                            "Cannot create instance of : "
+                            + handlerClassName, e);*/
+                }
+                catch (InstantiationException e) {
+                    doc = null;
+                    /*throw new FileHandlerException(
+                            "Cannot create instance of : "
+                            + handlerClassName, e);*/
+                }
+                catch (IllegalAccessException e) {
+                    doc = null;
+                    /*throw new FileHandlerException(
+                            "Cannot create instance of : "
+                            + handlerClassName, e);*/
+                }
+                catch (DocumentHandlerException e) {
+                    doc = null;
+                    /*throw new FileHandlerException(
+                            "Document cannot be handled: "
+                            + file.getAbsolutePath(), e);*/
+                }
+                catch (Exception e) {
+                    doc = null;
+                    /*throw new FileHandlerException(
+                            "Document cannot be handled: "
+                            + file.getAbsolutePath(), e);*/
+                }
+                catch (OutOfMemoryError bounded){
+                    doc = null;
+                    /*throw new FileHandlerException(
+                            "Out of Memory while handling: "
+                            + file.getAbsolutePath());*/
+                }
             }
         }
 
-/*        doc.removeField("path");
-        doc.removeField("size");
+        if (doc == null) { // no file handler found, or something went wrong during analysis;
+            doc = new Document();
+            doc.add(new Field("filetype", ext, Field.Store.YES,
+                    Field.Index.UN_TOKENIZED));
+        }
 
         try {
-            doc.add(new Field("filename", file.getName(), Field.Store.YES,
-              Field.Index.TOKENIZED));
             doc.add(new Field("path", file.getCanonicalPath(),
                     Field.Store.YES, Field.Index.UN_TOKENIZED));
             doc.add(new Field("size", String.valueOf(file.length()),
                     Field.Store.YES, Field.Index.UN_TOKENIZED));
-        } catch (IOException ex) {
-            ex.printStackTrace();
+        } catch (IOException e) {
+            throw new FileHandlerException(e.getMessage());
         }
-  */
+
+        doc.add(new Field("last modified", String.valueOf(file.lastModified()),
+                Field.Store.YES, Field.Index.NO));
+
+        String name_only = null;
+        if (dotIndex < 0) { name_only = name; }
+        else { name_only = name.substring(0, dotIndex).toLowerCase(); }
+
+        doc.add(new Field("filename", name_only, Field.Store.YES,
+                  Field.Index.TOKENIZED));
+
         return doc;
     }
     

@@ -50,13 +50,8 @@ public class PDFHandler implements DocumentHandler {
 
       Document doc = new Document();
 
-      // XXX if i remove the try-catch block, no thumbs are stored for pdf files. weird...
       try {
           path = f.getCanonicalPath();
-          doc.add(new Field("path", path,
-                  Field.Store.YES, Field.Index.UN_TOKENIZED));
-          doc.add(new Field("size", String.valueOf(f.length()),
-                    Field.Store.YES, Field.Index.UN_TOKENIZED));
       } catch (IOException e) {
           throw new DocumentHandlerException(e.getMessage());
       }
@@ -69,8 +64,6 @@ public class PDFHandler implements DocumentHandler {
               Field.Index.TOKENIZED));
       doc.add(new Field("filetype", "pdf", Field.Store.YES,
               Field.Index.UN_TOKENIZED));
-      doc.add(new Field("last modified", String.valueOf(f.lastModified()),
-              Field.Store.YES, Field.Index.NO));
       
       COSDocument cosDoc = null;
       try {

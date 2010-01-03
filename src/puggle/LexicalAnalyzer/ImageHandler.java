@@ -50,11 +50,6 @@ public class ImageHandler implements DocumentHandler {
             doc.add(new Field("content", parent, Field.Store.NO,
                     Field.Index.TOKENIZED, Field.TermVector.YES));
 
-          doc.add(new Field("path", path,
-                  Field.Store.YES, Field.Index.UN_TOKENIZED));
-          doc.add(new Field("size", String.valueOf(f.length()),
-                    Field.Store.YES, Field.Index.UN_TOKENIZED));
-
             doc.add(new Field("width", String.valueOf(width),
                     Field.Store.YES, Field.Index.UN_TOKENIZED));
             doc.add(new Field("height", String.valueOf(height),
@@ -65,18 +60,9 @@ public class ImageHandler implements DocumentHandler {
             throw new DocumentHandlerException(e.getMessage());
         }
 
-        String fileName = f.getName();
-        int dotIndex = fileName.lastIndexOf(".");
-        String name = fileName.substring(0, dotIndex).toLowerCase();
-
-        doc.add(new Field("filename", name, Field.Store.YES,
-                  Field.Index.TOKENIZED));
-
         String type = path.substring(path.lastIndexOf('.') + 1);
         doc.add(new Field("filetype", type, Field.Store.YES,
                 Field.Index.UN_TOKENIZED));
-        doc.add(new Field("last modified", String.valueOf(f.lastModified()),
-                Field.Store.YES, Field.Index.NO));
         
         return doc;
     }

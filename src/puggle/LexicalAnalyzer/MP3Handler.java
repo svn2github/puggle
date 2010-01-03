@@ -56,10 +56,6 @@ public class MP3Handler implements DocumentHandler {
           doc.add(new Field("content", filename, Field.Store.NO,
                   Field.Index.TOKENIZED, Field.TermVector.YES));
 
-          doc.add(new Field("path", path,
-                  Field.Store.YES, Field.Index.UN_TOKENIZED));
-          doc.add(new Field("size", String.valueOf(f.length()),
-                    Field.Store.YES, Field.Index.UN_TOKENIZED));
       } catch (IOException e) {
           throw new DocumentHandlerException(e.getMessage());
       }
@@ -68,12 +64,8 @@ public class MP3Handler implements DocumentHandler {
         int dotIndex = fileName.lastIndexOf(".");
         String name = fileName.substring(0, dotIndex).toLowerCase();
 
-        doc.add(new Field("filename", name, Field.Store.YES,
-                  Field.Index.TOKENIZED));
       doc.add(new Field("filetype", "mp3", Field.Store.YES,
               Field.Index.UN_TOKENIZED));
-      doc.add(new Field("last modified", String.valueOf(f.lastModified()),
-              Field.Store.YES, Field.Index.NO));
       
       ID3v1 id3v1 = null;
       if (mp3 != null) {

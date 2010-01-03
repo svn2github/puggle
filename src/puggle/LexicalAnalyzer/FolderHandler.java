@@ -31,12 +31,6 @@ public class FolderHandler implements DocumentHandler {
             doc.add(new Field("content", filename, Field.Store.NO,
                     Field.Index.TOKENIZED, Field.TermVector.YES));
 
-          doc.add(new Field("filename", file.getName(), Field.Store.YES,
-                  Field.Index.TOKENIZED));
-          doc.add(new Field("path", file.getCanonicalPath(),
-                  Field.Store.YES, Field.Index.UN_TOKENIZED));
-          doc.add(new Field("size", String.valueOf(file.length()),
-                    Field.Store.YES, Field.Index.UN_TOKENIZED));
         } catch (IOException e) {
             throw new DocumentHandlerException(e.getMessage());
         }
@@ -44,8 +38,6 @@ public class FolderHandler implements DocumentHandler {
         String type = path.substring(path.lastIndexOf('.') + 1);
         doc.add(new Field("filetype", "", Field.Store.YES,
                 Field.Index.UN_TOKENIZED));
-        doc.add(new Field("last modified", String.valueOf(file.lastModified()),
-                Field.Store.YES, Field.Index.NO));
         
         return doc;
     }

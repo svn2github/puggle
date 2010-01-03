@@ -45,25 +45,8 @@ public class XLSHandler implements DocumentHandler {
         
         Document doc = new Document();
 
-      try {
-          doc.add(new Field("path", f.getCanonicalPath(),
-                  Field.Store.YES, Field.Index.UN_TOKENIZED));
-          doc.add(new Field("size", String.valueOf(f.length()),
-                    Field.Store.YES, Field.Index.UN_TOKENIZED));
-      } catch (IOException e) {
-          throw new DocumentHandlerException(e.getMessage());
-      }
-
-      String fileName = f.getName();
-      int dotIndex = fileName.lastIndexOf(".");
-      String name = fileName.substring(0, dotIndex).toLowerCase();
-
-      doc.add(new Field("filename", name, Field.Store.YES,
-              Field.Index.TOKENIZED));
-      doc.add(new Field("filetype", "xls", Field.Store.YES,
-              Field.Index.UN_TOKENIZED));
-      doc.add(new Field("last modified", String.valueOf(f.lastModified()),
-              Field.Store.YES, Field.Index.NO));
+        doc.add(new Field("filetype", "xls", Field.Store.YES,
+                Field.Index.UN_TOKENIZED));
 
         String text = null;
         try {
