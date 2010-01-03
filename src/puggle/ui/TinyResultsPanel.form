@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.0" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.2" maxVersion="1.2" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
     <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
@@ -11,29 +15,9 @@
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
     <Property name="columns" type="int" value="1"/>
-    <Property name="rows" type="int" value="10"/>
+    <Property name="rows" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+      <Connection code="this.RESULTS_PER_FRAME" type="code"/>
+    </Property>
     <Property name="verticalGap" type="int" value="1"/>
   </Layout>
-  <SubComponents>
-    <Component class="puggle.ui.TinyResultPanel" name="resultPanel1">
-    </Component>
-    <Component class="puggle.ui.TinyResultPanel" name="resultPanel2">
-    </Component>
-    <Component class="puggle.ui.TinyResultPanel" name="resultPanel3">
-    </Component>
-    <Component class="puggle.ui.TinyResultPanel" name="resultPanel4">
-    </Component>
-    <Component class="puggle.ui.TinyResultPanel" name="resultPanel5">
-    </Component>
-    <Component class="puggle.ui.TinyResultPanel" name="resultPanel6">
-    </Component>
-    <Component class="puggle.ui.TinyResultPanel" name="resultPanel7">
-    </Component>
-    <Component class="puggle.ui.TinyResultPanel" name="resultPanel8">
-    </Component>
-    <Component class="puggle.ui.TinyResultPanel" name="resultPanel9">
-    </Component>
-    <Component class="puggle.ui.TinyResultPanel" name="resultPanel10">
-    </Component>
-  </SubComponents>
 </Form>
