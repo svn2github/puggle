@@ -24,7 +24,7 @@ import org.apache.lucene.document.Field;
 public class AppHandler implements DocumentHandler {
 
   public Document getDocument(File f) throws DocumentHandlerException {
-      String fileName = f.getName();
+      String fileName = f.getName().toLowerCase();
       InputStream is = null;
 
       try {
@@ -39,8 +39,6 @@ public class AppHandler implements DocumentHandler {
       Document doc = new Document();
       
       try {
-          doc.add(new Field("filename", fileName, Field.Store.YES,
-                  Field.Index.TOKENIZED));
           doc.add(new Field("path", f.getCanonicalPath(),
                   Field.Store.YES, Field.Index.UN_TOKENIZED));
           doc.add(new Field("size", String.valueOf(f.length()),
@@ -50,17 +48,20 @@ public class AppHandler implements DocumentHandler {
       }
 
       int dotIndex = fileName.lastIndexOf(".");
-      String ext = fileName.substring(dotIndex + 1, fileName.length()).toLowerCase();
+      String ext = fileName.substring(dotIndex + 1, fileName.length());
+      String name = fileName.substring(0, dotIndex);
 
+      doc.add(new Field("filename", name, Field.Store.YES,
+                  Field.Index.TOKENIZED));
       doc.add(new Field("filetype", ext, Field.Store.YES,
               Field.Index.UN_TOKENIZED));
       doc.add(new Field("last modified", String.valueOf(f.lastModified()),
               Field.Store.YES, Field.Index.NO));
 
-      doc.add(new Field("app", fileName, Field.Store.YES,
+      doc.add(new Field("app", name, Field.Store.NO,
                   Field.Index.TOKENIZED));
 
-      doc.add(new Field("content", fileName, Field.Store.NO,
+      doc.add(new Field("content", name + " " + ext + " " + fileName, Field.Store.NO,
                   Field.Index.TOKENIZED, Field.TermVector.WITH_OFFSETS));
 
       return doc;
@@ -76,6 +77,7 @@ public class AppHandler implements DocumentHandler {
   
     private boolean STORE_TEXT;
     private boolean STORE_THUMBNAIL;
+    private boolean COMPRESSED;
     
     public void setStoreText(boolean b) {
         this.STORE_TEXT = b;
@@ -91,6 +93,14 @@ public class AppHandler implements DocumentHandler {
 
     public boolean getStoreThumbnail() {
         return this.STORE_THUMBNAIL;
+    }
+
+    public void setCompressed(boolean b) {
+        this.COMPRESSED = b;
+    }
+
+    public boolean isCompressed() {
+        return this.COMPRESSED;
     }
   
   public static void main(String[] args) throws Exception {

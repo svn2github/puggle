@@ -24,6 +24,7 @@ import java.io.RandomAccessFile;
 import java.nio.channels.FileChannel;
 import java.nio.channels.FileLock;
 import org.apache.lucene.index.IndexReader;
+import puggle.Util.Updater;
 import puggle.ui.IndexPropertiesDialog;
 
 /**
@@ -36,6 +37,11 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException {
+
+        /* use anti-alias fonts */
+        // XXX comment this for now - does not display well on my laptop; maybe
+        // needs lcd instead.
+        //System.setProperty("awt.useSystemAAFontSettings", "on");
 
         try {
             // Set System L&F
@@ -181,6 +187,26 @@ public class Main {
                     frm.setVisible(true);
                 }
             });
+
+            Updater update = new Updater();
+
+            try {
+                if (update.isUpdated() == false) {
+                    JOptionPane.showMessageDialog(null,
+                            "<html>"
+                            +"The Puggle version that is currently running appears to be old. <br/><br/>"
+                            +"You can update Puggle manually by visiting this link and <br/>"
+                            +"downloading the latest version:<p align=\"center\">"
+                            +"<a href=\"" +Resources.getApplicationWebsite() +"\">"
+                            +Resources.getApplicationWebsite()
+                            +"</p></a><br/></html>",
+                            "Update found",
+                            JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+            catch (Exception ex) {
+                // checking for updates fail for some reason; do nothing
+            }
     }
 
     public static void unlockFile() {

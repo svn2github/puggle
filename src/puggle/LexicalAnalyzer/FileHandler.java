@@ -56,6 +56,7 @@ public class FileHandler {
         this.handlerProps.setProperty("png", "puggle.LexicalAnalyzer.ImageHandler");
 
         this.handlerProps.setProperty("zip", "puggle.LexicalAnalyzer.ZipHandler");
+        this.handlerProps.setProperty("rar", "puggle.LexicalAnalyzer.RarHandler");
 
         this.handlerProps.setProperty("exe", "puggle.LexicalAnalyzer.AppHandler");
         this.handlerProps.setProperty("com", "puggle.LexicalAnalyzer.AppHandler");
@@ -189,6 +190,14 @@ public class FileHandler {
         }
         return icon;
     }
+
+    public static ImageIcon getDefaultThumbnail(Document doc) throws FileHandlerException {
+        try {
+            return ImageControl.getImageControl().getDefaultThumbnailOf(new File(doc.get("path")));
+        } catch (FileNotFoundException ex) {
+            throw new FileHandlerException(ex.getMessage());
+        }
+    }
     
     public static ImageIcon getThumbnail(Document doc, int x, int y) throws FileHandlerException {
         ImageIcon icon = FileHandler.getThumbnail(doc);
@@ -196,6 +205,15 @@ public class FileHandler {
         java.awt.Image image =
                 icon.getImage().getScaledInstance(x, y, java.awt.image.BufferedImage.SCALE_SMOOTH);
         
+        return new ImageIcon(image);
+    }
+
+    public static ImageIcon getDefaultThumbnail(Document doc, int x, int y) throws FileHandlerException {
+        ImageIcon icon = FileHandler.getDefaultThumbnail(doc);
+
+        java.awt.Image image =
+                icon.getImage().getScaledInstance(x, y, java.awt.image.BufferedImage.SCALE_SMOOTH);
+
         return new ImageIcon(image);
     }
     

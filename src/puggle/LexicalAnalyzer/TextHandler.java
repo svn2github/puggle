@@ -39,8 +39,6 @@ public class TextHandler implements DocumentHandler {
       Document doc = new Document();
       
       try {
-          doc.add(new Field("filename", f.getName(), Field.Store.YES,
-                  Field.Index.TOKENIZED));
           doc.add(new Field("path", f.getCanonicalPath(),
                   Field.Store.YES, Field.Index.UN_TOKENIZED));
           doc.add(new Field("size", String.valueOf(f.length()),
@@ -48,7 +46,13 @@ public class TextHandler implements DocumentHandler {
       } catch (IOException e) {
           throw new DocumentHandlerException(e.getMessage());
       }
-      
+
+      String fileName = f.getName();
+      int dotIndex = fileName.lastIndexOf(".");
+      String name = fileName.substring(0, dotIndex).toLowerCase();
+
+      doc.add(new Field("filename", name, Field.Store.YES,
+              Field.Index.TOKENIZED));
       doc.add(new Field("filetype", "txt", Field.Store.YES,
               Field.Index.UN_TOKENIZED));
       doc.add(new Field("last modified", String.valueOf(f.lastModified()),
@@ -118,7 +122,8 @@ public class TextHandler implements DocumentHandler {
   
     private boolean STORE_TEXT;
     private boolean STORE_THUMBNAIL;
-    
+    private boolean COMPRESSED;
+
     public void setStoreText(boolean b) {
         this.STORE_TEXT = b;
     }
@@ -133,6 +138,14 @@ public class TextHandler implements DocumentHandler {
 
     public boolean getStoreThumbnail() {
         return this.STORE_THUMBNAIL;
+    }
+
+    public void setCompressed(boolean b) {
+        this.COMPRESSED = b;
+    }
+
+    public boolean isCompressed() {
+        return this.COMPRESSED;
     }
   
   public static void main(String[] args) throws Exception {

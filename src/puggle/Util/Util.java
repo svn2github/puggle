@@ -228,6 +228,37 @@ public class Util {
         }
     }
 
+    /**
+     * Returns true if any of the files in the array is a parent directory of
+     * file f.
+     * @param dir an array of directories
+     * @param f the file.
+     * @return true if any of the files in the array is a parent directory of
+     * file f.
+     */
+    public static boolean isParentDirectory(File[] dir, File f) {
+        //XXX TODO: optimize it (and check if correct!)
+        try {
+            String fname = f.getCanonicalPath();
+            for (int i = 0; i < dir.length; ++i) {
+                String dirPath = dir[i].getCanonicalPath();
+                if (dirPath.length() > fname.length()) {
+                    continue;
+                }
+                String fname_sub = fname.substring(0, dirPath.length());
+                assert(fname_sub.length() == dirPath.length());
+                if (fname_sub.equals(dirPath) == true) {
+                    return true;
+                }
+            }
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        return false;
+    }
+
     public static long getFileSize(File file) {
         long size = 0;
 

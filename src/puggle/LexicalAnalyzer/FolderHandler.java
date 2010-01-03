@@ -67,7 +67,8 @@ public class FolderHandler implements DocumentHandler {
     
     private boolean STORE_TEXT;
     private boolean STORE_THUMBNAIL;
-    
+    private boolean COMPRESSED;
+
     public void setStoreText(boolean b) {
         this.STORE_TEXT = b;
     }
@@ -82,5 +83,13 @@ public class FolderHandler implements DocumentHandler {
 
     public boolean getStoreThumbnail() {
         return this.STORE_THUMBNAIL;
+    }
+
+    public void setCompressed(boolean b) {
+        this.COMPRESSED = b;
+    }
+
+    public boolean isCompressed() {
+        return this.COMPRESSED;
     }
 }

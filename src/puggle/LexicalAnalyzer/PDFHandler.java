@@ -35,8 +35,6 @@ public class PDFHandler implements DocumentHandler {
 
   public static String password = "-password";
 
-  private boolean STORE_TEXT;
-  private boolean STORE_THUMBNAIL;
 
   public Document getDocument(File f) throws DocumentHandlerException {
       String path = null;
@@ -54,8 +52,6 @@ public class PDFHandler implements DocumentHandler {
 
       // XXX if i remove the try-catch block, no thumbs are stored for pdf files. weird...
       try {
-          doc.add(new Field("filename", f.getName(), Field.Store.YES,
-                  Field.Index.TOKENIZED));
           path = f.getCanonicalPath();
           doc.add(new Field("path", path,
                   Field.Store.YES, Field.Index.UN_TOKENIZED));
@@ -64,7 +60,13 @@ public class PDFHandler implements DocumentHandler {
       } catch (IOException e) {
           throw new DocumentHandlerException(e.getMessage());
       }
-  
+
+      String fileName = f.getName();
+      int dotIndex = fileName.lastIndexOf(".");
+      String name = fileName.substring(0, dotIndex).toLowerCase();
+
+      doc.add(new Field("filename", name, Field.Store.YES,
+              Field.Index.TOKENIZED));
       doc.add(new Field("filetype", "pdf", Field.Store.YES,
               Field.Index.UN_TOKENIZED));
       doc.add(new Field("last modified", String.valueOf(f.lastModified()),
@@ -209,21 +211,33 @@ public class PDFHandler implements DocumentHandler {
   }
   
 
-  public void setStoreText(boolean b) {
-      this.STORE_TEXT = b;
-  }
+    private boolean STORE_TEXT;
+    private boolean STORE_THUMBNAIL;
+    private boolean COMPRESSED;
 
-  public boolean getStoreText() {
-      return this.STORE_TEXT;
-  }
+    public void setStoreText(boolean b) {
+        this.STORE_TEXT = b;
+    }
 
-  public void setStoreThumbnail(boolean b) {
-      this.STORE_THUMBNAIL = b;
-  }
+    public boolean getStoreText() {
+        return this.STORE_TEXT;
+    }
 
-  public boolean getStoreThumbnail() {
-      return this.STORE_THUMBNAIL;
-  }
+    public void setStoreThumbnail(boolean b) {
+        this.STORE_THUMBNAIL = b;
+    }
+
+    public boolean getStoreThumbnail() {
+        return this.STORE_THUMBNAIL;
+    }
+
+    public void setCompressed(boolean b) {
+        this.COMPRESSED = b;
+    }
+
+    public boolean isCompressed() {
+        return this.COMPRESSED;
+    }
   
   public static void main(String[] args) throws Exception {
       PDFHandler handler = new PDFHandler();

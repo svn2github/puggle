@@ -46,8 +46,6 @@ public class XLSHandler implements DocumentHandler {
         Document doc = new Document();
 
       try {
-          doc.add(new Field("filename", f.getName(), Field.Store.YES,
-                  Field.Index.TOKENIZED));
           doc.add(new Field("path", f.getCanonicalPath(),
                   Field.Store.YES, Field.Index.UN_TOKENIZED));
           doc.add(new Field("size", String.valueOf(f.length()),
@@ -56,10 +54,16 @@ public class XLSHandler implements DocumentHandler {
           throw new DocumentHandlerException(e.getMessage());
       }
 
-        doc.add(new Field("filetype", "xls", Field.Store.YES,
-                Field.Index.UN_TOKENIZED));
-        doc.add(new Field("last modified", String.valueOf(f.lastModified()),
-                Field.Store.YES, Field.Index.NO));
+      String fileName = f.getName();
+      int dotIndex = fileName.lastIndexOf(".");
+      String name = fileName.substring(0, dotIndex).toLowerCase();
+
+      doc.add(new Field("filename", name, Field.Store.YES,
+              Field.Index.TOKENIZED));
+      doc.add(new Field("filetype", "xls", Field.Store.YES,
+              Field.Index.UN_TOKENIZED));
+      doc.add(new Field("last modified", String.valueOf(f.lastModified()),
+              Field.Store.YES, Field.Index.NO));
 
         String text = null;
         try {
@@ -88,27 +92,6 @@ public class XLSHandler implements DocumentHandler {
     
     public String getText(Document doc) throws DocumentHandlerException {
         return doc.get("text");
-        /*
-        File file = new File(doc.get("path"));
-        InputStream is = null;
-        try {
-            is = new FileInputStream(file);
-        }
-        catch (FileNotFoundException e) {
-            throw new DocumentHandlerException(
-                    "File not found: "
-                    + file.getAbsolutePath(), e);
-        }
-        
-        String str = null;
-        try {
-            str = getText(is);
-        }
-        catch(IOException e) {
-            throw new DocumentHandlerException("Cannot read the text document", e);
-        }
-        
-        return str;*/
     }
     
     private String getText(InputStream is) throws IOException {
@@ -154,7 +137,8 @@ public class XLSHandler implements DocumentHandler {
     
     private boolean STORE_TEXT;
     private boolean STORE_THUMBNAIL;
-    
+    private boolean COMPRESSED;
+
     public void setStoreText(boolean b) {
         this.STORE_TEXT = b;
     }
@@ -169,6 +153,14 @@ public class XLSHandler implements DocumentHandler {
 
     public boolean getStoreThumbnail() {
         return this.STORE_THUMBNAIL;
+    }
+
+    public void setCompressed(boolean b) {
+        this.COMPRESSED = b;
+    }
+
+    public boolean isCompressed() {
+        return this.COMPRESSED;
     }
     
     public static void main(String[] args) throws Exception {

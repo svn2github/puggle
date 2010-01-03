@@ -33,6 +33,10 @@ public interface DocumentHandler {
     void setStoreThumbnail(boolean b);
     
     boolean getStoreThumbnail();
+
+    void setCompressed(boolean b);
+
+    boolean isCompressed();
     
     Document getDocument(File f) throws DocumentHandlerException;
     

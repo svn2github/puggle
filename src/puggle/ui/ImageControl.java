@@ -44,6 +44,8 @@ public class ImageControl {
     private ImageIcon ERROR_ICON;
     
     private ImageIcon SEARCH_ICON;
+
+    private ImageIcon UPDATE_ICON;
     
     private Image TRAY_ICON;
     
@@ -71,6 +73,7 @@ public class ImageControl {
         this.WARNING_ICON = new ImageIcon(getClass().getResource("/gtk-dialog-warning.png"));
         this.ERROR_ICON = new ImageIcon(getClass().getResource("/gtk-dialog-error.png"));
         this.SEARCH_ICON = new ImageIcon(getClass().getResource("/icon-search.png"));
+        this.UPDATE_ICON = new ImageIcon(getClass().getResource("/update.png"));
 
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         
@@ -129,6 +132,10 @@ public class ImageControl {
     
     public ImageIcon getInfoIcon() {
         return this.INFO_ICON;
+    }
+
+    public ImageIcon getUpdateIcon() {
+        return this.UPDATE_ICON;
     }
     
     public ImageIcon getQuestionIcon() {
@@ -211,7 +218,19 @@ public class ImageControl {
         
         return icon;
     }
-    
+
+    public ImageIcon getDefaultThumbnailOf(File file) throws FileNotFoundException {
+        ImageIcon icon = null;
+        sun.awt.shell.ShellFolder sf;
+
+        sf = sun.awt.shell.ShellFolder.getShellFolder(file);
+        if (sf != null) {
+            icon = new ImageIcon(sf.getIcon(true), sf.getFolderType());
+        }
+
+        return icon;
+    }
+
     private Image getImageThumbnail(String filename, int maxDim) {
         ImageIcon icon = new ImageIcon(filename);
         int width = icon.getIconWidth();

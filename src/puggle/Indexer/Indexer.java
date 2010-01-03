@@ -18,12 +18,14 @@ import puggle.ui.JLogger;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
+import java.util.HashSet;
 import javax.swing.JProgressBar;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexModifier;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.store.FSDirectory;
+import puggle.Util.Util;
 
 /**
  *
@@ -32,7 +34,9 @@ import org.apache.lucene.store.FSDirectory;
 public class Indexer implements Runnable {
     private File IndexDir;
     private File[] DataDir;
-    
+
+    private static final int MAX_FIELD_LENGTH = 102400; //100KB
+
     /** Indexing process will stop asap when its value is true */
     private volatile boolean Stop;
     /** Indexing process has been successfully stopped if its value
@@ -119,25 +123,7 @@ public class Indexer implements Runnable {
         this(dataDir, indexDir, indexProperties, unlock);
         this.Logger = logger;
     }
-    /*
-    public Indexer(File[] dataDir, File indexDir, JLogger logger)
-            throws IOException {
-        this(dataDir, indexDir);
-        this.Logger = logger;
-    }
     
-    public Indexer(File[] dataDir, File indexDir, JProgressBar progress,
-            JLogger logger, boolean unlock) throws IOException {
-        this(dataDir, indexDir, logger, unlock);
-        this.ProgressBar = progress;
-    }
-    
-    public Indexer(File[] dataDir, File indexDir, JProgressBar p, JLogger logger)
-            throws IOException {
-        this(dataDir, indexDir, logger);
-        this.ProgressBar = p;
-    }
-*/
     @Override
     protected void finalize() {
         try { this.Index.close(); }
@@ -170,7 +156,6 @@ public class Indexer implements Runnable {
     /**
      * Removes from this index all documents that have been deleted or modified.
      */
-    /* XXX TODO: Remove documents that are not contained in the specified path */
     private synchronized void removeModifiedDocuments() throws IOException {
         IndexReader indexReader = null;
         try {
@@ -203,7 +188,6 @@ public class Indexer implements Runnable {
             
             if (this.indexProperties.isPortable()) {
                 path = this.indexProperties.getFilesystemRoot() + path;
-            
             }
             
             File file = new File(path);
@@ -221,18 +205,29 @@ public class Indexer implements Runnable {
                     this.Logger.write(type +" '" +file +"' removed. ");
                 }
             } else {
+                HashSet<String> FiletypeSet =
+                    Resources.getAcceptedFileExtensions(this.indexProperties);
+
                 long l = Long.parseLong(doc.get("last modified"));
                 long s = Long.parseLong(doc.get("size"));
-                
-                if (l != file.lastModified() || s != file.length()) {
+                String ext = doc.get("filetype");
+
+                int flag = 0;
+                if (FiletypeSet.contains(ext) == false) {
+                    flag = 1;
+                }
+                else if (Util.isParentDirectory(this.DataDir, file) == false) {
+                    flag = 1;
+                }
+                else if (l != file.lastModified() || s != file.length()) {
+                    flag = 1;
+                }
+
+                if (flag == 1) {
                     if (this.Logger != null) {
-                        String type = null;
-                        if (file.isDirectory()) {
-                            type = "Directory";
-                        } else {
-                            type = "File";
-                        }
-                        
+                        String type =
+                                file.isDirectory() ? "Directory" : "File";
+
                         this.Logger.write(type +" '" +file +"' removed. ");
                     }
                     this.Index.deleteDocument(i);
@@ -259,7 +254,7 @@ public class Indexer implements Runnable {
                 this.indexProperties.getStoreText(),
                 this.indexProperties.getStoreThumbnail());
 
-        this.Index.setMaxFieldLength(100000); // 100K
+        this.Index.setMaxFieldLength(Indexer.MAX_FIELD_LENGTH);
         
         IndexReader indexReader = IndexReader.open(this.IndexDir);
         

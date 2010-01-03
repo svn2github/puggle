@@ -69,17 +69,31 @@ public class CHMHandler  implements DocumentHandler {
         System.out.println(doc);
     }
 
+    private boolean STORE_TEXT;
+    private boolean STORE_THUMBNAIL;
+    private boolean COMPRESSED;
+
     public void setStoreText(boolean b) {
+        this.STORE_TEXT = b;
     }
 
     public boolean getStoreText() {
-        return false;
+        return this.STORE_TEXT;
     }
 
     public void setStoreThumbnail(boolean b) {
+        this.STORE_THUMBNAIL = b;
     }
 
     public boolean getStoreThumbnail() {
-        return false;
+        return this.STORE_THUMBNAIL;
+    }
+
+    public void setCompressed(boolean b) {
+        this.COMPRESSED = b;
+    }
+
+    public boolean isCompressed() {
+        return this.COMPRESSED;
     }
 }

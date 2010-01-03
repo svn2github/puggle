@@ -50,8 +50,6 @@ public class ImageHandler implements DocumentHandler {
             doc.add(new Field("content", parent, Field.Store.NO,
                     Field.Index.TOKENIZED, Field.TermVector.YES));
 
-          doc.add(new Field("filename", f.getName(), Field.Store.YES,
-                  Field.Index.TOKENIZED));
           doc.add(new Field("path", path,
                   Field.Store.YES, Field.Index.UN_TOKENIZED));
           doc.add(new Field("size", String.valueOf(f.length()),
@@ -66,6 +64,13 @@ public class ImageHandler implements DocumentHandler {
         } catch (IllegalArgumentException e) {
             throw new DocumentHandlerException(e.getMessage());
         }
+
+        String fileName = f.getName();
+        int dotIndex = fileName.lastIndexOf(".");
+        String name = fileName.substring(0, dotIndex).toLowerCase();
+
+        doc.add(new Field("filename", name, Field.Store.YES,
+                  Field.Index.TOKENIZED));
 
         String type = path.substring(path.lastIndexOf('.') + 1);
         doc.add(new Field("filetype", type, Field.Store.YES,
@@ -86,7 +91,8 @@ public class ImageHandler implements DocumentHandler {
   
     private boolean STORE_TEXT;
     private boolean STORE_THUMBNAIL;
-    
+    private boolean COMPRESSED;
+
     public void setStoreText(boolean b) {
         this.STORE_TEXT = b;
     }
@@ -101,6 +107,14 @@ public class ImageHandler implements DocumentHandler {
 
     public boolean getStoreThumbnail() {
         return this.STORE_THUMBNAIL;
+    }
+
+    public void setCompressed(boolean b) {
+        this.COMPRESSED = b;
+    }
+
+    public boolean isCompressed() {
+        return this.COMPRESSED;
     }
     
     public static void main(String[] args) throws Exception {

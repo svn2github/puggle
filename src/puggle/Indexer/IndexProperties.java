@@ -45,16 +45,17 @@ public class IndexProperties {
         try {
             properties.load(new FileInputStream(file));
         } catch (FileNotFoundException ex) {
-            properties.setProperty("document_filetypes", Resources.getDocumentFiletypes()/*"txt,pdf,doc,rtf,html,htm,xls,ppt"*/);
-            properties.setProperty("image_filetypes", Resources.getImageFiletypes()/*"jpeg,jpg,png,gif"*/);
-            properties.setProperty("music_filetypes", Resources.getMusicFiletypes()/*"mp3"*/);
-            properties.setProperty("archive_filetypes", Resources.getArchiveFiletypes()/*"zip"*/);
-            properties.setProperty("misc_filetypes", Resources.getMusicFiletypes()/*""*/);
-            properties.setProperty("application_filetypes", Resources.getApplicationFiletypes()/*""*/);
+            properties.setProperty("document_filetypes", Resources.getDocumentFiletypes());
+            properties.setProperty("image_filetypes", Resources.getImageFiletypes());
+            properties.setProperty("music_filetypes", Resources.getMusicFiletypes());
+            properties.setProperty("archive_filetypes", Resources.getArchiveFiletypes());
+            properties.setProperty("misc_filetypes", Resources.getMusicFiletypes());
+            properties.setProperty("application_filetypes", Resources.getApplicationFiletypes());
             properties.setProperty("path", "");
             properties.setProperty("last_indexed", "0");
             properties.setProperty("last_optimized", "0");
             properties.setProperty("store_text", "false");
+            properties.setProperty("compressed", "false");
             properties.setProperty("store_thumbnails", "true");
             properties.setProperty("filesystem_root", "");
             properties.setProperty("portable", "false");
@@ -375,6 +376,21 @@ public class IndexProperties {
      */
     public synchronized boolean getStoreText() {
         return Boolean.valueOf(this.properties.getProperty("store_text"));
+    }
+
+    /**
+     * Set whether document text will be compressed.
+     */
+    public synchronized void setCompressed(boolean b) {
+        this.properties.setProperty("compressed", Boolean.toString(b));
+        this.flush();
+    }
+
+    /**
+     * Get whether document text will be compressed.
+     */
+    public synchronized boolean isCompressed() {
+        return Boolean.valueOf(this.properties.getProperty("compressed"));
     }
     
     /**

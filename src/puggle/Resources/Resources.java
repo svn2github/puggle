@@ -30,7 +30,7 @@ public class Resources {
     /* final string variables */
     public final static String APP_NAME = "Puggle";
     
-    public final static String APP_VERSION = "0.53";
+    public final static String APP_VERSION = "0.54";
 
     public final static String APP_AUTHOR = "Giorgos Vasiliadis";
 
@@ -70,7 +70,7 @@ public class Resources {
     };
 
     private final static String[] ARCHIVE_FILETYPES = {
-        "zip"
+        "rar", "zip"
     };
 
     private final static String[] APPLICATION_FILETYPES = {
@@ -306,7 +306,8 @@ public class Resources {
     public static Analyzer getAnalyzer() {
         return new CombinedAnalyzer();
     }
-    
+
+    // XXX TODO: move this function to Indexer.java
     public static HashSet<String> getAcceptedFileExtensions(IndexProperties prop) {
         String ext = prop.getImageFiletypes() + ","
                 + prop.getMusicFiletypes() + ","
@@ -326,7 +327,8 @@ public class Resources {
         
         return set;
     }
-    
+
+    // XXX TODO: move this function to Indexer.java
     public static FileFilter getFiletypeFilter(final IndexProperties prop) {
         FileFilter filter = new FileFilter() {
             private HashSet<String> FiletypeSet =

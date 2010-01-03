@@ -18,12 +18,14 @@ import java.awt.Cursor;
 import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
+import java.net.UnknownHostException;
 import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.JScrollBar;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.search.Hits;
 import org.apache.lucene.search.Query;
+import puggle.Util.Updater;
 import puggle.Util.Util;
 
 /**
@@ -122,11 +124,14 @@ public class SearchFrame extends javax.swing.JFrame {
         viewMenu = new javax.swing.JMenu();
         classicCheckBoxMenuItem = new javax.swing.JCheckBoxMenuItem();
         tinyCheckBoxMenuItem = new javax.swing.JCheckBoxMenuItem();
+        listCheckBoxMenuItem = new javax.swing.JCheckBoxMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         indexerCheckBoxMenuItem = new javax.swing.JCheckBoxMenuItem();
         helpMenu = new javax.swing.JMenu();
         helpMenuItem = new javax.swing.JMenuItem();
         jSeparator5 = new javax.swing.JPopupMenu.Separator();
+        updateMenuItem = new javax.swing.JMenuItem();
+        jSeparator4 = new javax.swing.JPopupMenu.Separator();
         aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -432,6 +437,15 @@ public class SearchFrame extends javax.swing.JFrame {
             }
         });
         viewMenu.add(tinyCheckBoxMenuItem);
+
+        viewButtonGroup.add(listCheckBoxMenuItem);
+        listCheckBoxMenuItem.setText("List");
+        listCheckBoxMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listCheckBoxMenuItemActionPerformed(evt);
+            }
+        });
+        viewMenu.add(listCheckBoxMenuItem);
         viewMenu.add(jSeparator2);
 
         indexerCheckBoxMenuItem.setSelected(true);
@@ -456,6 +470,16 @@ public class SearchFrame extends javax.swing.JFrame {
         });
         helpMenu.add(helpMenuItem);
         helpMenu.add(jSeparator5);
+
+        updateMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/16x16/update.png"))); // NOI18N
+        updateMenuItem.setText("Check for Updates...");
+        updateMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateMenuItemActionPerformed(evt);
+            }
+        });
+        helpMenu.add(updateMenuItem);
+        helpMenu.add(jSeparator4);
 
         aboutMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/16x16/about.png"))); // NOI18N
         aboutMenuItem.setText("About");
@@ -521,8 +545,8 @@ public class SearchFrame extends javax.swing.JFrame {
                 this.startButton.setEnabled(false);
                 this.propertiesButton.setEnabled(false);
                 this.stopButton.setEnabled(true);
-                System.out.println("Puggle Indexer:" +
-                        "Indexing process started in background.");
+                System.out.println("Puggle Indexer: " +
+                        "Starting indexing documents...");
                 
                 this.lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-green.png")));
                 this.lastIndexedLabel.setToolTipText("Indexing in progess...");
@@ -532,14 +556,14 @@ public class SearchFrame extends javax.swing.JFrame {
                     public void run() {
                         try {
                             indexerThread.join();
-                            indexer.optimize();
+                            //indexer.optimize();
                             indexer.close();
                             indexerThread = null;
                             indexer = null;
                         } catch (InterruptedException ex) {
                             ex.printStackTrace();
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
+                        //} catch (IOException ex) {
+                        //    ex.printStackTrace();
                         }
                         
                         stopButton.setEnabled(false);
@@ -591,24 +615,32 @@ public class SearchFrame extends javax.swing.JFrame {
 
     private void tinyCheckBoxMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tinyCheckBoxMenuItemActionPerformed
         this.resultsPanel = new TinyResultsPanel();
-        
+
+        setCursor(new Cursor(Cursor.WAIT_CURSOR));
+
         if (!searchField.getText().equals("")) {
             this.performSearch();
         }
         else {
             this.scrollPane.setViewportView(this.resultsPanel);
         }
+
+        setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_tinyCheckBoxMenuItemActionPerformed
 
     private void classicCheckBoxMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classicCheckBoxMenuItemActionPerformed
         this.resultsPanel = new ClassicResultsPanel();
-        
+
+        setCursor(new Cursor(Cursor.WAIT_CURSOR));
+
         if (!searchField.getText().equals("")) {
             this.performSearch();
         }
         else {
             this.scrollPane.setViewportView(this.resultsPanel);
         }
+
+        setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_classicCheckBoxMenuItemActionPerformed
 
     private void searchFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchFieldKeyTyped
@@ -625,7 +657,7 @@ public class SearchFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowLostFocus
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-        this.stopButtonActionPerformed(null);
+        //this.stopButtonActionPerformed(null);
     }//GEN-LAST:event_formWindowGainedFocus
    
     private void formWindowIconified(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowIconified
@@ -687,10 +719,10 @@ public class SearchFrame extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         if (this.trayIconControl != null) {
             this.trayIconControl.add();
-            this.trayIconControl.setToolTip("Indexing started in background...");
+            this.trayIconControl.setToolTip("Puggle Search");
         }
 
-        this.startButtonActionPerformed(null);
+        //this.startButtonActionPerformed(null);
     }//GEN-LAST:event_formWindowClosing
 
     private void findButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_findButtonMouseClicked
@@ -896,6 +928,74 @@ public class SearchFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_helpContentsMenuItemActionPerformed
 
+    private void listCheckBoxMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listCheckBoxMenuItemActionPerformed
+        this.resultsPanel = new ListResultsPanel();
+
+        setCursor(new Cursor(Cursor.WAIT_CURSOR));
+        if (!searchField.getText().equals("")) {
+            this.performSearch();
+        }
+        else {
+            this.scrollPane.setViewportView(this.resultsPanel);
+        }
+        setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_listCheckBoxMenuItemActionPerformed
+
+    private void updateMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateMenuItemActionPerformed
+        String errorMessage = null;
+        boolean updated = true;
+        Updater update = new Updater();
+
+        try {
+            updated = update.isUpdated();
+        } catch (UnknownHostException ex) {
+            errorMessage = ex.getMessage();
+        } catch (IOException ex) {
+            errorMessage = ex.getMessage();
+        } catch (Exception ex) {
+            errorMessage = ex.getMessage();
+        }
+
+        if (errorMessage != null) {
+            JOptionPane.showMessageDialog(this,
+                    "<html>"
+                    +"There were problems checking for, downloading or installing <br/>"
+                    +"this update. Puggle could not be updated because:<br/><br/><b>"
+                    +errorMessage + "</b><br/><br/>"
+                    +"You can update Puggle manually by visiting this link and <br/>"
+                    +"downloading the latest version:<p align=\"center\">"
+                    +"<a href=\"" +Resources.getApplicationWebsite() +"\">"
+                    +Resources.getApplicationWebsite()
+                    +"</p></a><br/></html>",
+                    "Update Error", JOptionPane.ERROR_MESSAGE,
+                    this.imageControl.getErrorIcon());
+            return;
+        }
+
+        if (updated == false) {
+            JOptionPane.showMessageDialog(this,
+                    "<html>"
+                    +"The Puggle version that is currently running appears to be old. <br/><br/>"
+                    +"You can update Puggle manually by visiting this link and <br/>"
+                    +"downloading the latest version:<p align=\"center\">"
+                    +"<a href=\"" +Resources.getApplicationWebsite() +"\">"
+                    +Resources.getApplicationWebsite()
+                    +"</p></a><br/></html>",
+                    "Update found", JOptionPane.INFORMATION_MESSAGE,
+                    this.imageControl.getUpdateIcon());
+            return;
+
+        }
+        else {
+            JOptionPane.showMessageDialog(this,
+                    "There are no updates available.",
+                    "No Updates Found", JOptionPane.INFORMATION_MESSAGE,
+                    this.imageControl.getInfoIcon());
+            return;
+        }
+
+    }//GEN-LAST:event_updateMenuItemActionPerformed
+
     private boolean startIndexing(long delay) throws IOException {
         long lastModified = this.indexerProperties.getLastIndexed();
         
@@ -928,13 +1028,15 @@ public class SearchFrame extends javax.swing.JFrame {
     private void updateResultsLabel() {
         int currResults = this.resultsPanel.getCurrentResultsNumber();
         int totalResults = this.resultsPanel.getTotalResultsNumber();
+
+        int resultsNumberPerFrame = this.resultsPanel.getResultsNumberPerFrame();
         
         if (this.resultsPanel.getTotalResultsNumber() > 0) {
             this.resultsLabel.setText(
                     "Results " +
                     (currResults + 1) +
                     "-" +
-                    Math.min(totalResults, currResults + 10) +
+                    Math.min(totalResults, currResults + resultsNumberPerFrame) +
                     " of " +
                     totalResults
                     );
@@ -1072,8 +1174,10 @@ public class SearchFrame extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
+    private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JLabel lastIndexedLabel;
+    private javax.swing.JCheckBoxMenuItem listCheckBoxMenuItem;
     private javax.swing.JMenuBar menuBar;
     private java.awt.Panel navigationPanel;
     private javax.swing.JButton nextButton;
@@ -1091,6 +1195,7 @@ public class SearchFrame extends javax.swing.JFrame {
     private javax.swing.JButton startButton;
     private javax.swing.JButton stopButton;
     private javax.swing.JCheckBoxMenuItem tinyCheckBoxMenuItem;
+    private javax.swing.JMenuItem updateMenuItem;
     private javax.swing.ButtonGroup viewButtonGroup;
     private javax.swing.JMenu viewMenu;
     // End of variables declaration//GEN-END:variables
