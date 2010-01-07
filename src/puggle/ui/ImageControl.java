@@ -61,6 +61,8 @@ public class ImageControl {
     private static ImageControl imageControl;
     
     private ImageControl() {
+        ImageIcon icon = null;
+
         this.STARS_ICON = new ImageIcon[6];
         
         this.STARS_ICON[0] = new ImageIcon(getClass().getResource("/star-0.gif"));
@@ -87,7 +89,7 @@ public class ImageControl {
         
         Image image = toolkit.getImage(getClass().getResource("/text-html.png"));
         image = image.getScaledInstance(ICON_DIMENSION, ICON_DIMENSION, BufferedImage.SCALE_SMOOTH);
-        ImageIcon icon = new ImageIcon(image);
+        icon = new ImageIcon(image);
         this.iconsTable.put("html", icon);
         this.iconsTable.put("htm", icon);
         
@@ -116,6 +118,12 @@ public class ImageControl {
         image = toolkit.getImage(getClass().getResource("/gnome-fs-directory.png"));
         image = image.getScaledInstance(ICON_DIMENSION, ICON_DIMENSION, BufferedImage.SCALE_SMOOTH);
         this.iconsTable.put("folder", new ImageIcon(image));
+
+        image = toolkit.getImage(getClass().getResource("/application-x-compress.png"));
+        image = image.getScaledInstance(ICON_DIMENSION, ICON_DIMENSION, BufferedImage.SCALE_SMOOTH);
+        icon = new ImageIcon(image);
+        this.iconsTable.put("zip", icon);
+        this.iconsTable.put("rar", icon);
     }
     
     public static synchronized ImageControl getImageControl() {

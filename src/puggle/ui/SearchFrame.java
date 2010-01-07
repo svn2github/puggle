@@ -524,9 +524,10 @@ public class SearchFrame extends javax.swing.JFrame {
 
     private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopButtonActionPerformed
         this.stopIndexing();
-        this.startButton.setEnabled(true);
-        this.propertiesButton.setEnabled(true);
         this.stopButton.setEnabled(false);
+        //this.startButton.setEnabled(true);
+        //this.propertiesButton.setEnabled(true);
+        //this.stopButton.setEnabled(false);
         
         if (new Date().getTime() - this.indexerProperties.getLastIndexed() > INDEX_DT) {
             this.lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-important.png")));
@@ -556,19 +557,22 @@ public class SearchFrame extends javax.swing.JFrame {
                     public void run() {
                         try {
                             indexerThread.join();
-                            //indexer.optimize();
+                            indexer.optimize();
                             indexer.close();
                             indexerThread = null;
                             indexer = null;
                         } catch (InterruptedException ex) {
                             ex.printStackTrace();
-                        //} catch (IOException ex) {
-                        //    ex.printStackTrace();
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
                         }
                         
                         stopButton.setEnabled(false);
                         startButton.setEnabled(true);
                         propertiesButton.setEnabled(true);
+
+                        lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-green.png")));
+                        lastIndexedLabel.setToolTipText("Indexing has been completed successfully.");
                     }
                 });
                 t.start();
@@ -1105,9 +1109,6 @@ public class SearchFrame extends javax.swing.JFrame {
 //            public void run() {
                 resultsPanel.setResults(query, hits, indexerProperties);
 
-                JScrollBar bar = scrollPane.getVerticalScrollBar();
-                bar.setValue(bar.getMinimum());
-
                 prevButton.setEnabled(false);
                 if (resultsPanel.hasNextResults()) {
                     nextButton.setEnabled(true);
@@ -1116,6 +1117,9 @@ public class SearchFrame extends javax.swing.JFrame {
                 }
 
                 updateResultsLabel();
+
+                JScrollBar bar = scrollPane.getVerticalScrollBar();
+                bar.setValue(bar.getMinimum());
 //            }
 //        });
 //        t.start();

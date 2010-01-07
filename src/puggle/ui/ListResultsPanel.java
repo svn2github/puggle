@@ -15,6 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollBar;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.search.Hits;
@@ -50,6 +51,8 @@ public class ListResultsPanel extends ResultsPanel {
         mainScrollPane = new javax.swing.JScrollPane();
         resultsList = new javax.swing.JList();
 
+        setPreferredSize(new java.awt.Dimension(118, 99));
+
         mainScrollPane.addHierarchyBoundsListener(new java.awt.event.HierarchyBoundsListener() {
             public void ancestorMoved(java.awt.event.HierarchyEvent evt) {
             }
@@ -59,6 +62,7 @@ public class ListResultsPanel extends ResultsPanel {
         });
 
         resultsList.setModel(new javax.swing.DefaultListModel());
+        resultsList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         resultsList.setCellRenderer(new JavaDocumentRenderer());
         resultsList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -71,16 +75,13 @@ public class ListResultsPanel extends ResultsPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(mainScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
+            .add(mainScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(mainScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+            .add(mainScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void mainScrollPaneResized(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_mainScrollPaneResized
-    }//GEN-LAST:event_mainScrollPaneResized
 
     private void resultsListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resultsListMouseClicked
         if (evt.getClickCount() == 2) {
@@ -91,6 +92,10 @@ public class ListResultsPanel extends ResultsPanel {
          }
 
     }//GEN-LAST:event_resultsListMouseClicked
+
+    private void mainScrollPaneResized(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_mainScrollPaneResized
+
+}//GEN-LAST:event_mainScrollPaneResized
     
     private void executeFile(File file) {
         try {
@@ -154,13 +159,20 @@ public class ListResultsPanel extends ResultsPanel {
 
         model.clear();
         
-        for (int i = 0; i < this.totalHits; i++) {
-            try {
-                model.addElement(this.hits.doc(i));
-            } catch (IOException ex) {
-                ex.printStackTrace();
+        for (int i = 0; i < this.RESULTS_PER_FRAME; i++) {
+            if (this.currHits + i < this.totalHits) {
+                try {
+                    model.addElement(this.hits.doc(this.currHits + i));
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            } else {
+                break;
             }
         }
+
+        JScrollBar bar = mainScrollPane.getVerticalScrollBar();
+        bar.setValue(bar.getMinimum());
     }
     
     public void setResults(Query query, Hits hits) {
@@ -180,40 +192,58 @@ public class ListResultsPanel extends ResultsPanel {
         this.indexProperties = properties;
         this.printCurrentHits();
     }
-    
+
     @Override
     public int getCurrentResultsNumber() {
         return (this.currHits);
     }
-    
+
+    @Override
+    public void setCurrentResultsNumber(int number) {
+        if (number < 0 || number >= this.totalHits) {
+            throw new IllegalArgumentException("Number:" +number + " Total:" +this.totalHits);
+        }
+        this.currHits = number;
+    }
+
     @Override
     public int getTotalResultsNumber() {
         return (this.totalHits);
     }
-    
+
     @Override
     public boolean hasPreviousResults() {
-        return false;
+        return (this.currHits - this.RESULTS_PER_FRAME >= 0);
     }
-    
+
     @Override
     public boolean hasNextResults() {
-        return false;
+        return (this.currHits + this.RESULTS_PER_FRAME < this.totalHits);
     }
-    
+
     @Override
     public boolean nextResults() {
+        if (this.hasNextResults()) {
+            this.currHits += this.RESULTS_PER_FRAME;
+            this.printCurrentHits();
+            return true;
+        }
         return false;
     }
-    
+
     @Override
     public boolean previousResults() {
+        if (this.hasPreviousResults()) {
+            this.currHits -= this.RESULTS_PER_FRAME;
+            this.printCurrentHits();
+            return true;
+        }
         return false;
     }
 
     @Override
     public int getResultsNumberPerFrame() {
-        return this.totalHits;
+        return this.RESULTS_PER_FRAME;
     };
     
     private ImageControl imageControl;
@@ -222,6 +252,8 @@ public class ListResultsPanel extends ResultsPanel {
     
     private int currHits;
     private int totalHits;
+
+    private final int RESULTS_PER_FRAME = 100;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane mainScrollPane;
