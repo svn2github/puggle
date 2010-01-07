@@ -95,7 +95,6 @@ public class RarHandler implements DocumentHandler {
           if (fhd.isDirectory()) {
               String outFileName = tmpDirPath + File.separator + fhd.getFileNameString();
               File dir = new File(outFileName);
-              System.out.println(outFileName);
               dir.mkdirs();
           }
       }
@@ -110,9 +109,6 @@ public class RarHandler implements DocumentHandler {
               continue;
           }
 
-          System.out.println(fhd.getFileNameString());
-          
-          
           String outFileName = null;
 
           // unrar archive

@@ -39,8 +39,7 @@ public class Indexer implements Runnable {
 
     /** Indexing process will stop asap when its value is true */
     private volatile boolean Stop;
-    /** Indexing process has been successfully stopped if its value
-    is equal to true */
+    /** Indexing process has been successfully stopped */
     private volatile boolean Stopped;
     
     /* Statistics */
@@ -107,11 +106,6 @@ public class Indexer implements Runnable {
         this.Index = new IndexModifier(this.IndexDir, Resources.getAnalyzer(), create);
     }
     
-/*    public Indexer(File[] dataDir, File indexDir) throws IOException {
-        this(indexDir);
-        this.setDataDirectories(dataDir);
-    }
-    */
     public Indexer(File[] dataDir, File indexDir, IndexProperties indexProperties, boolean unlock)
             throws IOException {
         this(indexDir, indexProperties, unlock);
@@ -296,7 +290,6 @@ public class Indexer implements Runnable {
                 String filename = file.getCanonicalPath();
 
                 Document doc = null;
-                String errDescr = "";
                 
                 try {
                     doc = handler.getDocument(file, root);
@@ -355,7 +348,6 @@ public class Indexer implements Runnable {
         this.Index.optimize();
         
         this.indexProperties.setLastOptimized(new Date().getTime());
-        //this.indexProperties.flush();
         
         if (this.ProgressBar != null) {
             this.ProgressBar.setMinimum(0);
@@ -389,7 +381,6 @@ public class Indexer implements Runnable {
             
             if (!this.Stop) {
                 this.indexProperties.setLastIndexed(new Date().getTime());
-                //this.indexProperties.flush();
             }
             
             long end = new Date().getTime();

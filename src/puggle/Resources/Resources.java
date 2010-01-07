@@ -53,9 +53,8 @@ public class Resources {
             Resources.APP_DIRECTORY_NAME
             + File.separator + Resources.INDEX_DIRECTORY_NAME;
 
-    
-    private static Properties Attributes = new Properties();
-    
+    /***/
+
     private final static String[] MUSIC_FILETYPES = {
         "mp3"
     };
@@ -80,6 +79,8 @@ public class Resources {
     private final static String[] MISC_FILETYPES = {
         ""
     };
+
+    /***/
     
     public static String getApplicationName() {
         return Resources.APP_NAME;

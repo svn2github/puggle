@@ -33,9 +33,12 @@ import org.apache.lucene.search.highlight.QueryScorer;
  */
 public class Util {
     
-    // Deletes all files and subdirectories under dir.
-    // Returns true if all deletions were successful.
-    // If a deletion fails, the method stops attempting to delete and returns false.
+    /**
+     * Deletes all files and subdirectories under dir.
+     * Returns true if all deletions were successful.
+     * If a deletion fails, the method stops attempting to delete and
+     * returns false.
+     */
     public static boolean deleteDir(File dir) {
         if (dir.isDirectory()) {
             String[] children = dir.list();
@@ -218,7 +221,7 @@ public class Util {
 
     public static void hideFile(File f)
             throws InterruptedException, IOException {
-
+        // XXX TODO: make it compliant with linux.
         String os = System.getProperty("os.name").toLowerCase();
 
         if (os.indexOf("windows") >= 0) {
@@ -259,6 +262,13 @@ public class Util {
         return false;
     }
 
+    /**
+     * Returns the size of file <code>file</code> in bytes. If <code>file</code>
+     * is a directory, the method returns the summary of all the files contained.
+     *
+     * @param file A file or directory.
+     * @return The size of file <code>file</code> in bytes.
+     */
     public static long getFileSize(File file) {
         long size = 0;
 

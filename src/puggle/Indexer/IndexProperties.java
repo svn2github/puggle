@@ -27,8 +27,6 @@ import puggle.Resources.Resources;
  * @author gvasil
  */
 public class IndexProperties {
-
-    private static IndexProperties propertiesControl;
     
     private Properties properties;
     
