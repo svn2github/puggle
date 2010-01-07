@@ -41,23 +41,39 @@ public class TinyResultsPanel extends ResultsPanel {
     }// </editor-fold>//GEN-END:initComponents
     
     private void printCurrentHits() {
+        if (rendererThread != null) {
+            try {
+                rendererThread.join();
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+        }
+
         this.removeAll();
         this.updateUI();
 
-        for (int i=0; i < this.RESULTS_PER_FRAME; ++i) {
-            TinyResultPanel resultPanel = new puggle.ui.TinyResultPanel();
+        rendererThread = new Thread(
+                new Runnable() {
+            public void run() {
+                for (int i=0; i < RESULTS_PER_FRAME; ++i) {
+                    TinyResultPanel resultPanel = new puggle.ui.TinyResultPanel();
 
-            if (this.currHits + i < this.totalHits) {
-                add(resultPanel);
-                try {
-                    printHit(this.hits.doc(currHits + i),
-                            (int) Math.ceil(this.hits.score(currHits + i) * 10) / 2,
-                            resultPanel);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
+                    if (currHits + i < totalHits) {
+                        add(resultPanel);
+                        try {
+                            printHit(hits.doc(currHits + i),
+                                    (int) Math.ceil(hits.score(currHits + i) * 10) / 2,
+                                    resultPanel);
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    } else {
+                        break;
+                    }
                 }
             }
-        }
+        });
+        rendererThread.start();
     }
     
     private void printHit(Document doc, int score, TinyResultPanel resultPanel) {
@@ -162,6 +178,8 @@ public class TinyResultsPanel extends ResultsPanel {
     public int getResultsNumberPerFrame() {
         return this.RESULTS_PER_FRAME;
     };
+
+    private Thread rendererThread;
     
     private IndexProperties indexProperties;
         
@@ -172,12 +190,10 @@ public class TinyResultsPanel extends ResultsPanel {
     private int currHits;
     private int totalHits;
 
-    
+    private final int ICON_DIMENSION = 32;
+    private final int RESULTS_PER_FRAME = 20;
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 
-    private final int ICON_DIMENSION = 32;
-
-    private final int RESULTS_PER_FRAME = 20;
-    
 }
