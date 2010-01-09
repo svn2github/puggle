@@ -162,16 +162,19 @@ public class Indexer implements Runnable {
         if (this.Logger != null) {
             this.Logger.write("Removing modified documents...");
         }
-        
-        if (this.ProgressBar != null) {
-            this.ProgressBar.setMinimum(0);
-            this.ProgressBar.setMaximum(100);
-            this.ProgressBar.setValue(0);
-            this.ProgressBar.setIndeterminate(true);
-        }
 
         int size = indexReader.maxDoc();
+
+        if (this.ProgressBar != null) {
+            this.ProgressBar.setMinimum(0);
+            this.ProgressBar.setMaximum(size);
+            this.ProgressBar.setValue(0);
+        }
+
         for (int i = 0; i < size && !this.Stop; ++i) {
+            if (this.ProgressBar != null) {
+                this.ProgressBar.setValue(i);
+            }
 
             if (indexReader.isDeleted(i)) {
                 continue;
@@ -217,10 +220,7 @@ public class Indexer implements Runnable {
         this.Index.flush();
         
         if (this.ProgressBar != null) {
-            this.ProgressBar.setMinimum(0);
-            this.ProgressBar.setMaximum(100);
-            this.ProgressBar.setValue(0);
-            this.ProgressBar.setIndeterminate(false);
+            this.ProgressBar.setValue(size);
         }
     }
 
