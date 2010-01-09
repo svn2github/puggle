@@ -31,18 +31,15 @@ public class Updater {
 
     public boolean isUpdated() throws UnknownHostException, IOException {
         String host = "puggle.sourceforge.net";
-        String file = "/";
+        String file = "/version.txt";
 
         HTTPConnection webConnection = new HTTPConnection(host);
         if (webConnection != null) {
             BufferedReader in = webConnection.get(file);
             String line;
             while ((line = in.readLine()) != null) { // read until EOF
-                if (line.matches(".*a\\s*href.*current version.*")) {
-                    line = line.replaceAll(".*a\\s*href\\s*=\\s*\"", "");
-                    line = line.replaceAll("/.*", "");
-                    line = line.replaceAll("[^0-9\\.]", "");
-
+                if (line.matches("version:.*")) {
+                    line = line.replaceAll("version:\\s*", "");
                     double webVersion;
                     try {
                         webVersion = Double.parseDouble(line);
