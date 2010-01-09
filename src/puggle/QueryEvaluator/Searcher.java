@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.io.StringReader;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.document.Document;
-import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
@@ -85,21 +84,11 @@ public class Searcher {
         QueryScorer scorer = new QueryScorer(query);
         Highlighter highlighter = new Highlighter(scorer);
 
-        IndexReader index = IndexReader.open(indexDir);
         for (int i = 0; i < hits.length(); i++) {
             Document doc = hits.doc(i);
-            
-            int id = hits.id(i);
-/*            TermPositionVector pos = (TermPositionVector) index.getTermFreqVector(id, "content");
-            int in = pos.indexOf(q);
-            TermVectorOffsetInfo[] t = pos.getOffsets(in);
-*/
+
             System.out.println(doc.get("path") +" " +doc.get("title") +" " +"(" +hits.score(i) +")");
-/*            
-            for (int j = 0; j < t.length; j++) {
-                System.out.print(" " +t[j].getStartOffset() +"-" +t[j].getEndOffset());
-            }
-*/
+
             String content = new FileHandler(false, false).getText(doc);
             if (content != null) {
                 TokenStream stream =

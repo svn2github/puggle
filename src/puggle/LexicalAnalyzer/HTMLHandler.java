@@ -12,7 +12,6 @@ package puggle.LexicalAnalyzer;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import org.apache.lucene.document.Field;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
