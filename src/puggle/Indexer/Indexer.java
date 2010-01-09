@@ -185,19 +185,11 @@ public class Indexer implements Runnable {
             }
             
             File file = new File(path);
-            
+
+            boolean flag = false;
+
             if (!file.exists()) {
-                this.Index.deleteDocument(i);
-                if (this.Logger != null) {
-                    String type = null;
-                    if (file.isDirectory()) {
-                        type = "Directory";
-                    } else {
-                        type = "File";
-                    }
-                    
-                    this.Logger.write(type +" '" +file +"' removed. ");
-                }
+                flag = true;
             } else {
                 HashSet<String> FiletypeSet =
                     Resources.getAcceptedFileExtensions(this.indexProperties);
@@ -206,25 +198,17 @@ public class Indexer implements Runnable {
                 long s = Long.parseLong(doc.get("size"));
                 String ext = doc.get("filetype");
 
-                int flag = 0;
-                if (FiletypeSet.contains(ext) == false) {
-                    flag = 1;
-                }
-                else if (Util.isParentDirectory(this.DataDir, file) == false) {
-                    flag = 1;
-                }
-                else if (l != file.lastModified() || s != file.length()) {
-                    flag = 1;
-                }
+                if (FiletypeSet.contains(ext) == false) { flag = true; }
+                else if (Util.isParentDirectory(this.DataDir, file) == false) { flag = true; }
+                else if (l != file.lastModified() || s != file.length()) { flag = true; }
+            }
 
-                if (flag == 1) {
-                    if (this.Logger != null) {
-                        String type =
-                                file.isDirectory() ? "Directory" : "File";
+            if (flag == true) {
+                this.Index.deleteDocument(i);
+                if (this.Logger != null) {
+                    String type = (file.isDirectory()) ? "Directory" : "File";
 
-                        this.Logger.write(type +" '" +file +"' removed. ");
-                    }
-                    this.Index.deleteDocument(i);
+                    this.Logger.write(type +" '" +file +"' removed. ");
                 }
             }
         }
@@ -240,13 +224,55 @@ public class Indexer implements Runnable {
         }
     }
 
-    /**
-     * Index all documents that are not contained in this index.
-     */
-    private synchronized void indexDocuments() throws IOException {
+    private synchronized void indexFile(File file) throws IOException {
         FileHandler handler = new FileHandler(
                 this.indexProperties.getStoreText(),
                 this.indexProperties.getStoreThumbnail());
+
+        String filename = file.getCanonicalPath();
+
+        Document doc = null;
+
+        File root = null;
+        if (this.indexProperties.isPortable() == true) {
+            root = new File(this.indexProperties.getFilesystemRoot());
+        }
+
+        try {
+            doc = handler.getDocument(file, root);
+        } catch (FileHandlerException e) {
+            if (this.Logger != null) {
+                this.Logger.write(e.getMessage());
+            }
+        }
+
+        if (doc != null) {
+            this.TotalBytes += file.length();
+            this.TotalFiles += 1;
+            
+            this.Index.addDocument(doc);
+
+            //Now release everything for GC
+            doc = null;
+            doc = new Document();
+
+            if (this.Logger != null) {
+                String type = null;
+                if (file.isDirectory()) {
+                    type = "Directory";
+                } else {
+                    type = "File";
+                }
+
+                this.Logger.write(type +" '" +filename +"' indexed.");
+            }
+        }
+    }
+
+    /**
+     * Index all documents that are not contained in this index.
+     */
+    private void indexDocuments() throws IOException {
 
         this.Index.setMaxFieldLength(Indexer.MAX_FIELD_LENGTH);
         
@@ -286,40 +312,8 @@ public class Indexer implements Runnable {
                         continue;
                     }
                 }
-                
-                String filename = file.getCanonicalPath();
 
-                Document doc = null;
-                
-                try {
-                    doc = handler.getDocument(file, root);
-                } catch (FileHandlerException e) {
-                    if (this.Logger != null) {
-                        this.Logger.write(e.getMessage());
-                    }
-                }
-                
-                if (doc != null) {
-                    this.TotalBytes += file.length();
-                    this.TotalFiles += 1;
-                    this.Index.addDocument(doc);
-                    
-                    //Now release everything for GC
-                    doc = null;
-                    doc = new Document();
-                    
-                    if (this.Logger != null) {
-                        String type = null;
-                        if (file.isDirectory()) {
-                            type = "Directory";
-                        } else {
-                            type = "File";
-                        }
-                        
-                        this.Logger.write(type +" '" +filename +"' indexed.");
-                    }
-
-                }
+                this.indexFile(file);
             }
         }
         indexReader.close();
