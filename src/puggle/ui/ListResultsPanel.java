@@ -175,7 +175,7 @@ public class ListResultsPanel extends ResultsPanel {
         }
     }
     
-    private void printCurrentHits() {
+    private synchronized void printCurrentHits() {
         if (rendererThread != null) {
             try {
                 rendererThread.join();

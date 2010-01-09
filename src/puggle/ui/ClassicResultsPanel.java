@@ -45,7 +45,7 @@ public class ClassicResultsPanel extends ResultsPanel {
         setLayout(new java.awt.GridLayout(this.RESULTS_PER_FRAME, 1, 0, 1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void printCurrentHits() {
+    private synchronized void printCurrentHits() {
         if (rendererThread != null) {
             try {
                 rendererThread.join();
