@@ -55,7 +55,7 @@ public class ClassicResultsPanel extends ResultsPanel {
         }
         
         this.removeAll();
-        this.updateUI();
+        //this.updateUI();
         
         rendererThread = new Thread(
                 new Runnable() {

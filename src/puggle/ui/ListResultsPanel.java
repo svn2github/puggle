@@ -7,6 +7,7 @@
 package puggle.ui;
 
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
@@ -69,33 +70,54 @@ public class ListResultsPanel extends ResultsPanel {
                 resultsListMouseClicked(evt);
             }
         });
+        resultsList.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                resultsListKeyTyped(evt);
+            }
+        });
         mainScrollPane.setViewportView(resultsList);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(mainScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
+            .add(mainScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(mainScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+            .add(mainScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void mainScrollPaneResized(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_mainScrollPaneResized
+
+}//GEN-LAST:event_mainScrollPaneResized
 
     private void resultsListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resultsListMouseClicked
         if (evt.getClickCount() == 2) {
             int index = this.resultsList.locationToIndex(evt.getPoint());
             Document doc = (Document)this.resultsList.getModel().getElementAt(index);
 
-            this.executeFile(new File(doc.get("path")));
-         }
-
+            if (doc != null) {
+                setCursor(new Cursor(Cursor.WAIT_CURSOR));
+                this.executeFile(new File(doc.get("path")));
+                setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            }
+        }
     }//GEN-LAST:event_resultsListMouseClicked
 
-    private void mainScrollPaneResized(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_mainScrollPaneResized
+    private void resultsListKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_resultsListKeyTyped
+        if (evt.getKeyChar() == '\n') {
+            int index = this.resultsList.getSelectedIndex();
+            Document doc = (Document)this.resultsList.getModel().getElementAt(index);
 
-}//GEN-LAST:event_mainScrollPaneResized
+            if (doc != null) {
+                setCursor(new Cursor(Cursor.WAIT_CURSOR));
+                this.executeFile(new File(doc.get("path")));
+                setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            }
+        }
+    }//GEN-LAST:event_resultsListKeyTyped
     
     private void executeFile(File file) {
         try {
@@ -154,15 +176,29 @@ public class ListResultsPanel extends ResultsPanel {
     }
     
     private void printCurrentHits() {
+        if (rendererThread != null) {
+            try {
+                rendererThread.join();
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+        }
+
+
+        rendererThread = new Thread(
+                new Runnable() {
+            public void run() {
         javax.swing.DefaultListModel model =
-                (javax.swing.DefaultListModel)this.resultsList.getModel();
+                (javax.swing.DefaultListModel)resultsList.getModel();
 
         model.clear();
-        
-        for (int i = 0; i < this.RESULTS_PER_FRAME; i++) {
-            if (this.currHits + i < this.totalHits) {
+
+        model.setSize(RESULTS_PER_FRAME);
+
+        for (int i = 0; i < RESULTS_PER_FRAME; i++) {
+            if (currHits + i < totalHits) {
                 try {
-                    model.addElement(this.hits.doc(this.currHits + i));
+                    model.set(i, hits.doc(currHits + i));
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -173,6 +209,10 @@ public class ListResultsPanel extends ResultsPanel {
 
         JScrollBar bar = mainScrollPane.getVerticalScrollBar();
         bar.setValue(bar.getMinimum());
+
+            }
+        });
+        rendererThread.start();
     }
     
     public void setResults(Query query, Hits hits) {
@@ -245,6 +285,8 @@ public class ListResultsPanel extends ResultsPanel {
     public int getResultsNumberPerFrame() {
         return this.RESULTS_PER_FRAME;
     };
+
+    private Thread rendererThread;
     
     private ImageControl imageControl;
     private Hits hits;

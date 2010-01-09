@@ -102,7 +102,6 @@ public class ClassicResultPanel extends javax.swing.JPanel {
         textPane.setBorder(null);
         textPane.setEditable(false);
         textPane.setDisabledTextColor(new java.awt.Color(255, 255, 255));
-        textPane.setSelectionColor(new java.awt.Color(255, 204, 102));
         textPane.setEditorKit(new HTMLEditorKit());
         scrollPane.setViewportView(textPane);
 
