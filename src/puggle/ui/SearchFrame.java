@@ -948,6 +948,9 @@ public class SearchFrame extends javax.swing.JFrame {
     private void updateMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateMenuItemActionPerformed
         String errorMessage = null;
         boolean updated = true;
+
+        setCursor(new Cursor(Cursor.WAIT_CURSOR));
+
         Updater update = new Updater();
 
         try {
@@ -959,6 +962,8 @@ public class SearchFrame extends javax.swing.JFrame {
         } catch (Exception ex) {
             errorMessage = ex.getMessage();
         }
+
+        setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
         if (errorMessage != null) {
             JOptionPane.showMessageDialog(this,
