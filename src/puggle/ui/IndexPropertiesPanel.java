@@ -502,7 +502,12 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
             this.pathList.setEnabled(false);
             this.addFolderButton.setEnabled(false);
             this.removeFolderButton.setEnabled(false);
+        } else {
+            this.pathList.setEnabled(b);
+            this.addFolderButton.setEnabled(b);
+            this.removeFolderButton.setEnabled(b);
         }
+
         this.jpegCheck.setEnabled(b); this.gifCheck.setEnabled(b);
         this.pngCheck.setEnabled(b); this.txtCheck.setEnabled(b);
         this.docCheck.setEnabled(b); this.pdfCheck.setEnabled(b);
@@ -540,9 +545,6 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
     }
     
     private void storeIndexingFiletypes() {
-        File dataDir = null, indexDir = null;
-        File[] dataDirsFile = null;
-        
         /* <Save properties> */
         String image_filetypes = "";
         String document_filetypes = "";

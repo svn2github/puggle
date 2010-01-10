@@ -195,10 +195,14 @@ public class IndexerPanel extends javax.swing.JPanel {
     private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopButtonActionPerformed
         this.stopButton.setEnabled(false);
         this.indexer.stop();
+
+        // index properties (like size, last mod date, etc) may have
+        // changed - load new values
+        this.indexPropertiesPanel.setProperties(indexProperties);
     }//GEN-LAST:event_stopButtonActionPerformed
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
-        File dataDir = null, indexDir = null;
+        File indexDir = null;
         File[] dataDirsFile = null;
         
         dataDirsFile = this.indexProperties.getDataDirectories();
@@ -270,6 +274,10 @@ public class IndexerPanel extends javax.swing.JPanel {
                 newButton.setEnabled(true); openButton.setEnabled(true);
                 aboutButton.setEnabled(true); exitButton.setEnabled(true);
                 newPortableButton.setEnabled(true);
+
+                // index properties (like size, last mod date, etc) may have
+                // changed - load new values
+                indexPropertiesPanel.setProperties(indexProperties);
             }
         });
         t.start();
