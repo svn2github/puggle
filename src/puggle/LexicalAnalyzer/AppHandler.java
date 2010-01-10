@@ -45,7 +45,7 @@ public class AppHandler implements DocumentHandler {
       doc.add(new Field("filetype", ext, Field.Store.YES,
               Field.Index.UN_TOKENIZED));
 
-      doc.add(new Field("app", name, Field.Store.NO,
+      doc.add(new Field("app", name + " " + ext + " " + fileName, Field.Store.NO,
                   Field.Index.TOKENIZED));
 
       doc.add(new Field("content", name + " " + ext + " " + fileName, Field.Store.NO,
@@ -91,7 +91,7 @@ public class AppHandler implements DocumentHandler {
     }
   
   public static void main(String[] args) throws Exception {
-      TextHandler handler = new TextHandler();
+      AppHandler handler = new AppHandler();
       Document doc = handler.getDocument(
               new File(args[1]));
       System.out.println(doc);
