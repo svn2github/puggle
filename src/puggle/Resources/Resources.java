@@ -18,7 +18,6 @@ import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
 import java.util.Date;
-import java.util.Properties;
 import org.apache.lucene.analysis.Analyzer;
 
 /**
@@ -64,7 +63,7 @@ public class Resources {
     };
     
     private final static String[] DOCUMENT_FILETYPES = {
-        "txt", "pdf", "doc", "rtf", "html", "htm",
+        "txt", "pdf", "doc", "rtf", "wpd", "html", "htm",
         "xls", "ppt"
     };
 

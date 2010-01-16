@@ -19,16 +19,16 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="zipCheck" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="563" max="32767" attributes="0"/>
+              <EmptySpace pref="571" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="mp3Check" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="557" max="32767" attributes="0"/>
+              <EmptySpace pref="565" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="filetypesLabel1" alignment="0" pref="604" max="32767" attributes="1"/>
+                  <Component id="filetypesLabel1" alignment="0" pref="612" max="32767" attributes="1"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -54,6 +54,8 @@
                                       <Component id="docCheck" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="rtfCheck" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="wpdCheck" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="htmlCheck" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -65,14 +67,14 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="319" max="32767" attributes="0"/>
+                      <EmptySpace pref="280" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="filetypesLabel" alignment="1" pref="604" max="32767" attributes="1"/>
-                  <Component id="optionsLabel" alignment="1" pref="604" max="32767" attributes="1"/>
+                  <Component id="filetypesLabel" alignment="1" pref="612" max="32767" attributes="1"/>
+                  <Component id="optionsLabel" alignment="1" pref="612" max="32767" attributes="1"/>
                   <Component id="foldersPanel" alignment="0" max="32767" attributes="1"/>
                   <Component id="indexDirectoryPanel" alignment="0" max="32767" attributes="1"/>
-                  <Component id="indexLabel" alignment="0" pref="604" max="32767" attributes="1"/>
-                  <Component id="foldersLabel" alignment="0" pref="604" max="32767" attributes="1"/>
+                  <Component id="indexLabel" alignment="0" pref="612" max="32767" attributes="1"/>
+                  <Component id="foldersLabel" alignment="0" pref="612" max="32767" attributes="1"/>
               </Group>
               <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
           </Group>
@@ -87,7 +89,7 @@
                   <Component id="indexSizeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="lastIndexedLabel" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="419" max="32767" attributes="0"/>
+              <EmptySpace pref="427" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -100,7 +102,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="foldersLabel" min="-2" pref="33" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="foldersPanel" min="-2" max="-2" attributes="0"/>
+              <Component id="foldersPanel" min="-2" pref="90" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="optionsLabel" min="-2" pref="33" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -122,6 +124,7 @@
                   <Component id="pdfCheck" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="docCheck" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="rtfCheck" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="wpdCheck" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="htmlCheck" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="xlsCheck" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="pptCheck" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -381,7 +384,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="indexDirectoryLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="indexTextField" pref="476" max="32767" attributes="0"/>
+                  <Component id="indexTextField" pref="484" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -482,7 +485,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="pathScrollPane" pref="481" max="32767" attributes="0"/>
+                  <Component id="pathScrollPane" pref="489" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="removeFolderButton" min="-2" pref="97" max="-2" attributes="1"/>
@@ -615,6 +618,23 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="rar"/>
         <Property name="toolTipText" type="java.lang.String" value="Whether to index RAR archives"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
+            <EmptyBorder bottom="0" left="0" right="0" top="0"/>
+          </Border>
+        </Property>
+        <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+          <Insets value="[0, 0, 0, 0]"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="storeIndexingFiletypes"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="wpdCheck">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="wpd"/>
+        <Property name="toolTipText" type="java.lang.String" value="Whether to index WordPerfect files"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
             <EmptyBorder bottom="0" left="0" right="0" top="0"/>

@@ -66,6 +66,7 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         indexSizeLabel = new javax.swing.JLabel();
         rarCheck = new javax.swing.JCheckBox();
+        wpdCheck = new javax.swing.JCheckBox();
 
         storeTextCb.setText("Store text");
         storeTextCb.setToolTipText("Store the extracted text of each file");
@@ -211,7 +212,7 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .add(indexDirectoryLabel)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(indexTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
+                .add(indexTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
                 .addContainerGap())
         );
         indexDirectoryPanelLayout.setVerticalGroup(
@@ -279,7 +280,7 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
             foldersPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, foldersPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(pathScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
+                .add(pathScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(foldersPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(removeFolderButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 97, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -333,6 +334,16 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
             }
         });
 
+        wpdCheck.setText("wpd");
+        wpdCheck.setToolTipText("Whether to index WordPerfect files");
+        wpdCheck.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        wpdCheck.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        wpdCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                storeIndexingFiletypes(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -340,14 +351,14 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(zipCheck)
-                .addContainerGap(563, Short.MAX_VALUE))
+                .addContainerGap(571, Short.MAX_VALUE))
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(mp3Check)
-                .addContainerGap(557, Short.MAX_VALUE))
+                .addContainerGap(565, Short.MAX_VALUE))
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, filetypesLabel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, filetypesLabel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE)
                     .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
                         .add(10, 10, 10)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -370,6 +381,8 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
                                         .add(docCheck)
                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                         .add(rtfCheck)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                        .add(wpdCheck)
                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                         .add(htmlCheck)
                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -377,13 +390,13 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                         .add(pptCheck))
                                     .add(gifCheck))))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 319, Short.MAX_VALUE))
-                    .add(filetypesLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
-                    .add(optionsLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 280, Short.MAX_VALUE))
+                    .add(filetypesLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE)
+                    .add(optionsLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE)
                     .add(org.jdesktop.layout.GroupLayout.LEADING, foldersPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(org.jdesktop.layout.GroupLayout.LEADING, indexDirectoryPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, indexLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, foldersLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE))
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, indexLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, foldersLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE))
                 .add(0, 0, 0))
             .add(layout.createSequentialGroup()
                 .addContainerGap()
@@ -394,7 +407,7 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(indexSizeLabel)
                     .add(lastIndexedLabel))
-                .addContainerGap(419, Short.MAX_VALUE))
+                .addContainerGap(427, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -425,6 +438,7 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
                     .add(pdfCheck)
                     .add(docCheck)
                     .add(rtfCheck)
+                    .add(wpdCheck)
                     .add(htmlCheck)
                     .add(xlsCheck)
                     .add(pptCheck))
@@ -513,6 +527,7 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
         this.docCheck.setEnabled(b); this.pdfCheck.setEnabled(b);
         this.xlsCheck.setEnabled(b); this.pptCheck.setEnabled(b);
         this.htmlCheck.setEnabled(b); this.rtfCheck.setEnabled(b);
+        this.wpdCheck.setEnabled(b);
         this.zipCheck.setEnabled(b); this.rarCheck.setEnabled(b);
         this.mp3Check.setEnabled(b);
         this.storeTextCb.setEnabled(b); this.storeThumbsCb.setEnabled(b);
@@ -566,6 +581,8 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
             document_filetypes += "doc,";
         if (this.rtfCheck.isSelected())
             document_filetypes += "rtf,";
+        if (this.wpdCheck.isSelected())
+            document_filetypes += "wpd,";
         if (this.htmlCheck.isSelected())
             document_filetypes += "html,htm,";
         if (this.xlsCheck.isSelected())
@@ -692,6 +709,12 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
         } else {
             this.rtfCheck.setSelected(false);
         }
+
+        if (document_filetypes != null && (document_filetypes.contains(new StringBuffer("wpd")))) {
+            this.wpdCheck.setSelected(true);
+        } else {
+            this.wpdCheck.setSelected(false);
+        }
         
         if (document_filetypes != null && (document_filetypes.contains(new StringBuffer("html")) && document_filetypes.contains(new StringBuffer("htm")))) {
             this.htmlCheck.setSelected(true);
@@ -775,6 +798,7 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
     private javax.swing.JCheckBox storeTextCb;
     private javax.swing.JCheckBox storeThumbsCb;
     private javax.swing.JCheckBox txtCheck;
+    private javax.swing.JCheckBox wpdCheck;
     private javax.swing.JCheckBox xlsCheck;
     private javax.swing.JCheckBox zipCheck;
     // End of variables declaration//GEN-END:variables

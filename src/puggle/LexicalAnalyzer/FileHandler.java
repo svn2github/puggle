@@ -45,6 +45,7 @@ public class FileHandler {
         this.handlerProps.setProperty("pdf", "puggle.LexicalAnalyzer.PDFHandler");
         this.handlerProps.setProperty("doc", "puggle.LexicalAnalyzer.DOCHandler");
         this.handlerProps.setProperty("rtf", "puggle.LexicalAnalyzer.RTFHandler");
+        this.handlerProps.setProperty("wpd", "puggle.LexicalAnalyzer.WordPerfectHandler");
         this.handlerProps.setProperty("html", "puggle.LexicalAnalyzer.HTMLHandler");
         this.handlerProps.setProperty("htm", "puggle.LexicalAnalyzer.HTMLHandler");
         this.handlerProps.setProperty("xls", "puggle.LexicalAnalyzer.XLSHandler");
