@@ -546,6 +546,8 @@ public class SearchFrame extends javax.swing.JFrame {
                 this.startButton.setEnabled(false);
                 this.propertiesButton.setEnabled(false);
                 this.stopButton.setEnabled(true);
+                this.openMenuItem.setEnabled(false);
+                this.openPortableMenuItem.setEnabled(false);
                 System.out.println("Puggle Indexer: " +
                         "Starting indexing documents...");
                 
@@ -570,6 +572,8 @@ public class SearchFrame extends javax.swing.JFrame {
                         stopButton.setEnabled(false);
                         startButton.setEnabled(true);
                         propertiesButton.setEnabled(true);
+                        openMenuItem.setEnabled(true);
+                        openPortableMenuItem.setEnabled(true);
 
                         lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-green.png")));
                         lastIndexedLabel.setToolTipText("Indexing has been completed successfully.");
