@@ -525,9 +525,6 @@ public class SearchFrame extends javax.swing.JFrame {
     private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopButtonActionPerformed
         this.stopIndexing();
         this.stopButton.setEnabled(false);
-        //this.startButton.setEnabled(true);
-        //this.propertiesButton.setEnabled(true);
-        //this.stopButton.setEnabled(false);
         
         if (new Date().getTime() - this.indexerProperties.getLastIndexed() > INDEX_DT) {
             this.lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-important.png")));
@@ -575,8 +572,14 @@ public class SearchFrame extends javax.swing.JFrame {
                         openMenuItem.setEnabled(true);
                         openPortableMenuItem.setEnabled(true);
 
-                        lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-green.png")));
-                        lastIndexedLabel.setToolTipText("Indexing has been completed successfully.");
+                        if (new Date().getTime() - indexerProperties.getLastIndexed() > INDEX_DT) {
+                            lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-important.png")));
+                            lastIndexedLabel.setToolTipText("Index is outdated or incomplete. Please start indexer.");
+                        }
+                        else {
+                            lastIndexedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert-green.png")));
+                            lastIndexedLabel.setToolTipText("Indexing has been completed successfully.");
+                        }
                     }
                 });
                 t.start();
@@ -1010,7 +1013,6 @@ public class SearchFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_updateMenuItemActionPerformed
 
     private boolean startIndexing(long delay) throws IOException {
-        long lastModified = this.indexerProperties.getLastIndexed();
         
         if (this.indexerThread == null) {
             

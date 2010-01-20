@@ -83,7 +83,7 @@ public class WordPerfectHandler implements DocumentHandler {
   public static void main(String[] args) throws Exception {
       WordPerfectHandler handler = new WordPerfectHandler();
       Document doc = handler.getDocument(
-              new File("C:\\test.wpd"));
+              new File(args[1]));
       System.out.println(doc);
   }
 }
