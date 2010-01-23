@@ -10,7 +10,6 @@
 package puggle.LexicalAnalyzer;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 
