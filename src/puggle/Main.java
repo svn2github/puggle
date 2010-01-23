@@ -154,7 +154,7 @@ public class Main {
             if (props.getVersion().equals(Resources.getApplicationVersion()) == false) {
                 props.close(); props = null;
                 System.gc();
-                File f = new File(Resources.getIndexCanonicalPath());
+                File f = new File(Resources.getApplicationDirectoryCanonicalPath());
                 if (Util.deleteDir(f) == false) {
                     JOptionPane.showMessageDialog(null,
                             "Cannot delete directory '" +f +"'.\n"
