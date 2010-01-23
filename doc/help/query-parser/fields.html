@@ -13,16 +13,53 @@
 <div class="section">
 <p>Puggle supports fielded data. When performing a search you can either specify a field, or use the default field. The field names and default field is implementation specific.</p>
 <p>You can search any field by typing the field name followed by a colon ":" and then the term you are looking for. </p>
-<p>As an example, let's assume a Lucene index contains two fields, title and text and text is the default field.
-        If you want to find the document entitled "The Right Way" which contains the text "don't go this way", you can enter: </p>
-<pre class="code">title:"The Right Way" AND text:go</pre>
-<p>or</p>
-<pre class="code">title:"Do it right" AND right</pre>
-<p>Since text is the default field, the field indicator is not required.</p>
+<p>The available fields in Puggle are the following: </p>
+
+<ul>
+
+	<li>
+	<pre class="code">app:</pre>
+	The query <code>[ app:term ]</code> restricts results to applications containing <code>term</code> in the file's name.
+	For instance, <code>[ intitle:calc ]</code> will return applications that mention the word <code>notepad</code> in
+	their names, like the <code>C:\WINDOWS\system32\calc.exe</code>.
+	</li>
+
+	<li>
+	<pre class="code">filename:</pre>
+	The query <code>filename:term</code> restricts results to documents containing <code>term</code> in the file's name.
+	For instance, <code>[ flu shot intitle:help ]</code> will return documents that mention the word <code>help</code> in
+	their names, and mention the words <code>flu</code> and <code>shot</code> anywhere in the document.
+	</li>
+
+	<li>
+	<pre class="code">filetype:</pre>
+	If you include <code>filetype:suffix</code> in your query, Puggle will restrict the results to pages
+	whose names end in <code>suffix</code>. For example, <code>[ web page evaluation checklist filetype:pdf ]</code>
+	will return Adobe Acrobat pdf files that match the terms <code>web</code>, <code>page</code>,
+	<code>evaluation</code>, and <code>checklist</code>. You can restrict the results to pages whose names end
+	with pdf and doc by using the <code>OR</code> operator, e.g. <code>[ email security filetype:pdf OR filetype:doc ]</code>.
+	</li>
+
+	<li>
+	<pre class="code">title:</pre>
+	The query <code>[ title:term ]</code> restricts results to documents containing <code>term</code> in the title.
+	For instance, <code> [ flu shot title:help ]</code> will return documents that mention the word <code>help</code>
+	in their titles, and mention the words <code>flu</code> and <code>shot</code> anywhere in the document (title or not).
+	</li>
+
+	<li>
+	<pre class="code">inpath:</pre>
+	If you include <code>inpath:</code> in your query, Puggle will restrict the results to files containing that
+	word in the path. For instance, <code>[ inpath:documents ]</code> searches for files in which their full path
+	contains the word <code>print</code>.
+	The query <code>[ inurl:healthy eating ]</code> will return files that mention the words <code>healthy</code>
+	in their path, and mention the word <code>eating</code> anywhere in the document.
+	</li>
+</ul> 
 
 <p>Note: The field is only valid for the term that it directly precedes, so the query</p>
-<pre class="code">title:Do it right</pre>
-<p>Will only find "Do" in the title field. It will find "it" and "right" in the default field (in this case the text field). </p>
+<pre class="code">inpath:Do it right</pre>
+<p>Will only find <code>Do</code> in the <code>inpath</code> field. It will find <code>it</code> and <code>right</code> in the content of the file. </p>
 </div>
 
 </body>
