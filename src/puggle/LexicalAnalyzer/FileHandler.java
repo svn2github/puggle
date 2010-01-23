@@ -155,6 +155,10 @@ public class FileHandler {
                     Field.Store.YES, Field.Index.UN_TOKENIZED));
             doc.add(new Field("size", String.valueOf(file.length()),
                     Field.Store.YES, Field.Index.UN_TOKENIZED));
+            doc.add(new Field("inpath",
+                    file.getCanonicalPath().replace(File.separatorChar, ' '),
+                    Field.Store.YES,
+                    Field.Index.TOKENIZED));
         } catch (IOException e) {
             throw new FileHandlerException(e.getMessage());
         }
@@ -190,6 +194,12 @@ public class FileHandler {
             
             doc.removeField("path");
             doc.add(new Field("path", path, Field.Store.YES, Field.Index.UN_TOKENIZED));
+
+            doc.removeField("inpath");
+            doc.add(new Field("inpath",
+                    path.replace(File.separatorChar, ' '),
+                    Field.Store.YES,
+                    Field.Index.TOKENIZED));
         }
         
         return doc;
