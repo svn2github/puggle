@@ -50,6 +50,10 @@ public class FileHandler {
         this.handlerProps.setProperty("htm", "puggle.LexicalAnalyzer.HTMLHandler");
         this.handlerProps.setProperty("xls", "puggle.LexicalAnalyzer.XLSHandler");
         this.handlerProps.setProperty("ppt", "puggle.LexicalAnalyzer.PPTHandler");
+
+        //this.handlerProps.setProperty("pptx", "puggle.LexicalAnalyzer.Office2007Handler");
+        //this.handlerProps.setProperty("docx", "puggle.LexicalAnalyzer.Office2007Handler");
+        //this.handlerProps.setProperty("xlsx", "puggle.LexicalAnalyzer.Office2007Handler");
         
         this.handlerProps.setProperty("mp3", "puggle.LexicalAnalyzer.MP3Handler");
         this.handlerProps.setProperty("jpg", "puggle.LexicalAnalyzer.ImageHandler");

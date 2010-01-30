@@ -95,7 +95,7 @@ public class TrayIconControl {
             //                TrayIcon.MessageType.INFO);
                 }
             };
-            
+            this.trayIcon.setImageAutoSize(true);
             this.trayIcon.setImageAutoSize(true);
             this.trayIcon.addActionListener(actionListener);
             this.trayIcon.addMouseListener(mouseListener);

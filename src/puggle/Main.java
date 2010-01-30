@@ -135,8 +135,16 @@ public class Main {
                 props.setFilesystemRoot(root.getAbsolutePath());
                 props.setPath(root.getPath());
                 Indexer indexer = new Indexer(index, props);
-                indexer.close();
-
+                try {
+                    indexer.close();
+                } catch (Throwable ex) {
+                    JOptionPane.showMessageDialog(null,
+                            ex.getMessage(),
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE,
+                            ImageControl.getImageControl().getErrorIcon());
+                    System.exit(1);
+                }
                 IndexPropertiesDialog dialog = new IndexPropertiesDialog((java.awt.Frame)null, true);
                 dialog.setProperties(props);
                 dialog.setLocationRelativeTo(null);
@@ -170,8 +178,16 @@ public class Main {
             if (IndexReader.indexExists(Resources.getIndexCanonicalPath()) == false) {
                 props.setPath(System.getProperty("user.home"));
                 Indexer indexer = new Indexer(index, props);
-                indexer.close();
-
+                try {
+                    indexer.close();
+                } catch (Throwable ex) {
+                    JOptionPane.showMessageDialog(null,
+                            ex.getMessage(),
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE,
+                            ImageControl.getImageControl().getErrorIcon());
+                    System.exit(1);
+                }
                 IndexPropertiesDialog dialog = new IndexPropertiesDialog((java.awt.Frame)null, true);
                 dialog.setProperties(props);
                 dialog.setLocationRelativeTo(null);
@@ -182,9 +198,9 @@ public class Main {
         // pop-up window!
         java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    SearchFrame frm = new SearchFrame();
-                    frm.setLocationRelativeTo(null);
-                    frm.setVisible(true);
+                    searchFrame = new SearchFrame();
+                    searchFrame.setLocationRelativeTo(null);
+                    searchFrame.setVisible(true);
                 }
             });
 
@@ -222,15 +238,25 @@ public class Main {
         }
     }
 
+    public static void killSearchFrame() {
+        if (searchFrame != null) {
+            searchFrame.setVisible(false);
+            searchFrame.stopIndexing();
+        }
+    }
+
     static class ShutdownHook extends Thread {
         @Override
         public void run() {
             unlockFile();
+            killSearchFrame();
         }
     }
 
     private static File lockFile;
     private static FileChannel channel;
     private static FileLock lock;
+
+    private static SearchFrame searchFrame;
     
 }

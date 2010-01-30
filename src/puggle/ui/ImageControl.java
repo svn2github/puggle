@@ -124,6 +124,10 @@ public class ImageControl {
         icon = new ImageIcon(image);
         this.iconsTable.put("zip", icon);
         this.iconsTable.put("rar", icon);
+
+        image = toolkit.getImage(getClass().getResource("/unknown.png"));
+        image = image.getScaledInstance(ICON_DIMENSION, ICON_DIMENSION, BufferedImage.SCALE_SMOOTH);
+        this.iconsTable.put("unknown", new ImageIcon(image));
     }
     
     public static synchronized ImageControl getImageControl() {
@@ -209,7 +213,6 @@ public class ImageControl {
     }
     
     public ImageIcon getThumbnailOf(File file) throws FileNotFoundException {
-        sun.awt.shell.ShellFolder sf;
         ImageIcon icon = null;
         
         String path = file.getPath();
@@ -232,8 +235,7 @@ public class ImageControl {
         }
         
         if (icon == null) {
-            sf = sun.awt.shell.ShellFolder.getShellFolder(file);
-            icon = new ImageIcon(sf.getIcon(true), sf.getFolderType());
+            icon = this.getDefaultThumbnailOf(file);
         }
         
         return icon;
@@ -243,9 +245,15 @@ public class ImageControl {
         ImageIcon icon = null;
         sun.awt.shell.ShellFolder sf;
 
-        sf = sun.awt.shell.ShellFolder.getShellFolder(file);
-        if (sf != null) {
-            icon = new ImageIcon(sf.getIcon(true), sf.getFolderType());
+        try {
+            sf = sun.awt.shell.ShellFolder.getShellFolder(file);
+            if (sf != null) {
+                icon = new ImageIcon(sf.getIcon(true), sf.getFolderType());
+            }
+        } catch (NullPointerException e) {
+            icon = this.iconsTable.get("unknown");
+        } catch (Exception e) {
+            icon = this.iconsTable.get("unknown");
         }
 
         return icon;

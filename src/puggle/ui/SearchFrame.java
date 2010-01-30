@@ -1035,7 +1035,7 @@ public class SearchFrame extends javax.swing.JFrame {
         return false;
     }
     
-    private void stopIndexing() {
+    public void stopIndexing() {
         if (this.indexerThread != null) {
             this.indexer.stop();
         }

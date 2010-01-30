@@ -578,7 +578,7 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
         if (this.pdfCheck.isSelected())
             document_filetypes += "pdf,";
         if (this.docCheck.isSelected())
-            document_filetypes += "doc,";
+            document_filetypes += "doc,docx";
         if (this.rtfCheck.isSelected())
             document_filetypes += "rtf,";
         if (this.wpdCheck.isSelected())
@@ -586,9 +586,9 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
         if (this.htmlCheck.isSelected())
             document_filetypes += "html,htm,";
         if (this.xlsCheck.isSelected())
-            document_filetypes += "xls,";
+            document_filetypes += "xls,xlsx";
         if (this.pptCheck.isSelected())
-            document_filetypes += "ppt,";
+            document_filetypes += "ppt,pptx";
         if (this.mp3Check.isSelected())
             music_filetypes += "mp3,";
         if (this.zipCheck.isSelected())

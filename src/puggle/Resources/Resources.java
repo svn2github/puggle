@@ -29,7 +29,9 @@ public class Resources {
     /* final string variables */
     public final static String APP_NAME = "Puggle";
     
-    public final static String APP_VERSION = "0.54";
+    public final static String APP_VERSION = "0.61";
+
+    public final static String INDEX_VERSION = "0.60";
 
     public final static String APP_AUTHOR = "Giorgos Vasiliadis";
 
@@ -64,7 +66,7 @@ public class Resources {
     
     private final static String[] DOCUMENT_FILETYPES = {
         "txt", "pdf", "doc", "rtf", "wpd", "html", "htm",
-        "xls", "ppt"
+        "xls", "ppt", "docx", "xlsx", "pptx"
     };
 
     private final static String[] ARCHIVE_FILETYPES = {
@@ -87,6 +89,10 @@ public class Resources {
     
     public static String getApplicationVersion() {
         return Resources.APP_VERSION;
+    }
+
+    public static String getIndexVersion() {
+        return Resources.INDEX_VERSION;
     }
 
     public static String getApplicationAuthor() {
