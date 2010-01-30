@@ -62,6 +62,7 @@ public class IndexProperties {
             properties.setProperty("compressed", "false");
             properties.setProperty("store_thumbnails", "true");
             properties.setProperty("filesystem_root", "");
+            properties.setProperty("indexed_documents", "0");
             properties.setProperty("version", Resources.getApplicationVersion());
             
             try {
@@ -348,6 +349,22 @@ public class IndexProperties {
 
     public synchronized void setLastOptimized(long millis) {
         this.properties.setProperty("last_optimized", Long.toString(millis));
+        this.flush();
+    }
+
+    public synchronized int getIndexedDocuments() {
+        String str  = this.properties.getProperty("indexed_documents");
+
+        if (str == null) {
+            this.setIndexedDocuments(0);
+            return 0;
+        } else {
+            return Integer.valueOf(str);
+        }
+    }
+
+    public synchronized void setIndexedDocuments(int n) {
+        this.properties.setProperty("indexed_documents", Integer.toString(n));
         this.flush();
     }
     

@@ -216,6 +216,8 @@ public class Indexer implements Runnable {
             }
         }
 
+        this.indexProperties.setIndexedDocuments(indexReader.maxDoc());
+
         indexReader.close();
         this.Index.flush();
         
@@ -316,6 +318,9 @@ public class Indexer implements Runnable {
                 this.indexFile(file);
             }
         }
+
+        this.indexProperties.setIndexedDocuments(indexReader.maxDoc());
+
         indexReader.close();
         this.Index.flush();
         

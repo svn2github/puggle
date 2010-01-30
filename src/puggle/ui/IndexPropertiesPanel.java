@@ -67,6 +67,8 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
         indexSizeLabel = new javax.swing.JLabel();
         rarCheck = new javax.swing.JCheckBox();
         wpdCheck = new javax.swing.JCheckBox();
+        jLabel3 = new javax.swing.JLabel();
+        indexedDocumentsLabel = new javax.swing.JLabel();
 
         storeTextCb.setText("Store text");
         storeTextCb.setToolTipText("Store the extracted text of each file");
@@ -344,6 +346,10 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel3.setText("Indexed Files:");
+
+        indexedDocumentsLabel.setText("<empty>");
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -402,9 +408,11 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jLabel1)
-                    .add(jLabel2))
+                    .add(jLabel2)
+                    .add(jLabel3))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(indexedDocumentsLabel)
                     .add(indexSizeLabel)
                     .add(lastIndexedLabel))
                 .addContainerGap(427, Short.MAX_VALUE))
@@ -458,7 +466,11 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel2)
                     .add(indexSizeLabel))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel3)
+                    .add(indexedDocumentsLabel))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -763,6 +775,8 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
 
         this.indexSizeLabel.setText(Util.adjustSize(Util.getFileSize(new File(Resources.getIndexCanonicalPath()))));
 
+        this.indexedDocumentsLabel.setText(Integer.toString(this.indexProperties.getIndexedDocuments()));
+
     }
     
     private IndexProperties indexProperties;
@@ -781,8 +795,10 @@ public class IndexPropertiesPanel extends javax.swing.JPanel {
     private javax.swing.JLabel indexLabel;
     private javax.swing.JLabel indexSizeLabel;
     private javax.swing.JTextField indexTextField;
+    private javax.swing.JLabel indexedDocumentsLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JCheckBox jpegCheck;
     private javax.swing.JLabel lastIndexedLabel;
     private javax.swing.JCheckBox mp3Check;

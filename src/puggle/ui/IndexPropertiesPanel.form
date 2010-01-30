@@ -83,9 +83,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="indexedDocumentsLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="indexSizeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="lastIndexedLabel" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -102,7 +104,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="foldersLabel" min="-2" pref="33" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="foldersPanel" min="-2" max="-2" attributes="0"/>
+              <Component id="foldersPanel" min="-2" pref="90" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="optionsLabel" min="-2" pref="33" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -148,7 +150,12 @@
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="indexSizeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="12" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="indexedDocumentsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -647,6 +654,16 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="storeIndexingFiletypes"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Indexed Files:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="indexedDocumentsLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&lt;empty&gt;"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
