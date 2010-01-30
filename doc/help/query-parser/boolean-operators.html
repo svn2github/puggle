@@ -17,37 +17,37 @@
 
 <h3 class="boxed"></h3>
 <p>The OR operator is the default conjunction operator. This means that if there is no Boolean operator between two terms, the OR operator is used.
-        The OR operator links two terms and finds a matching document if either of the terms exist in a document. This is equivalent to a union using sets.
+        The OR operator links two terms and finds a matching file if either of the terms exist in a file. This is equivalent to a union using sets.
         The symbol || can be used in place of the word OR.</p>
-<p>To search for documents that contain either "jakarta apache" or just "jakarta" use the query:</p>
+<p>To search for files that contain either "jakarta apache" or just "jakarta" use the query:</p>
 <pre class="code">"jakarta apache" jakarta</pre>
 <p>or</p>
 <pre class="code">"jakarta apache" OR jakarta</pre>
 <a name="N10116"></a><a name="AND"></a>
 <h3 class="boxed">AND</h3>
-<p>The AND operator matches documents where both terms exist anywhere in the text of a single document.
+<p>The AND operator matches files where both terms exist anywhere in the text of a single file.
         This is equivalent to an intersection using sets. The symbol &amp;&amp; can be used in place of the word AND.</p>
 
-<p>To search for documents that contain "jakarta apache" and "Apache Lucene" use the query: </p>
+<p>To search for files that contain "jakarta apache" and "Apache Lucene" use the query: </p>
 <pre class="code">"jakarta apache" AND "Apache Lucene"</pre>
 <a name="N10126"></a><a name="+"></a>
 <h3 class="boxed">+</h3>
-<p>The "+" or required operator requires that the term after the "+" symbol exist somewhere in a the field of a single document.</p>
-<p>To search for documents that must contain "jakarta" and may contain "lucene" use the query:</p>
+<p>The "+" or required operator requires that the term after the "+" symbol exist somewhere in a field of a single file.</p>
+<p>To search for files that must contain "jakarta" and may contain "lucene" use the query:</p>
 <pre class="code">+jakarta lucene</pre>
 <a name="N10136"></a><a name="NOT"></a>
 <h3 class="boxed">NOT</h3>
-<p>The NOT operator excludes documents that contain the term after NOT.
+<p>The NOT operator excludes files that contain the term after NOT.
         This is equivalent to a difference using sets. The symbol ! can be used in place of the word NOT.</p>
 
-<p>To search for documents that contain "jakarta apache" but not "Apache Lucene" use the query: </p>
+<p>To search for files that contain "jakarta apache" but not "Apache Lucene" use the query: </p>
 <pre class="code">"jakarta apache" NOT "Apache Lucene"</pre>
 <p>Note: The NOT operator cannot be used with just one term. For example, the following search will return no results:</p>
 <pre class="code">NOT "jakarta apache"</pre>
 <a name="N1014C"></a><a name="-"></a>
 <h3 class="boxed">-</h3>
-<p>The "-" or prohibit operator excludes documents that contain the term after the "-" symbol.</p>
-<p>To search for documents that contain "jakarta apache" but not "Apache Lucene" use the query: </p>
+<p>The "-" or prohibit operator excludes files that contain the term after the "-" symbol.</p>
+<p>To search for files that contain "jakarta apache" but not "Apache Lucene" use the query: </p>
 <pre class="code">"jakarta apache" -"Apache Lucene"</pre>
 
 </div>

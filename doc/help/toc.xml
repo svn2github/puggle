@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <toc>
-	<tocitem text="General" home="true">
+	<tocitem text="General">
 		<tocitem text="Query Parser">
-			<tocitem text="Terms" target="query-parser/terms.html" />
+			<tocitem text="Terms" target="query-parser/terms.html"  home="true"/>
 			<tocitem text="Fields" target="query-parser/fields.html" />
 			<tocitem text="Term Modifiers" target="query-parser/term-modifiers.html" />
 			<tocitem text="Boolean Operators" target="query-parser/boolean-operators.html" />
